@@ -60,3 +60,6 @@ steps:
         '--project', 'test',
         '--max-instances', '1'
       ]
+
+logsBucket: 'gs://joyasperu-dev-app-cloud-build'
+serviceAccount: 'terraform-account@oval-crawler-444615-k3.iam.gserviceaccount.com'
