@@ -40,7 +40,8 @@ steps:
         '--region', 'us-east1',
         '--allow-unauthenticated',  # Asegura exposición pública
         '--ingress', 'all',  # Para exponer a internet
-        '--project', 'test',
+        '--project', 'oval-crawler-444615-k3',
+        '--service-account', '1094025365695-compute@developer.gserviceaccount.com',
         '--max-instances', '1'
       ]
 
@@ -57,7 +58,8 @@ steps:
         '--region', 'us-east1',
         '--allow-unauthenticated',  # Asegura exposición pública
         '--ingress', 'all',  # Para exponer a internet
-        '--project', 'test',
+        '--project', 'oval-crawler-444615-k3',
+        '--service-account', '1094025365695-compute@developer.gserviceaccount.com',
         '--max-instances', '1'
       ]
 
