@@ -34,7 +34,7 @@ steps:
     args:
       [
         'run', 'deploy', 'msa-joyasperu-auth',
-        '--image', 'us-central1-docker.pkg.dev/oval-crawler-444615-k3/joyasperu-apiscore:$COMMIT_SHA',
+        '--image', 'us-central1-docker.pkg.dev/oval-crawler-444615-k3/joyasperu-apiscore/msa-auth-img:$COMMIT_SHA',
         '--port', '4000',
         '--platform', 'managed',
         '--region', 'us-east1',
@@ -51,7 +51,7 @@ steps:
     args:
       [
         'run', 'deploy', 'msa-joyasperu-shop',  # Cambiar nombre del servicio
-        '--image', 'us-central1-docker.pkg.dev/oval-crawler-444615-k3/joyasperu-apiscore:$COMMIT_SHA',
+        '--image', 'us-central1-docker.pkg.dev/oval-crawler-444615-k3/joyasperu-apiscore/msa-auth-shop:$COMMIT_SHA',
         '--port', '4001',  # Puerto diferente si se requiere
         '--platform', 'managed',
         '--region', 'us-east1',
