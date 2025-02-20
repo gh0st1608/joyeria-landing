@@ -1,0 +1,15 @@
+auth/node_modules/
+shop/node_modules/
+payment/node_modules/
+
+auth/dist/
+shop/dist/
+payment/dist/
+
+auth/.env
+shop/.env
+payment/.env
+
+auth/.build/
+shop/.build/
+payment/.build/
