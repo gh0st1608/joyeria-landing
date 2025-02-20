@@ -14,10 +14,14 @@ import { CreateProductUseCase } from './product/application/create.application'
 import { GetProductsUseCase } from './product/application/get-all.application'
 import { DeleteProductUseCase} from './product/application/delete.application'
 import { ProductsController } from './product/infrastructure/product.controller';
+import { ConfigModule } from '@nestjs/config';
 
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,  // Esto hará que las variables estén disponibles globalmente
+    }),
     MongooseModule.forRoot(process.env.MONGO_DB_URI),
     //MongooseModule.forRoot('mongodb://root:example@localhost:27017/shop?authSource=admin'), // Configura la conexión a MongoDB
     MongooseModule.forFeature(

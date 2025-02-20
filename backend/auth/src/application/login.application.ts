@@ -1,9 +1,9 @@
 // src/application/CategoryProducts/create-CategoryProduct.use-case.ts
 
 import { Inject, Injectable } from '@nestjs/common';
-import { IUserRepository } from 'src/domain/repository/user.repository';
+import { IUserRepository } from '../domain/repository/user.repository';
 import AuthAppService from './service/auth.service';
-import { AuthLoginDto } from 'src/infrastructure/dto/login.dto';
+import { AuthLoginDto } from '../infrastructure/dto/login.dto';
 
 @Injectable()
 export class LoginUseCase {

@@ -1,7 +1,7 @@
 
 import { Inject, Injectable } from '@nestjs/common';
-import { IAuthRepository, Tokens } from 'src/domain/repository/auth.repository';
-import { IUserRepository } from 'src/domain/repository/user.repository';
+import { IAuthRepository, Tokens } from '../domain/repository/auth.repository';
+import { IUserRepository } from '../domain/repository/user.repository';
 import AuthAppService from './service/auth.service';
 
 @Injectable()

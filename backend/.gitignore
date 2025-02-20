@@ -9,3 +9,7 @@ payment/dist/
 auth/.env
 shop/.env
 payment/.env
+
+auth/.build/
+shop/.build/
+payment/.build/
