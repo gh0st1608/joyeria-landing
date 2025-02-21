@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
-import jwt from "jwt-simple";
-import moment from "moment";
-import bcrypt from "bcryptjs";
+import * as jwt from "jwt-simple";
+import * as moment from "moment";
+import * as bcrypt from 'bcrypt';
 
 
 export default class AuthAppService {

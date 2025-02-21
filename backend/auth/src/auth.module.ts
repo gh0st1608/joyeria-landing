@@ -10,15 +10,15 @@ import { AuthController } from './infrastructure/auth.controller';
 import { AuthInfrastructureRepository } from './infrastructure/auth.repository';
 import { UserInfrastructureRepository } from './infrastructure/user.repository';
 import { ConfigModule } from '@nestjs/config';
+import { RegisterUseCase } from './application/register.application';
 
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal: true,  // Esto hará que las variables estén disponibles globalmente
+      isGlobal: true,
     }),
     MongooseModule.forRoot(process.env.MONGO_DB_URI),
-    //MongooseModule.forRoot('mongodb://root:example@localhost:27017/shop?authSource=admin'), // Configura la conexión a MongoDB
     MongooseModule.forFeature(
       [
         { name: Auth.name, schema: AuthSchema },
@@ -31,6 +31,7 @@ import { ConfigModule } from '@nestjs/config';
   ],
   providers: [
     LoginUseCase,
+    RegisterUseCase,
     GetNewAccessTokenUseCase,
     {
       provide: 'IAuthRepository', // Proveedor para inyectar la interfaz del repositorio
@@ -42,4 +43,4 @@ import { ConfigModule } from '@nestjs/config';
     },
   ],
 })
-export class AppModule {}
+export class AuthModule {}

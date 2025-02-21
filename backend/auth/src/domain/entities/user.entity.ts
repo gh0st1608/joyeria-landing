@@ -3,13 +3,13 @@ export interface UserRequired {
   readonly lastname: string;
   readonly email: string;
   readonly password: string;
-  readonly roles: string[] | unknown[];
+  //readonly roles: string[] | unknown[];
 }
 
 export interface UserOptional {
   readonly id: string;
   readonly photo: string;
-  readonly isActive: boolean;
+  readonly active: boolean;
   readonly refreshToken: string;
   readonly createdAt: Date;
   readonly updatedAt: Date;
@@ -30,13 +30,14 @@ export class User {
   private password: string;
   private photo: string;
   private roles: string[] | unknown[];
-  private isActive: boolean;
+  private active: boolean;
   private refreshToken: string;
   private readonly createdAt: Date;
   private updatedAt: Date | null;
   private deletedAt: Date | null;
 
   constructor(properties: UserProperties) {
+    this.active = true
     Object.assign(this, properties);
   }
 
@@ -48,8 +49,8 @@ export class User {
       email: this.email,
       password: this.password,
       photo: this.photo,
-      roles: this.roles,
-      isActive: this.isActive,
+      //roles: this.roles,
+      active: this.active,
       refreshToken: this.refreshToken,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt,

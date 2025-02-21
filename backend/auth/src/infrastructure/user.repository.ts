@@ -3,9 +3,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { plainToClass } from 'class-transformer';
 import { IUserRepository } from '../domain/repository/user.repository';
 import { User as UserMongoose} from './schemas/user.schema';
-import { User } from '../domain/entities/user.entity'
+import { User, UserProperties } from '../domain/entities/user.entity'
+import { Auth } from '../domain/entities/auth.entity';
 
 @Injectable()
 export class UserInfrastructureRepository implements IUserRepository {
@@ -13,9 +15,15 @@ export class UserInfrastructureRepository implements IUserRepository {
     @InjectModel(UserMongoose.name) private userModel: Model<UserMongoose>
   ) {}
 
-  async findOne(where: { [s: string]: string | number }): Promise<User | null> {
-    const user = await this.userModel.findById(where).lean().exec();
+  async register(auth: Auth): Promise<User> {
+      const userMongoose = new this.userModel({...auth});
+      const savedUser = await userMongoose.save();
+      return new User(savedUser.toObject());
+  }
+
+  async findOne(where: { [s: string]: string | number }): Promise<User> {
+    const user = await this.userModel.findOne(where).lean().exec();
     if (!user) return null;
-    return new User(user.toObject())
+    return new User(user)
   }
 }

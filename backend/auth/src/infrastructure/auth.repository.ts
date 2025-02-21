@@ -10,13 +10,7 @@ import { Auth } from '../domain/entities/auth.entity'
 @Injectable()
 export class AuthInfrastructureRepository implements IAuthRepository {
   constructor(@InjectModel(AuthMongoose.name) private authModel: Model<AuthMongoose>) {}
-
-  async register(auth: Auth): Promise<string> {
-    const authCreated = await Model.create(auth);
-    console.log(authCreated);
-    return authCreated._id;
-  }
-
+  
   async findOne(where: { [s: string]: string | number }): Promise<Auth | null> {
     return await Model.findOne(where);
   }
