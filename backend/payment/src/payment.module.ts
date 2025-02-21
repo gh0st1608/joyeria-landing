@@ -3,8 +3,8 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { CartbuyInfrastructureRepository } from './cartbuy/infrastructure/cartbuy.repository'
-import { Cartbuy, CartbuySchema  } from './Cartbuy/infrastructure/schemas/cartbuy.schema'; 
-import { Itembuy, ItembuySchema  } from './Cartbuy/infrastructure/schemas/itembuy.schema'; 
+import { Cartbuy, CartbuySchema  } from './cartbuy/infrastructure/schemas/cartbuy.schema'; 
+import { Itembuy, ItembuySchema  } from './cartbuy/infrastructure/schemas/itembuy.schema'; 
 import { CartbuysController } from './cartbuy/infrastructure/cartbuy.controller';
 import { DeleteCartbuyUseCase} from './cartbuy/application/delete.application'
 import { ConfigModule } from '@nestjs/config';
