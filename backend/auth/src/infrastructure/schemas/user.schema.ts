@@ -8,8 +8,17 @@ export class User extends Document {
   @Prop({ required: true })
   email: string;
 
-  @Prop({ required: true, unique: true })
+  @Prop({ required: true})
   name: string;
+
+  @Prop({ required: true})
+  password: string;
+
+  @Prop({ required: false})
+  lastname: string;
+
+  @Prop({ required: false})
+  active: boolean;
 
 }
 

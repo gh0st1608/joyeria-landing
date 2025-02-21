@@ -1,8 +1,12 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { PaymentModule } from './payment.module';
+import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  await app.listen(3001);
+  const app = await NestFactory.create(PaymentModule);
+  const configService = app.get(ConfigService);
+  const port = configService.get<number>('PORT') || 5002;
+  app.enableCors();
+  await app.listen(port);
 }
 bootstrap();

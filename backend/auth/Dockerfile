@@ -8,5 +8,5 @@ WORKDIR /var/www/app/build
 RUN npm i --production
 
 
-EXPOSE 3333
+EXPOSE 4000
 CMD ["node", "main.js"]
