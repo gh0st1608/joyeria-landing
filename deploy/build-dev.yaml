@@ -85,7 +85,7 @@ steps:
       [
         'run', 'deploy', 'msa-joyasperu-payment',  # Cambiar nombre del servicio
         '--image', 'us-central1-docker.pkg.dev/oval-crawler-444615-k3/joyasperu-apiscore/msa-payment-img:$COMMIT_SHA',
-        '--port', '4001',  # Puerto diferente si se requiere
+        '--port', '4002',  # Puerto diferente si se requiere
         '--platform', 'managed',
         '--region', 'us-east1',
         '--allow-unauthenticated',  # Asegura exposición pública
