@@ -6,7 +6,7 @@ import { DeleteCartbuyUseCase } from '../application/delete.application';
 import { GetCartbuyUseCase } from '../application/get.application';
 import { GetListCartbuyUseCase } from '../application/getList.application';
 
-@Controller('payment')
+@Controller('cartbuy')
 export class CartbuysController {
   constructor(
     private readonly createCartbuyUseCase: CreateCartbuyUseCase,
