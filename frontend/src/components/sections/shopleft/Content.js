@@ -53,8 +53,8 @@ class Content extends Component {
                           <div className="food-box shop-box">
                             <div className="thumb">
                               <img
-                                src={item.imagen}
-                                alt={item.nombre}
+                                src={item.image}
+                                alt={item.title}
                                 onError={(e) =>
                                   (e.target.src = "https://via.placeholder.com/150")
                                 }
@@ -68,10 +68,10 @@ class Content extends Component {
                             </div>
                             <div className="desc">
                               <h4>
-                                <Link to={`/shop-detail/${item.id}`}>{item.nombre}</Link>
+                                <Link to={`/shop-detail/${item.id}`}>{item.title}</Link>
                               </h4>
                               <p>{item.descripcion}</p>
-                              <span className="price">${item.precio}</span>
+                              <span className="price">${item.price}</span>
                               <button
                                 className="main-btn btn-border"
                                 onClick={() => {
