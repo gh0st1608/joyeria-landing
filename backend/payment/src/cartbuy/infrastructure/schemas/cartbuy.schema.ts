@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 /* import { Itembuy } from './itembuy.schema'; */
-import { Itembuy } from '../../domain/entities/itembuy.entity';
+import { Itembuy } from '../../../itembuy/domain/entities/itembuy.entity';
 
 // Definir el esquema de "Product" usando Mongoose
 @Schema()

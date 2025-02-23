@@ -1,5 +1,5 @@
 import { IsString, IsOptional, IsNumber, IsArray } from 'class-validator';
-import { CreateItembuyDto } from '../itembuy/create.dto';  // Importamos el DTO de Itembuy
+import { CreateItembuyDto } from '../../../../itembuy/infrastructure/dto/itembuy/create.dto';  // Importamos el DTO de Itembuy
 
 export class CreateCartbuyDto {
   @IsOptional()

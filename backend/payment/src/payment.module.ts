@@ -4,13 +4,19 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { CartbuyInfrastructureRepository } from './cartbuy/infrastructure/cartbuy.repository'
 import { Cartbuy, CartbuySchema  } from './cartbuy/infrastructure/schemas/cartbuy.schema'; 
-import { Itembuy, ItembuySchema  } from './cartbuy/infrastructure/schemas/itembuy.schema'; 
+import { Itembuy, ItembuySchema  } from './itembuy/infrastructure/schemas/itembuy.schema'; 
 import { CartbuysController } from './cartbuy/infrastructure/cartbuy.controller';
 import { DeleteCartbuyUseCase} from './cartbuy/application/delete.application'
 import { ConfigModule } from '@nestjs/config';
 import { CreateCartbuyUseCase } from './cartbuy/application/create.application';
 import { GetListCartbuyUseCase } from './cartbuy/application/getList.application';
 import { GetCartbuyUseCase } from './cartbuy/application/get.application';
+import { CreateItembuyUseCase } from './itembuy/application/create.application';
+import { DeleteItembuyUseCase } from './itembuy/application/delete.application';
+import { GetListItembuyUseCase } from './itembuy/application/getList.application';
+import { GetItembuyUseCase } from './itembuy/application/get.application';
+import { ItembuyInfrastructureRepository } from './itembuy/infrastructure/itembuy.repository';
+import { ItembuyController } from './itembuy/infrastructure/itembuy.controller';
 
 
 @Module({
@@ -28,16 +34,25 @@ import { GetCartbuyUseCase } from './cartbuy/application/get.application';
     ), // Define el esquema de Product
   ],
   controllers: [
-    CartbuysController
+    CartbuysController,
+    ItembuyController
   ],
   providers: [
     CreateCartbuyUseCase,
     DeleteCartbuyUseCase,
     GetListCartbuyUseCase,
     GetCartbuyUseCase,
+    CreateItembuyUseCase,
+    DeleteItembuyUseCase,
+    GetListItembuyUseCase,
+    GetItembuyUseCase,
     {
       provide: 'ICartbuyRepository', // Proveedor para inyectar la interfaz del repositorio
       useClass: CartbuyInfrastructureRepository, // Implementación que usa Mongoose
+    },
+    {
+      provide: 'IItembuyRepository', // Proveedor para inyectar la interfaz del repositorio
+      useClass: ItembuyInfrastructureRepository, // Implementación que usa Mongoose
     }
   ],
 })
