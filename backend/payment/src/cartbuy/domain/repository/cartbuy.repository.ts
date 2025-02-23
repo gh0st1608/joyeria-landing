@@ -1,5 +1,5 @@
 
-import { Cartbuy } from '../entities/cartbuy.entity';
+import { Cartbuy } from '../../domain/entities/cartbuy.entity';
 
 export interface ICartbuyRepository {
     getList(): Promise<Cartbuy[]>;

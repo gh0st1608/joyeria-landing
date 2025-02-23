@@ -41,8 +41,8 @@ export class CartbuysController {
     return this.updateCartbuyUseCase.execute(id, body.name);
   } */
 
-  @Delete(':id')
-  async remove(@Param('id') id: string): Promise<void> {
-    return this.deleteCartbuyUseCase.execute(id);
+  @Delete(':idCartbuy')
+  async remove(@Param('idCartbuy') idCartbuy: string): Promise<void> {
+    return this.deleteCartbuyUseCase.execute(idCartbuy);
   }
 }

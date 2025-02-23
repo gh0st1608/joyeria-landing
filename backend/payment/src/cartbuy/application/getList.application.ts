@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { ICartbuyRepository } from '../domain/repository/cartbuy.repository'
+import { ICartbuyRepository } from '../../cartbuy/domain/repository/cartbuy.repository'
 import { Cartbuy } from '../domain/entities/cartbuy.entity';
 
 @Injectable()

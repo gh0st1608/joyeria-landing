@@ -1,4 +1,4 @@
-import { Itembuy } from "./itembuy.entity";
+import { Itembuy } from "../../../itembuy/domain/entities/itembuy.entity";
 
 export interface CartbuyRequired {
   readonly items: Itembuy[]

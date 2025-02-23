@@ -3,7 +3,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { ICartbuyRepository } from '../domain/repository/cartbuy.repository';
+import { ICartbuyRepository } from '../../cartbuy/domain/repository/cartbuy.repository';
 import { Cartbuy as CartbuyMongoose} from './schemas/cartbuy.schema';
 import { Cartbuy } from '../domain/entities/cartbuy.entity'
 import { plainToClass } from 'class-transformer';

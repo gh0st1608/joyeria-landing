@@ -21,10 +21,11 @@ export class CreateCartbuyUseCase {
 // src/application/CategoryCartbuys/create-CategoryCartbuy.use-case.ts
 import { Inject, Injectable } from '@nestjs/common';
 import { Cartbuy } from '../domain/entities/cartbuy.entity';
-import { ICartbuyRepository } from '../domain/repository/cartbuy.repository';
+import { IItembuyRepository } from '../../itembuy/domain/repository/itembuy.repository';
+import { ICartbuyRepository } from '../../cartbuy/domain/repository/cartbuy.repository';
 import { CreateCartbuyDto } from '../infrastructure/dto/cartbuy/create.dto';
-import { CreateItembuyDto } from '../infrastructure/dto/itembuy/create.dto';
-import { Itembuy } from '../domain/entities/itembuy.entity';  // Importamos la entidad Itembuy
+import { CreateItembuyDto } from '../../itembuy/infrastructure/dto/itembuy/create.dto';
+import { Itembuy } from '../../itembuy/domain/entities/itembuy.entity';  // Importamos la entidad Itembuy
 import { plainToInstance } from 'class-transformer';
 
 @Injectable()
