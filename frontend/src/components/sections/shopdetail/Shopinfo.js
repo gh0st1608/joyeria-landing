@@ -3,54 +3,50 @@ import { CartContext } from "../../../context/CartContext";
 
 const Shopinfo = ({ product }) => {
   const { addToCart } = useContext(CartContext);
-  const [quantity] = useState(1);
+  const [quantity, setQuantity] = useState(1);
 
-  if (!product) {
-    return (
-      <h3 style={{ textAlign: "center", color: "red", fontSize: "24px" }}>
-        ⚠️ Producto no encontrado
-      </h3>
-    );
-  }
-
-  const handleAddToCart = () => {
-    addToCart({ ...product, quantity });
-    alert("🛒 Producto agregado al carrito");
-  };
+  const handleIncrement = () => setQuantity(quantity + 1);
+  const handleDecrement = () => setQuantity(quantity > 1 ? quantity - 1 : 1);
 
   return (
-    <section className="Shop-section pt-120 pb-120">
-      <div className="container">
-        <div className="row justify-content-center">
-          <div className="col-lg-7">
-            <div className="shop-detail-content text-center">
-              <img
-                src={product.imagen}
-                alt={product.nombre}
-                onError={(e) => (e.target.src = "https://via.placeholder.com/300")}
-                style={{ width: "100%", maxWidth: "400px", objectFit: "cover", borderRadius: "10px" }}
-              />
-              <h3 style={{ marginTop: "15px" }}>{product.nombre}</h3>
-              <p>{product.descripcion}</p>
-              <span className="price" style={{ fontSize: "20px", fontWeight: "bold", color: "#ff9800" }}>
-                ${product.precio.toFixed(2)}
-              </span>
+    <div className="row justify-content-center">
+      <div className="col-lg-6">
+        <img
+          src={product.image || "https://via.placeholder.com/300"}
+          alt={product.title}
+          style={{
+            width: "100%",
+            borderRadius: "10px",
+          }}
+        />
+      </div>
+      <div className="col-lg-6">
+        <h3>{product.title}</h3>
+        <p>{product.description}</p>
+        <span className="price">${product.price}</span>
 
-              <div className="mt-3">
-                <button onClick={handleAddToCart} className="main-btn btn-border">
-                  🛒 Agregar al Carrito
-                </button>
-              </div>
-
-              <div className="other-info mt-3">
-                <h6>Categoría:</h6>
-                <p>{product.categoria ? product.categoria : "Sin categoría"}</p>
-              </div>
-            </div>
+        <div className="quantity-cart d-flex">
+          <div className="quantity-box">
+            <button type="button" className="minus-btn" onClick={handleDecrement}>
+              <i className="fal fa-minus" />
+            </button>
+            <input type="text" className="input-qty" value={quantity} readOnly />
+            <button type="button" className="plus-btn" onClick={handleIncrement}>
+              <i className="fal fa-plus" />
+            </button>
           </div>
+          <button
+            onClick={() => {
+              addToCart({ ...product, quantity });
+              alert("Product added to cart!");
+            }}
+            className="main-btn btn-border"
+          >
+            🛒 Add to Cart
+          </button>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

@@ -1,5 +1,5 @@
 const ENDPOINTS = {
-  productos: "productos/",
+  productos: "products/",
   crearPagoPayPal: "paypal/create-payment/",
 };
 

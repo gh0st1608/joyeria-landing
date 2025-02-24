@@ -2,7 +2,8 @@ import axios from "axios";
 import ENDPOINTS from "./endpoints"; // ✅ Importa las rutas de la API
 
 // ✅ Configura la URL base de la API
-const BASE_URL = "http://127.0.0.1:8000/api/";
+// const BASE_URL = "http://127.0.0.1:8000/api/";
+const BASE_URL= "https://msa-joyasperu-shop-1094025365695.us-east1.run.app/shop";
 
 const api = axios.create({
   baseURL: BASE_URL,

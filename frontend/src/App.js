@@ -50,8 +50,7 @@ function App() {
           <Route exact path="/contact" component={Contact} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
-          {/* <Route exact path="/shop-detail/:id" render={(props) => <Shopdetail {...props} productos={productos} />} />
-          <Route exact path="/shop-left" component={Shopleft} /> */}
+        }
           <Route exact path="/shop-left" component={Shopleft} />
           <Route exact path="/shop-detail/:id" component={Shopdetail} /> {/* ✅ Corregida la ruta */}
 

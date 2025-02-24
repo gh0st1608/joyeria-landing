@@ -12758,4 +12758,81 @@ footer .copyright-area.light-theme .footer-menu ul li::before {
     margin-top: 20px;
     text-align: center;
   }
+  .btn-add-to-cart {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #ffcc00;
+    color: black;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-add-to-cart:hover {
+    background-color: #e6b800;
+  }
+  
+  /* Corrección de diseño */
+  .food-box {
+    background: #1a1a1a;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+  }
+  
+  .food-box .thumb img {
+    border-radius: 10px;
+  }
+  
+  .desc {
+    padding: 10px;
+  }
+  
+  .price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffcc00;
+    display: block;
+    margin: 5px 0;
+  }
+  /* 🔍 Botón "Ver Más" */
+.btn-view-details {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 5px;
+    margin: 10px 0;
+    text-decoration: none;
+  }
+  
+  .btn-view-details:hover {
+    background-color: #0056b3;
+  }
+  
+  /* 🛒 Botón "Agregar al Carrito" */
+  .btn-add-to-cart {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #ffcc00;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-add-to-cart:hover {
+    background-color: #e6b800;
+  }
   

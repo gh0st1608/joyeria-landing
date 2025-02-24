@@ -25,13 +25,13 @@ cart.map((item) => {
   return (
     <li key={item.id} className="cart-item">
       <img
-        src={item.imagen}
-        alt={item.nombre}
+        src={item.image}
+        alt={item.name}
         className="cart-item-image"
         onError={(e) => (e.target.src = "https://via.placeholder.com/100")}
       />
       <div className="cart-item-info">
-        <span>{item.nombre} - ${Number(item.precio || 0).toFixed(2)} x {item.quantity}</span>
+        <span>{item.name} - ${Number(item.precio || 0).toFixed(2)} x {item.quantity}</span>
       </div>
       <button className="btn btn-danger" onClick={() => removeFromCart(item.id)}>❌ Eliminar</button>
     </li>

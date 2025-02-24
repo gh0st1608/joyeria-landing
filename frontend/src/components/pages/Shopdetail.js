@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import { withRouter } from "react-router-dom"; // ✅ Importamos para acceder a los parámetros
+import React, { Component, Fragment } from "react";
 import MetaTags from "react-meta-tags";
 import Header from "../layouts/Header";
 import Breadcrumb from "../layouts/Breadcrumbs";
@@ -9,23 +8,20 @@ import Footer from "../layouts/Footer";
 
 class Shopdetail extends Component {
   render() {
-    const { match } = this.props; // ✅ Captura el ID desde la URL
-    const productId = match.params.id;
-
     return (
-      <div>
+      <Fragment>
         <MetaTags>
-          <title>Peru Joyas | Detalles de producto</title>
-          <meta name="description" content="#" />
+          <title>My Store | Product Details</title>
+          <meta name="description" content="Product details page" />
         </MetaTags>
         <Header />
-        <Breadcrumb breadcrumb={{ pagename: "Shop Detail" }} />
-        <Content productId={productId} /> {/* ✅ Enviamos el ID a Content.js */}
+        <Breadcrumb breadcrumb={{ pagename: "Product Details" }} />
+        <Content />
         <Instafeeds />
         <Footer />
-      </div>
+      </Fragment>
     );
   }
 }
 
-export default withRouter(Shopdetail);
+export default Shopdetail;
