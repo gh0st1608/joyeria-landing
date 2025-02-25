@@ -1,0 +1,5 @@
+type: string
+description: >
+  Apellido materno del usuario
+maxLength: 500
+example: 'Gomez'

@@ -17,3 +17,6 @@ backend/payment/.build/
 
 #------------------------------
 frontend/node_modules/
+
+#------------------------------
+design/node_modules/

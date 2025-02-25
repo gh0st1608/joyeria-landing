@@ -1,0 +1,5 @@
+type: string
+description: >
+  Nombre completo del usuario
+maxLength: 500
+example: 'Juan Perez Gomez'

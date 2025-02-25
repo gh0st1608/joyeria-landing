@@ -1,0 +1,5 @@
+type: string
+description: >
+  Código de la especialidad del profesional médico
+maxLength: 500
+example: 'CARD'

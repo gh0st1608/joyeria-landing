@@ -1,0 +1,6 @@
+type: string
+description: >
+  Hora de la cita
+minLength: 20
+maxLength: 20
+example: "08:30"

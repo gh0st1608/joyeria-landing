@@ -1,0 +1,27 @@
+get:
+  summary: Información Personal del Usuario
+  operationId: getPersonalInformation
+  description: >
+    📦 Procesos:  Información Personal del Usuario
+  
+  
+    🔧 Funcionalidad: Devolver el detalle de la información personal de un usuario de la aplicación 
+  
+      
+    🚀 Objetivo: Devolver la información personal de un usuario
+  
+  
+    📌 Comentarios: 
+
+  tags:
+    - Perfiles
+  responses:
+    '200':
+      $ref: ../components/responses/UserProfileResponse.yaml
+    '400':
+      $ref: ../components/responses/BadRequestResponse.yaml
+
+  security:
+    - api_key: []
+
+

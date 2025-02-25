@@ -1,0 +1,29 @@
+post:
+  summary: Listado de cupos Médicos
+  operationId: postSearchSlots
+  description: >
+    📦 Procesos: Lista los horarios disponibles de el Médico
+  
+  
+    🔧 Funcionalidad: Devolver los cupos (horarios disponibles) de un médico según su especialidad, sede y tipo de atención (virtual o presencial), en una fecha específica.
+  
+      
+    🚀 Objetivo: Listar de horarios disponibles de atención de un profesional de salud 
+  
+  
+    📌 Comentarios: 
+
+  tags:
+    - Médicos
+  requestBody:
+    $ref: ../components/requestBodies/PractitionerSlotsReq.yaml
+  responses:
+    '200':
+      $ref: ../components/responses/PractitionerSlotsResponse.yaml
+    '400':
+      $ref: ../components/responses/BadRequestResponse.yaml
+      
+  security:
+    - api_key: []
+
+

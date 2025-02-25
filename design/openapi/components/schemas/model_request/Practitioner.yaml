@@ -1,0 +1,11 @@
+type: object
+description: Entidad permite buscar un profesional de la salud según su nombre
+properties:
+  Data:
+    type: object
+    properties:
+      Practitioners:
+        type: object
+        properties:
+          practitionerName:
+            $ref: ../attributes/practitioners/practitionerName.yaml

@@ -1,0 +1,19 @@
+type: object
+description: Entidad permite buscar cupos (horarios disponibles) de un médico
+properties:
+  Data:
+    type: object
+    properties:
+      PractitionerSlots:
+        type: object
+        properties:
+          locationCode:
+            $ref: ../attributes/locations/locationCode.yaml
+          practitionerCode:
+            $ref: ../attributes/practitioners/practitionerCode.yaml
+          specialtyCode:
+            $ref: ../attributes/practitioners/specialtyCode.yaml
+          startTime:
+            $ref: ../attributes/practitioners/startTime.yaml
+          appointmentType:
+            $ref: ../attributes/appointments/appointmentType.yaml

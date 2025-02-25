@@ -1,0 +1,47 @@
+description: Entidad devuelve información de los cupos médicos
+content:
+  application/json:
+    schema:
+      allOf:
+        - $ref: ../schemas/model_response/StandardResponse.yaml
+        - $ref: ../schemas/model_response/Slots.yaml
+    examples:
+      Caso-Prueba-01:
+        summary: Lista de cupos con un horario disponible
+        value:
+          Data:
+            code: 200
+            message: Cupos médicos encontrados
+            MedicalSlots:
+              Slots:
+               - appointmentTime: 08:00
+                 startTime: "2024-09-02T08:00:00"
+                 locationCode: 1001
+                 timeShift: Mañana
+      Caso-Prueba-02:
+        summary: Lista de cupos médicos con 2 horarios disponibles
+        value:
+          Data:
+            code: 200
+            message: Cupos médicos encontrados
+            MedicalSlots:
+              Slots:
+                - appointmentTime: 08:00
+                  startTime: "2024-09-02T08:00:00"
+                  locationCode: 1001
+                  timeShift: Mañana
+                - appointmentTime: "14:30"
+                  startTime: "2024-09-02T14:30:00"
+                  locationCode: 1001
+                  timeShift: Tarde
+              
+headers:
+  x-jws-signature:
+    description: Header containing a detached JWS signature of the body of the payload
+    schema:
+      type: "string"
+  x-fapi-interaction-id:
+    description: An RFC4122 UID used as a correlation id.
+    schema:
+      type: "string"
+  

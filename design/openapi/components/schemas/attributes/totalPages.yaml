@@ -1,0 +1,7 @@
+type: number
+format: double
+description: >
+  cantidad de paginas
+maximum: 999
+minimum: 1
+example: 1

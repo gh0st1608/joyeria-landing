@@ -1,0 +1,7 @@
+name: authorization
+in: header
+description: Token de seguridad para las APIs.
+required: true
+schema:
+  type: string
+  example: hdssad4djalaYhasksa

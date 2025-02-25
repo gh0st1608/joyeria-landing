@@ -1,0 +1,47 @@
+description: Entidad devuelve información de un reclamo según su indentificación
+content:
+  application/json:
+    schema:
+      allOf:
+        - $ref: ../schemas/model_response/StandardResponse.yaml
+        - $ref: ../schemas/model_response/GetSpecialties.yaml
+    examples:
+      Caso-Prueba-01:
+        summary: Lista de especialidades con un registo
+        value:
+          Data:
+            code: 200
+            message: Lista de especialidades encontradas
+            Specialties:
+                - specialtyName: "Cardiología"
+                  specialtyCode: "CARD"
+          Links:
+            self: '[href://api-ux-cuida-app/v1/practitioners/specialties]'
+          Meta:
+            totalPages: 1
+      Caso-Prueba-02:
+        summary: Lista de profesionales médicos con 2 registro
+        value:
+          Data:
+            code: 200
+            message: Lista de especialidades encontradas
+            Specialties:
+             -  specialtyName: "Product1"
+                specialtyCode: "COD1"
+             -  specialtyName: "Product2"
+                specialtyCode: "COD2"
+          Links:
+            self: '[href://api-ux-cuida-app/v1/practitioners/specialties]'
+          Meta:
+            totalPages: 1
+              
+headers:
+  x-jws-signature:
+    description: Header containing a detached JWS signature of the body of the payload
+    schema:
+      type: "string"
+  x-fapi-interaction-id:
+    description: An RFC4122 UID used as a correlation id.
+    schema:
+      type: "string"
+  

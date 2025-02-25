@@ -1,0 +1,25 @@
+type: object
+description: Devuelve un profesional de la salud según su especialidad
+properties:
+  Data:
+    type: object    
+    properties:
+      code: 
+        $ref: ../attributes/code.yaml
+      message: 
+        $ref: ../attributes/message.yaml
+      Practitioners:
+        type: array
+        items:
+          type: object
+          properties: 
+            practitionerName:
+              $ref: ../attributes/practitioners/practitionerName.yaml
+            specialtyCode:
+                $ref: ../attributes/practitioners/specialtyCode.yaml
+          required:
+            - practitionerName
+            - specialtyCode
+    required:
+      - code
+      - message  

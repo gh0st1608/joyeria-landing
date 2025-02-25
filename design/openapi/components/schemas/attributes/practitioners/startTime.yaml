@@ -1,0 +1,7 @@
+type: string
+format: date-time
+description: >
+  Fecha del día que se desea consultar los cupos
+minLength: 20
+maxLength: 20
+example: "2024-08-12T08:30:00Z"

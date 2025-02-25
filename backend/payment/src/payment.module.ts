@@ -5,7 +5,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { CartbuyInfrastructureRepository } from './cartbuy/infrastructure/cartbuy.repository'
 import { Cartbuy, CartbuySchema  } from './cartbuy/infrastructure/schemas/cartbuy.schema'; 
 import { Itembuy, ItembuySchema  } from './itembuy/infrastructure/schemas/itembuy.schema'; 
-import { CartbuysController } from './cartbuy/infrastructure/cartbuy.controller';
+import { Order, OrderSchema  } from './order/infrastructure/schemas/order.schema'; 
+import { CartbuyController } from './cartbuy/infrastructure/cartbuy.controller';
 import { DeleteCartbuyUseCase} from './cartbuy/application/delete.application'
 import { ConfigModule } from '@nestjs/config';
 import { CreateCartbuyUseCase } from './cartbuy/application/create.application';
@@ -17,6 +18,9 @@ import { GetListItembuyUseCase } from './itembuy/application/getList.application
 import { GetItembuyUseCase } from './itembuy/application/get.application';
 import { ItembuyInfrastructureRepository } from './itembuy/infrastructure/itembuy.repository';
 import { ItembuyController } from './itembuy/infrastructure/itembuy.controller';
+import { OrderController } from './order/infrastructure/order.controller';
+import { CreateOrderUseCase } from './order/application/create.application';
+import { OrderInfrastructureRepository } from './order/infrastructure/order.repository';
 
 
 @Module({
@@ -29,13 +33,15 @@ import { ItembuyController } from './itembuy/infrastructure/itembuy.controller';
     MongooseModule.forFeature(
       [
         { name: Cartbuy.name, schema: CartbuySchema },
-        { name: Itembuy.name, schema: ItembuySchema}
+        { name: Itembuy.name, schema: ItembuySchema},
+        { name: Order.name, schema: OrderSchema}
       ]
     ), // Define el esquema de Product
   ],
   controllers: [
-    CartbuysController,
-    ItembuyController
+    CartbuyController,
+    ItembuyController,
+    OrderController
   ],
   providers: [
     CreateCartbuyUseCase,
@@ -46,6 +52,7 @@ import { ItembuyController } from './itembuy/infrastructure/itembuy.controller';
     DeleteItembuyUseCase,
     GetListItembuyUseCase,
     GetItembuyUseCase,
+    CreateOrderUseCase,
     {
       provide: 'ICartbuyRepository', // Proveedor para inyectar la interfaz del repositorio
       useClass: CartbuyInfrastructureRepository, // Implementación que usa Mongoose
@@ -53,6 +60,10 @@ import { ItembuyController } from './itembuy/infrastructure/itembuy.controller';
     {
       provide: 'IItembuyRepository', // Proveedor para inyectar la interfaz del repositorio
       useClass: ItembuyInfrastructureRepository, // Implementación que usa Mongoose
+    },
+    {
+      provide: 'IOrderRepository', // Proveedor para inyectar la interfaz del repositorio
+      useClass: OrderInfrastructureRepository, // Implementación que usa Mongoose
     }
   ],
 })

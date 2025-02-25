@@ -15,18 +15,18 @@ export type ItembuyPropertiesUpdate = Partial<Omit<ItembuyRequired, ''>> & Parti
 
 
 export class Itembuy {
-    private readonly id : string;
+    readonly id : string;
     private productId : string;
-    private price : number;
-    private quantity: number;
-    private active: boolean
+    price : number;
+    quantity: number;
+    active: boolean
   
     constructor(properties: ItembuyProperties) {
         Object.assign(this, properties);
   
     }
   
-    properties () : ItembuyProperties {
+    properties() : ItembuyProperties {
       return {
           id : this.id,
           productId: this.productId,
