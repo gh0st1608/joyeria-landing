@@ -1,0 +1,5 @@
+properties:
+  Error:
+    $ref: ./StandardError.yaml
+required:
+  - Error

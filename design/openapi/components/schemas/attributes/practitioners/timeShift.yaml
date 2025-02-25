@@ -1,0 +1,5 @@
+type: string
+enum: [Mañana,Tarde,Noche]
+description: >
+  Franja horaria del turno
+example: 'Mañana'

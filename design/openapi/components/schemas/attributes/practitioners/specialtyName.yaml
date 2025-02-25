@@ -1,0 +1,5 @@
+type: string
+description: >
+  Nombre de la especialidad de los profesionales médicos
+maxLength: 500
+example: 'Cardiología'

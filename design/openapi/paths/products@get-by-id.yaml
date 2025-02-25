@@ -1,0 +1,29 @@
+post:
+  summary: Busqueda de médicos según Nombres
+  operationId: postSearchByName
+  description: >
+    📦 Procesos: Busqueda de médicos según un nombre
+  
+  
+    🔧 Funcionalidad: Devolver el listado de médicos con su especialidad según el Nombre Ingresado
+  
+      
+    🚀 Objetivo: Listar los profesionales de salud 
+  
+  
+    📌 Comentarios: 
+
+  tags:
+    - Médicos
+  requestBody:
+    $ref: ../components/requestBodies/PractitionerReq.yaml
+  responses:
+    '200':
+      $ref: ../components/responses/PractitionersByNameResponse.yaml
+    '400':
+      $ref: ../components/responses/BadRequestResponse.yaml
+
+  security:
+    - api_key: []
+
+

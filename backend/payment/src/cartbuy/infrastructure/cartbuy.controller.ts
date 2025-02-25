@@ -7,7 +7,7 @@ import { GetCartbuyUseCase } from '../application/get.application';
 import { GetListCartbuyUseCase } from '../application/getList.application';
 
 @Controller('cartbuy')
-export class CartbuysController {
+export class CartbuyController {
   constructor(
     private readonly createCartbuyUseCase: CreateCartbuyUseCase,
     private readonly getCartbuysUseCase: GetCartbuyUseCase,

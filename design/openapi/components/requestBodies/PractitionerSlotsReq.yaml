@@ -1,0 +1,17 @@
+description: Entidad para la busqueda de un cupo médico
+required: true
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/model_request/PractitionerSlots.yaml
+    examples:
+      Caso-Prueba-01:
+        summary: Caso Prueba 01
+        value:
+          Data:
+            PractitionerSlots: 
+              locationCode: 1001
+              practitionerCode: 8073
+              specialtyCode: S3
+              startTime: 2024-08-12T16:34:22
+              appointmentType: Presencial

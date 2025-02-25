@@ -1,0 +1,5 @@
+type: string
+description: >
+  Número de documento de identidad de la persona
+maxLength: 500
+example: '7654321'

@@ -1,0 +1,5 @@
+type: string
+description: >
+  Comentarios que tengan relevancia al estado
+maxLength: 100
+example: 'No se encuentra el documento de facturación del reembolso'

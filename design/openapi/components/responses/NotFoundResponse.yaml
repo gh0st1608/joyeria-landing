@@ -1,0 +1,12 @@
+description: Not Found
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/error/StandardResponseError.yaml
+    example:
+      Error:
+        code: 404
+        message: Recurso no encontrado.
+        status: NOT_FOUND
+        dateTime: 2024-08-13 2024-08-12T16:33:12Z
+        title: El servidor no pudo encontrar el contenido solicitado

@@ -1,0 +1,5 @@
+type: string
+description: >
+  Número de teléfono del usuario
+maxLength: 500
+example: '+5987654321'

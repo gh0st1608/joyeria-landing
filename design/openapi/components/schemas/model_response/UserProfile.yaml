@@ -1,0 +1,41 @@
+type: object
+description: Devuelve información personal de un usuario
+properties:
+  Data:
+    type: object    
+    properties:
+      code: 
+        $ref: ../attributes/code.yaml
+      message: 
+        $ref: ../attributes/message.yaml
+      UserProfile:
+        type: object
+        properties:
+          fullName:
+            $ref: ../attributes/users/fullName.yaml
+          paternalSurname:
+            $ref: ../attributes/users/paternalSurname.yaml
+          maternalSurname:
+            $ref: ../attributes/users/maternalSurname.yaml
+          birthDate:
+            $ref: ../attributes/users/birthDate.yaml
+          documentType:
+            $ref: ../attributes/users/documentType.yaml
+          documentNumber:
+            $ref: ../attributes/users/documentNumber.yaml
+          phoneNumber:
+            $ref: ../attributes/users/phoneNumber.yaml
+          email:
+            $ref: ../attributes/users/email.yaml
+        required:
+          - fullName
+          - paternalSurname
+          - maternalSurname
+          - birthDate
+          - documentType
+          - documentNumber
+          - phoneNumber
+          - email
+    required:
+      - code
+      - message  
