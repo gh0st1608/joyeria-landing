@@ -11,7 +11,11 @@ import Register from './components/pages/Register';
 import Shopdetail from './components/pages/Shopdetail';
 import Shopleft from './components/pages/Shopleft';
 import { CartProvider } from "./context/CartContext";
-import { getProducts } from "./components/servicios/api";
+import { AuthProvider } from "./context/AuthContext"; 
+import { getProducts } from "./components/servicios/products"; // ✅ Importa la API de productos
+import Header from "./components/layouts/Header"; 
+import Footer from "./components/layouts/Footer";
+
 
 function App() {
   const [productos, setProductos] = useState([]);
@@ -39,8 +43,10 @@ function App() {
   }, []);
 
   return (
+    <AuthProvider>
     <CartProvider>
       <Router>
+      <Header />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/about" component={About} />
@@ -48,15 +54,19 @@ function App() {
           <Route exact path="/cart" component={Cart} />
           <Route exact path="/checkout" component={Checkout} />
           <Route exact path="/contact" component={Contact} />
+
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
+          <Route exact path="/account" component={Account} />
         
           <Route exact path="/shop-left" component={Shopleft} />
           <Route exact path="/shop-detail/:id" component={Shopdetail} /> {/* ✅ Corregida la ruta */}
 
         </Switch>
+        <Footer />
       </Router>
     </CartProvider>
+    </AuthProvider>
   );
 }
 

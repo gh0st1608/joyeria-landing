@@ -12835,4 +12835,35 @@ footer .copyright-area.light-theme .footer-menu ul li::before {
   .btn-add-to-cart:hover {
     background-color: #e6b800;
   }
+  .login-section {
+    text-align: center;
+    padding: 50px 0;
+  }
+  
+  .login-form {
+    max-width: 400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .login-form input {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .login-form button {
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .login-form button:hover {
+    background-color: #e68900;
+  }
   

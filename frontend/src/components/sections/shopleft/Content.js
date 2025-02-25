@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Pagination from "../../layouts/Pagination";
 import Sidebar from "../../layouts/Shopsidebar";
-import { getProducts } from "../../servicios/api";
+import { getProducts } from "../../servicios/products";
 import { CartContext } from "../../../context/CartContext";
 
 class Content extends Component {
@@ -72,8 +72,8 @@ class Content extends Component {
                               <span className="price">${item.price}</span>
 
                               {/* ✅ Botón para ver más detalles */}
-                              <Link to={`/shop-detail/${item.id}`} className="btn-view-details">
-                                🔍 View More
+                              <Link to={`/shop-detail/${item.id}`} className="btn btn-primary">
+                                🔍 Ver detalles
                               </Link>
 
                               {/* ✅ Botón para agregar al carrito */}
@@ -85,7 +85,7 @@ class Content extends Component {
                                   addToCart(productToCart);
                                 }}
                               >
-                                🛒 Add to Cart
+                                🛒 Agregar al carrito
                               </button>
                             </div>
                           </div>

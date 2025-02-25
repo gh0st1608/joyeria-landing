@@ -1,44 +1,28 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import Shopinfo from "./Shopinfo";
-import { getProductById } from "../../servicios/api";
+import React from "react";
 
-const Content = () => {
-  const { id } = useParams(); // ✅ Obtener el ID del producto desde la URL
-  const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const data = await getProductById(id);
-        if (data) {
-          setProduct(data);
-        } else {
-          console.warn("⚠️ Product not found");
-        }
-      } catch (error) {
-        console.error("❌ Error loading product:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProduct();
-  }, [id]);
+const Content = ({ product }) => {
+  if (!product) {
+    return <p style={{ color: "red" }}>⚠️ Product not found</p>;
+  }
 
   return (
-    <section className="Shop-section pt-120 pb-120">
+    <section className="shop-detail-section">
       <div className="container">
-        {loading ? (
-          <p>Loading product details...</p>
-        ) : product ? (
-          <Shopinfo product={product} />
-        ) : (
-          <p style={{ color: "red", fontSize: "20px", fontWeight: "bold" }}>
-            ⚠️ Product not found. Please check if the ID is correct or refresh the page.
-          </p>
-        )}
+        <div className="row">
+          <div className="col-md-6">
+            <img
+              src={product.image || "https://via.placeholder.com/300"}
+              alt={product.title}
+              style={{ width: "100%", height: "auto", borderRadius: "10px" }}
+            />
+          </div>
+          <div className="col-md-6">
+            <h2>{product.title}</h2>
+            <p>{product.description}</p>
+            <h3>${product.price}</h3>
+            <button className="btn btn-primary">Add to Cart</button>
+          </div>
+        </div>
       </div>
     </section>
   );

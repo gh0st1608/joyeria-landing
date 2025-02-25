@@ -26,7 +26,7 @@ cart.map((item) => {
     <li key={item.id} className="cart-item">
       <img
         src={item.image}
-        alt={item.name}
+        alt={item.title}
         className="cart-item-image"
         onError={(e) => (e.target.src = "https://via.placeholder.com/100")}
       />
