@@ -1,10 +1,9 @@
 import React, { useContext, useState } from "react";
 import { CartContext } from "../../../context/CartContext"; // ✅ Ruta corregida
-// import "../../../css/style.css"; // Asegúrate de que los estilos se importan correctamente
 
 const CheckoutContent = () => {
   const { cart } = useContext(CartContext);
-  
+
   // Estado para los datos del usuario
   const [formData, setFormData] = useState({
     nombre: "",
@@ -37,31 +36,35 @@ const CheckoutContent = () => {
 
   // Confirmar pago
   const confirmPayment = () => {
-    alert(`¡Gracias por tu compra, ${formData.nombre}! 🛒 Total: $${total.toFixed(2)}`);
+    alert(`¡Gracias por tu compra, ${formData.nombre}! Total: $${total.toFixed(2)}`);
     setShowModal(false);
   };
 
   return (
     <div className="checkout-container">
-      <h2 className="checkout-title">🛒 Checkout</h2>
+      <h2 className="checkout-title">
+        <span role="img" aria-label="Shopping Cart">🛒</span> Checkout
+      </h2>
 
       {/* Formulario del Cliente */}
       <form className="checkout-form" onSubmit={handlePayClick}>
-        <label>Nombre Completo:</label>
-        <input type="text" name="nombre" placeholder="Tu nombre..." value={formData.nombre} onChange={handleChange} required />
+        <label>Full Name:</label>
+        <input type="text" name="nombre" placeholder="Your Name..." value={formData.nombre} onChange={handleChange} required />
 
         <label>Email:</label>
-        <input type="email" name="email" placeholder="tucorreo@email.com" value={formData.email} onChange={handleChange} required />
+        <input type="email" name="email" placeholder="yourmail@email.com" value={formData.email} onChange={handleChange} required />
 
-        <label>Targeta:</label>
-        <input type="numeroCard" name="numeroCard" placeholder="Number" value={formData.email} onChange={handleChange} required />
+        <label>Card Number:</label>
+        <input type="text" name="numeroCard" placeholder="1234 5678 9012 3456" value={formData.numeroCard} onChange={handleChange} required />
 
-        <label>Dirección:</label>
-        <input type="text" name="direccion" placeholder="Tu dirección..." value={formData.direccion} onChange={handleChange} required />
+        <label>Address:</label>
+        <input type="text" name="direccion" placeholder="Your Address..." value={formData.direccion} onChange={handleChange} required />
 
         {/* Resumen del Pedido */}
         <div className="order-summary">
-          <h3>📦 Resumen del Pedido</h3>
+          <h3>
+            <span role="img" aria-label="Package">📦</span> Order Summary
+          </h3>
           <ul>
             {cart.map((item) => (
               <li key={item.id}>
@@ -70,22 +73,34 @@ const CheckoutContent = () => {
               </li>
             ))}
           </ul>
-          <h2 className="total-price">Total: ${total.toFixed(2)}</h2>
+          <h2 className="total-price">
+            <span role="img" aria-label="Total Amount">💰</span> Total: ${total.toFixed(2)}
+          </h2>
         </div>
 
         {/* Botón de Pago */}
-        <button type="submit" className="btn btn-pay">💳 Pagar</button>
+        <button type="submit" className="btn btn-pay">
+          <span role="img" aria-label="Credit Card">💳</span> Pay Now
+        </button>
       </form>
 
       {/* ✅ MODAL DE PAGO */}
       {showModal && (
         <div className="modal">
           <div className="modal-content">
-            <h3>💳 Confirmación de Pago</h3>
-            <p>Estás a punto de pagar <strong>${total.toFixed(2)}</strong>. ¿Deseas continuar?</p>
+            <h3>
+              <span role="img" aria-label="Payment Confirmation">💳</span> Payment Confirmation
+            </h3>
+            <p>
+              You are about to pay <strong>${total.toFixed(2)}</strong>. Do you want to continue?
+            </p>
             <div className="modal-buttons">
-              <button className="btn btn-success" onClick={confirmPayment}>✅ Confirmar</button>
-              <button className="btn btn-danger" onClick={closeModal}>❌ Cancelar</button>
+              <button className="btn btn-success" onClick={confirmPayment}>
+                <span role="img" aria-label="Check">✅</span> Confirm
+              </button>
+              <button className="btn btn-danger" onClick={closeModal}>
+                <span role="img" aria-label="Cancel">❌</span> Cancel
+              </button>
             </div>
           </div>
         </div>

@@ -36,15 +36,15 @@ class Content extends Component {
                                         <div className="social-buttons">
                                             <button type="button" className="main-btn btn-border facebook mb-20">
                                                 <i className="fab fa-facebook-f" />
-                  Continue with Facebook
-                </button>
+                                                Continue with Facebook
+                                            </button>
                                             <button type="button" className="main-btn btn-filled mb-30">
                                                 <i className="fab fa-google" />
-                  Continue with Google
-                </button>
+                                                Continue with Google
+                                            </button>
                                         </div>
                                         <p>Don't have an Account?
-                <Link to="/register" className="d-inline-block">Create One</Link>
+                                            <Link to="/register" className="d-inline-block">Create One</Link>
                                         </p>
                                     </form>
                                 </div>

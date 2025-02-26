@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Pagination from "../../layouts/Pagination";
 import Sidebar from "../../layouts/Shopsidebar";
-import { getProducts } from "../../servicios/api";
-import { CartContext } from "../../../context/CartContext"; // ✅ Importar el contexto
+import { getProducts } from "../../servicios/products";
+import { CartContext } from "../../../context/CartContext";
 
 class Content extends Component {
-  static contextType = CartContext; // ✅ Conectar con el contexto
+  static contextType = CartContext;
 
   constructor(props) {
     super(props);
@@ -19,17 +19,17 @@ class Content extends Component {
   async componentDidMount() {
     try {
       const products = await getProducts();
-      console.log("📢 Productos recibidos:", products); // ✅ Verifica que los productos lleguen
+      console.log("📢 Products received:", products);
       this.setState({ products, loading: false });
     } catch (error) {
-      console.error("❌ Error cargando productos", error);
+      console.error("❌ Error loading products", error);
       this.setState({ loading: false });
     }
   }
 
   render() {
     const { products, loading } = this.state;
-    const { addToCart, cart } = this.context; // ✅ Obtener la función y el carrito desde el contexto
+    const { addToCart } = this.context;
 
     return (
       <section className="Shop-section pt-120 pb-120">
@@ -40,24 +40,22 @@ class Content extends Component {
             </div>
             <div className="col-lg-8 col-md-10">
               {loading ? (
-                <p>Cargando productos...</p>
+                <p>Loading products...</p>
               ) : (
                 <div className="shop-products-wrapper">
                   <div className="shop-product-top">
-                    <p>Mostrando {products.length} productos</p>
+                    <p>Showing {products.length} products</p>
                   </div>
                   <div className="product-wrapper restaurant-tab-area">
                     <div className="row">
                       {products.map((item) => (
-                        <div key={item.id} className="col-lg-4 col-md-6">
+                        <div key={item.id} className="col-lg-6 col-md-6 mb-4">
                           <div className="food-box shop-box">
                             <div className="thumb">
                               <img
-                                src={item.image}
-                                alt={item.title}
-                                onError={(e) =>
-                                  (e.target.src = "https://via.placeholder.com/150")
-                                }
+                                src={item.image || "https://via.placeholder.com/150"}
+                                alt={item.titlte}
+                                onError={(e) => (e.target.src = "https://via.placeholder.com/150")}
                                 style={{
                                   width: "100%",
                                   height: "200px",
@@ -66,21 +64,28 @@ class Content extends Component {
                                 }}
                               />
                             </div>
-                            <div className="desc">
+                            <div className="desc text-center">
                               <h4>
                                 <Link to={`/shop-detail/${item.id}`}>{item.title}</Link>
                               </h4>
-                              <p>{item.descripcion}</p>
+                              <p>{item.description}</p>
                               <span className="price">${item.price}</span>
+
+                              {/* ✅ Botón para ver más detalles */}
+                              <Link to={`/shop-detail/${item.id}`} className="btn btn-primary">
+                                🔍 Ver detalles
+                              </Link>
+
+                              {/* ✅ Botón para agregar al carrito */}
                               <button
-                                className="main-btn btn-border"
+                                className="btn-add-to-cart"
                                 onClick={() => {
-                                  console.log("🛒 Agregando al carrito:", item); // ✅ Verificar que se ejecuta
-                                  addToCart(item);
-                                  console.log("📢 Carrito actualizado:", cart); // ✅ Verificar el carrito
+                                  const productToCart = { ...item, quantity: 1 };
+                                  console.log("🛒 Adding to cart:", productToCart);
+                                  addToCart(productToCart);
                                 }}
                               >
-                                🛒 Agregar al Carrito
+                                🛒 Agregar al carrito
                               </button>
                             </div>
                           </div>
@@ -102,4 +107,3 @@ class Content extends Component {
 }
 
 export default Content;
-
