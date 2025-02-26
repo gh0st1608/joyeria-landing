@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { loginUser } from "../../servicios/authService";
+import { loginUser } from "../../servicios/auth/authService";
 
 const LoginModal = ({ onClose }) => {
   const [formData, setFormData] = useState({ email: "", password: "" });

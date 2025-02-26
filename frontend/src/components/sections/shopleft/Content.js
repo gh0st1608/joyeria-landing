@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Pagination from "../../layouts/Pagination";
 import Sidebar from "../../layouts/Shopsidebar";
-import { getProducts } from "../../servicios/products";
+import { getProducts } from "../../servicios/shop/productService";
 import { CartContext } from "../../../context/CartContext";
 
 class Content extends Component {

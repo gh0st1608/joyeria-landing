@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { loginUser, registerUser } from "../../servicios/authService";
+import { loginUser, registerUser } from "../../servicios/auth/authService";
 
 const AuthModal = ({ onClose }) => {
   const [isLogin, setIsLogin] = useState(true); // ✅ Alternar entre Login y Registro
@@ -20,8 +20,8 @@ const AuthModal = ({ onClose }) => {
       if (isLogin) {
         // ✅ Login
         const response = await loginUser({ email: formData.email, password: formData.password });
-        if (response?.token) {
-          localStorage.setItem("token", response.token);
+        if (response) {
+          localStorage.setItem("token", response.accessToken);
           alert("✅ Login successful! Redirecting...");
           onClose();
         } else {
