@@ -31,7 +31,7 @@ steps:
   - id: 'Build Third Application'
     name: 'gcr.io/cloud-builders/npm'
     entrypoint: 'bash'
-    args: ['-c', 'cd ./backend/payment && npm install && npm run build']
+    args: ['-c', 'cd ./backend/order && npm install && npm run build']
 
   - id: 'Build Docker Image for Third Application'
     name: 'gcr.io/cloud-builders/docker'
