@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { loginUser } from "../../servicios/authService"; // ✅ Importa la autenticación
+import { loginUser } from "../../servicios/auth/authService"; // ✅ Importa la autenticación
 
 const LoginContent = () => {
   const history = useHistory();

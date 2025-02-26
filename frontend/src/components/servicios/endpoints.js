@@ -1,18 +1,22 @@
-const BASE_URL = "https://msa-joyasperu-shop-1094025365695.us-east1.run.app";
+export const BASE_URL = {
+  auth: `https://msa-joyasperu-auth-1094025365695.us-east1.run.app/auth`,
+  shop: `https://msa-joyasperu-shop-1094025365695.us-east1.run.app/shop`,
+  payment: `https://msa-joyasperu-order-1094025365695.us-east1.run.app/order`
+}
 
-const ENDPOINTS = {
+export const ENDPOINTS = {
   auth: {
-    login: `${BASE_URL}/auth/login/`,
-    register: `${BASE_URL}/auth/register/`,
+    login: `/login`,
+    register: `/register`,
   },
   shop: {
-    products: `${BASE_URL}/shop/products/`,
-    createProduct: `${BASE_URL}/shop/products/create/`,
-    getProductById: (id) => `${BASE_URL}/shop/products/${id}/`,
+    products: `/products`,
+    getProductById: (id) => `/products/${id}`,
+    categoryProducts: '/category-products',
+    getCategoryProductById: (id) => `/category-products/${id}`,
   },
   payment: {
-    createPaypalPayment: `${BASE_URL}/payment/paypal/create/`,
+    createPaypalPayment: `/create`,
   },
 };
 
-export default ENDPOINTS;

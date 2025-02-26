@@ -1,16 +1,16 @@
-import api from "./api";
-import ENDPOINTS from "./endpoints";
+import { postRequest } from "./api";
+import { ENDPOINTS } from "../endpoints";
 
 // ✅ Iniciar Sesión
 export const loginUser = async (credentials) => {
   try {
     console.log("📡 Sending login request...");
-    const response = await api.post(ENDPOINTS.auth.login, credentials);
-    console.log("✅ Login successful:", response.data);
+    const response = await postRequest(ENDPOINTS.auth.login, credentials);
+    console.log("✅ Login successful:", response.accessToken);
 
-    localStorage.setItem("token", response.data.token);
+    localStorage.setItem("token", response.accessToken);
 
-    return response.data;
+    return response.accessToken;
   } catch (error) {
     console.error("❌ Login failed:", error.response ? error.response.data : error.message);
     return null;
@@ -21,7 +21,7 @@ export const loginUser = async (credentials) => {
 export const registerUser = async (userData) => {
   try {
     console.log("📡 Sending registration request...");
-    const response = await api.post(ENDPOINTS.auth.register, userData);
+    const response = await postRequest(ENDPOINTS.auth.register, userData);
     console.log("✅ Registration successful:", response.data);
     return response.data;
   } catch (error) {
