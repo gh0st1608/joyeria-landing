@@ -1,0 +1,5 @@
+type: string
+description: >
+  Identificador de la cita
+maxLength: 500
+example: "SA-36518"

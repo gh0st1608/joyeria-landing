@@ -1,0 +1,15 @@
+type: object
+description: Entidad que busca un profesional de la salud según su especialidad
+properties:
+  Data:
+    type: object
+    properties:
+      Specialties:
+        type: object
+        properties:
+          locationCode:
+            $ref: ../attributes/locations/locationCode.yaml
+          specialtyCode:
+            $ref: ../attributes/practitioners/specialtyCode.yaml
+          appointmentType:
+            $ref: ../attributes/appointments/appointmentType.yaml

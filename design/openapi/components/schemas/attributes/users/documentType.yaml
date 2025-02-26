@@ -1,0 +1,6 @@
+type: string
+enum: [DNI,CE]
+description: >
+  Tipo de documento de identidad de la persona
+maxLength: 500
+example: 'DNI'

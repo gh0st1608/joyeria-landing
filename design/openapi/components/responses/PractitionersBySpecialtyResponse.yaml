@@ -1,0 +1,39 @@
+description: Entidad devuelve el listado de médicos según una especialidad
+content:
+  application/json:
+    schema:
+      allOf:
+        - $ref: ../schemas/model_response/StandardResponse.yaml
+        - $ref: ../schemas/model_response/GetPractitionerBySpecialty.yaml
+    examples:
+      Caso-Prueba-01:
+        summary: Lista de profesionales médicos con un registro
+        value:
+          Data:
+            code: 200
+            message: Lista de médicos encontrados
+            Practitioners:
+                - practitionerName: "Juan Perez"
+                  specialtyCode: "CARD"
+      Caso-Prueba-02:
+        summary: Lista de profesionales médicos con 2 registro
+        value:
+          Data:
+            code: 200
+            message: Lista de médicos encontrados
+            Practitioners:
+             -  practitionerName: "Juan Perez"
+                specialtyCode: "CARD"
+             -  practitionerName: "Juan Perez"
+                specialtyCode: "CARD"
+              
+headers:
+  x-jws-signature:
+    description: Header containing a detached JWS signature of the body of the payload
+    schema:
+      type: "string"
+  x-fapi-interaction-id:
+    description: An RFC4122 UID used as a correlation id.
+    schema:
+      type: "string"
+  

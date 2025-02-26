@@ -1,0 +1,27 @@
+get:
+  summary: Especialidades Médicas de los profesionales de salud
+  operationId: getSpecialties
+  description: >
+    📦 Procesos: Lista las especialidades Médicas
+  
+  
+    🔧 Funcionalidad: Devolver el listado de especialidades Médicas 
+  
+      
+    🚀 Objetivo: Listar las especialidades Médicas
+  
+  
+    📌 Comentarios: 
+
+  tags:
+    - Médicos
+  responses:
+    '200':
+      $ref: ../components/responses/SpecialtiesResponse.yaml
+    '400':
+      $ref: ../components/responses/BadRequestResponse.yaml
+
+  security:
+    - api_key: []
+
+

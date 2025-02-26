@@ -1,0 +1,5 @@
+type: string
+description: >
+  Mensaje del error configurado
+maxLength: 100
+example: 'Respuesta exitosa'

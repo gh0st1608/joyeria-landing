@@ -5,7 +5,7 @@ import Header from "../layouts/Header";
 import Breadcrumb from "../layouts/Breadcrumbs";
 import Instafeeds from "../layouts/Instafeeds";
 
-import { getProductById } from "../servicios/products"; // ✅ Importa la API
+import { getProductById } from "../servicios/shop/productService"; // ✅ Importa la API
 
 const Shopdetail = () => {
   const { id } = useParams(); // ✅ Obtiene el ID de la URL

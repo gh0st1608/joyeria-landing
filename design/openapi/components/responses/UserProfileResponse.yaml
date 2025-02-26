@@ -1,0 +1,38 @@
+description: Devuelve la información personal de un usuario
+content:
+  application/json:
+    schema:
+      allOf:
+        - $ref: ../schemas/model_response/StandardResponse.yaml
+        - $ref: ../schemas/model_response/UserProfile.yaml
+    examples:
+      Caso-Prueba-01:
+        summary: Detalle la información personal un usuario
+        value:
+          Data:
+            code: 200
+            message: información personal del usuario
+            UserProfile:
+              fullName: Juan Perez Gomez
+              paternalSurname: Perez
+              maternalSurname: Gomez
+              birthDate: "2000-09-02T08:00:00"
+              documentType: DNI
+              documentNumber: "7654321"
+              phoneNumber: "+5987654321"
+              email: "juanperez@example.com"
+          Links:
+            self: '[href://api-ux-cuida-app/v1/profile/personal-information]'
+          Meta:
+            totalPages: 1
+              
+headers:
+  x-jws-signature:
+    description: Header containing a detached JWS signature of the body of the payload
+    schema:
+      type: "string"
+  x-fapi-interaction-id:
+    description: An RFC4122 UID used as a correlation id.
+    schema:
+      type: "string"
+  
