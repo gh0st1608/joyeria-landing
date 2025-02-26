@@ -1,25 +1,19 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { loginUser } from "../../servicios/authService"; // ✅ Importa el servicio de autenticación
+import { loginUser } from "../../servicios/authService"; // ✅ Importa la autenticación
 
 const LoginContent = () => {
   const history = useHistory();
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+  const [formData, setFormData] = useState({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // ✅ Manejo de cambios en los inputs
+  // ✅ Manejar cambios en los inputs
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value, // ✅ Actualiza el estado correctamente
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // ✅ Manejo del envío del formulario
+  // ✅ Manejar el envío del formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -28,13 +22,14 @@ const LoginContent = () => {
     try {
       const response = await loginUser(formData);
       if (response?.token) {
-        localStorage.setItem("token", response.token); // ✅ Guarda el token en localStorage
-        history.push("/account"); // ✅ Redirige a la cuenta del usuario
+        localStorage.setItem("token", response.token); // ✅ Guardar token
+        alert("✅ Login exitoso. Redirigiendo...");
+        history.push("/account"); // ✅ Redirigir al dashboard
       } else {
-        setError("Invalid credentials. Please try again.");
+        setError("❌ Invalid credentials. Please try again.");
       }
     } catch (err) {
-      setError("Error logging in. Please check your credentials.");
+      setError("❌ Error logging in. Please check your credentials.");
     } finally {
       setLoading(false);
     }
@@ -53,7 +48,7 @@ const LoginContent = () => {
                 type="email"
                 name="email"
                 value={formData.email}
-                onChange={handleChange} // ✅ Maneja cambios en el input
+                onChange={handleChange}
                 required
               />
             </div>
@@ -63,7 +58,7 @@ const LoginContent = () => {
                 type="password"
                 name="password"
                 value={formData.password}
-                onChange={handleChange} // ✅ Maneja cambios en el input
+                onChange={handleChange}
                 required
               />
             </div>

@@ -1,21 +1,15 @@
 import React, { useContext, useState } from "react";
 import { CartContext } from "../../context/CartContext";
-import { AuthContext } from "../../context/AuthContext"; // ✅ Importar autenticación
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
+import AuthModal from "../sections/auth/AuthModal"; // ✅ Importamos el modal de autenticación
 
 const Header = () => {
   const { cart } = useContext(CartContext);
-  const { isAuthenticated, logout } = useContext(AuthContext);
   const [menuOpen, setMenuOpen] = useState(false);
-  const history = useHistory();
+  const [showAuthModal, setShowAuthModal] = useState(false);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
-  };
-
-  const handleLogout = () => {
-    logout();
-    history.push("/login"); // ✅ Redirigir al login después de cerrar sesión
   };
 
   return (
@@ -25,27 +19,26 @@ const Header = () => {
           <Link to="/">🛍 Peru Joyas</Link>
         </div>
 
-        {/* Botón de menú responsivo */}
         <button className="menu-toggle" onClick={toggleMenu}>🍔</button>
 
         <nav className={menuOpen ? "nav-menu open" : "nav-menu"}>
           <ul>
             <li><Link to="/">Home</Link></li>
-            <li><Link to="/shop-left">Compras</Link></li>
-            <li><Link to="/contact">Contactanos</Link></li>  {/* ✅ Agregado Contacto */}
+            <li><Link to="/shop-left">Shop</Link></li>
             <li>
               <Link to="/cart" className="cart-link">
-                🛒 Carrito <span className="cart-count">{cart.reduce((total, item) => total + item.quantity, 0)}</span>
+                🛒 Cart <span className="cart-count">{cart.reduce((total, item) => total + item.quantity, 0)}</span>
               </Link>
             </li>
-            {!isAuthenticated ? (
-              <li><Link to="/login">🔑 Login</Link></li>
-            ) : (
-              <li><button onClick={handleLogout} className="logout-btn">🚪 Logout</button></li>
-            )}
+            <li>
+              <button className="btn btn-primary" onClick={() => setShowAuthModal(true)}>🔐 Login</button>
+            </li>
           </ul>
         </nav>
       </div>
+
+      {/* ✅ Modal de Autenticación (Login / Registro) */}
+      {showAuthModal && <AuthModal onClose={() => setShowAuthModal(false)} />}
     </header>
   );
 };

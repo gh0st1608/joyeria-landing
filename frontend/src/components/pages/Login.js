@@ -3,7 +3,7 @@ import MetaTags from "react-meta-tags";
 import Header from "../layouts/Header";
 import Breadcrumb from "../layouts/Breadcrumbs";
 import Instafeeds from "../layouts/Instafeeds";
-import Content from "../sections/login/Content";
+
 
 
 const Login = () => {
@@ -15,7 +15,7 @@ const Login = () => {
       </MetaTags>
       <Header />
       <Breadcrumb breadcrumb={{ pagename: "Login" }} />
-      <Content />
+      {/* <Content /> */}
       <Instafeeds />
     </Fragment>
   );
