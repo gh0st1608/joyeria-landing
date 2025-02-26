@@ -1,136 +1,37 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
+import React from "react";
+import { Link } from "react-router-dom";
 
+const Footer = () => {
+  return (
+    <footer className="footer">
+      <div className="footer-container">
+        <div className="footer-section">
+          <h4>Contactanos</h4>
+          <p>📞 +987 876 765 76 577</p>
+          <p>📧 info@webmail.com</p>
+        </div>
 
+        <div className="footer-section">
+          <h4>Redes Sociales</h4>
+          <div className="social-icons">
+            <Link to="#"><i className="fab fa-facebook-f"></i></Link>
+            <Link to="#"><i className="fab fa-instagram"></i></Link>
+            <Link to="#"><i className="fab fa-twitter"></i></Link>
+          </div>
+        </div>
 
-class Footer extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
-    // Back to top
-    componentDidMount() {
-        window.addEventListener('scroll', () => {
-            this.setState({
-                isTop: window.scrollY > 300
-            });
-        }, false);
-    }
-    scrollToTop() {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-    }
-    render() {
-        const Map = ReactMapboxGl({
-            accessToken:
-                'pk.eyJ1IjoiYWJlZHNoIiwiYSI6ImNrNnRyZ3d4aDAyMzkzZXBoc3RsYnM0aGwifQ.yhr3W_OOI6xXElmSY8cyPg'
-        });
-        return (
-            <footer className="sigma-footer">
-                <div className="sigma-footer-top">
-                    <div className="container-fluid">
-                        <div className="row no-gutters">
-                            <div className="col-lg-8">
-                                <div className="row">
-                                    <div className="col-lg-6">
-                                        {/*====== Subir======*/}
-                                        <div className="sigma-backto-top">
-                                            <Link to="#" className="back-to-top" id="backToTop" onClick={() => this.scrollToTop()}>
-                                                <i className="fal fa-chevron-up" /> Subir
-                                            </Link>
-                                        </div>
-                                    </div>
-     
-                                </div>
-                                {/*====== Footer content ======*/}
-                              
-                            </div>
-                            <div className="col-lg-4">
-                                <Map
-                                    // eslint-disable-next-line react/style-prop-object
-                                    style="mapbox://styles/mapbox/light-v10"
-                                    className="contact-maps"
-                                >
-                                    <Layer type="symbol" id="marker" layout={{ 'icon-image': 'marker-15' }}>
-                                        <Feature coordinates={[-77.04, 38.907]} zoom={11.5} />
-                                    </Layer>
-                                </Map>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="sigma-footer-bottom">
-                    <div className="container-fluid">
-                        <div className="sigma-footer-bottom-inner">
-                            <div className="row no-gutters align-items-end">
-                                <div className="col-lg-6">
-                                    <div className="sigma-footer-contact">
+        <div className="footer-section">
+          <h4>Legal</h4>
+          <Link to="#">Terms of Use</Link> |
+          <Link to="#"> Privacy Policy</Link>
+        </div>
+      </div>
 
-                                        {/* Datos y redes sociales */}
-                                        <ul>
-                                            <li>
-                                                <i className="flaticon-phone" />
-                                                <Link to="tel:"><span>Phone Number</span> +987 876 765 76 577</Link>
-                                            </li>
-                                            <li>
-                                                <i className="flaticon-message" />
-                                                <Link to="mailto:"><span>Email Adssdsddress</span> info@webmail.com</Link>
-                                            </li>
-                                            <li>
-                                                <Link to="#">
-                                                    <i className="fab fa-facebook-f" />
-                                                </Link>
-                                            </li>
-                                            <li>
-                                                <Link to="#">
-                                                    <i className="fab fa-instagram" />
-                                                </Link>
-                                            </li>
-                                            <li>
-                                                <Link to="#">
-                                                    <i className="fab fa-twitter" />
-                                                </Link>
-                                            </li>
-                                        </ul>
-
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {/* Copyright */}
-                <div className="sigma-copyright">
-                    <div className="container-fluid">
-                        <div className="sigma-copyright-inner">
-                            <div className="row">
-                                <div className="col-lg-6 col-md-5 order-2 order-md-1">
-                                    <p className="sigma-copyright-text">Copyright By@<Link to="#">Example</Link> - 2022</p>
-                                </div>
-                                <div className="col-lg-6 col-md-7 order-1 order-md-2">
-                                    <div className="sigma-copyright-menu">
-                                        <ul>
-                                            <li>
-                                                <Link to="#">Terms of use</Link>
-                                            </li>
-                                            <li>
-                                                <Link to="#">Privacy Environmental Policy</Link>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer >
-
-        );
-    }
-}
+      <div className="footer-bottom">
+        <p>© 2025 <strong>Peru Joyas</strong> - All rights reserved.</p>
+      </div>
+    </footer>
+  );
+};
 
 export default Footer;

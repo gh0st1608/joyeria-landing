@@ -4,7 +4,7 @@ import MetaTags from "react-meta-tags";
 import Header from "../layouts/Header";
 import Breadcrumb from "../layouts/Breadcrumbs";
 import Instafeeds from "../layouts/Instafeeds";
-import Footer from "../layouts/Footer";
+
 import { getProductById } from "../servicios/products"; // ✅ Importa la API
 
 const Shopdetail = () => {
@@ -49,7 +49,7 @@ const Shopdetail = () => {
       </div>
 
       <Instafeeds />
-      <Footer />
+  
     </>
   );
 };
