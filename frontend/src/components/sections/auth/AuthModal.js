@@ -88,14 +88,14 @@ const AuthModal = ({ onClose }) => {
             />
           </div>
           <button type="submit" className="btn btn-primary btn-full" disabled={loading}>
-            {loading ? "Processing..." : isLogin ? "Login" : "Register"}
+            {loading ? "Processing..." : isLogin ? "Login" : "Registrarse"}
           </button>
         </form>
 
         <p className="toggle-auth">
           {isLogin ? "Si aun no eta reistrado? " : "Already have an account?"}
           <button onClick={() => setIsLogin(!isLogin)}>
-            {isLogin ? "Register" : "Login"}
+            {isLogin ? "Registrarse" : "Login"}
           </button>
         </p>
       </div>

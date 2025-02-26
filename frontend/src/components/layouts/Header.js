@@ -24,14 +24,15 @@ const Header = () => {
         <nav className={menuOpen ? "nav-menu open" : "nav-menu"}>
           <ul>
             <li><Link to="/">Home</Link></li>
-            <li><Link to="/shop-left">Shop</Link></li>
+            <li><Link to="/shop-left">Catálogo</Link></li>
+            <li><Link to="/contact">📩 Contáctanos</Link></li> {/* ✅ Agregado */}
             <li>
               <Link to="/cart" className="cart-link">
                 🛒 Cart <span className="cart-count">{cart.reduce((total, item) => total + item.quantity, 0)}</span>
               </Link>
             </li>
             <li>
-              <button className="btn btn-primary" onClick={() => setShowAuthModal(true)}>🔐 Login</button>
+              <button className="btn btn-primary" onClick={() => setShowAuthModal(true)}>🔐 Login </button>
             </li>
           </ul>
         </nav>
