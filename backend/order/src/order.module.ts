@@ -22,6 +22,7 @@ import { PaymentController } from './payment/infrastructure/payment.controller';
 import { CreatePaymentUseCase } from './payment/application/create.application';
 import { ExecutePaymentUseCase } from './payment/application/execute.application';
 import { PaymentInfrastructureRepository } from './payment/infrastructure/payment.repository';
+import { PayPalAuthService } from './payment/services/paypal.service';
 
 
 @Module({
@@ -45,6 +46,7 @@ import { PaymentInfrastructureRepository } from './payment/infrastructure/paymen
     PaymentController
   ],
   providers: [
+    PayPalAuthService,
     CreateCartbuyUseCase,
     DeleteCartbuyUseCase,
     GetListCartbuyUseCase,
