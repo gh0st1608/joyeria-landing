@@ -1,11 +1,12 @@
 import React, { useContext, useState } from "react";
 import { CartContext } from "../../context/CartContext";
 import { Link } from "react-router-dom";
-
+import AuthModal from "../sections/auth/AuthModal"; // ✅ Importamos el modal de autenticación
 
 const Header = () => {
   const { cart } = useContext(CartContext);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(false);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -18,21 +19,27 @@ const Header = () => {
           <Link to="/">🛍 Peru Joyas</Link>
         </div>
 
-        {/* Botón de menú responsivo */}
         <button className="menu-toggle" onClick={toggleMenu}>🍔</button>
 
         <nav className={menuOpen ? "nav-menu open" : "nav-menu"}>
           <ul>
-            <li><Link to="/">Inicio</Link></li>
-            <li><Link to="/shop-left">Tienda</Link></li>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/shop-left">Catálogo</Link></li>
+            <li><Link to="/contact">📩 Contáctanos</Link></li> {/* ✅ Agregado */}
             <li>
               <Link to="/cart" className="cart-link">
-                🛒 Carrito <span className="cart-count">{cart.reduce((total, item) => total + item.quantity, 0)}</span>
+                🛒 Cart <span className="cart-count">{cart.reduce((total, item) => total + item.quantity, 0)}</span>
               </Link>
+            </li>
+            <li>
+              <button className="btn btn-primary" onClick={() => setShowAuthModal(true)}>🔐 Login </button>
             </li>
           </ul>
         </nav>
       </div>
+
+      {/* ✅ Modal de Autenticación (Login / Registro) */}
+      {showAuthModal && <AuthModal onClose={() => setShowAuthModal(false)} />}
     </header>
   );
 };
