@@ -35,11 +35,11 @@ steps:
 
   - id: 'Build Docker Image for Third Application'
     name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '--tag', 'us-central1-docker.pkg.dev/oval-crawler-444615-k3/joyasperu-apiscore/msa-payment-img:$COMMIT_SHA', '-f', './backend/payment/Dockerfile', './backend/payment']
+    args: ['build', '--tag', 'us-central1-docker.pkg.dev/oval-crawler-444615-k3/joyasperu-apiscore/msa-order-img:$COMMIT_SHA', '-f', './backend/order/Dockerfile', './backend/order']
 
   - id: 'Push Docker Image for Third Application'
     name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'us-central1-docker.pkg.dev/oval-crawler-444615-k3/joyasperu-apiscore/msa-payment-img:$COMMIT_SHA']
+    args: ['push', 'us-central1-docker.pkg.dev/oval-crawler-444615-k3/joyasperu-apiscore/msa-order-img:$COMMIT_SHA']
 
   # Desplegar la primera aplicación en Cloud Run
   - id: 'Deploy First Application to Cloud Run'
@@ -83,8 +83,8 @@ steps:
     entrypoint: 'gcloud'
     args:
       [
-        'run', 'deploy', 'msa-joyasperu-payment',  # Cambiar nombre del servicio
-        '--image', 'us-central1-docker.pkg.dev/oval-crawler-444615-k3/joyasperu-apiscore/msa-payment-img:$COMMIT_SHA',
+        'run', 'deploy', 'msa-joyasperu-order',  # Cambiar nombre del servicio
+        '--image', 'us-central1-docker.pkg.dev/oval-crawler-444615-k3/joyasperu-apiscore/msa-order-img:$COMMIT_SHA',
         '--port', '4002',  # Puerto diferente si se requiere
         '--platform', 'managed',
         '--region', 'us-east1',

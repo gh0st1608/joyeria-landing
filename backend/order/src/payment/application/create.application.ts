@@ -1,15 +1,14 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { IOrderRepository } from '../domain/repository/order.repository';
+import { IPaymentRepository } from '../domain/repository/payment.repository';
 import { CreateOrderDto } from '../infrastructure/dto/create.dto';
-import { AmountRequired, ItemsRequired, Order, OrderProperties, PurchaseUnitRequired } from '../domain/entities/order.entity';  // Importamos la entidad Itembuy
+import { AmountRequired, Order, OrderProperties, PurchaseUnitRequired } from '../domain/entities/order.entity';  // Importamos la entidad Itembuy
 import { ICartbuyRepository } from '../../cartbuy/domain/repository/cartbuy.repository';
-import { Itembuy, ItembuyProperties } from '../../itembuy/domain/entities/itembuy.entity';
 
 @Injectable()
-export class CreateOrderUseCase {
+export class CreatePaymentUseCase {
   constructor(
-    @Inject('IOrderRepository') 
-    private readonly orderRepository: IOrderRepository,
+    @Inject('IPaymentRepository') 
+    private readonly paymentRepository: IPaymentRepository,
     @Inject('ICartbuyRepository') 
     private readonly cartbuyRepository: ICartbuyRepository
   ) {}
@@ -28,13 +27,13 @@ export class CreateOrderUseCase {
       intent: 'CAPTURE', 
       purchase_units: [purchase_unit],
       application_context: {
-        return_url : 'http://localhost:4002/payment/return_url',
-        cancel_url : 'http://localhost:4002/payment/cancel_url'
+        return_url : 'http://localhost:4002/order/payment',
+        cancel_url : 'http://localhost:4002/order/cancel_url'
       }
     };
 
     const entity = new Order(orderEntity);
 
-    return this.orderRepository.create(entity);
+    return this.paymentRepository.create(entity);
   }
 }
