@@ -18,7 +18,7 @@ class Shopleft extends Component {
                 <Header/>
                 <Breadcrumb breadcrumb={{pagename:'Shop Left'}}/>
                 <Content/>
-                <Footer/>
+               
             </Fragment>
         );
     }

@@ -3,33 +3,56 @@ import ENDPOINTS from "./endpoints";
 
 // ✅ Función para Iniciar Sesión
 export const loginUser = async (credentials) => {
-    try {
-      console.log("📡 Sending login request to:", ENDPOINTS.auth.login);
-      console.log("📤 Sending data:", credentials);
-      
-      const response = await api.post(ENDPOINTS.auth.login, credentials);
-      
-      console.log("✅ Login successful:", response.data);
-  
-      if (response.data.token) {
-        localStorage.setItem("token", response.data.token);
-        return response.data;
-      } else {
-        throw new Error("⚠️ No token received in response");
-      }
-    } catch (error) {
-      console.error("❌ Login failed:", error.response ? error.response.data : error.message);
-      
-      // ⚠️ Mostrar mensaje de error adecuado al usuario
-      alert(`❌ ${error.response?.data?.message || "Login failed. Please try again."}`);
-      
-      return null;
-    }
-  };
-  
+  try {
+    console.log("📡 Sending login request...", credentials);
+    
+    const response = await api.post(ENDPOINTS.auth.login, credentials);
+    console.log("✅ Login successful:", response.data);
+
+    // Guardar el token en localStorage
+    localStorage.setItem("token", response.data.token);
+    
+    return response.data;
+  } catch (error) {
+    console.error("❌ Login failed:", error.response?.data || error.message);
+    
+    throw new Error(error.response?.data?.message || "Invalid credentials. Please try again.");
+  }
+};
+
+// ✅ Función para Registrarse
+export const registerUser = async (userData) => {
+  try {
+    console.log("📡 Sending registration request...", userData);
+    
+    const response = await api.post(ENDPOINTS.auth.register, userData);
+    console.log("✅ Registration successful:", response.data);
+
+    return response.data;
+  } catch (error) {
+    console.error("❌ Registration failed:", error.response?.data || error.message);
+    
+    throw new Error(error.response?.data?.message || "Error registering. Please try again.");
+  }
+};
 
 // ✅ Función para Cerrar Sesión
 export const logoutUser = () => {
   console.log("🔐 Logging out...");
   localStorage.removeItem("token");
+};
+
+// ✅ Obtener lista de usuarios
+export const getUsers = async () => {
+  try {
+    console.log("📡 Fetching users...");
+    
+    const response = await api.get(ENDPOINTS.auth.userList);
+    console.log("✅ Users received:", response.data);
+
+    return response.data;
+  } catch (error) {
+    console.error("❌ Error fetching users:", error.response?.data || error.message);
+    return [];
+  }
 };

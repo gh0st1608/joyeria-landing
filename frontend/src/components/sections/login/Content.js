@@ -1,61 +1,83 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { loginUser } from "../../servicios/authService"; // ✅ Importa el servicio de autenticación
 
-import loginbg from '../../../assets/img/login.png';
+const LoginContent = () => {
+  const history = useHistory();
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-class Content extends Component {
-    render() {
-        return (
-            <section className="login-sec pt-120 pb-120">
-                <div className="container">
-                    <div className="account-wrapper">
-                        <div className="row no-gutters">
-                            <div className="col-lg-6">
-                                <div className="login-content" style={{ backgroundImage: "url(" + loginbg + ")" }}>
-                                    <div className="description text-center">
-                                        <h2>Welcome Back!</h2>
-                                        <p className="text-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-lg-6">
-                                <div className="login-form">
-                                    <h2>Log in</h2>
-                                    <form method="post">
-                                        <div className="input-group input-group-two mb-20">
-                                            <input type="text" placeholder="Username" name="username" />
-                                        </div>
-                                        <div className="input-group input-group-two mb-30">
-                                            <input type="password" placeholder="Password" name="username" />
-                                        </div>
-                                        <Link to="#">Forgot Password?</Link>
-                                        <button type="submit" className="main-btn btn-filled mt-20 login-btn">Login</button>
-                                        <div className="form-seperator">
-                                            <span>OR</span>
-                                        </div>
-                                        <div className="social-buttons">
-                                            <button type="button" className="main-btn btn-border facebook mb-20">
-                                                <i className="fab fa-facebook-f" />
-                                                Continue with Facebook
-                                            </button>
-                                            <button type="button" className="main-btn btn-filled mb-30">
-                                                <i className="fab fa-google" />
-                                                Continue with Google
-                                            </button>
-                                        </div>
-                                        <p>Don't have an Account?
-                                            <Link to="/register" className="d-inline-block">Create One</Link>
-                                        </p>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+  // ✅ Manejo de cambios en los inputs
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value, // ✅ Actualiza el estado correctamente
+    });
+  };
 
-        );
+  // ✅ Manejo del envío del formulario
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+
+    try {
+      const response = await loginUser(formData);
+      if (response?.token) {
+        localStorage.setItem("token", response.token); // ✅ Guarda el token en localStorage
+        history.push("/account"); // ✅ Redirige a la cuenta del usuario
+      } else {
+        setError("Invalid credentials. Please try again.");
+      }
+    } catch (err) {
+      setError("Error logging in. Please check your credentials.");
+    } finally {
+      setLoading(false);
     }
-}
+  };
 
-export default Content;
+  return (
+    <section className="login-section">
+      <div className="container">
+        <div className="login-box">
+          <h2>Login to Your Account</h2>
+          {error && <p className="error-msg">{error}</p>}
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label>Email</label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange} // ✅ Maneja cambios en el input
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Password</label>
+              <input
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange} // ✅ Maneja cambios en el input
+                required
+              />
+            </div>
+            <button type="submit" className="btn btn-primary" disabled={loading}>
+              {loading ? "Logging in..." : "Login"}
+            </button>
+          </form>
+          <p>
+            Don't have an account? <a href="/register">Sign up</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default LoginContent;

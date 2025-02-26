@@ -12867,3 +12867,48 @@ footer .copyright-area.light-theme .footer-menu ul li::before {
     background-color: #e68900;
   }
   
+  .footer {
+    background: black;
+    color: gold;
+    text-align: center;
+    padding: 20px 0;
+  }
+  
+  .footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 20px;
+  }
+  
+  .footer-section {
+    width: 30%;
+    min-width: 250px;
+  }
+  
+  .footer-section h4 {
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+  
+  .footer-section p {
+    margin: 5px 0;
+  }
+  
+  .social-icons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  .social-icons a {
+    color: gold;
+    font-size: 20px;
+  }
+  
+  .footer-bottom {
+    margin-top: 20px;
+    border-top: 1px solid gold;
+    padding-top: 10px;
+  }
+  

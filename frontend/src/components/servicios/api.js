@@ -1,17 +1,20 @@
 import axios from "axios";
 
-export const BASE_URL = "https://msa-joyasperu-shop-1094025365695.us-east1.run.app/"; // ✅ Exportamos BASE_URL
+// ✅ Configura la URL base de la API
+const BASE_URL = "https://msa-joyasperu-shop-1094025365695.us-east1.run.app/";
 
 const api = axios.create({
   baseURL: BASE_URL,
-  headers: { "Content-Type": "application/json" },
-  withCredentials: false, // ⚠️ Si usas autenticación, cambia esto a true
+  headers: {
+    "Content-Type": "application/json",
+  },
+  withCredentials: false, // ⚠️ Si usas autenticación basada en cookies, cámbialo a `true`
 });
 
-// ✅ Manejo de errores
+// ✅ Función para manejar errores de la API
 const handleApiError = (error, message) => {
   console.error(`❌ ${message}:`, error.response ? error.response.data : error.message);
-  return [];
+  return null;
 };
 
 // ✅ Función para hacer peticiones GET

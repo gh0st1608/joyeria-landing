@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import MetaTags from "react-meta-tags";
 import Header from '../layouts/Header';
-import Footer from '../layouts/Footer';
+
 import Content from '../sections/home/Content';
 
 class Home extends Component {
@@ -17,7 +17,7 @@ class Home extends Component {
                 </MetaTags>
                 <Header/>
                 <Content/>
-                <Footer/>
+    
             </Fragment>
         );
     }

@@ -31,10 +31,11 @@ const Header = () => {
         <nav className={menuOpen ? "nav-menu open" : "nav-menu"}>
           <ul>
             <li><Link to="/">Home</Link></li>
-            <li><Link to="/shop-left">Shop</Link></li>
+            <li><Link to="/shop-left">Compras</Link></li>
+            <li><Link to="/contact">Contactanos</Link></li>  {/* ✅ Agregado Contacto */}
             <li>
               <Link to="/cart" className="cart-link">
-                🛒 Cart <span className="cart-count">{cart.reduce((total, item) => total + item.quantity, 0)}</span>
+                🛒 Carrito <span className="cart-count">{cart.reduce((total, item) => total + item.quantity, 0)}</span>
               </Link>
             </li>
             {!isAuthenticated ? (
