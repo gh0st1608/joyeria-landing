@@ -1,7 +1,7 @@
 export const BASE_URL = {
   auth: `https://msa-joyasperu-auth-1094025365695.us-east1.run.app/auth`,
   shop: `https://msa-joyasperu-shop-1094025365695.us-east1.run.app/shop`,
-  payment: `https://msa-joyasperu-order-1094025365695.us-east1.run.app/order`
+  payment: `http://localhost:4002/order`
 }
 
 export const ENDPOINTS = {
@@ -16,7 +16,7 @@ export const ENDPOINTS = {
     getCategoryProductById: (id) => `/category-products/${id}`,
   },
   payment: {
-    createPaypalPayment: `/create`,
+    create: `/payment`,
   },
 };
 
