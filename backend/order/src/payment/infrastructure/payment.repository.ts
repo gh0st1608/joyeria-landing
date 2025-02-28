@@ -30,7 +30,7 @@ export class PaymentInfrastructureRepository implements IPaymentRepository {
         'Authorization': `Bearer ${accessToken}`
       }
     })
-
+    console.log('responseOrder',responseOrder.data)
     return responseOrder.data
   }catch(error){
     console.log(JSON.stringify(error))
@@ -41,7 +41,7 @@ export class PaymentInfrastructureRepository implements IPaymentRepository {
 
   async execute(tokenPayment : string): Promise <any> {
     const accessToken = await this.payPalAuthService.getAuthToken();
-
+    console.log('executePayment',tokenPayment)
     const responseOrder = await axios.post(`${process.env.SANDBOX_PAYPAL}/v2/checkout/orders/${tokenPayment}/capture`,{},{
       headers: {
         'Content-Type': 'application/json',
