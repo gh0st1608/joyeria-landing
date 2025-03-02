@@ -5,7 +5,7 @@ COPY package.json /var/www/app/build/
 COPY .env /var/www/app/build/
 
 WORKDIR /var/www/app/build
-RUN npm i --production
+RUN npm i --legacy-peer-deps
 
 
 EXPOSE 4003
