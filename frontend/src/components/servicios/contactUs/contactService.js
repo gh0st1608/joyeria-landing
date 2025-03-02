@@ -1,5 +1,5 @@
 import { postContactMessage } from "./api"; // ✅ Importa la función correcta
-import { ENDPOINTS } from "../endpoints"; // ✅ Asegúrate de importar los endpoints
+import { ENDPOINTS } from "../endpoints";// ✅ Asegúrate de importar los endpoints
 
 // ✅ Función para enviar un mensaje de contacto
 export const sendContactMessage = async (contactData) => {

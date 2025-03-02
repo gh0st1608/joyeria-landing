@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import ENDPOINTS from "../../servicios/contactUs/contactService";
+import { ENDPOINTS } from "../../servicios/endpoints";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({

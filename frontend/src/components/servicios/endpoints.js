@@ -1,4 +1,3 @@
-import Contact from "components/pages/Contact";
 
 export const BASE_URL = {
   auth: `https://msa-joyasperu-auth-1094025365695.us-east1.run.app/auth`,
