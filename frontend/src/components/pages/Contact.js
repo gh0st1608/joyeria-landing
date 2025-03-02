@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import MetaTags from "react-meta-tags";
 import Header from "../layouts/Header";
-import Breadcrumb from "../layouts/Breadcrumbs";
-import Footer from "../layouts/Footer";
 import ContactForm from "../sections/contact/Content";
 
 const Contact = () => {
@@ -13,9 +11,9 @@ const Contact = () => {
         <meta name="description" content="Get in touch with us for any inquiries." />
       </MetaTags>
       <Header />
-      <Breadcrumb breadcrumb={{ pagename: "Contact Us" }} />
+      {/* <Breadcrumb breadcrumb={{ pagename: "Contact Us" }} /> */}
       <ContactForm />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

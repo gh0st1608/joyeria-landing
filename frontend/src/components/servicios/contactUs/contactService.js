@@ -1,15 +1,15 @@
-import { postContactMessage } from "./api"; // ✅ Importa la función correcta
-import { ENDPOINTS } from "../endpoints";// ✅ Asegúrate de importar los endpoints
+import contactApi from "./api"; // ✅ Usa la API de contacto
+import { ENDPOINTS } from "../endpoints";
 
-// ✅ Función para enviar un mensaje de contacto
+// ✅ Función para enviar mensaje de contacto
 export const sendContactMessage = async (contactData) => {
   try {
-    console.log("📡 Sending contact message...");
-    const response = await postContactMessage(ENDPOINTS.contact.createContact, contactData);
-    console.log("✅ Contact message sent successfully:", response);
-    return response;
+    console.log("📡 Sending contact request...");
+    const response = await contactApi.post(ENDPOINTS.notification.create, contactData);
+    console.log("✅ Contact message sent successfully:", response.data);
+    return response.data;
   } catch (error) {
-    console.error("❌ Failed to send contact message:", error);
+    console.error("❌ Contact message failed:", error.response ? error.response.data : error.message);
     return null;
   }
 };

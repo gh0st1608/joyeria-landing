@@ -1,15 +1,18 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { ENDPOINTS } from "../../servicios/endpoints";
+import { sendContactMessage } from "../../servicios/contactUs/contactService";
+import ReCAPTCHA from "react-google-recaptcha";
+import { Alert } from "react-bootstrap";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
+    subject: "",
     message: "",
   });
 
-  const [status, setStatus] = useState({ success: false, error: false });
+  const [status, setStatus] = useState({ success: false, error: false, loading: false });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -17,41 +20,108 @@ const ContactForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setStatus({ success: false, error: false });
+    setStatus({ success: false, error: false, loading: true });
 
     try {
-      const response = await axios.post(ENDPOINTS.contact, formData);
-      if (response.status === 200) {
-        setStatus({ success: true });
-        setFormData({ name: "", email: "", message: "" });
+      console.log("📡 Enviando mensaje...", formData);
+      const response = await sendContactMessage(formData);
+
+      if (response?.success) {
+        setStatus({ success: true, loading: false });
+        setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+      } else {
+        setStatus({ error: true, loading: false });
       }
     } catch (error) {
-      console.error("❌ Error sending message:", error);
-      setStatus({ error: true });
+      console.error("❌ Error al enviar mensaje:", error);
+      setStatus({ error: true, loading: false });
     }
   };
 
   return (
-    <section className="contact-section">
+    <section className="contact-part pt-115 pb-115">
       <div className="container">
-        <h2>Contact Us</h2>
-        <p>Have questions? Feel free to reach out to us.</p>
+        
+      <div className="contact-info row justify-content-center">
+  <div className="col-md-4 col-sm-6">
+    <div className="info-box">
+      <div className="icon"><i className="flaticon-home" /></div>
+      <br />
+      <div className="desc">
+        <h4>Office Address</h4>
+        <p>19/A, Cirikon City hall Tower, New York, NYC</p>
+        
+      </div>
+    </div>
+  </div>
+  <div className="col-md-4 col-sm-6">
+    <div className="info-box">
+      <div className="icon"><i className="flaticon-phone" /></div>
+      <br />
+      <div className="desc">
+        <h4>Phone Number</h4>
+        <p>+ 97656 8675 7864 7 <br /> + 876 766 8675 765 6</p>
+      </div>
+    </div>
+  </div>
+  <div className="col-md-4 col-sm-6">
+    <div className="info-box">
+      <div className="icon"><i className="flaticon-message" /></div>
+      <br />
+      <div className="desc">
+        <h4>Email Address</h4>
+        <p>info@webmail.com <br /> jobs.webmail@mail.com</p>
+      </div>
+    </div>
+  </div>
+</div>
 
-        {status.success && <p className="success-msg">✅ Message sent successfully!</p>}
-        {status.error && <p className="error-msg">❌ Failed to send message. Please try again.</p>}
 
-        <form onSubmit={handleSubmit} className="contact-form">
-          <label>Name:</label>
-          <input type="text" name="name" value={formData.name} onChange={handleChange} required />
-
-          <label>Email:</label>
-          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
-
-          <label>Message:</label>
-          <textarea name="message" value={formData.message} onChange={handleChange} required />
-
-          <button type="submit" className="submit-btn">Send Message</button>
-        </form>
+   
+        <div className="contact-form">
+          <form onSubmit={handleSubmit}>
+            <div className="row">
+              <div className="col-md-6">
+                <div className="input-group mb-30">
+                  <span className="icon"><i className="far fa-user" /></span>
+                  <input type="text" placeholder="Your full name" name="name" value={formData.name} onChange={handleChange} required />
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="input-group mb-30">
+                  <span className="icon"><i className="far fa-envelope" /></span>
+                  <input type="email" placeholder="Enter email address" name="email" value={formData.email} onChange={handleChange} required />
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="input-group mb-30">
+                  <span className="icon"><i className="far fa-phone" /></span>
+                  <input type="text" placeholder="Add phone number" name="phone" value={formData.phone} onChange={handleChange} required />
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="input-group mb-30">
+                  <span className="icon"><i className="far fa-book" /></span>
+                  <input type="text" placeholder="Select Subject" name="subject" value={formData.subject} onChange={handleChange} required />
+                </div>
+              </div>
+              <div className="col-12">
+                <div className="input-group textarea mb-30">
+                  <span className="icon"><i className="far fa-pen" /></span>
+                  <textarea placeholder="Enter messages" name="message" value={formData.message} onChange={handleChange} required />
+                </div>
+              </div>
+              <div className="col-12 text-center">
+                <ReCAPTCHA sitekey="6LdxUhMaAAAAAIrQt-_6Gz7F_58S4FlPWaxOh5ib" size="invisible" />
+                <button type="submit" className="main-btn btn-filled" disabled={status.loading}>
+                  {status.loading ? "Sending..." : "Get Free Quote"}
+                </button>
+                {status.success && <Alert variant="success" className="mt-3">Success! Your message has been sent.</Alert>}
+                {status.error && <Alert variant="danger" className="mt-3">Oops! Something went wrong. Try again later.</Alert>}
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </section>
   );
