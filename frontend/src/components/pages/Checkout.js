@@ -2,7 +2,6 @@ import React, { Fragment } from "react";
 import MetaTags from "react-meta-tags";
 import Header from "../layouts/Header";
 import Breadcrumb from "../layouts/Breadcrumbs";
-import Footer from "../layouts/Footer";
 import CheckoutContent from "../sections/checkout/Content"; // ✅ Importación corregida
 
 const Checkout = () => {
@@ -15,7 +14,6 @@ const Checkout = () => {
       <Header />
       <Breadcrumb breadcrumb={{ pagename: "Checkout" }} />
       <CheckoutContent /> {/* ✅ Aquí se renderiza el contenido del checkout */}
-     
     </Fragment>
   );
 };
