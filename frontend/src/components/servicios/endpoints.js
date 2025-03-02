@@ -1,10 +1,10 @@
-import Contact from "components/pages/Contact";
+// import Contact from "components/pages/Contact";
 
 export const BASE_URL = {
   auth: `https://msa-joyasperu-auth-1094025365695.us-east1.run.app/auth`,
   shop: `https://msa-joyasperu-shop-1094025365695.us-east1.run.app/shop`,
   payment: `https://msa-joyasperu-order-1094025365695.us-east1.run.app/order`,
-  contact: `https://msa-joyasperu-Contact-1094025365695.us-east1.run.app/contact`,
+  notification: "https://msa-joyasperu-notification-1094025365695.us-east1.run.app/notification", // ✅ Corregido
 
 }
 
@@ -24,9 +24,10 @@ export const ENDPOINTS = {
   payment: {
     createPaypalPayment: `/create`,
   },
-  contact: {
-    createContact: `/create`,
+  notification: {
+    create: `/create`,
   },
+  
 
 };
 
