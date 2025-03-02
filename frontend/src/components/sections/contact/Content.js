@@ -1,54 +1,60 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import axios from "axios";
+import { ENDPOINTS } from "../../servicios/endpoints";
 
-const Footer = () => {
+const ContactForm = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const [status, setStatus] = useState({ success: false, error: false });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus({ success: false, error: false });
+
+    try {
+      const response = await axios.post(ENDPOINTS.contact, formData);
+      if (response.status === 200) {
+        setStatus({ success: true });
+        setFormData({ name: "", email: "", message: "" });
+      }
+    } catch (error) {
+      console.error("❌ Error sending message:", error);
+      setStatus({ error: true });
+    }
+  };
+
   return (
-    <footer className="footer">
+    <section className="contact-section">
       <div className="container">
-        <div className="footer-top">
-          <div className="row">
-            {/* Contact Information */}
-            <div className="col-md-6">
-              <h4>Contactanos</h4>
-              <ul className="contact-info">
-                <li>
-                  <i className="fas fa-phone-alt"></i> +987 876 765 76 577
-                </li>
-                <li>
-                  <i className="fas fa-envelope"></i> info@webmail.com
-                </li>
-              </ul>
-            </div>
+        <h2>Contact Us</h2>
+        <p>Have questions? Feel free to reach out to us.</p>
 
-            {/* Social Media & Legal Links */}
-            <div className="col-md-6 text-md-right">
-              <h4>Redes Sociales</h4>
-              <div className="social-icons">
-                <Link to="#">
-                  <i className="fab fa-facebook-f"></i>
-                </Link>
-                <Link to="#">
-                  <i className="fab fa-instagram"></i>
-                </Link>
-                <Link to="#">
-                  <i className="fab fa-twitter"></i>
-                </Link>
-              </div>
-              <div className="legal-links">
-                <Link to="#">Terms of Use</Link> |{" "}
-                <Link to="#">Privacy Policy</Link>
-              </div>
-            </div>
-          </div>
-        </div>
+        {status.success && <p className="success-msg">✅ Message sent successfully!</p>}
+        {status.error && <p className="error-msg">❌ Failed to send message. Please try again.</p>}
 
-        {/* Copyright Section */}
-        <div className="footer-bottom text-center">
-          <p>© 2025 <strong>Peru Joyas</strong> - All rights reserved.</p>
-        </div>
+        <form onSubmit={handleSubmit} className="contact-form">
+          <label>Name:</label>
+          <input type="text" name="name" value={formData.name} onChange={handleChange} required />
+
+          <label>Email:</label>
+          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+
+          <label>Message:</label>
+          <textarea name="message" value={formData.message} onChange={handleChange} required />
+
+          <button type="submit" className="submit-btn">Send Message</button>
+        </form>
       </div>
-    </footer>
+    </section>
   );
 };
 
-export default Footer;
+export default ContactForm;

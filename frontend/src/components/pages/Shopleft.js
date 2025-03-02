@@ -3,7 +3,7 @@ import MetaTags from "react-meta-tags";
 import Header from '../layouts/Header';
 import Breadcrumb from '../layouts/Breadcrumbs';
 import Content from '../sections/shopleft/Content';
-import Footer from '../layouts/Footer';
+
 class Shopleft extends Component {
     render() {
         return (
