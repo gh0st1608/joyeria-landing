@@ -1,0 +1,15 @@
+import { Controller, Get, Post, Body, Param, Put, Delete } from '@nestjs/common';
+import { CreateNotificationUseCase } from '../application/create.application';
+import { CreateContactDto } from './dto/create.dto';
+
+@Controller('notification')
+export class NotifcationController {
+  constructor(
+    private readonly createNotificationUseCase: CreateNotificationUseCase
+  ) {}
+
+  @Post()
+  async create(@Body() body: CreateContactDto): Promise<void> {
+    await this.createNotificationUseCase.execute(body);
+  }
+}

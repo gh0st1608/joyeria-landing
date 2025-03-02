@@ -1,10 +1,12 @@
 backend/auth/node_modules/
 backend/shop/node_modules/
 backend/order/node_modules/
+backend/notification/node_modules/
 
 backend/auth/dist/
 backend/shop/dist/
 backend/order/dist/
+backend/notification/dist/
 
 #auth/.env
 #shop/.env
@@ -13,6 +15,7 @@ backend/order/dist/
 backend/auth/.build/
 backend/shop/.build/
 backend/order/.build/
+backend/notification/.build/
 
 
 #------------------------------
