@@ -17,6 +17,8 @@ backend/shop/.build/
 backend/order/.build/
 backend/notification/.build/
 
+backend/notification/credentials.json
+
 
 #------------------------------
 frontend/node_modules/

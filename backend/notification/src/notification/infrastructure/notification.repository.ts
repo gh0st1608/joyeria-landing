@@ -21,7 +21,6 @@ export class NotificationInfrastructureRepository implements INotificationReposi
     const email = contactEntiy.email;
     const subject = contactEntiy.subject;
     const message = contactEntiy.message;
-
     try {
       // Llamar al servicio de correo para enviar el email
       await this.emailService.sendEmail(email, subject, message);

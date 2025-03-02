@@ -16,7 +16,6 @@ export class ContactInfrastructureRepository implements IContactRepository {
       const contactEntity = contact.properties()
       const contactMongoose = new this.contactModel(contactEntity);
       const savedContact = await contactMongoose.save();
-      console.log('savedContact',savedContact)
       return new Contact(savedContact.toObject());
   }
 

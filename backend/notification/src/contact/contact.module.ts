@@ -9,7 +9,18 @@ import { CreateContactUseCase } from './application/create.application';
   imports: [
     MongooseModule.forFeature([{ name: Contact.name, schema: ContactSchema }]),
   ],
-  providers: [ContactInfrastructureRepository],
-  exports: [ContactInfrastructureRepository], // Asegúrate de exportar el repositorio para usarlo en otros módulos
+  providers: [
+    CreateContactUseCase,
+    {
+    provide: 'IContactRepository', // Proveedor para inyectar la interfaz del repositorio
+    useClass: ContactInfrastructureRepository, // Implementación que usa Mongoose
+    }
+  ],
+  exports: [
+    {
+      provide: 'IContactRepository',  // Exportar para que otros módulos puedan usarlo
+      useClass: ContactInfrastructureRepository,
+    },
+  ]
 })
 export class ContactModule {}
