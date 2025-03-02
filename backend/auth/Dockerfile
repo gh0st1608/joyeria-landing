@@ -5,7 +5,7 @@ COPY package.json /var/www/app/build/
 COPY .env /var/www/app/build/
 
 WORKDIR /var/www/app/build
-RUN npm i
+RUN npm i --production
 
 
 EXPOSE 4000
