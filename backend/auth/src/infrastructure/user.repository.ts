@@ -3,10 +3,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { plainToClass } from 'class-transformer';
 import { IUserRepository } from '../domain/repository/user.repository';
 import { User as UserMongoose} from './schemas/user.schema';
-import { User, UserProperties } from '../domain/entities/user.entity'
+import { User } from '../domain/entities/user.entity'
 import { Auth } from '../domain/entities/auth.entity';
 
 @Injectable()
