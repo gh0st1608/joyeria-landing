@@ -21,9 +21,8 @@ export const loginUser = async (credentials) => {
 export const registerUser = async (userData) => {
   try {
     console.log("📡 Sending registration request...");
-    const response = await postRequest(ENDPOINTS.auth.register, userData);
-    console.log("✅ Registration successful:", response.data);
-    return response.data;
+    const { accessToken, refreshToken } = await postRequest(ENDPOINTS.auth.register, userData);
+    return { accessToken , refreshToken };
   } catch (error) {
     console.error("❌ Registration failed:", error.response ? error.response.data : error.message);
     return null;

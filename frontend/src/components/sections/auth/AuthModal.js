@@ -21,7 +21,7 @@ const AuthModal = ({ onClose }) => {
         // ✅ Login
         const response = await loginUser({ email: formData.email, password: formData.password });
         if (response) {
-          localStorage.setItem("token", response.accessToken);
+          localStorage.setItem("accessToken", response.accessToken);
           alert("✅ Login successful! Redirecting...");
           onClose();
         } else {
@@ -30,7 +30,9 @@ const AuthModal = ({ onClose }) => {
       } else {
         // ✅ Registro
         const response = await registerUser(formData);
-        if (response?.id) {
+        if (response?.accessToken && response?.refreshToken) {
+          localStorage.setItem("accessToken", response.accessToken);
+          localStorage.setItem("refreshToken", response.refreshToken);
           alert("✅ Registration successful! You can now log in.");
           setIsLogin(true); // ✅ Cambiar a Login después del registro
         } else {

@@ -4,9 +4,9 @@ import { BASE_URL} from "../endpoints"; // ✅ Importa los endpoints
 // ✅ Configura la URL base de la API
 
 const api = axios.create({
-  baseURL: BASE_URL.auth,
+  baseURL: BASE_URL.shop,
   headers: { "Content-Type": "application/json" },
-  withCredentials: true, //  Si usas autenticación, cambia esto a true
+  withCredentials: false, //  Si usas autenticación, cambia esto a true
 });
 
 // ✅ Manejo de errores

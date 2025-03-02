@@ -7,8 +7,8 @@ export const getProducts = async () => {
   try {
     console.log(`📡 Fetching products from: ${ENDPOINTS.shop.products}`);
     const response = await getRequest(ENDPOINTS.shop.products);
-    console.log("✅ Products received:", response.data);
-    return response.data;
+    console.log("✅ Products received:", response);
+    return response;
   } catch (error) {
     console.error("❌ Error fetching products:", error.response ? error.response.data : error.message);
     return [];

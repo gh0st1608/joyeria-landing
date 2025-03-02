@@ -8,5 +8,5 @@ WORKDIR /var/www/app/build
 RUN npm i --legacy-peer-deps
 
 
-EXPOSE 4000
+EXPOSE 4003
 CMD ["node", "main.js"]
