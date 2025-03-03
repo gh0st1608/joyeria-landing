@@ -25,7 +25,7 @@ export const ENDPOINTS = {
     createPaypalPayment: `/create`,
   },
   notification: {
-    create: `/create`,
+    create: `/send/mail`,
   },
   
 

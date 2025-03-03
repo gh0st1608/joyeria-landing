@@ -23,9 +23,9 @@ class Shopsidebar extends Component {
             <div className="sidebar">
 
                 <div className="widget search-widget mb-40">
-                    <h5 className="widget-title">Search Objects</h5>
+                    <h5 className="widget-title">Buscar</h5>
                     <form action="#">
-                        <input type="text" placeholder="Search your keyword..." />
+                        <input type="text" placeholder="Palabra clave..." />
                         <button type="submit"><i className="far fa-search" /></button>
                     </form>
                 </div>

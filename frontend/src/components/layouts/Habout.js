@@ -28,10 +28,10 @@ class Habout extends Component {
                                             <div className="icon">
                                                 <i className="flaticon-ring" />
                                             </div>
-                                            <h4><Link to="#">New Rings</Link></h4>
+                                            <h4><Link to="#">Anillos Nuevos</Link></h4>
                                             <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.
-              </p>
+                                            Los mas finos y delicados anillos para nuestros valiosos clientes.
+                                            </p>
                                         </div>
                                     </div>
                                     <div className="col-sm-6">
@@ -47,10 +47,10 @@ class Habout extends Component {
                                             <div className="icon">
                                                 <i className="flaticon-necklace" />
                                             </div>
-                                            <h4><Link to="#">Wedding Collection</Link></h4>
+                                            <h4><Link to="#">Colección de Bodas</Link></h4>
                                             <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.
-              </p>
+                                                Nuestros collares de colección con diseños asombrosos.
+                                            </p>
                                         </div>
                                     </div>
                                 </Masonry>
@@ -60,13 +60,13 @@ class Habout extends Component {
                             <div className="col-lg-6 col-md-8 col-sm-10">
                                 <div className="abour-text pl-50 pr-50">
                                     <div className="section-title mb-30">
-                                        <span className="title-tag">about us</span>
-                                        <h2>Crafting Jewellery Since 1990. </h2>
+                                        <span className="title-tag">sobre nosotros</span>
+                                        <h2>Fabricando Joyería Desde 1990.</h2>
                                     </div>
                                     <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          </p>
-                                    <Link to="/contact" className="main-btn btn-filled mt-40"> Know More</Link>
+                                        Nos avala una gran historia y reputación.
+                                    </p>
+                                    <Link to="/contact" className="main-btn btn-filled mt-40"> Saber Más</Link>
                                 </div>
                             </div>
                         </ReactWOW>
@@ -78,7 +78,6 @@ class Habout extends Component {
                     </div>
                 </div>
             </section>
-
         );
     }
 }
