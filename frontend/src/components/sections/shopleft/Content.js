@@ -40,11 +40,11 @@ class Content extends Component {
             </div>
             <div className="col-lg-8 col-md-10">
               {loading ? (
-                <p>Loading products...</p>
+                <p>Cargando productos...</p>
               ) : (
                 <div className="shop-products-wrapper">
                   <div className="shop-product-top">
-                    <p>Showing {products.length} products</p>
+                    <p>Mostrando {products.length} products</p>
                   </div>
                   <div className="product-wrapper restaurant-tab-area">
                     <div className="row">
@@ -81,7 +81,7 @@ class Content extends Component {
                                 className="btn-add-to-cart"
                                 onClick={() => {
                                   const productToCart = { ...item, quantity: 1 };
-                                  console.log("🛒 Adding to cart:", productToCart);
+                                  console.log("🛒 Agregando al carrito:", productToCart);
                                   addToCart(productToCart);
                                 }}
                               >

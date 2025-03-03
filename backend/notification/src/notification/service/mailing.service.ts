@@ -23,7 +23,7 @@ export class EmailService {
   // Método para enviar un correo electrónico
   async sendEmail(to: string, subject: string, body: string): Promise<any> {
     const mailOptions: nodemailer.SendMailOptions = {
-      from: `"Erick Foo Koch 👻" <${process.env.NODEMAILER_PASS}>`,  // Dirección de correo del remitente
+      from: `"Erick Foo Koch 👻" <${process.env.NODEMAILER_USER}>`,  // Dirección de correo del remitente
       to: to,                       // Dirección de correo del destinatario
       subject: subject,             // Asunto del correo
       text: body,                   // Cuerpo del correo

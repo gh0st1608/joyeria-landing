@@ -9,14 +9,14 @@ class Shopleft extends Component {
         return (
             <Fragment>
                 <MetaTags>
-                    <title>Peru Joyas | Shop Left</title>
+                    <title>Peru Joyas</title>
                     <meta
                         name="description"
                         content="#"
                     />
                 </MetaTags>
                 <Header/>
-                <Breadcrumb breadcrumb={{pagename:'Shop Left'}}/>
+                <Breadcrumb breadcrumb={{pagename:'Catálogo'}}/>
                 <Content/>
                
             </Fragment>
