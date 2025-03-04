@@ -26,7 +26,7 @@ export class PaymentInfrastructureRepository implements IPaymentRepository {
     const responseOrder = await axios.post(`${process.env.SANDBOX_PAYPAL}/v2/checkout/orders`, order, {
       headers: {
         'Content-Type': 'application/json',
-        'PayPal-Request-Id': '7b92603e-77ed-4896-8e78-5dea2050476a',
+        //'PayPal-Request-Id': 'f98d6c31-f5ec-4233-92ff-c2d0c04b4886',
         'Authorization': `Bearer ${accessToken}`
       }
     })
