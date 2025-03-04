@@ -47,7 +47,7 @@ const ContactForm = () => {
     <section className="contact-part pt-115 pb-115">
       <div className="container">
 
-        <div className="contact-info row justify-content-center">
+        {/* <div className="contact-info row justify-content-center">
           <div className="col-md-4 col-sm-6">
             <div className="info-box">
               <div className="icon"><i className="flaticon-home" /></div>
@@ -80,7 +80,7 @@ const ContactForm = () => {
             </div>
           </div>
         </div> 
-
+ */}
 
 
         <div className="contact-form">
