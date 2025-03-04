@@ -47,14 +47,14 @@ const ContactForm = () => {
     <section className="contact-part pt-115 pb-115">
       <div className="container">
 
-        {/* <div className="contact-info row justify-content-center">
+        <div className="contact-info row justify-content-center">
           <div className="col-md-4 col-sm-6">
             <div className="info-box">
               <div className="icon"><i className="flaticon-home" /></div>
               <br />
               <div className="desc">
                 <h4>Office Address</h4>
-                <p>19/A, Cirikon City hall Tower, New York, NYC</p>
+                <p>Avenida los pinos Mz L</p>
 
               </div>
             </div>
@@ -65,7 +65,7 @@ const ContactForm = () => {
               <br />
               <div className="desc">
                 <h4>Phone Number</h4>
-                <p>+ 97656 8675 7864 7 <br /> + 876 766 8675 765 6</p>
+                <p>+ 97656 8675 7864 7 </p>
               </div>
             </div>
           </div>
@@ -75,11 +75,11 @@ const ContactForm = () => {
               <br />
               <div className="desc">
                 <h4>Email Address</h4>
-                <p>info@webmail.com <br /> jobs.webmail@mail.com</p>
+                <p>info@webmail.com </p>
               </div>
             </div>
           </div>
-        </div> */}
+        </div> 
 
 
 

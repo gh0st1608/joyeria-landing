@@ -46,7 +46,7 @@ function App() {
     <AuthProvider>
     <CartProvider>
       <Router>
-      <Header />
+      {/* <Header /> */}
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/about" component={About} />
