@@ -4,24 +4,24 @@ import Header from '../layouts/Header';
 import Breadcrumb from '../layouts/Breadcrumbs';
 import Instafeeds from '../layouts/Instafeeds';
 import Footer from '../layouts/Footer';
-import Content from '../sections/about/Content';
+import Content from '../sections/about/aboutContent';
 
 class About extends Component {
     render() {
         return (
             <Fragment>
                 <MetaTags>
-                    <title>Laramiss | About Us</title>
+                    <title>Mi Tienda | Nosotros</title>
                     <meta
                         name="description"
                         content="#"
                     />
                 </MetaTags>
                 <Header/>
-                <Breadcrumb breadcrumb={{pagename:'About Us'}} />
+                <Breadcrumb breadcrumb={{pagename:'Nosotros'}} />
                 <Content/>
                 <Instafeeds/>
-                <Footer/>
+                {/*<Footer/>*/}
             </Fragment>
         );
     }

@@ -29,6 +29,7 @@ const ContactForm = () => {
     try {
       console.log("📡 Enviando mensaje...", formData);
       const response = await sendContactMessage(formData);
+      console.log('response',response)
 
       if (response?.success) {
         setStatus({ success: true, loading: false });
@@ -88,46 +89,46 @@ const ContactForm = () => {
               <div className="col-md-6">
                 <div className="input-group mb-30">
                   <span className="icon"><i className="far fa-user" /></span>
-                  <input type="text" placeholder="Your full name" name="name" value={formData.name} onChange={handleChange} required />
+                  <input type="text" placeholder="Agregar nombres" name="name" value={formData.name} onChange={handleChange} required />
                 </div>
               </div>
               <div className="col-md-6">
                 <div className="input-group mb-30">
                   <span className="icon"><i className="far fa-envelope" /></span>
-                  <input type="email" placeholder="Enter email address" name="email" value={formData.email} onChange={handleChange} required />
+                  <input type="email" placeholder="Agregar email" name="email" value={formData.email} onChange={handleChange} required />
                 </div>
               </div>
               <div className="col-md-6">
                 <div className="input-group mb-30">
                   <span className="icon"><i className="far fa-phone" /></span>
-                  <input type="text" placeholder="Add phone number" name="phone" value={formData.phone} onChange={handleChange} required />
+                  <input type="text" placeholder="Agregar celular" name="phone" value={formData.phone} onChange={handleChange} required />
                 </div>
               </div>
               <div className="col-md-6">
                 <div className="input-group mb-30">
                   <span className="icon"><i className="far fa-book" /></span>
-                  <input type="text" placeholder="Select Subject" name="subject" value={formData.subject} onChange={handleChange} required />
+                  <input type="text" placeholder="Agregar asunto" name="subject" value={formData.subject} onChange={handleChange} required />
                 </div>
               </div>
               <div className="col-12">
                 <div className="input-group textarea mb-30">
                   <span className="icon"><i className="far fa-pen" /></span>
-                  <textarea placeholder="Enter messages" name="message" value={formData.message} onChange={handleChange} required />
+                  <textarea placeholder="Mensaje" name="message" value={formData.message} onChange={handleChange} required />
                 </div>
               </div>
               <div className="col-12 text-center">
                 <ReCAPTCHA sitekey="6LdxUhMaAAAAAIrQt-_6Gz7F_58S4FlPWaxOh5ib" size="invisible" />
                 <button type="submit" className="main-btn btn-filled" disabled={status.loading}>
-                  {status.loading ? "Sending..." : "Get Free Quote"}
+                  {status.loading ? "Sending..." : "Enviar"}
                 </button>
                 {status.success && (
                   <Alert variant="danger" className="mt-3">
-                    Oops! Something went wrong. Try again later.
+                    Oops! Hubo un error, intentelo mas tarde.
                   </Alert>
                 )}
                 {status.error && (
                   <Alert variant="success" className="mt-3">
-                    Success! Your message has been sent.
+                    Exito! Mensaje enviado.
                   </Alert>
                 )}
               </div>
