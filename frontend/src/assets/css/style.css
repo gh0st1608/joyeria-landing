@@ -883,3 +883,466 @@
     background: darkred;
   }
   
+
+
+/* Estilos generales del header */
+
+  
+/* Estilos del navbar mejorados */
+  .nav-menu {
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav-menu ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 20px;
+  }
+  
+  .nav-menu ul li {
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav-menu a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-menu a:hover {
+    color: #ffcc00;
+  }
+  
+  /* Estilos del home mejorados */
+  .banner-area {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    background: url('/ruta/de/tu/imagen.jpg') no-repeat center center/cover;
+    background-attachment: fixed;
+  }
+  
+  .banner-area::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  
+  .banner-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    width: 100%;
+    max-width: 900px;
+    padding: 20px;
+  }
+  
+  .banner-content .promo-tag {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #ccb084;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px 15px;
+    border-radius: 5px;
+  }
+  
+  .banner-content .title {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-top: 15px;
+    color: white;
+    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.7);
+  }
+  
+  /* Estilos de la tienda */
+  .shop-section {
+    padding: 50px 20px;
+    background: #f8f9fa;
+  }
+  
+  .shop-product-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .shop-item {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 280px;
+    text-align: center;
+    padding: 15px;
+    transition: transform 0.3s ease;
+  }
+  
+  .shop-item:hover {
+    transform: scale(1.05);
+  }
+  
+  .shop-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+  }
+  
+  .shop-item .item-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #313536;
+  }
+  
+  .shop-item .item-price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #d88c00;
+  }
+  
+  .shop-item .btn-add-to-cart {
+    background: #f0a500;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    display: block;
+  }
+  
+  .shop-item .btn-add-to-cart:hover {
+    background: #d88c00;
+  }
+  
+  /* Ajustes responsivos */
+  @media (max-width: 768px) {
+    .banner-area {
+      height: 450px;
+      background-position: center center;
+    }
+  
+    .banner-content .title {
+      font-size: 2.8rem;
+    }
+  
+    .banner-content .promo-tag {
+      font-size: 1.4rem;
+    }
+  
+    .nav-menu ul {
+      flex-direction: column;
+      gap: 14px;
+    }
+  
+    .footer-container {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+
+
+
+
+
+
+
+/*=======  Breadcrumb CSS  =======*/
+
+.breadcrumb-area {
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    z-index: 1;
+    margin-top: 130px;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .breadcrumb-area {
+        margin-top: 100px;
+    }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+    .breadcrumb-area {
+        margin-top: 100px;
+    }
+}
+
+
+.breadcrumb-area::before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    background-color: #353530;
+    content: '';
+    opacity: 0.7;
+    background-size: contain;
+}
+
+.breadcrumb-area .breadcrumb-text {
+    position: relative;
+    padding: 140px 0;
+    text-align: center;
+}
+
+.breadcrumb-area .breadcrumb-text,
+.breadcrumb-area .breadcrumb-text h2.page-title {
+    color: #fff;
+}
+
+.breadcrumb-area .breadcrumb-text h2.page-title {
+    font-size: 72px;
+    letter-spacing: -1px;
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+    .breadcrumb-area .breadcrumb-text h2.page-title {
+        font-size: 60px;
+    }
+}
+
+@media (max-width: 575px) {
+    .breadcrumb-area .breadcrumb-text h2.page-title {
+        font-size: 50px;
+    }
+}
+
+.breadcrumb-area .breadcrumb-text span {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    padding-bottom: 25px;
+}
+
+@media (max-width: 767px) {
+    .breadcrumb-area .breadcrumb-text span {
+        letter-spacing: 2px;
+    }
+}
+
+@media (max-width: 575px) {
+    .breadcrumb-area .breadcrumb-text span {
+        font-size: 12px;
+    }
+}
+
+.breadcrumb-area .breadcrumb-text .breadcrumb-nav {
+    position: absolute;
+    left: 50%;
+    bottom: -32px;
+    background-color: #353530;
+    padding: 20px 40px;
+    z-index: 2;
+    transform: translateX(-50%);
+}
+
+@media (max-width: 575px) {
+    .breadcrumb-area .breadcrumb-text .breadcrumb-nav {
+        padding: 15px 20px;
+        font-size: 14px;
+    }
+}
+
+.breadcrumb-area .breadcrumb-text .breadcrumb-nav li {
+    display: inline-block;
+    font-weight: 700;
+    position: relative;
+}
+
+.breadcrumb-area .breadcrumb-text .breadcrumb-nav li,
+.breadcrumb-area .breadcrumb-text .breadcrumb-nav li a {
+    color: #fff;
+}
+
+.breadcrumb-area .breadcrumb-text .breadcrumb-nav li a:hover {
+    color: #fcd462;
+}
+
+.breadcrumb-area .breadcrumb-text .breadcrumb-nav li:not(:first-child) {
+    padding-left: 20px;
+    margin-left: 20px;
+}
+
+.breadcrumb-area .breadcrumb-text .breadcrumb-nav li:not(:first-child)::before {
+    position: absolute;
+    left: -6px;
+    font-size: 7px;
+    top: 50%;
+    -webkit-transform: translateY(-48%) rotate(90deg);
+    transform: translateY(-50%) rotate(45deg);
+    content: "\f45c";
+    font-family: "Font Awesome 5 Pro";
+    font-weight: 900;
+    color: #fff;
+}
+
+.breadcrumb-area .breadcrumb-text .breadcrumb-nav li.active {
+    color: #fcd462;
+}
+
+.breadcrumb-area .breadcrumb-text .breadcrumb-nav li.active::before {
+    color: #fcd462;
+}
+
+
+
+/* Estilos generales del header */
+
+  
+  /* Estilos del modal de autenticación */
+  .modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1100;
+  }
+  
+  .modal-container {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+  }
+  
+  .modal-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #313536;
+  }
+  
+  .close-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #d88c00;
+  }
+  
+  .close-btn:hover {
+    color: red;
+  }
+  
+  .modal-form {
+    margin-top: 15px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  .btn-primary {
+    background: #f0a500;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 100%;
+    transition: background 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background: #d88c00;
+  }
+  
+  .error-msg {
+    color: red;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+  }
+  
+  .toggle-auth {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #313536;
+    font-weight: bold;
+  }
+  
+  .toggle-auth button {
+    background: none;
+    border: none;
+    color: #d88c00;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .toggle-auth button:hover {
+    text-decoration: underline;
+    color: #f0a500;
+  }
