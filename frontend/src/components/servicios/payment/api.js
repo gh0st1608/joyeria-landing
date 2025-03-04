@@ -4,7 +4,7 @@ import { BASE_URL } from "../endpoints"; // ✅ Importa los endpoints
 // ✅ Configura la URL base de la API
 
 const api = axios.create({
-  baseURL: BASE_URL.paymentauth,
+  baseURL: BASE_URL.payment,
   headers: { "Content-Type": "application/json" },
   withCredentials: false, // ⚠️ Si usas autenticación, cambia esto a true
 });
@@ -26,5 +26,16 @@ export const postRequest = async (endpoint, data) => {
     return response.data;
   } catch (error) {
     return handleApiError(error, `Error posting to ${endpoint}`);
+  }
+};
+
+export const getRequest = async (endpoint) => {
+  try {
+    console.log(`📡 Fetching data from: ${BASE_URL.payment}${endpoint}`);
+    const response = await api.get(endpoint);
+    console.log("✅ Data received:", response.data);
+    return response.data;
+  } catch (error) {
+    return handleApiError(error, `Error fetching ${endpoint}`);
   }
 };

@@ -1,12 +1,12 @@
 // import Contact from "components/pages/Contact";
 
 export const BASE_URL = {
-  auth: `https://msa-joyasperu-auth-1094025365695.us-east1.run.app/auth`,
-  shop: `https://msa-joyasperu-shop-1094025365695.us-east1.run.app/shop`,
-  payment: `https://msa-joyasperu-order-1094025365695.us-east1.run.app/order`,
-  notification: "https://msa-joyasperu-notification-1094025365695.us-east1.run.app/notification", // ✅ Corregido
+  auth: process.env.REACT_APP_BACKEND_AUTH || "https://msa-joyasperu-auth-1094025365695.us-east1.run.app/auth",
+  shop: process.env.REACT_APP_BACKEND_SHOP || "https://msa-joyasperu-shop-1094025365695.us-east1.run.app/shop",
+  payment: process.env.REACT_APP_BACKEND_ORDER || "https://msa-joyasperu-order-1094025365695.us-east1.run.app/order",
+  notification: process.env.REACT_APP_BACKEND_NOTIFICATION || "https://msa-joyasperu-notification-1094025365695.us-east1.run.app/notification",
+};
 
-}
 
 export const ENDPOINTS = {
   auth: {
@@ -22,7 +22,9 @@ export const ENDPOINTS = {
   },
 
   payment: {
-    createPaypalPayment: `/create`,
+    create: `/payment`,
+    getCartById: (id) => `/cartbuy/${id}`,
+    cart: `/cartbuy`,
   },
   notification: {
     create: `/send/mail`,
