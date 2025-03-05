@@ -43,7 +43,7 @@ export class CreateCartbuyUseCase {
     // Creamos la entidad Cartbuy con los items mapeados
     const cartbuyEntity = new Cartbuy({
       items: items,
-      totalPrice: cartbuyDto.totalPrice,
+      totalAmount: cartbuyDto.totalAmount,
       //state: true,  // Ajusta el valor de `state` según tu lógica
     });
 

@@ -16,13 +16,11 @@ export class CreatePaymentUseCase {
   async execute(orderDto: CreateOrderDto): Promise<Order> {
     const idCartBuy = orderDto.idCartBuy;
     const cartBuyFound = await this.cartbuyRepository.get(idCartBuy);
-
     const itemInstances = cartBuyFound.properties().items
     const total = itemInstances.reduce((acc, item) => acc + (item.quantity * item.price), 0);
     const arrayAmountPU : AmountRequired = { currency_code : 'USD', value : total.toString() }
     const purchase_unit : PurchaseUnitRequired = { amount: arrayAmountPU };
-    console.log('purchase_unit',purchase_unit)
-    //const purchase_unit: PurchaseUnitRequired = { items: arrayItemsPU, amount: arrayAmountPU };
+
     
     const orderEntity: OrderProperties = {
       intent: 'CAPTURE', 
@@ -34,7 +32,6 @@ export class CreatePaymentUseCase {
     };
 
     const entity = new Order(orderEntity);
-    console.log('entity',entity)
 
     return this.paymentRepository.create(entity);
   }

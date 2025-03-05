@@ -11,7 +11,7 @@ export class Cartbuy extends Document {
   items: Itembuy[];
 
   @Prop({ required: true })
-  totalPrice: number;
+  totalAmount: number;
 
   @Prop({ required: false })
   active: boolean;

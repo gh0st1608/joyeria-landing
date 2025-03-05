@@ -25,9 +25,10 @@ export const ENDPOINTS = {
     create: `/payment`,
     getCartById: (id) => `/cartbuy/${id}`,
     cart: `/cartbuy`,
+    getStatus: `/payment/webhook-get-status`
   },
   notification: {
-    create: `/send/mail`,
+    create: `/send/mail`
   },
   
 
