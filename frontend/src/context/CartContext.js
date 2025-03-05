@@ -18,10 +18,10 @@ export const CartProvider = ({ children }) => {
   // Agregar producto al carrito
   const addToCart = (product) => {
     setCart((prevCart) => {
-      const existingProduct = prevCart.find((p) => p.id === product.id);
+      const existingProduct = prevCart.find((p) => p._id === product._id);
       if (existingProduct) {
         return prevCart.map((p) =>
-          p.id === product.id ? { ...p, quantity: p.quantity + 1 } : p
+          p._id === product._id ? { ...p, quantity: p.quantity + 1 } : p
         );
       }
       return [...prevCart, { ...product, precio: Number(product.precio) || 0, quantity: 1 }];
@@ -30,8 +30,8 @@ export const CartProvider = ({ children }) => {
   
 
   // Remover producto del carrito
-  const removeFromCart = (id) => {
-    setCart((prevCart) => prevCart.filter((p) => p.id !== id));
+  const removeFromCart = (_id) => {
+    setCart((prevCart) => prevCart.filter((p) => p._id !== _id));
   };
 
   // Vaciar carrito

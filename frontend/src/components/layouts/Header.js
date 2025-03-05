@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
 import { CartContext } from "../../context/CartContext";
 import { Link } from "react-router-dom";
-import AuthModal from "../sections/auth/AuthModal"; // ✅ Importamos el modal de autenticación
+import AuthModal from "../sections/auth/AuthModal";
+import marca from "../../assets/img/marca.jpg"; // ✅ Importamos la imagen correctamente
 
 const Header = () => {
   const { cart } = useContext(CartContext);
@@ -16,10 +17,12 @@ const Header = () => {
     <header className="header">
       <div className="container">
         <div className="logo">
-          <Link to="/">🛍 Peru Joyas</Link>
+          <Link to="/">
+            <img src={marca} alt="Logo" className="logo-img" />Peru Joyas
+          </Link>
         </div>
 
-        <button className="menu-toggle" onClick={toggleMenu}>🍔</button>
+        {/* <button className="menu-toggle" onClick={toggleMenu}>🍔</button> */}
 
         <nav className={menuOpen ? "nav-menu open" : "nav-menu"}>
           <ul>

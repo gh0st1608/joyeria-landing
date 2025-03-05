@@ -13,7 +13,7 @@ import Shopleft from './components/pages/Shopleft';
 import { CartProvider } from "./context/CartContext";
 import { AuthProvider } from "./context/AuthContext"; 
 import { getProducts } from "./components/servicios/shop/productService"; // ✅ Importa la API de productos
-import Header from "./components/layouts/Header"; 
+// import Header from "./components/layouts/Header"; 
 import Footer from "./components/layouts/Footer";
 
 
