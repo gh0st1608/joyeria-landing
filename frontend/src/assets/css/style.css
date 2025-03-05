@@ -25,7 +25,7 @@ html {
 
 
 
-body {
+/* body {
     font-family: "Rubik", sans-serif;
     font-weight: normal;
     font-style: normal;
@@ -34,7 +34,23 @@ body {
     font-size: 14px;
     line-height: 1.6;
     background-color: #1e272e;
+} */
+
+body {
+    font-family: "Rubik", sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    color: #d5b98a;
+    overflow: hidden;
+    font-size: 14px;
+    line-height: 1.6;
+    background-color: #1e272e3d;
+    background-image: url("../img/fondo.png");
+    background-size: 300px;  /* Ajusta el tamaño del fondo (prueba con otros valores) */
+    /* background-repeat: no-repeat; Evita que se repita */
+    background-position: center; /* Centra la imagen */
 }
+
 
 * {
     margin: 0;
@@ -334,12 +350,7 @@ select {
     }
 }
 
-@media (min-width: 1600px) {
-    header .container-fluid.container-custom-three {
-        padding-left: 65px;
-        padding-right: 65px;
-    }
-}
+
 
 .slick-slide img {
     display: inline-block;
@@ -1127,26 +1138,11 @@ select {
 }
 
 
-/*=======  HEADER CSS  =======*/
 
 
 
-/*=====sigma-header======*/
 
 
-
-/*=====sigma-navigation======*/
-
-
-/*=====sigma-megamenu======*/
-
-
-/*=====sigma-Mobile header======*/
-
-
-/*=====Sigma Mobile Menu======*/
-
-/*=======  Off canvas menu  =======*/
 
 /*=======  Breadcrumb CSS  =======*/
 
@@ -6985,15 +6981,7 @@ select {
     width: 100%;
 }
 
-@media (max-width: 991px) {
-    .footer-subscibe-area.style-2 .subscribe {
-        text-align: center;
-        margin-bottom: 20px;
-    }
-    .header-two.header-absolute .sigma-mobile-header {
-        background-color: transparent;
-    }
-}
+
 
 @media (max-width: 767px) {
     .footer-subscibe-area.style-2 .subscribe-text .subscribe-form input {
@@ -7029,15 +7017,9 @@ select {
     top: 0;
 }
 
-.about-style-2 .section-header {
-    padding-left: 30px;
-    margin-bottom: 0;
-}
 
-.about-style-2 .section-header h5 {
-    color: #d2cece;
-    margin-bottom: 10px;
-}
+
+
 
 .dark-bg {
     background-color: #1c1b19;
@@ -9252,7 +9234,7 @@ footer .copyright-area.light-theme .footer-menu ul li::before {
 .range-container input[type="range"]::-moz-range-thumb {
     width: 16px;
     height: 16px;
-    background-color: #f8c51c;
+    background-color: #fff;
     border-radius: 50%;
     cursor: pointer;
     border: 2px solid #000;
@@ -9431,7 +9413,7 @@ footer .copyright-area.light-theme .footer-menu ul li::before {
 }
 
 .main-btn {
-    background: black;
+    background: white;
     color: white;
     padding: 8px 10px;
     border: none;
@@ -9444,11 +9426,12 @@ footer .copyright-area.light-theme .footer-menu ul li::before {
     background: #ffc107;
     color: black;
 }
-/* ✅ Header General */
+/* ✅ Header General-----------------------------------------------------------------hjhdfjsdjhfdksjhfsdhjkfhsjkfhsdjkhjkfhjfhsdjkhfjkshjkfhsjkfhsjkh */
 .header {
-    background: #313536;
+    background: rgba(244, 212, 160, 0.8);
+    /* background: rgba(248, 218, 166, 0.7); */
     padding: 15px 20px;
-    color: white;
+    color: #333;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -9462,28 +9445,42 @@ footer .copyright-area.light-theme .footer-menu ul li::before {
   /* ✅ Contenedor interno */
   .container {
     display: flex;
-    align-items: center;
     width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
+    align-items: center;
     justify-content: space-between;
   }
   
+
   /* ✅ Logo */
-  .logo a {
-    color: white;
+.logo a {
+    color: #313536;
     text-decoration: none;
     font-size: 24px;
     font-weight: bold;
     display: flex;
     align-items: center;
-  }
+}
+
+/* Estilo para la imagen del logo */
+.logo-img {
+    width: 40px; /* Ajusta el tamaño según lo necesites */
+    height: auto;
+    margin-right: 10px; /* Espacio entre la imagen y el texto */
+}
+
   
   /* ✅ Menú Principal */
   .nav-menu ul {
-    list-style: none;
     display: flex;
-    gap: 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 15px; /* Espacio entre los enlaces */
+  }
+
+  .nav-menu li {
+    display: flex;
+    align-items: center;
   }
   
   .nav-menu ul li {
@@ -9491,7 +9488,7 @@ footer .copyright-area.light-theme .footer-menu ul li::before {
   }
   
   .nav-menu ul li a {
-    color: white;
+    color: #1e272e;
     text-decoration: none;
     font-size: 18px;
     padding: 10px;
@@ -10011,11 +10008,11 @@ footer .copyright-area.light-theme .footer-menu ul li::before {
   }
   
   .login-form button:hover {
-    background-color: #313536;
+    background-color:#ccb084;
   }
   
   .footer {
-    background: black;
+    background: #1e272e;
     color: gold;
     text-align: center;
     padding: 20px 0;
