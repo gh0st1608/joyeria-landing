@@ -33,8 +33,24 @@ html {
     overflow: hidden;
     font-size: 14px;
     line-height: 1.6;
-    background-color: #1c1b19;
+    background-color: #1e272e;
 } */
+
+body {
+    font-family: "Rubik", sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    color: #d5b98a;
+    overflow: hidden;
+    font-size: 14px;
+    line-height: 1.6;
+    background-color: #1e272e3d;
+    background-image: url("../img/fondo.png");
+    background-size: 300px;  /* Ajusta el tamaño del fondo (prueba con otros valores) */
+    /* background-repeat: no-repeat; Evita que se repita */
+    background-position: center; /* Centra la imagen */
+}
+
 
 * {
     margin: 0;
@@ -150,7 +166,7 @@ select {
     border: none;
     width: 100%;
     height: 70px;
-    background-color: #1c1b19;
+    background-color: #1e272e;
     padding: 0 40px;
 }
 
@@ -196,7 +212,7 @@ select {
 .nice-select .list {
     width: 100%;
     border-radius: 0;
-    background-color: #353530;
+    background-color: #313536;
 }
 
 .nice-select .option:hover,
@@ -277,7 +293,7 @@ select {
 .input-group.input-group-two select {
     height: 60px;
     padding: 0px 50px 0 30px;
-    background-color: #353530;
+    background-color: #313536;
     color: #a3a3a3;
 }
 
@@ -308,7 +324,7 @@ select {
 }
 
 .input-group.input-group-two .nice-select {
-    background-color: #353530;
+    background-color: #1e272e;
     padding: 0 50px 0 30px;
     height: 60px;
     line-height: 60px;
@@ -334,19 +350,14 @@ select {
     }
 }
 
-@media (min-width: 1600px) {
-    header .container-fluid.container-custom-three {
-        padding-left: 65px;
-        padding-right: 65px;
-    }
-}
+
 
 .slick-slide img {
     display: inline-block;
 }
 
 .bg-black {
-    background-color: #353530;
+    background-color: #1e272e;
 }
 
 .text-yellow {
@@ -389,7 +400,7 @@ select {
 }
 
 .main-btn.btn-border {
-    border-color: #40403b;
+    border-color: #1e272e;
 }
 
 .main-btn.btn-border:hover {
@@ -508,7 +519,7 @@ select {
 }
 
 .bg-white {
-    background-color: #353530 !important;
+    background-color: #1e272e !important;
 }
 
 .section {
@@ -531,7 +542,7 @@ select {
     line-height: 70px;
     font-size: 18px;
     color: #fff;
-    background-color: #353530;
+    background-color: #313536;
     cursor: pointer;
     -webkit-transition: all 0.3s ease-out 0s;
     transition: all 0.3s ease-out 0s;
@@ -557,7 +568,7 @@ select {
 /*=======  Preloader  =======*/
 
 .preloader {
-    background-color: #353530;
+    background-color: #313536;
     width: 100%;
     height: 100%;
     position: fixed;
@@ -947,7 +958,7 @@ select {
 .modal-content {
     border: 0;
     border-radius: 0;
-    background-color: #353530;
+    background-color: #313536;
 }
 
 .modal-body {
@@ -1127,26 +1138,11 @@ select {
 }
 
 
-/*=======  HEADER CSS  =======*/
 
 
 
-/*=====sigma-header======*/
 
 
-
-/*=====sigma-navigation======*/
-
-
-/*=====sigma-megamenu======*/
-
-
-/*=====sigma-Mobile header======*/
-
-
-/*=====Sigma Mobile Menu======*/
-
-/*=======  Off canvas menu  =======*/
 
 /*=======  Breadcrumb CSS  =======*/
 
@@ -1183,7 +1179,7 @@ select {
     height: 100%;
     width: 100%;
     z-index: -1;
-    background-color: #353530;
+    background-color: #313536;
     content: '';
     opacity: 0.7;
     background-size: contain;
@@ -1241,7 +1237,7 @@ select {
     position: absolute;
     left: 50%;
     bottom: -32px;
-    background-color: #353530;
+    background-color: #313536;
     padding: 20px 40px;
     z-index: 2;
     transform: translateX(-50%);
@@ -1548,7 +1544,7 @@ select {
 
 .banner-area.banner-style-two .single-banner .banner-overly,
 .banner-area.banner-style-three .single-banner .banner-overly {
-    background-color: #353530;
+    background-color: #313536;
     z-index: -1;
     opacity: 0.6;
 }
@@ -1606,7 +1602,7 @@ select {
     border-radius: 50%;
     z-index: 3;
     color: #fff;
-    background-color: #353530;
+    background-color: #313536;
     font-size: 18px;
     line-height: 60px;
     text-align: center;
@@ -1642,7 +1638,7 @@ select {
     transform: translateY(-50%);
     height: 50px;
     width: 50px;
-    background-color: #353530;
+    background-color: #313536;
     line-height: 50px;
     text-align: center;
     font-size: 17px;
@@ -1813,7 +1809,7 @@ select {
 }
 
 .about-section .about-features li a {
-    background-color: #353530;
+    background-color: #313536;
     padding: 55px 0 45px;
     -webkit-box-shadow: 0px 14px 24px 0px rgba(184, 184, 184, 0.1);
     box-shadow: 0px 14px 24px 0px rgba(184, 184, 184, 0.1);
@@ -1979,7 +1975,7 @@ select {
 }
 
 .about-section .about-features-boxes .single-feature-box {
-    background-color: #353530;
+    background-color: #313536;
     padding: 50px 30px;
     -webkit-box-shadow: 0px 8px 16px 0px rgba(34, 34, 34, 0.02);
     box-shadow: 0px 8px 16px 0px rgba(34, 34, 34, 0.02);
@@ -2024,7 +2020,7 @@ select {
 }
 
 .about-section .about-features-boxes .single-feature-box.dark {
-    background-color: #353530;
+    background-color: #313536;
 }
 
 .about-section .about-features-boxes .single-feature-box.dark,
@@ -2052,7 +2048,7 @@ select {
 }
 
 .about-section .about-text-box {
-    background-color: #353530;
+    background-color: #313536;
     padding: 30px;
     margin-top: 40px;
 }
@@ -2368,7 +2364,7 @@ select {
 }
 
 .room-type-section .room-items .room-box .room-link:hover {
-    background-color: #353530;
+    background-color: #313536;
     color: #fff;
 }
 
@@ -2428,7 +2424,7 @@ select {
     width: 60px;
     height: 60px;
     line-height: 65px;
-    background-color: #353530;
+    background-color: #313536;
     text-align: center;
     font-size: 16px;
     color: #fff;
@@ -2591,7 +2587,7 @@ select {
 }
 
 .latest-news .latest-post-box .post-desc {
-    background-color: #353530;
+    background-color: #313536;
     padding: 40px 35px;
 }
 
@@ -2812,7 +2808,7 @@ select {
     width: 100%;
     height: 100%;
     z-index: -1;
-    background-color: #353530;
+    background-color: #313536;
     z-index: -1;
     opacity: 0.6;
 }
@@ -2904,7 +2900,7 @@ select {
 }
 
 .room-slider .rooms-content-wrap .room-content-box {
-    background-color: #353530;
+    background-color: #313536;
     color: #d4d4d4;
     font-size: 14px;
     padding: 60px 50px;
@@ -3059,7 +3055,7 @@ select {
 }
 
 .room-slider .rooms-slider-two .single-rooms-box .icons {
-    background-color: #353530;
+    background-color: #313536;
     padding: 15px;
     position: absolute;
     top: -25px;
@@ -3094,7 +3090,7 @@ select {
     left: 40px;
     right: 40px;
     bottom: -115px;
-    background-color: #353530;
+    background-color: #313536;
     padding: 40px;
     -webkit-box-shadow: 0px 3px 8px 0px #40403ba8;
     box-shadow: 0px 3px 8px 0px #40403ba8;
@@ -3195,7 +3191,7 @@ select {
     line-height: 80px;
     font-size: 20px;
     color: #fff;
-    background-color: #353530;
+    background-color: #313536;
     cursor: pointer;
     -webkit-transition: all 0.3s ease-out 0s;
     transition: all 0.3s ease-out 0s;
@@ -3282,7 +3278,7 @@ select {
     -ms-flex-align: center;
     align-items: center;
     padding: 40px 50px;
-    background-color: #353530;
+    background-color: #313536;
     margin-right: 40px;
 }
 
@@ -3390,7 +3386,7 @@ select {
 }
 
 .room-details .deatils-box .room-fearures {
-    background-color: #353530;
+    background-color: #313536;
     padding: 50px 50px 30px;
 }
 
@@ -3436,7 +3432,7 @@ select {
 }
 
 .room-details .deatils-box .room-rules {
-    background-color: #353530;
+    background-color: #313536;
     padding: 50px 50px 30px;
 }
 
@@ -3471,7 +3467,7 @@ select {
 }
 
 .room-details .deatils-box .cancellation-box {
-    background-color: #353530;
+    background-color: #313536;
     padding: 50px;
 }
 
@@ -3494,7 +3490,7 @@ select {
 .room-details .deatils-box .room-map {
     width: 100%;
     height: 390px;
-    background-color: #353530;
+    background-color: #313536;
 }
 
 @media (max-width: 575px) {
@@ -3513,7 +3509,7 @@ select {
 }
 
 .room-details .room-booking-form {
-    background-color: #353530;
+    background-color: #313536;
     padding: 40px;
 }
 
@@ -3649,7 +3645,7 @@ select {
 }
 
 .counter-section .counter-box.counter-box-two {
-    background-color: #353530;
+    background-color: #313536;
     padding: 30px 40px 30px 120px;
     position: relative;
     margin-bottom: 30px;
@@ -3917,7 +3913,7 @@ select {
 }
 
 .menu-area .menu-loop .single-menu-box:hover .menu-desc {
-    background-color: #353530;
+    background-color: #313536;
 }
 
 .menu-area .menu-loop .single-menu-box:hover .menu-desc .menu-link {
@@ -3966,7 +3962,7 @@ select {
 
 .contact-part .contact-info .info-box {
     padding: 50px 45px;
-    background-color: #353530;
+    background-color: #313536;
     display: -ms-grid;
     display: grid;
     -ms-grid-rows: 1fr;
@@ -4014,7 +4010,7 @@ select {
 }
 
 .contact-part .contact-form {
-    background-color: #353530;
+    background-color: #313536;
     padding: 100px;
 }
 
@@ -4043,7 +4039,7 @@ select {
 }
 
 .offers-area .offer-boxes-loop .offer-box .offer-desc {
-    background-color: #353530;
+    background-color: #313536;
     padding: 65px 60px 60px;
     margin-left: 60px;
     margin-right: 60px;
@@ -4288,7 +4284,7 @@ select {
 
 .post-box .post-desc {
     padding: 50px;
-    background-color: #353530;
+    background-color: #313536;
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
@@ -4630,7 +4626,7 @@ select {
 
 .news-details-box {
     padding: 40px;
-    background-color: #353530;
+    background-color: #313536;
     font-family: "Roboto", sans-serif;
     /*=======  Comment Template  =======*/
 }
@@ -5285,7 +5281,7 @@ select {
     color: #a3a3a3;
     font-weight: 700;
     font-family: "Roboto", sans-serif;
-    background-color: #353530;
+    background-color: #313536;
     color: #fff;
 }
 
@@ -5333,7 +5329,7 @@ select {
 
 .sidebar .widget {
     padding: 40px;
-    background-color: #353530;
+    background-color: #313536;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
@@ -5628,7 +5624,7 @@ select {
 
 .sidebar .widget.banner-ad-widget .ad-banner-content {
     padding: 30px 50px;
-    background-color: #353530;
+    background-color: #313536;
 }
 
 .sidebar .widget.banner-ad-widget .ad-banner-content .icon {
@@ -5665,7 +5661,7 @@ select {
 }
 
 .booking-form .booking-form-inner {
-    background-color: #353530;
+    background-color: #313536;
     padding: 10px 40px 40px;
 }
 
@@ -5746,7 +5742,7 @@ select {
 }
 
 .booking-form.booking-form-dark {
-    background-color: #353530;
+    background-color: #313536;
     margin-top: 0;
 }
 
@@ -5789,7 +5785,7 @@ select {
 }
 
 .categories-box-layout .categories-box-layout-inner {
-    background-color: #353530;
+    background-color: #313536;
     padding: 40px;
     padding-bottom: 10px;
 }
@@ -5865,7 +5861,7 @@ select {
 }
 
 .categories-box-layout.dark-layout {
-    background-color: #353530;
+    background-color: #313536;
     margin-top: 0;
 }
 
@@ -5926,7 +5922,7 @@ select {
 
 .book-room-style2 {
     position: relative;
-    background-color: #353530;
+    background-color: #313536;
     z-index: 1;
 }
 
@@ -6003,7 +5999,7 @@ select {
 .book-room-style2 .calender-box ul li .calender-input-box {
     position: relative;
     width: 100%;
-    background-color: #353530;
+    background-color: #313536;
 }
 
 .calender-box ul li .calender-input-box .calender-input-inner {
@@ -6104,7 +6100,7 @@ select {
     height: 1px;
     opacity: 0;
     visibility: hidden;
-    background-color: #353530;
+    background-color: #313536;
 }
 
 .calender-box .reserve-block a:hover::before {
@@ -6226,7 +6222,7 @@ select {
 }
 
 .places-boxes .place-box .desc {
-    background-color: #353530;
+    background-color: #313536;
     padding: 20px;
     text-align: center;
 }
@@ -6399,7 +6395,7 @@ select {
     text-transform: uppercase;
     font-size: 14px;
     font-weight: 700;
-    background-color: #353530;
+    background-color: #313536;
     color: #a3a3a3;
     padding: 25px 45px;
     letter-spacing: 2px;
@@ -6431,7 +6427,7 @@ select {
     border-radius: 0;
     -webkit-transition: all 0.3s ease-out 0s;
     transition: all 0.3s ease-out 0s;
-    background-color: #353530;
+    background-color: #313536;
     text-align: center;
     display: block;
     padding: 35px 25px;
@@ -6512,7 +6508,7 @@ select {
 
 .restaurant-tab-area .food-box .desc {
     padding: 30px;
-    background-color: #353530;
+    background-color: #313536;
     position: relative;
 }
 
@@ -6603,7 +6599,7 @@ select {
     width: 100%;
     height: 100%;
     content: '';
-    background-color: #353530;
+    background-color: #313536;
     opacity: 0.6;
     z-index: -1;
 }
@@ -6617,7 +6613,7 @@ select {
 }
 
 .content-box-2 {
-    background-color: #353530;
+    background-color: #313536;
     font-size: 14px;
     text-align: center;
     padding: 30px 20px 0;
@@ -6891,7 +6887,7 @@ select {
     z-index: 2;
     font-weight: 400;
     font-size: 30px;
-    background-color: #353530;
+    background-color: #313536;
     color: #fff;
     right: 0;
     top: 0;
@@ -6953,7 +6949,7 @@ select {
 }
 
 .footer-subscibe-area.style-2 {
-    background-color: #353530;
+    background-color: #313536;
 }
 
 .footer-subscibe-area.style-2 .subscribe-text .subscribe-form button {
@@ -6985,15 +6981,7 @@ select {
     width: 100%;
 }
 
-@media (max-width: 991px) {
-    .footer-subscibe-area.style-2 .subscribe {
-        text-align: center;
-        margin-bottom: 20px;
-    }
-    .header-two.header-absolute .sigma-mobile-header {
-        background-color: transparent;
-    }
-}
+
 
 @media (max-width: 767px) {
     .footer-subscibe-area.style-2 .subscribe-text .subscribe-form input {
@@ -7029,15 +7017,9 @@ select {
     top: 0;
 }
 
-.about-style-2 .section-header {
-    padding-left: 30px;
-    margin-bottom: 0;
-}
 
-.about-style-2 .section-header h5 {
-    color: #d2cece;
-    margin-bottom: 10px;
-}
+
+
 
 .dark-bg {
     background-color: #1c1b19;
@@ -7140,7 +7122,7 @@ select {
     text-align: center;
     border-radius: 0;
     margin-bottom: 10px;
-    background-color: #353530;
+    background-color: #313536;
     transform: scale(0.6);
     transition: all 0.3s ease-out 0s;
     opacity: 0;
@@ -7524,7 +7506,7 @@ select {
     left: 50%;
     transform: scale(0);
     transition: .3s;
-    background-color: #353530;
+    background-color: #313536;
     width: 10px;
     height: 10px;
     margin-top: -5px;
@@ -7666,7 +7648,7 @@ select {
 .input-group.input-group-two input,
 .input-group.input-group-two select,
 .input-group.input-group-two textarea {
-    background-color: #353530;
+    background-color: #313536;
     border: 0;
 }
 
@@ -7913,7 +7895,7 @@ td.has-title {
     line-height: 60px;
     text-align: center;
     color: #fff;
-    background-color: #353530;
+    background-color: #313536;
     margin-left: 10px;
 }
 
@@ -7930,7 +7912,7 @@ td.has-title {
 }
 
 .checkout-form .nice-select .list {
-    background-color: #353530;
+    background-color: #313536;
 }
 
 .checkout-form .input-group.input-group-two textarea {
@@ -8087,7 +8069,7 @@ td.has-title {
 /*------ Account  ------*/
 
 .account-tabs .nav-tabs .nav-item .nav-link {
-    background-color: #353530;
+    background-color: #313536;
     border: 0;
     color: #fff;
     padding: 14px 20px;
@@ -8198,7 +8180,7 @@ td.has-title {
 /*-----  Style 2  -------*/
 
 .service-wrapper.style-2 .service-content {
-    background-color: #353530;
+    background-color: #313536;
 }
 
 
@@ -8402,7 +8384,7 @@ td.has-title {
 /*=======  FOOTER  =======*/
 
 footer .footer-subscibe-area {
-    background-color: #353530;
+    background-color: #313536;
 }
 
 footer .footer-subscibe-area .subscribe-text .subscribe-form {
@@ -8682,7 +8664,7 @@ footer .footer-widget-area.light-theme .widget a {
 
 footer .footer-widget-area.light-theme .widget .widget-title,
 footer .footer-widget-area.light-theme .widget h6 {
-    color: #353530;
+    color: #313536;
 }
 
 footer .footer-widget-area.light-theme .widget.site-info-widget .social-links a {
@@ -8809,7 +8791,7 @@ footer .copyright-area .footer-menu ul li::before {
     transform: translateY(-50%);
     width: 3px;
     height: 12px;
-    background-color: #353530;
+    background-color: #313536;
     content: '';
 }
 
@@ -8899,7 +8881,7 @@ footer .copyright-area.light-theme .footer-menu ul li::before {
 }
 
 .sigma-footer .sigma-footer-box {
-    background-color: #353530;
+    background-color: #313536;
     padding: 40px;
     padding-bottom: 25px;
 }
@@ -8974,7 +8956,7 @@ footer .copyright-area.light-theme .footer-menu ul li::before {
 }
 
 .sigma-footer .sigma-footer-bottom .sigma-footer-bottom-inner {
-    background-color: #353530;
+    background-color: #313536;
     padding: 40px;
     padding-bottom: 25px;
 }
@@ -9068,7 +9050,7 @@ footer .copyright-area.light-theme .footer-menu ul li::before {
     padding-top: 40px;
     padding-left: 40px;
     padding-right: 40px;
-    background-color: #353530;
+    background-color: #313536;
 }
 
 .sigma-footer .sigma-copyright-inner p {
@@ -9252,7 +9234,7 @@ footer .copyright-area.light-theme .footer-menu ul li::before {
 .range-container input[type="range"]::-moz-range-thumb {
     width: 16px;
     height: 16px;
-    background-color: #f8c51c;
+    background-color: #fff;
     border-radius: 50%;
     cursor: pointer;
     border: 2px solid #000;
@@ -9431,7 +9413,7 @@ footer .copyright-area.light-theme .footer-menu ul li::before {
 }
 
 .main-btn {
-    background: black;
+    background: white;
     color: white;
     padding: 8px 10px;
     border: none;
@@ -9444,11 +9426,12 @@ footer .copyright-area.light-theme .footer-menu ul li::before {
     background: #ffc107;
     color: black;
 }
-/* ✅ Header General */
+/* ✅ Header General-----------------------------------------------------------------hjhdfjsdjhfdksjhfsdhjkfhsjkfhsdjkhjkfhjfhsdjkhfjkshjkfhsjkfhsjkh */
 .header {
-    background: #111;
+    background: rgba(244, 212, 160, 0.8);
+    /* background: rgba(248, 218, 166, 0.7); */
     padding: 15px 20px;
-    color: white;
+    color: #333;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -9462,28 +9445,42 @@ footer .copyright-area.light-theme .footer-menu ul li::before {
   /* ✅ Contenedor interno */
   .container {
     display: flex;
-    align-items: center;
     width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
+    align-items: center;
     justify-content: space-between;
   }
   
+
   /* ✅ Logo */
-  .logo a {
-    color: white;
+.logo a {
+    color: #313536;
     text-decoration: none;
     font-size: 24px;
     font-weight: bold;
     display: flex;
     align-items: center;
-  }
+}
+
+/* Estilo para la imagen del logo */
+.logo-img {
+    width: 40px; /* Ajusta el tamaño según lo necesites */
+    height: auto;
+    margin-right: 10px; /* Espacio entre la imagen y el texto */
+}
+
   
   /* ✅ Menú Principal */
   .nav-menu ul {
-    list-style: none;
     display: flex;
-    gap: 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 15px; /* Espacio entre los enlaces */
+  }
+
+  .nav-menu li {
+    display: flex;
+    align-items: center;
   }
   
   .nav-menu ul li {
@@ -9491,7 +9488,7 @@ footer .copyright-area.light-theme .footer-menu ul li::before {
   }
   
   .nav-menu ul li a {
-    color: white;
+    color: #1e272e;
     text-decoration: none;
     font-size: 18px;
     padding: 10px;
@@ -9563,7 +9560,7 @@ footer .copyright-area.light-theme .footer-menu ul li::before {
     max-width: 800px;
     margin: 40px auto;
     padding: 20px;
-    background: #111;
+    background: #313536;
     color: white;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
@@ -9690,7 +9687,7 @@ footer .copyright-area.light-theme .footer-menu ul li::before {
   max-width: 600px;
   margin: 50px auto;
   padding: 30px;
-  background: #111;
+  background: #313536;
   color: white;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
@@ -9832,7 +9829,7 @@ footer .copyright-area.light-theme .footer-menu ul li::before {
     max-width: 600px;
     margin: 50px auto;
     padding: 30px;
-    background: #111;
+    background: #313536;
     color: white;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
@@ -10011,11 +10008,11 @@ footer .copyright-area.light-theme .footer-menu ul li::before {
   }
   
   .login-form button:hover {
-    background-color: #e68900;
+    background-color:#ccb084;
   }
   
   .footer {
-    background: black;
+    background: #1e272e;
     color: gold;
     text-align: center;
     padding: 20px 0;
@@ -10165,7 +10162,7 @@ footer .copyright-area.light-theme .footer-menu ul li::before {
   .toggle-auth button {
     background: none;
     border: none;
-    color: #007bff;
+    color: #313536;
     cursor: pointer;
     font-weight: bold;
   }
