@@ -3,7 +3,7 @@ import { CartContext } from "../../../context/CartContext";
 import { createCart, createPayment } from "../../servicios/payment/paymentService";
 import { Link, useHistory } from "react-router-dom";
 import { io } from "socket.io-client"; // 📌 Importamos WebSockets
-import { ENDPOINTS, BASE_URL } from "../../servicios/endpoints";
+import { BASE_URL } from "../../servicios/endpoints";
 
 const CartContent = () => {
   const { cart, removeFromCart, clearCart } = useContext(CartContext);
@@ -12,11 +12,23 @@ const CartContent = () => {
   const [paymentCompleted, setPaymentCompleted] = useState(false);
 
   useEffect(() => {
-    const socket = io(`${BASE_URL.payment}${ENDPOINTS.payment.getStatus}`); // 📌 URL del backend WebSockets
-
+    //const socket = io(`${BASE_URL.payment}${ENDPOINTS.payment.getStatus}`); // 📌 URL del backend WebSockets
+    const socket = io(BASE_URL.wsPayment, { transports: ["websocket"] }); // 📌 URL del backend WebSockets
+    socket.on("connect", () => {
+      console.log("✅ Conectado al WebSocket con ID:", socket.id);
+    });
+  
+    socket.on("connect_error", (err) => {
+      console.error("❌ Error de conexión con WebSocket:", err.message);
+    });
+    console.log('antes del if')
+    console.log('orderId',orderId)
     if (orderId) {
+      console.log("✅ Suscribiéndose al canal:", `payment-status-${orderId}`);
       socket.on(`payment-status-${orderId}`, (data) => {
+        console.log('entro al socket',`payment-status-${orderId}`,data)
         if (data.status === "COMPLETED") {
+          console.log('entro al completed del socket')
           setPaymentCompleted(true);
           alert("✅ ¡Pago confirmado!");
           clearCart(); // Limpia el carrito cuando el pago se confirme
@@ -31,17 +43,15 @@ const CartContent = () => {
   const handlePayment = async () => {
     try {
       console.log("Iniciando pago...");
-
       const paymentData = {
         items: cart,
         totalAmount: cart.reduce((acc, item) => acc + (item.price * item.quantity), 0),
       };
-
       const cartCreated = await createCart(paymentData);
       const paymentCreated = await createPayment({ idCartBuy: cartCreated._id });
 
       if (paymentCreated && paymentCreated.status === "CREATED") {
-        setOrderId(cartCreated._id); // Guardamos el ID de la orden para WebSockets
+        setOrderId(orderId); // Guardamos el ID de la orden para WebSockets
         window.open(paymentCreated.links[1].href, "_blank");
       } else {
         alert("Hubo un problema con el pago. Intenta nuevamente.");

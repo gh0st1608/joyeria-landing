@@ -9,6 +9,11 @@ export class PaymentGateway implements IWebSocketRepository {
   @WebSocketServer()
   server: Server;
 
+  constructor() {
+    console.log("✅ Servidor WebSocket inicializado correctamente");
+  }
+
+
   sendStatus(orderId: string) {
     console.log(`📢 Notificando al frontend: Pago COMPLETADO para ${orderId}`);
     this.server.emit(`payment-status-${orderId}`, { status: "COMPLETED" });
