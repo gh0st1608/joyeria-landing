@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+
 import 'magnific-popup';
 
 import missionImage from '../../../assets/img/text-block/01.jpg';
-import visionImage from '../../../assets/img/text-block/02.jpg';
+
 
 class About extends Component {
     render() {

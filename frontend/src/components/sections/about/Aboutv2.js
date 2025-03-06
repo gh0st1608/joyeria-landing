@@ -14,7 +14,11 @@ const bannerposts = [
 
 const Aboutv2 = () => {
     return (
+        
+        
+         
         <div className="about-section container pt-115 pb-115">
+            
             <div className="about-content subcontainer">
                 <div className="about-text">
                     <div>
@@ -33,6 +37,7 @@ const Aboutv2 = () => {
                 
             </div>
         </div>
+        
     )
 };
 
