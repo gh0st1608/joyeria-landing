@@ -20,23 +20,23 @@ const CartContent = () => {
       <h2>🛒 Carrito de Compras</h2>
       <ul className="cart-list">
         {
-cart.map((item) => {
-  console.log("🔍 Revisando producto:", item); // ✅ Verifica qué valores tiene item.precio
-  return (
-    <li key={item.id} className="cart-item">
-      <img
-        src={item.image}
-        alt={item.title}
-        className="cart-item-image"
-        onError={(e) => (e.target.src = "https://via.placeholder.com/100")}
-      />
-      <div className="cart-item-info">
-        <span>{item.name} - ${Number(item.precio || 0).toFixed(2)} x {item.quantity}</span>
-      </div>
-      <button className="btn btn-danger" onClick={() => removeFromCart(item.id)}>❌ Eliminar</button>
-    </li>
-  );
-})
+          cart.map((item) => {
+            console.log("🔍 Revisando producto:", item); // ✅ Verifica qué valores tiene item.precio
+            return (
+              <li key={item.id} className="cart-item">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="cart-item-image"
+                  onError={(e) => (e.target.src = "https://via.placeholder.com/100")}
+                />
+                <div className="cart-item-info">
+                  <span>{item.name} - ${Number(item.precio || 0).toFixed(2)} x {item.quantity}</span>
+                </div>
+                <button className="btn btn-danger" onClick={() => removeFromCart(item.id)}>❌ Eliminar</button>
+              </li>
+            );
+          })
 
         }
       </ul>

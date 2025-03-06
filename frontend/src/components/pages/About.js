@@ -3,7 +3,7 @@ import MetaTags from "react-meta-tags";
 import Header from '../layouts/Header';
 import Breadcrumb from '../layouts/Breadcrumbs';
 import Instafeeds from '../layouts/Instafeeds';
-import Footer from '../layouts/Footer';
+// import Footer from '../layouts/Footer';
 import Content from '../sections/about/aboutContent';
 
 class About extends Component {
@@ -20,7 +20,7 @@ class About extends Component {
                 <Header/>
                 <Breadcrumb breadcrumb={{pagename:'Nosotros'}} />
                 <Content/>
-                <Instafeeds/>
+                {/* <Instafeeds/> */}
                 {/*<Footer/>*/}
             </Fragment>
         );
