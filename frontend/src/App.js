@@ -13,7 +13,6 @@ import Shopleft from './components/pages/Shopleft';
 import { CartProvider } from "./context/CartContext";
 import { AuthProvider } from "./context/AuthContext"; 
 import { getProducts } from "./components/servicios/shop/productService"; // ✅ Importa la API de productos
-// import Header from "./components/layouts/Header"; 
 import Footer from "./components/layouts/Footer";
 
 
@@ -46,7 +45,6 @@ function App() {
     <AuthProvider>
     <CartProvider>
       <Router>
-      {/* <Header /> */}
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/about" component={About} />
@@ -60,8 +58,7 @@ function App() {
           <Route exact path="/account" component={Account} />
         
           <Route exact path="/shop-left" component={Shopleft} />
-          <Route exact path="/shop-detail/:id" component={Shopdetail} /> {/* ✅ Corregida la ruta */}
-
+          <Route exact path="/shop-detail/:id" component={Shopdetail} /> 
         </Switch>
         <Footer />
       </Router>
