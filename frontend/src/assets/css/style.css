@@ -9624,7 +9624,7 @@ footer .copyright-area.light-theme .footer-menu ul li::before {
 
 /* ✅ Header General-----------------------------------------------------------------hjhdfjsdjhfdksjhfsdhjkfhsjkfhsdjkhjkfhjfhsdjkhfjkshjkfhsjkfhsjkh */
 .header {
-    background: rgba(244, 212, 160, 0.8);
+    background: #fff;
     /* background: rgba(248, 218, 166, 0.7); */
     padding: 15px 20px;
     color: #333;
