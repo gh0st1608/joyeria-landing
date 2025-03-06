@@ -4,27 +4,29 @@ import Header from '../layouts/Header';
 import Breadcrumb from '../layouts/Breadcrumbs';
 import Instafeeds from '../layouts/Instafeeds';
 import Footer from '../layouts/Footer';
-import Content from '../sections/about/aboutContent';
+import Content from '../sections/about/Content';
 
-class About extends Component {
+
+
+class Aboutv2 extends Component {
     render() {
         return (
             <Fragment>
                 <MetaTags>
-                    <title>Mi Tienda | Nosotros</title>
+                    <title>Laramiss | Aboutv2 Us</title>
                     <meta
                         name="description"
                         content="#"
                     />
                 </MetaTags>
                 <Header/>
-                <Breadcrumb breadcrumb={{pagename:'Nosotros'}} />
+                <Breadcrumb breadcrumb={{pagename:'About Us'}} />
                 <Content/>
                 <Instafeeds/>
-                {/*<Footer/>*/}
+                <Footer/>
             </Fragment>
         );
     }
 }
 
-export default About;
+export default Aboutv2;

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { CartContext } from "../../../context/CartContext"; // ✅ Asegúrate de que la ruta es correcta
-import { createPayment } from "../../servicios/payment/paymentService";
+import { createCart, createPayment } from "../../servicios/payment/paymentService";
 import { Link, useHistory } from "react-router-dom"; // Importa useHistory para redirigir después de la transacción
 
 const CartContent = () => {
@@ -12,17 +12,19 @@ const CartContent = () => {
     try {
         console.log('entro al pago')
       // Aquí puedes agregar más detalles si es necesario (total, dirección, etc.)
-      /* const paymentData = {
+      const paymentData = {
         items: cart,
         totalAmount: cart.reduce((acc, item) => acc + (item.precio * item.quantity), 0), // Calcula el total
-      }; */
-      const paymentData = { idCartBuy : '67b97068b011642685a2bc73' }
-      // Llamamos a la función createPayment
-      const response = await createPayment(paymentData);
+      };
 
-      if (response && response.status === "APPROVED") {
+      const cartCreated = await createCart(paymentData);
+      /* const paymentData = { idCartBuy : '67c688236bbfe0ac2012a3a6' } */
+      // Llamamos a la función createPayment
+      const paymentCreated = await createPayment(cartCreated.id);
+
+      if (paymentCreated && paymentCreated.status === "CREATED") {
         // Si el pago fue exitoso, redirigimos a la URL proporcionada en la respuesta
-        const approvalLink = response.links[0].href; // Aquí obtenemos el enlace a la transacción de PayPal
+        const approvalLink = paymentCreated.links[1].href; // Aquí obtenemos el enlace a la transacción de PayPal
 
         // Abrimos el enlace en una nueva ventana o pestaña
         window.open(approvalLink, "_blank");  // "_blank" asegura que se abre en una nueva pestaña
@@ -35,7 +37,7 @@ const CartContent = () => {
       alert("Hubo un problema con el pago. Intenta nuevamente.");
     }
   };
-
+  console.log('cart.length',cart.length);
   if (!cart || cart.length === 0) {
     return (
       <div className="cart-container">
@@ -57,12 +59,12 @@ const CartContent = () => {
               <li key={item.id} className="cart-item">
                 <img
                   src={item.image}
-                  alt={item.title}
+                  alt={item.name}
                   className="cart-item-image"
                   onError={(e) => (e.target.src = "https://via.placeholder.com/100")}
                 />
                 <div className="cart-item-info">
-                  <span>{item.name} - ${Number(item.precio || 0).toFixed(2)} x {item.quantity}</span>
+                  <span>{item.name} - ${Number(item.price || 0).toFixed(2)} x {item.quantity}</span>
                 </div>
                 <button className="btn btn-danger" onClick={() => removeFromCart(item.id)}>❌ Eliminar</button>
               </li>

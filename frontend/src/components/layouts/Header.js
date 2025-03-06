@@ -27,6 +27,7 @@ const Header = () => {
         <nav className={menuOpen ? "nav-menu open" : "nav-menu"}>
           <ul>
             <li><Link to="/">Home</Link></li>
+            <li><Link to="/about">Nosotros</Link></li>
             <li><Link to="/shop-left">Catálogo</Link></li>
             <li><Link to="/contact">📩 Contáctanos</Link></li> {/* ✅ Agregado */}
             <li>

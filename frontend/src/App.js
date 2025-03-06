@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './components/pages/Home';
 import About from './components/pages/About';
+import Aboutv2 from 'components/pages/Aboutv2';
 import Account from './components/pages/Account';
 import Cart from './components/pages/Cart';
 import Checkout from './components/pages/Checkout';
@@ -47,7 +48,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/about" component={About} />
+          <Route exact path="/about" component={Aboutv2} />
           <Route exact path="/account" component={Account} />
           <Route exact path="/cart" component={Cart} />
           <Route exact path="/checkout" component={Checkout} />
