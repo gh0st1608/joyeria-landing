@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './components/pages/Home';
-import About from './components/pages/About';
+// import About from './components/pages/About';
 import Aboutv2 from 'components/pages/Aboutv2';
 import Account from './components/pages/Account';
 import Cart from './components/pages/Cart';
