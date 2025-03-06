@@ -2,7 +2,7 @@ import { Itembuy } from "../../../itembuy/domain/entities/itembuy.entity";
 
 export interface CartbuyRequired {
   readonly items: Itembuy[]
-  readonly totalPrice : number;
+  readonly totalAmount : number;
 }
 
 export interface CartbuyOptional {
@@ -17,7 +17,7 @@ export type CartbuyPropertiesUpdate = Partial<Omit<CartbuyRequired, ''>> & Parti
 export class Cartbuy {
     private readonly id : string;
     private items : Itembuy[];
-    private totalPrice : number;
+    private totalAmount : number;
     private active: boolean;
 
     constructor(properties: CartbuyProperties) {
@@ -30,7 +30,7 @@ export class Cartbuy {
       return {
           id : this.id,
           items: this.items,
-          totalPrice: this.totalPrice,
+          totalAmount: this.totalAmount,
           active: this.active,
 
       }

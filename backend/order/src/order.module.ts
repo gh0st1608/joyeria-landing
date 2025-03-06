@@ -23,6 +23,8 @@ import { CreatePaymentUseCase } from './payment/application/create.application';
 import { ExecutePaymentUseCase } from './payment/application/execute.application';
 import { PaymentInfrastructureRepository } from './payment/infrastructure/payment.repository';
 import { PayPalAuthService } from './payment/services/paypal.service';
+import { PaymentGateway } from './payment/infrastructure/websockets/payment.gateway';
+import { PaymentStatusUseCase } from './payment/application/send-status.application';
 
 
 @Module({
@@ -57,6 +59,8 @@ import { PayPalAuthService } from './payment/services/paypal.service';
     GetItembuyUseCase,
     CreatePaymentUseCase,
     ExecutePaymentUseCase,
+    PaymentGateway,
+    PaymentStatusUseCase,
     {
       provide: 'ICartbuyRepository', // Proveedor para inyectar la interfaz del repositorio
       useClass: CartbuyInfrastructureRepository, // Implementación que usa Mongoose
@@ -68,7 +72,10 @@ import { PayPalAuthService } from './payment/services/paypal.service';
     {
       provide: 'IPaymentRepository', // Proveedor para inyectar la interfaz del repositorio
       useClass: PaymentInfrastructureRepository, // Implementación que usa Mongoose
-    }
+    },
+    { provide: 'IWebSocketRepository', 
+      useClass: PaymentGateway 
+    },
   ],
 })
 export class OrderModule {}

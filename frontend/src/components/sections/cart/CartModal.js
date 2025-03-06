@@ -6,7 +6,7 @@ import { Link, useHistory } from "react-router-dom"; // Importa useHistory para 
 const CartContent = () => {
   const { cart, removeFromCart, clearCart } = useContext(CartContext);
   const history = useHistory(); // Para redirigir después del pago
-
+  console.log('cart',cart)
   // Función que se llama cuando el usuario hace clic en "Ir a Pagar"
   const handlePayment = async () => {
     try {
@@ -14,13 +14,12 @@ const CartContent = () => {
       // Aquí puedes agregar más detalles si es necesario (total, dirección, etc.)
       const paymentData = {
         items: cart,
-        totalAmount: cart.reduce((acc, item) => acc + (item.precio * item.quantity), 0), // Calcula el total
+        totalAmount: cart.reduce((acc, item) => acc + (item.price * item.quantity), 0), // Calcula el total
       };
-
+      console.log('paymentData',paymentData)
       const cartCreated = await createCart(paymentData);
-      /* const paymentData = { idCartBuy : '67c688236bbfe0ac2012a3a6' } */
-      // Llamamos a la función createPayment
-      const paymentCreated = await createPayment(cartCreated.id);
+      
+      const paymentCreated = await createPayment({idCartBuy : cartCreated._id});
 
       if (paymentCreated && paymentCreated.status === "CREATED") {
         // Si el pago fue exitoso, redirigimos a la URL proporcionada en la respuesta

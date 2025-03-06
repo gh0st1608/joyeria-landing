@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import MetaTags from "react-meta-tags";
 import Header from "../layouts/Header";
 import Breadcrumb from "../layouts/Breadcrumbs";
-import CartContent from "../sections/cart/CartModal"; // ✅ Importación corregida
+import CartContent from "../sections/cart/CartModalv2"; // ✅ Importación corregida
 
 const Cart = () => {
   return (

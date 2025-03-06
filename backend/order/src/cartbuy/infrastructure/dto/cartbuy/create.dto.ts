@@ -8,5 +8,5 @@ export class CreateCartbuyDto {
 
   @IsOptional()
   @IsNumber()
-  totalPrice: number;
+  totalAmount: number;
 }
