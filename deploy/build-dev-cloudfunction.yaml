@@ -16,7 +16,7 @@ steps:
       - '--allow-unauthenticated'
       - '--trigger-http'
       - '--runtime=nodejs20'  # 📌 Asegúrate de usar la versión correcta
-      - '--source=./backend/notification/dist'
+      - '--source=./backend/notification'
       - '--entry-point=notificationHandler'  # 📌 
 
 options:
