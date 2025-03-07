@@ -4,6 +4,7 @@ import Pagination from "../../layouts/Pagination";
 import Sidebar from "../../layouts/Shopsidebar";
 import { getProducts } from "../../servicios/shop/productService";
 import { CartContext } from "../../../context/CartContext";
+// import "../../css/style.css"; // Importar estilos mejorados
 
 class Content extends Component {
   static contextType = CartContext;
@@ -19,10 +20,10 @@ class Content extends Component {
   async componentDidMount() {
     try {
       const products = await getProducts();
-      console.log("📢 Products received:", products);
+      console.log("📢 Productos recibidos:", products);
       this.setState({ products, loading: false });
     } catch (error) {
-      console.error("❌ Error loading products", error);
+      console.error("❌ Error cargando productos", error);
       this.setState({ loading: false });
     }
   }
@@ -32,67 +33,65 @@ class Content extends Component {
     const { addToCart } = this.context;
 
     return (
-      <section className="Shop-section pt-120 pb-120">
+      <section className="shop-section">
         <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-lg-4 col-md-10 col-sm-10">
+          <div className="row">
+            {/* Sidebar (Búsqueda, Precio, Filtros) */}
+            <div className="col-lg-3 col-md-4">
               <Sidebar />
             </div>
-            <div className="col-lg-8 col-md-10">
+
+            {/* Contenido de Productos */}
+            <div className="col-lg-9 col-md-8">
+              <h2 className="product-count">🛍 {products.length} Productos</h2>
               {loading ? (
-                <p>Cargando productos...</p>
+                <p className="loading-text">Cargando productos...</p>
               ) : (
-                <div className="shop-products-wrapper">
-                  <div className="shop-product-top">
-                    <p>Mostrando {products.length} products</p>
-                  </div>
-                  <div className="product-wrapper restaurant-tab-area">
-                    <div className="row">
-                      {products.map((item) => (
-                        <div key={item.id} className="col-lg-6 col-md-6 mb-4">
-                          <div className="food-box shop-box">
-                            <div className="thumb">
-                              <img
-                                src={item.image || "https://via.placeholder.com/150"}
-                                alt={item.titlte}
-                                onError={(e) => (e.target.src = "https://via.placeholder.com/150")}
-                                style={{
-                                  width: "100%",
-                                  height: "200px",
-                                  objectFit: "cover",
-                                  borderRadius: "10px",
-                                }}
-                              />
-                            </div>
-                            <div className="desc text-center">
-                              <h4>
-                                <Link to={`/shop-detail/${item.id}`}>{item.title}</Link>
-                              </h4>
-                              <p>{item.description}</p>
-                              <span className="price">${item.price}</span>
+                <div className="product-grid">
+                  {products.map((item) => (
+                    <div key={item.id} className="product-card">
+                      {/* Imagen y Favorito */}
+                      <div className="product-header">
+                        <img
+                          src={item.image || "https://via.placeholder.com/150"}
+                          alt={item.title}
+                          className="product-image"
+                          onError={(e) => (e.target.src = "https://via.placeholder.com/150")}
+                        />
+                        <button className="favorite-btn">❤️</button>
+                      </div>
 
-                              {/* ✅ Botón para ver más detalles */}
-                              <Link to={`/shop-detail/${item.id}`} className="btn btn-primary">
-                                🔍 Ver detalles
-                              </Link>
+                      {/* Opciones de Color */}
+                      <div className="product-colors">
+                        <span className="color-option gold"></span>
+                        <span className="color-option rose-gold"></span>
+                        <span className="color-option silver"></span>
+                      </div>
 
-                              {/* ✅ Botón para agregar al carrito */}
-                              <button
-                                className="btn-add-to-cart"
-                                onClick={() => {
-                                  const productToCart = { ...item, quantity: 1 };
-                                  console.log("🛒 Agregando al carrito:", productToCart);
-                                  addToCart(productToCart);
-                                }}
-                              >
-                                🛒 Agregar al carrito
-                              </button>
-                            </div>
-                          </div>
+                      {/* Detalles del Producto */}
+                      <div className="product-details">
+                        <h3 className="product-name">{item.title}</h3>
+                        <p className="product-description">{item.description}</p>
+                        <span className="product-price">S/ {item.price.toFixed(2)}</span>
+
+                        <div className="product-buttons">
+                          <Link to={`/shop-detail/${item.id}`} className="btn btn-primary">
+                            🔍 Ver Opciones
+                          </Link>
+                          <button
+                            className="btn btn-cart"
+                            onClick={() => {
+                              const productToCart = { ...item, quantity: 1 };
+                              console.log("🛒 Agregando al carrito:", productToCart);
+                              addToCart(productToCart);
+                            }}
+                          >
+                            🛒 Agregar al carrito
+                          </button>
                         </div>
-                      ))}
+                      </div>
                     </div>
-                  </div>
+                  ))}
                 </div>
               )}
               <div className="pagination-wrap">

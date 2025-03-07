@@ -12,7 +12,7 @@ const CartContent = () => {
   const [paymentCompleted, setPaymentCompleted] = useState(false);
 
   useEffect(() => {
-    if (!orderId) return;
+    //const socket = io(`${BASE_URL.payment}${ENDPOINTS.payment.getStatus}`); // 📌 URL del backend WebSockets
     const socket = io(BASE_URL.wsPayment, { transports: ["websocket"] }); // 📌 URL del backend WebSockets
     if (orderId) {
       console.log("✅ Suscribiéndose al canal:", `payment-status-${orderId}`);

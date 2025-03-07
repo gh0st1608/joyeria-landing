@@ -24,6 +24,7 @@
     "react-countup": "^4.4.0",
     "react-dom": "^16.14.0",
     "react-google-recaptcha": "^2.1.0",
+    "react-icons": "^5.5.0",
     "react-magnific-popup": "^1.0.1",
     "react-mapbox-gl": "^4.8.6",
     "react-masonry-component": "^6.3.0",
