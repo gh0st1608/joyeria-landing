@@ -25,3 +25,8 @@ async function bootstrap(expressApp: express.Express) {
 export const notificationHandler = functions.http('notificationService', (req, res) => {
   expressApp(req, res);
 });
+
+/* functions.http('notificationService', (req, res) => {
+  expressApp(req, res);
+});
+ */
