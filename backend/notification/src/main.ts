@@ -18,6 +18,8 @@ async function bootstrap(expressApp: express.Express) {
 }
 
 // 🟢 Importante: Esperar a que `bootstrap()` se complete antes de exportar la función
-bootstrap(expressApp).then(() => {
+/* bootstrap(expressApp).then(() => {
   functions.http('notificationService', expressApp);
-});
+}); */
+
+export const notificationHandler = functions.http('notificationHandler', expressApp);
