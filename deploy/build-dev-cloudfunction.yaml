@@ -26,3 +26,6 @@ steps:
 
 images:
   - 'us-central1-docker.pkg.dev/oval-crawler-444615-k3/joyasperu-apiscore/msa-notification-serverless-img:$COMMIT_SHA'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
