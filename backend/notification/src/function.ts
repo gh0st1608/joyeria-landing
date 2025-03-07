@@ -18,12 +18,12 @@ async function bootstrap() {
   // Inicializa la aplicación NestJS
   await app.init();
 
-  // Exporta el manejador para Google Cloud Functions
+  // Devolvemos la app para ser usada en el manejador de Cloud Functions
   return expressApp;
 }
 
-// Usar funciones de Google Cloud Functions para exportar la función HTTP
-functions.http('notificationService', async (req, res) => {
+// 🟢 Exportar la función explícitamente
+export const notificationHandler = functions.http('notificationService', async (req, res) => {
   const expressApp = await bootstrap(); // Esperar a que la app se inicialice
   expressApp(req, res); // Llamar a la aplicación Express
 });
