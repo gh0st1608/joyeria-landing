@@ -16,7 +16,7 @@ steps:
       - '--allow-unauthenticated'
       - '--trigger-http'
       - '--runtime=nodejs20'  # 📌 Asegúrate de usar la versión correcta
-      - '--source=./backend/notification'
+      - '--source=./backend/notification/dist'
       - '--entry-point=notificationHandler'  # 📌 Debe coincidir con lo que exportas en main.ts
 
 options:
