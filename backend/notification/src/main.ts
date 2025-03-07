@@ -3,11 +3,11 @@ import { NotificationModule } from './notification/notification.module';
 import { ConfigService } from '@nestjs/config';
 import { ExpressAdapter } from '@nestjs/platform-express';
 import * as express from 'express';
-import * as functions from '@google-cloud/functions-framework'; //
+import * as functions from '@google-cloud/functions-framework';
 
 const expressApp = express();
 
-async function bootstrap(expressApp : express.Express) {
+async function bootstrap(expressApp: express.Express) {
   const app = await NestFactory.create(NotificationModule, new ExpressAdapter(expressApp));
   const configService = app.get(ConfigService);
 
@@ -17,9 +17,7 @@ async function bootstrap(expressApp : express.Express) {
   await app.init();
 }
 
-bootstrap(expressApp);
-
-// Exportamos la función para Cloud Functions
-//functions.http('notificationService', expressApp);
-export const notificationHandler = expressApp;
-/* export const notificationService: CloudFunction = expressApp; */
+// 🟢 Importante: Esperar a que `bootstrap()` se complete antes de exportar la función
+bootstrap(expressApp).then(() => {
+  functions.http('notificationService', expressApp);
+});

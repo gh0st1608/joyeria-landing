@@ -1,19 +1,10 @@
 steps:
-  #  Instalación de dependencias y compilación del backend
-  - id: 'Build Backend Notification'
-    name: 'gcr.io/cloud-builders/npm'
+  # 1️⃣ Instalar dependencias
+  - name: 'gcr.io/cloud-builders/npm'
     entrypoint: 'bash'
-    args: ['-c', 'cd ./backend/notification && npm install && npm run build']
+    args: ['-c', 'cd backend/notification && npm install && npm run build']
 
-  # 1️⃣ Construcción de la imagen Docker
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '--tag', 'us-central1-docker.pkg.dev/oval-crawler-444615-k3/joyasperu-apiscore/msa-notification-serverless-img:$COMMIT_SHA', '-f', './backend/notification/Dockerfile', './backend/notification']
-
-  # 2️⃣ Subida de la imagen a Artifact Registry
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'us-central1-docker.pkg.dev/oval-crawler-444615-k3/joyasperu-apiscore/msa-notification-serverless-img:$COMMIT_SHA']
-
-  # 3️⃣ Despliegue de la Cloud Function desde el contenedor
+  # 2️⃣ Desplegar Cloud Function con código fuente en lugar de Docker
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'
     args:
@@ -24,16 +15,9 @@ steps:
       - '--memory=512MB'
       - '--allow-unauthenticated'
       - '--trigger-http'
-      - '--gen2'  # Asegura que usas Cloud Functions Gen 2
-      - '--timeout=60s'
-      - '--runtime=nodejs20'  # Es necesario en Cloud Functions Gen 2
-      - '--docker-registry=artifact-registry'  # Indica que la imagen está en Artifact Registry
-      - '--source=.'  # Para Gen2, debes especificar una fuente
-      - '--image=us-central1-docker.pkg.dev/oval-crawler-444615-k3/joyasperu-apiscore/msa-notification-serverless-img:$COMMIT_SHA'
-
-
-images:
-  - 'us-central1-docker.pkg.dev/oval-crawler-444615-k3/joyasperu-apiscore/msa-notification-serverless-img:$COMMIT_SHA'
+      - '--runtime=nodejs20'  # 📌 Asegúrate de usar la versión correcta
+      - '--source=./backend/notification'
+      - '--entry-point=notificationHandler'  # 📌 Debe coincidir con lo que exportas en main.ts
 
 options:
   logging: CLOUD_LOGGING_ONLY
