@@ -12,17 +12,8 @@ const CartContent = () => {
   const [paymentCompleted, setPaymentCompleted] = useState(false);
 
   useEffect(() => {
-    //const socket = io(`${BASE_URL.payment}${ENDPOINTS.payment.getStatus}`); // 📌 URL del backend WebSockets
+    if (!orderId) return;
     const socket = io(BASE_URL.wsPayment, { transports: ["websocket"] }); // 📌 URL del backend WebSockets
-    socket.on("connect", () => {
-      console.log("✅ Conectado al WebSocket con ID:", socket.id);
-    });
-  
-    socket.on("connect_error", (err) => {
-      console.error("❌ Error de conexión con WebSocket:", err.message);
-    });
-    console.log('antes del if')
-    console.log('orderId',orderId)
     if (orderId) {
       console.log("✅ Suscribiéndose al canal:", `payment-status-${orderId}`);
       socket.on(`payment-status-${orderId}`, (data) => {
@@ -32,7 +23,7 @@ const CartContent = () => {
           setPaymentCompleted(true);
           alert("✅ ¡Pago confirmado!");
           clearCart(); // Limpia el carrito cuando el pago se confirme
-          history.push("/success"); // Redirigir a una página de éxito
+          history.push("/shop-left"); // Redirigir a una página de éxito
         }
       });
     }
@@ -51,7 +42,7 @@ const CartContent = () => {
       const paymentCreated = await createPayment({ idCartBuy: cartCreated._id });
 
       if (paymentCreated && paymentCreated.status === "CREATED") {
-        setOrderId(orderId); // Guardamos el ID de la orden para WebSockets
+        setOrderId(paymentCreated.id); // Guardamos el ID de la orden para WebSockets
         window.open(paymentCreated.links[1].href, "_blank");
       } else {
         alert("Hubo un problema con el pago. Intenta nuevamente.");
