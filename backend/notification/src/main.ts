@@ -2,8 +2,8 @@ import { NestFactory } from '@nestjs/core';
 import { NotificationModule } from './notification/notification.module';
 import { ConfigService } from '@nestjs/config';
 import { ExpressAdapter } from '@nestjs/platform-express';
-import * as express from 'express';
-import * as functions from '@google-cloud/functions-framework';
+import express from 'express';
+import functions from '@google-cloud/functions-framework';
 
 const expressApp = express();
 
