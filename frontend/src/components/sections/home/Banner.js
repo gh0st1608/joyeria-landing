@@ -4,11 +4,11 @@ import Slider from 'react-slick';
 import ReactWOW from 'react-wow';
 import Cursor from '../../layouts/Cursor';
 
-import img1 from '../../../assets/img/banner/01.jpg';
+// import img1 from '../../../assets/img/banner/01.jpg';
 import img2 from '../../../assets/img/banner/02.jpg';
 
 const bannerposts = [
-    { img: img1 },
+    // { img: img1 },
     { img: img2 },
 ]
 

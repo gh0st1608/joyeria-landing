@@ -12,6 +12,7 @@ const CartContent = () => {
   const [paymentCompleted, setPaymentCompleted] = useState(false);
 
   useEffect(() => {
+    if (!orderId) return;
     //const socket = io(`${BASE_URL.payment}${ENDPOINTS.payment.getStatus}`); // 📌 URL del backend WebSockets
     const socket = io(BASE_URL.wsPayment, { transports: ["websocket"] }); // 📌 URL del backend WebSockets
     socket.on("connect", () => {
@@ -51,7 +52,7 @@ const CartContent = () => {
       const paymentCreated = await createPayment({ idCartBuy: cartCreated._id });
 
       if (paymentCreated && paymentCreated.status === "CREATED") {
-        setOrderId(orderId); // Guardamos el ID de la orden para WebSockets
+        setOrderId(paymentCreated.id); // Guardamos el ID de la orden para WebSockets
         window.open(paymentCreated.links[1].href, "_blank");
       } else {
         alert("Hubo un problema con el pago. Intenta nuevamente.");
