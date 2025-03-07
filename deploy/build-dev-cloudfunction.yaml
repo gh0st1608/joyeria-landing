@@ -24,11 +24,13 @@ steps:
       - '--memory=512MB'
       - '--allow-unauthenticated'
       - '--trigger-http'
-      - '--runtime=nodejs20'
-      - '--gen2' # Indica que usas Cloud Functions 2da Generación (necesario para imágenes Docker)
+      - '--gen2'  # Asegura que usas Cloud Functions Gen 2
       - '--timeout=60s'
+      - '--runtime=nodejs20'  # Es necesario en Cloud Functions Gen 2
+      - '--docker-registry=artifact-registry'  # Indica que la imagen está en Artifact Registry
+      - '--source=.'  # Para Gen2, debes especificar una fuente
       - '--image=us-central1-docker.pkg.dev/oval-crawler-444615-k3/joyasperu-apiscore/msa-notification-serverless-img:$COMMIT_SHA'
-      - '--entry-point=notificationHandler' # Asegúrate de exportar esta función en main.ts
+
 
 images:
   - 'us-central1-docker.pkg.dev/oval-crawler-444615-k3/joyasperu-apiscore/msa-notification-serverless-img:$COMMIT_SHA'
