@@ -12,7 +12,8 @@ steps:
         cp tsconfig.json dist/ && 
         cp tsconfig.build.json dist/ && 
         cp nest-cli.json dist/ && 
-        npm run build:function
+        npx nest build -p ./tsconfig.build.json && 
+        cp ./dist/function.js ./dist/index.js
 
   # Deploy Cloud Function
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
