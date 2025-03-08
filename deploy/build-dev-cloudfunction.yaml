@@ -2,7 +2,16 @@ steps:
   # Install dependencies and build
   - name: 'gcr.io/cloud-builders/npm'
     entrypoint: 'bash'
-    args: ['-c', 'cd backend/notification && npm install && npm run build:function']
+    args: 
+      - '-c'
+      - |
+        cd backend/notification && 
+        npm install && 
+        cp package.json dist/ && 
+        cp tsconfig.json dist/ && 
+        cp tsconfig.build.json dist/ && 
+        cp nest-cli.json dist/ && 
+        npm run build:function
 
   # Deploy Cloud Function
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
