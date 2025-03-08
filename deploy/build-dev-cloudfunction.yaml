@@ -7,6 +7,7 @@ steps:
       - |
         cd backend/notification && 
         npm install && 
+        mkdir -p dist && 
         cp package.json dist/ && 
         cp tsconfig.json dist/ && 
         cp tsconfig.build.json dist/ && 
