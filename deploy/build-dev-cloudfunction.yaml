@@ -1,10 +1,10 @@
 steps:
-  # 1️⃣ Instalar dependencias
+  # Install dependencies and build
   - name: 'gcr.io/cloud-builders/npm'
     entrypoint: 'bash'
     args: ['-c', 'cd backend/notification && npm install && npm run build:function']
 
-  # 2️⃣ Desplegar Cloud Function con código fuente en lugar de Docker
+  # Deploy Cloud Function
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'
     args:
@@ -15,10 +15,9 @@ steps:
       - '--memory=512MB'
       - '--allow-unauthenticated'
       - '--trigger-http'
-      - '--runtime=nodejs20'  # 📌 Asegúrate de usar la versión correcta
+      - '--runtime=nodejs20'
       - '--source=./backend/notification/dist'
-      - '--entry-point=notificationHandler'  # 📌 
-      - '--env-vars-file=./backend/notification/.env.yaml'
+      - '--entry-point=notificationHandler'
 
 options:
   logging: CLOUD_LOGGING_ONLY
