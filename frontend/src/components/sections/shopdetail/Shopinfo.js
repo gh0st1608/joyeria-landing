@@ -1,20 +1,13 @@
 import React from "react";
 
-const Shopinfo = ({ product }) => {
-  if (!product) {
-    return <p style={{ color: "red", textAlign: "center" }}>❌ No product details available</p>;
-  }
-
+const ShopInfo = ({ product }) => {
   return (
-    <section className="shop-detail">
-      <div className="container">
-        <h2>{product.title}</h2>
-        <img src={product.image} alt={product.title} style={{ maxWidth: "300px" }} />
-        <p>{product.description}</p>
-        <h3>${product.price}</h3>
-      </div>
-    </section>
+    <div>
+      <h3>Detalles del Producto</h3>
+      <p>Color: {product.color}</p>
+      <p>Disponibilidad: {product.stock > 0 ? "Disponible" : "Agotado"}</p>
+    </div>
   );
 };
 
-export default Shopinfo;
+export default ShopInfo;

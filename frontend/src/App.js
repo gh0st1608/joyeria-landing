@@ -9,7 +9,7 @@ import Checkout from './components/pages/Checkout';
 import Contact from './components/pages/Contact';
 import Login from './components/pages/Login';
 import Register from './components/pages/Register';
-import Shopdetail from './components/pages/Shopdetail';
+import Shopdetail from './components/sections/shopdetail/Content';
 import Shopleft from './components/pages/Shopleft';
 import { CartProvider } from "./context/CartContext";
 import { AuthProvider } from "./context/AuthContext"; 

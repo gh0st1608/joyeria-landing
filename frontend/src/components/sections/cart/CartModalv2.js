@@ -2,53 +2,50 @@ import React, { useContext, useEffect, useState } from "react";
 import { CartContext } from "../../../context/CartContext";
 import { createCart, createPayment } from "../../servicios/payment/paymentService";
 import { Link, useHistory } from "react-router-dom";
-import { io } from "socket.io-client"; // 📌 Importamos WebSockets
+import { io } from "socket.io-client";
 import { BASE_URL } from "../../servicios/endpoints";
 
 const CartContent = () => {
-  const { cart, removeFromCart, clearCart } = useContext(CartContext);
+  const { cart, removeFromCart, clearCart, updateQuantity } = useContext(CartContext);
   const history = useHistory();
   const [orderId, setOrderId] = useState(null);
   const [paymentCompleted, setPaymentCompleted] = useState(false);
 
   useEffect(() => {
-    //const socket = io(`${BASE_URL.payment}${ENDPOINTS.payment.getStatus}`); // 📌 URL del backend WebSockets
-    const socket = io(BASE_URL.wsPayment, { transports: ["websocket"] }); // 📌 URL del backend WebSockets
+    const socket = io(BASE_URL.wsPayment, { transports: ["websocket"] });
     if (orderId) {
       console.log("✅ Suscribiéndose al canal:", `payment-status-${orderId}`);
       socket.on(`payment-status-${orderId}`, (data) => {
-        console.log('entro al socket',`payment-status-${orderId}`,data)
+        console.log('🟢 WebSocket:', `payment-status-${orderId}`, data);
         if (data.status === "COMPLETED") {
-          console.log('entro al completed del socket')
           setPaymentCompleted(true);
           alert("✅ ¡Pago confirmado!");
-          clearCart(); // Limpia el carrito cuando el pago se confirme
-          history.push("/shop-left"); // Redirigir a una página de éxito
+          clearCart();
+          history.push("/shop-left");
         }
       });
     }
-
     return () => socket.disconnect();
   }, [orderId, clearCart, history]);
 
   const handlePayment = async () => {
     try {
-      console.log("Iniciando pago...");
+      console.log("💳 Iniciando pago...");
       const paymentData = {
         items: cart,
-        totalAmount: cart.reduce((acc, item) => acc + (item.price * item.quantity), 0),
+        totalAmount: cart.reduce((acc, item) => acc + item.price * item.quantity, 0),
       };
       const cartCreated = await createCart(paymentData);
       const paymentCreated = await createPayment({ idCartBuy: cartCreated._id });
 
-      if (paymentCreated && paymentCreated.status === "CREATED") {
-        setOrderId(paymentCreated.id); // Guardamos el ID de la orden para WebSockets
+      if (paymentCreated?.status === "CREATED") {
+        setOrderId(paymentCreated._id);
         window.open(paymentCreated.links[1].href, "_blank");
       } else {
-        alert("Hubo un problema con el pago. Intenta nuevamente.");
+        alert("❌ Hubo un problema con el pago. Intenta nuevamente.");
       }
     } catch (error) {
-      console.error("Error al procesar el pago:", error);
+      console.error("❌ Error al procesar el pago:", error);
       alert("Hubo un problema con el pago. Intenta nuevamente.");
     }
   };
@@ -66,22 +63,49 @@ const CartContent = () => {
   return (
     <div className="cart-container">
       <h2>🛒 Carrito de Compras</h2>
-      <ul className="cart-list">
-        {cart.map((item) => (
-          <li key={item.id} className="cart-item">
-            <img
-              src={item.image}
-              alt={item.name}
-              className="cart-item-image"
-              onError={(e) => (e.target.src = "https://via.placeholder.com/100")}
-            />
-            <div className="cart-item-info">
-              <span>{item.name} - ${Number(item.price || 0).toFixed(2)} x {item.quantity}</span>
-            </div>
-            <button className="btn btn-danger" onClick={() => removeFromCart(item.id)}>❌ Eliminar</button>
-          </li>
-        ))}
-      </ul>
+      <table className="cart-table">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Total</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {cart.map((item) => (
+            <tr key={item._id}>
+              <td className="cart-item">
+                <img
+                  src={item.image || "https://via.placeholder.com/100"}
+                  alt={item.title}
+                  className="cart-item-image"
+                  onError={(e) => (e.target.src = "https://via.placeholder.com/100")}
+                />
+                <span>{item.title}</span>
+              </td>
+              <td>S/ {Number(item.price || 0).toFixed(2)}</td>
+              <td>
+                <button className="btn-quantity" onClick={() => updateQuantity(item._id, item.quantity - 1)}>-</button>
+                <span className="quantity-value">{item.quantity}</span>
+                <button className="btn-quantity" onClick={() => updateQuantity(item._id, item.quantity + 1)}>+</button>
+              </td>
+              <td>S/ {(item.price * item.quantity).toFixed(2)}</td>
+              <td>
+                {/* <button className="btn btn-danger" onClick={() => removeFromCart(item._id)}>❌</button> */}
+                <button className="btn btn-danger btn-sm" onClick={() => removeFromCart(item._id)}>
+                  <span role="img" aria-label="Eliminar">Eliminar </span>
+                </button>
+
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <h3 className="cart-total">
+        🏷 Total: S/ {cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)}
+      </h3>
       <div className="cart-actions">
         <button className="btn btn-secondary" onClick={clearCart}>🗑 Vaciar Carrito</button>
         <button className="btn btn-success" onClick={handlePayment} disabled={paymentCompleted}>
