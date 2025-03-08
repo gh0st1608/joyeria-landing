@@ -7,7 +7,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "nest build -p ./tsconfig.build.json",
-    "build:function": "nest build -p ./tsconfig.build.json && mv ./dist/main.js ./dist/function.js || echo 'main.js not found'",
+    "build:function": "nest build -p ./tsconfig.build.json && cp ./dist/function.js ./dist/index.js",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
