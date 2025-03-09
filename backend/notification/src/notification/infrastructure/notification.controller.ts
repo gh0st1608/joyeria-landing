@@ -3,7 +3,7 @@ import { CreateNotificationUseCase } from '../application/create.application';
 import { CreateContactDto } from './dto/create.dto';
 
 @Controller('send')
-export class NotifcationController {
+export class NotificationController {
   constructor(
     private readonly createNotificationUseCase: CreateNotificationUseCase
   ) {}

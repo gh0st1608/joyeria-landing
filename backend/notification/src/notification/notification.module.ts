@@ -4,7 +4,7 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { NotificationInfrastructureRepository} from './infrastructure/notification.repository'
 import { Notification, NotificationSchema } from './infrastructure/schemas/notification.schema'; // Importa el esquema de usuario
-import { NotifcationController } from './infrastructure/notification.controller';
+import { NotificationController } from './infrastructure/notification.controller';
 import { CreateNotificationUseCase } from './application/create.application';
 import { ConfigModule } from '@nestjs/config';
 import { CreateContactUseCase } from '../contact/application/create.application';
@@ -28,7 +28,7 @@ import { ContactModule } from '../contact/contact.module';
     ContactModule,
   ],
   controllers: [
-    NotifcationController
+    NotificationController
   ],
   providers: [
     CreateNotificationUseCase,
