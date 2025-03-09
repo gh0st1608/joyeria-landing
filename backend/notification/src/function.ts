@@ -24,6 +24,6 @@ async function bootstrap() {
 
 // 🟢 Exportar la función explícitamente
 export const notificationHandler = functions.http('notificationService', async (req, res) => {
-  const expressApp = await bootstrap(); // Esperar a que la app se inicialice
+  const expressApp = await bootstrap(); // Esperar a que la app se inicialic
   expressApp(req, res); // Llamar a la aplicación Express
 });
