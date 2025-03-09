@@ -17,7 +17,7 @@ steps:
       - '--trigger-http'
       - '--runtime=nodejs20'
       - '--source=./backend/notification/dist'
-      - '--set-env-vars=MONGO_DB_URI=mongodb+srv://vady123:vady123!@proyectos.bihss.mongodb.net,NODEMAILER_USER=egalindoa@uni.pe,NODEMAILER_PASS=alhl uyov wnxt zgfe'
+      - '--set-env-vars=PORT=8080,MONGO_DB_URI=mongodb+srv://vady123:vady123!@proyectos.bihss.mongodb.net,NODEMAILER_USER=egalindoa@uni.pe,NODEMAILER_PASS=alhl uyov wnxt zgfe'
       - '--entry-point=notificationHandler'
 
 options:
