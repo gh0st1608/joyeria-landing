@@ -3,7 +3,8 @@ import { NotificationModule } from './notification/notification.module';
 import { ConfigService } from '@nestjs/config';
 import { ExpressAdapter } from '@nestjs/platform-express';
 import express from 'express';
-import functions from '@google-cloud/functions-framework';
+import * as functions from '@google-cloud/functions-framework';
+
 
 async function bootstrap() {
   const expressApp = express();
