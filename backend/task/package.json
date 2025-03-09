@@ -1,0 +1,12 @@
+{
+  "name": "task",
+  "version": "0.0.1",
+  "description": "",
+  "author": "",
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "prebuild:function": "rimraf dist",
+    "build:function": "nest build && shx cp package.json dist/ && shx cp tsconfig.json dist/ && shx cp tsconfig.build.json dist/ && shx cp dist/function.js dist/index.js"
+  }
+}
