@@ -9,7 +9,11 @@ steps:
         npm install &&
         npm install --save-dev rimraf shx &&
         npm run prebuild:function &&
-        npm run build:function
+        npx nest build &&
+        shx cp package.json dist/ && 
+        shx cp tsconfig.json dist/ && 
+        shx cp tsconfig.build.json dist/ && 
+        shx cp dist/function.js dist/index.js
 
   # Deploy Cloud Function
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -26,7 +30,7 @@ steps:
       - '--source=./backend/task/dist'
       - '--entry-point=taskHandler'
       - '--min-instances=0'
-      - '--max-instances=10'
+      - '--max-instances=1'
 
 options:
   logging: CLOUD_LOGGING_ONLY
