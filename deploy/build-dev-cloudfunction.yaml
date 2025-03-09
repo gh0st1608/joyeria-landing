@@ -7,8 +7,8 @@ steps:
       - |
         cd backend/task && 
         npm install &&
-        npm install --save-dev rimraf shx &&
-        npm run prebuild:function &&
+        rm -rf dist &&
+        mkdir -p dist &&
         npx nest build &&
         shx cp package.json dist/ && 
         shx cp tsconfig.json dist/ && 
@@ -30,7 +30,7 @@ steps:
       - '--source=./backend/task/dist'
       - '--entry-point=taskHandler'
       - '--min-instances=0'
-      - '--max-instances=1'
+      - '--max-instances=10'
 
 options:
   logging: CLOUD_LOGGING_ONLY
