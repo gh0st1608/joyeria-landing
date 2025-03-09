@@ -1,0 +1,167 @@
+/* Importar fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Vollkorn:wght@400;600;700&family=Libre+Franklin:wght@300;400;600&display=swap');
+
+/* Estilos generales */
+body {
+    font-family: 'Libre Franklin', sans-serif;
+    background-color: #F9F9F9;
+    color: #1D252C;
+}
+
+/* Contenedor principal del carrito */
+.cart-container {
+    max-width: 900px;
+    margin: 40px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Título del carrito */
+.cart-container h2 {
+    font-family: 'Vollkorn', serif;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* Tabla de productos en el carrito */
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.cart-table thead {
+    background: #1D252C;
+    color: white;
+}
+
+.cart-table th, .cart-table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-table td img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Botones de cantidad */
+.btn-quantity {
+    background: #D5BA8C;
+    border: none;
+    color: #1D252C;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-quantity:hover {
+    background: #C4A377;
+}
+
+/* Botón eliminar */
+.btn-danger {
+    background: #D9534F;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-danger:hover {
+    background: #C9302C;
+}
+
+/* Total del carrito */
+.cart-total {
+    font-size: 22px;
+    font-weight: bold;
+    font-family: 'Vollkorn', serif;
+    margin-top: 20px;
+}
+
+/* Botones de acciones */
+.cart-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Botón vaciar carrito */
+.btn-secondary {
+    background: #6C757D;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-secondary:hover {
+    background: #545B62;
+}
+
+/* Botón pagar */
+.btn-success {
+    background: #28A745;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-success:hover {
+    background: #218838;
+}
+
+/* Mensaje de carrito vacío */
+.cart-container p {
+    font-size: 16px;
+    color: #777;
+    font-family: 'Libre Franklin', sans-serif;
+}
+
+/* Estilos Responsive */
+@media (max-width: 768px) {
+    .cart-container {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .cart-table th, .cart-table td {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .cart-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn-secondary, .btn-success {
+        width: 100%;
+        padding: 12px;
+    }
+}

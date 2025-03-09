@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import MetaTags from "react-meta-tags";
 import Header from "../layouts/Header";
-import Breadcrumb from "../layouts/Breadcrumbs";
-import Instafeeds from "../layouts/Instafeeds";
+import Breadcrumb from "../sections/home/Breadcrumbs";
+
 
 import { getProductById } from "../servicios/shop/productService"; // ✅ Importa la API
 
@@ -48,7 +48,7 @@ const Shopdetail = () => {
         )}
       </div>
 
-      <Instafeeds />
+ 
   
     </>
   );

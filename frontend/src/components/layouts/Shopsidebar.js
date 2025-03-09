@@ -1,77 +1,89 @@
-import React, { Component } from "react";
-import PriceRange from "./RangoPrecio";
+import React, { useState } from "react";
 
-const colorOptions = [
-  { name: "Red", value: "red" },
-  { name: "Green", value: "green" },
-  { name: "Brown", value: "brown" },
-  { name: "Grey", value: "grey" },
-  { name: "Orange", value: "orange" },
-];
+const Sidebar = ({ onSearchChange, onFilterChange }) => {
+  const [price, setPrice] = useState(500); // Estado para el precio seleccionado
+  const [selectedColors, setSelectedColors] = useState([]); // Estado para los colores seleccionados
 
-class Shopsidebar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedColors: [],
-    };
-  }
-
-  handleColorChange = (color) => {
-    this.setState((prevState) => {
-      const { selectedColors } = prevState;
-      const updatedColors = selectedColors.includes(color)
-        ? selectedColors.filter((c) => c !== color)
-        : [...selectedColors, color];
-
-      this.props.onFilterChange(updatedColors); // Enviar colores a Content.js
-      return { selectedColors: updatedColors };
-    });
+  // Manejar el cambio de precio y actualizar el filtro
+  const handlePriceChange = (e) => {
+    const newPrice = parseInt(e.target.value);
+    setPrice(newPrice);
+    onFilterChange({ price: newPrice, colors: selectedColors });
   };
 
-  render() {
-    return (
-      <div className="sidebar">
-        <div className="widget search-widget mb-40">
-          <h5 className="widget-title">Buscar</h5>
-          <form onSubmit={(e) => e.preventDefault()}>
-            <input
-              type="text"
-              placeholder="Palabra clave..."
-              onChange={(e) => this.props.onSearchChange(e.target.value)}
-            />
-            <button type="submit">
-              <i className="far fa-search" />
-            </button>
-          </form>
-        </div>
+  // Manejar el cambio en los checkboxes de color
+  const handleColorChange = (e) => {
+    const color = e.target.value;
+    let updatedColors = selectedColors.includes(color)
+      ? selectedColors.filter((c) => c !== color)
+      : [...selectedColors, color];
 
-        <div className="widget socail-widget mb-40">
-          <h5 className="widget-title">Precio</h5>
-          <PriceRange />
-        </div>
+    setSelectedColors(updatedColors);
+    onFilterChange({ price, colors: updatedColors });
+  };
 
-        <div className="widget socail-widget mb-40">
-          <h5 className="widget-title">Color</h5>
-          <div className="filter-color">
-            <form>
-              {colorOptions.map((item, i) => (
-                <label key={i} className="checkbox">
-                  <input
-                    type="checkbox"
-                    onChange={() => this.handleColorChange(item.value)}
-                    checked={this.state.selectedColors.includes(item.value)}
-                  />
-                  <span className="custom-box" style={{ backgroundColor: item.value }} />
-                  {item.name}
-                </label>
-              ))}
-            </form>
+  return (
+    <div className="shop-sidebar">
+      
+      {/* Buscador */}
+      <div className="search-box">
+        <input
+          type="text"
+          placeholder="Search your keyword..."
+          onChange={(e) => onSearchChange(e.target.value)}
+        />
+        <button>
+          <i className="fas fa-search"></i>
+        </button>
+      </div>
+
+      {/* Filtro de Precio */}
+      <div className="price-filter">
+        <h3>Precio</h3>
+        <div className="price-slider">
+          
+          {/* Etiquetas flotantes de los valores */}
+          <div className="price-markers">
+            <span className="price-marker">S/ 20</span>
+            <span className="price-marker">S/ 1,000</span>
           </div>
+
+          {/* Control deslizante */}
+          <input
+            type="range"
+            min="20"
+            max="1000"
+            step="10"
+            value={price}
+            onChange={handlePriceChange}
+          />
+
+          {/* Burbuja con el precio actual */}
+          <div className="price-value">S/ {price}</div>
+          
         </div>
       </div>
-    );
-  }
-}
 
-export default Shopsidebar;
+      {/* Filtro de Color */}
+      <div className="color-filter">
+        <h3>Color</h3>
+        <div className="color-options">
+          {["Red", "Green", "Brown", "Grey", "Orange"].map((color) => (
+            <label key={color}>
+              <input
+                type="checkbox"
+                value={color}
+                checked={selectedColors.includes(color)}
+                onChange={handleColorChange}
+              />
+              {color}
+            </label>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  );
+};
+
+export default Sidebar;

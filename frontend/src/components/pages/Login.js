@@ -1,8 +1,8 @@
 import React, { Fragment } from "react";
 import MetaTags from "react-meta-tags";
 import Header from "../layouts/Header";
-import Breadcrumb from "../layouts/Breadcrumbs";
-import Instafeeds from "../layouts/Instafeeds";
+import Breadcrumb from "../sections/home/Breadcrumbs";
+
 
 
 
@@ -16,7 +16,7 @@ const Login = () => {
       <Header />
       <Breadcrumb breadcrumb={{ pagename: "Login" }} />
       {/* <Content /> */}
-      <Instafeeds />
+
     </Fragment>
   );
 };

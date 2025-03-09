@@ -1,0 +1,724 @@
+/* Importar la fuente Vollkorn */
+@import url('https://fonts.googleapis.com/css2?family=Vollkorn:wght@400;600;700&display=swap');
+
+
+/* Eliminar márgenes por defecto del body */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Vollkorn', serif;
+}
+
+
+/* Estilos generales del Header */
+/* Header fijo en la parte superior */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Asegura que el header esté por encima del contenido */
+}
+
+/* Ajuste para el espacio del contenido debajo del header */
+.main-content {
+    padding-top: 100px; /* Ajustar según la altura del header */
+}
+
+/* Ajuste del contenedor del header */
+.main-header {
+    padding: 15px 0;
+}
+
+/* Barra Superior */
+.top-bar {
+    background: #1D252C;
+    color: white;
+    padding: 8px 0;
+    font-size: 14px;
+}
+
+.top-bar .container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.top-info {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    font-family: Libre Franklin;
+    color: #D5BA8C;
+}
+
+.top-info .icon {
+    color: #ffcc00;
+    margin-right: 5px;
+}
+
+/* Barra Principal */
+.main-header {
+    background: white;
+    padding: 15px 0;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    /* position: ; */
+}
+
+/* Logo */
+.logo img {
+    max-width: 200px;
+    height: auto;
+}
+
+/* Menú de Navegación */
+.nav-menu {
+    display: flex;
+    align-items: center;
+}
+
+.nav-menu ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-menu ul li {
+    margin: 0 15px;
+}
+
+.nav-menu ul li a {
+    text-decoration: none;
+    color: #1D252C;
+    font-weight: 600;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+.nav-menu ul li a:hover {
+    color: #ffcc00;
+}
+
+/* Íconos */
+.icons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.icons .icon {
+    font-size: 18px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.icons .icon:hover {
+    color: #ffcc00;
+}
+
+/* Carrito de Compras */
+.cart-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -8px;
+    background: red;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 3px 7px;
+    border-radius: 50%;
+}
+
+/* 🔥 Estilos Responsive */
+@media (max-width: 1024px) {
+    .nav-menu {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: white;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        transform: translateY(-100%);
+        transition: transform 0.3s ease-in-out;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+    }
+
+    .nav-menu.open {
+        transform: translateY(0);
+    }
+
+    .nav-menu ul {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .nav-menu ul li {
+        text-align: center;
+        padding: 15px;
+        border-bottom: 1px solid #ddd;
+        width: 100%;
+    }
+
+    /* Botón Menú */
+    .menu-toggle {
+        display: block;
+        font-size: 24px;
+        cursor: pointer;
+        color: #1D252C;
+    }
+}
+
+@media (max-width: 768px) {
+    .top-bar .container {
+        justify-content: center;
+    }
+
+    .container {
+        flex-direction: column;
+    }
+
+    .logo {
+        margin-bottom: 10px;
+    }
+
+    .icons {
+        justify-content: center;
+        margin-top: 10px;
+    }
+}
+
+/* ddddddddddddddddddddddddddddddddddd Content */
+
+/* Estilos generales para la sección de categorías */
+.categories-box-layout {
+    padding: 60px 0;
+    background-color: #f9f9f9;
+}
+
+.categories-box-layout-inner {
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Estilos para cada categoría */
+.categories-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    color: #1e242c;
+    position: relative;
+}
+
+.categories-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Icono de la categoría */
+.categories-box .icon {
+    font-size: 50px;
+    color: #ffcc00;
+    margin-bottom: 15px;
+}
+
+/* Título de la categoría */
+.categories-box .title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+/* Número de productos */
+.categories-box p {
+    font-size: 16px;
+    font-weight: 500;
+    color: #777;
+}
+
+/* Icono de fondo */
+.overlay-icon {
+    position: absolute;
+    font-size: 80px;
+    color: rgba(255, 204, 0, 0.2);
+    bottom: 10px;
+    right: 10px;
+    transition: opacity 0.3s;
+}
+
+.categories-box:hover .overlay-icon {
+    opacity: 0.5;
+}
+
+/* Diseño Responsive */
+@media (max-width: 1024px) {
+    .categories-box {
+        padding: 20px;
+    }
+
+    .categories-box .icon {
+        font-size: 40px;
+    }
+
+    .categories-box .title {
+        font-size: 18px;
+    }
+
+    .overlay-icon {
+        font-size: 60px;
+    }
+}
+
+@media (max-width: 768px) {
+    .categories-box {
+        padding: 15px;
+    }
+
+    .categories-box .icon {
+        font-size: 35px;
+    }
+
+    .categories-box .title {
+        font-size: 16px;
+    }
+
+    .overlay-icon {
+        font-size: 50px;
+    }
+}
+/* jlkjjljjljljlk BANER */
+/* Estilos generales del banner */
+.banner-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Ajustar al alto de la pantalla */
+    background-color: #f9f9f9;
+    padding: 50px 0;
+}
+
+/* Contenedor con flexbox para distribuir elementos */
+.banner-content-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    width: 100%;
+    padding: 0 20px;
+}
+
+/* Contenido de texto alineado a la izquierda */
+.banner-content {
+    flex: 1;
+    text-align: left;
+}
+
+/* Ajuste del título */
+.banner-content .title {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #1D252C;
+}
+
+/* Botón alineado a la izquierda */
+.banner-content ul {
+    padding: 0;
+    margin: 20px 0;
+    list-style: none;
+}
+
+.banner-content ul li {
+    display: inline-block;
+}
+
+.banner-content .main-btn {
+    display: inline-block;
+    padding: 12px 25px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    background-color: #D5BA8C;
+    color: #1D252C;
+    transition: all 0.3s ease-in-out;
+}
+
+.banner-content .main-btn:hover {
+    background-color: #D5BA8C;
+}
+
+/* Imagen dinámica alineada a la derecha */
+.banner-thumb {
+    flex: 1;
+    text-align: right;
+}
+
+.banner-thumb img {
+    max-width: 100%;
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.banner-thumb img:hover {
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .banner-area {
+        height: auto;
+        padding: 50px 20px;
+    }
+
+    .banner-content-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .banner-content {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .banner-content .title {
+        font-size: 36px;
+    }
+
+    .banner-content ul {
+        text-align: center;
+    }
+
+    .banner-thumb {
+        text-align: center;
+    }
+
+    .banner-thumb img {
+        max-width: 80%;
+    }
+}
+
+@media (max-width: 768px) {
+    .banner-content .title {
+        font-size: 28px;
+    }
+
+    .main-btn {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+
+    .banner-thumb img {
+        max-width: 100%;
+    }
+}
+
+
+/* Haboutdjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj */
+/* Sección general de "Sobre Nosotros" */
+.about-section {
+    padding: 100px 0;
+    background-color: #f9f9f9;
+    position: relative;
+}
+
+/* Contenedor principal con dos columnas */
+.about-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: auto;
+    gap: 50px;
+}
+
+/* Columna izquierda con imágenes y características */
+.about-left {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    width: 50%;
+}
+
+/* Tarjetas de características */
+.feature-box {
+    background-color: white;
+    padding: 25px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.feature-box:hover {
+    transform: translateY(-5px);
+}
+
+/* Iconos */
+.feature-box .icon {
+    font-size: 40px;
+    color: #ffcc00;
+    margin-bottom: 15px;
+}
+
+/* Texto en las tarjetas */
+.feature-box h4 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Imágenes */
+.feature-image {
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+}
+
+/* Columna derecha con el contenido de texto */
+.about-right {
+    width: 50%;
+    text-align: left;
+}
+
+/* Título */
+.about-right h2 {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: #1e242c;
+}
+
+/* Descripción */
+.about-right p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Botón */
+.main-btn {
+    display: inline-block;
+    padding: 12px 25px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    background-color: #D5BA8C;
+    color: #1e242c;
+    transition: all 0.3s ease-in-out;
+}
+
+.main-btn:hover {
+    background-color: #e6b800;
+}
+
+/* Imagen de fondo */
+.about-background {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+/* Diseño Responsive */
+@media (max-width: 1024px) {
+    .about-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-left {
+        width: 100%;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .about-right {
+        width: 100%;
+        text-align: center;
+    }
+
+    .about-background {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-right h2 {
+        font-size: 36px;
+    }
+
+    .main-btn {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+}
+
+/* Foooooooooooooooooooooooter */
+/* Estilos generales del Footer */
+.footer {
+    background-color: #1D252C; /* Color primario */
+    color: white;
+    padding: 50px 0;
+    font-family: 'Libre Franklin', sans-serif;
+}
+
+/* Contenedor del Footer con alineación correcta */
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Asegura que todo esté alineado en la misma línea */
+    max-width: 1200px;
+    margin: auto;
+    flex-wrap: wrap;
+    gap: 20px; /* Espaciado uniforme */
+}
+
+/* Secciones del Footer */
+.footer-section {
+    flex: 1;
+    text-align: center;
+    min-width: 280px; /* Evita que se reduzcan demasiado */
+}
+
+/* Títulos del Footer */
+.footer-section h4 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    font-family: 'Vollkorn', serif;
+    color: #D5BA8C; /* Color secundario */
+}
+
+/* Texto del Footer */
+.footer-section p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+/* Enlaces del Footer */
+.footer-section a {
+    color: #D5BA8C; /* Color secundario */
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.footer-section a:hover {
+    color: #ffffff;
+}
+
+/* Íconos de redes sociales */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-icons a {
+    font-size: 18px;
+    background: #D5BA8C; /* Color secundario */
+    color: #1D252C; /* Color primario */
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.3s ease-in-out;
+}
+
+.social-icons a i {
+    font-size: 18px;
+}
+
+.social-icons a:hover {
+    background: white;
+    color: #1D252C;
+}
+
+/* Footer inferior */
+.footer-bottom {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #D5BA8C;
+    font-size: 14px;
+    text-align: center;
+}
+
+.footer-bottom strong {
+    font-family: 'Vollkorn', serif;
+    font-weight: 700;
+}
+
+/* Diseño Responsive */
+@media (max-width: 1024px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .footer-section {
+        width: 100%;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+}
+/* deseeeeeeeeeeesconocido */
+
+
+
+
+
+/* Si el header es fijo, agrega margen al body */
+body {
+    padding-top: 80px; /* 🔥 Ajusta según el tamaño del header */
+}
+
+/* Si el header usa sticky, asegúrate de que no cubra el breadcrumb */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background: white;
+}

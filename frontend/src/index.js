@@ -5,16 +5,15 @@ import * as serviceWorker from './serviceWorker';
 import { CartProvider } from "./context/CartContext";
 
 // Css
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import '../node_modules/slick-carousel/slick/slick.css';
-import '../node_modules/slick-carousel/slick/slick-theme.css';
-import '../node_modules/animate.css/animate.css';
-import '../node_modules/magnific-popup/dist/magnific-popup.css';
-import './assets/css/font-awesome.min.css';
-import './assets/css/flaticon.css';
-import './assets/fonts/flaticon/flaticon-2.css';
-import './assets/css/default.css';
+
 import './assets/css/style.css';
+import './assets/css/home.css';
+import './assets/css/about.css';
+import './assets/css/catalog.css';
+import './assets/css/sidebar.css';
+import './assets/css/contact.css';
+import './assets/css/login.css';
+import './assets/css/carrito.css';
 
 ReactDOM.render(
   <CartProvider>
