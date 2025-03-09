@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 
 const Footer = () => {
   return (
@@ -22,13 +24,13 @@ const Footer = () => {
 
         <div className="footer-section">
           <h4>Legal</h4>
-          <Link to="#">Terms of Use</Link> |
-          <Link to="#"> Privacy Policy</Link>
+          <Link to="#">Términos de Uso</Link> |
+          <Link to="#"> Política de Privacidad</Link>
         </div>
       </div>
 
       <div className="footer-bottom">
-        <p>© 2025 <strong>Peru Joyas</strong> - All rights reserved.</p>
+        <p>© 2025 <strong>Peru Joyas</strong> - Todos los derechos reservados.</p>
       </div>
     </footer>
   );

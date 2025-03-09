@@ -45,6 +45,7 @@ function App() {
   return (
     <AuthProvider>
     <CartProvider>
+      
       <Router>
         <Switch>
           <Route exact path="/" component={Home} />

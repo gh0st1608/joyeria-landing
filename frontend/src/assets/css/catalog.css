@@ -1,0 +1,265 @@
+/* Importar fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Vollkorn:wght@400;600;700&family=Libre+Franklin:wght@300;400;600&display=swap');
+
+/* Contenedor principal de la tienda */
+.shop-section {
+    padding: 50px 0;
+}
+
+/* Contenedor general */
+.shop-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+/* Sidebar */
+.sidebar {
+    flex: 1;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: none;
+}
+
+/* Estilos del buscador */
+.search-box {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-box input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    font-size: 14px;
+    font-family: 'Libre Franklin', sans-serif;
+}
+
+.search-box button {
+    background: #D5BA8C;
+    color: white;
+    border: none;
+    padding: 10px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Contenedor de productos */
+.product-container {
+    flex: 3;
+    padding: 25px;
+    border-radius: 8px;
+}
+
+/* Grid de productos */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+/* Tarjeta de producto */
+.product-card {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border: 1px solid #ddd;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Imagen del producto */
+.product-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Detalles del producto */
+.product-details {
+    padding: 15px 0;
+}
+
+.product-name {
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Vollkorn', serif;
+}
+
+.product-price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #D5BA8C;
+}
+
+/* Etiquetas de descuento y nuevo */
+.product-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #D5BA8C;
+    color: #1D252C;
+    font-size: 12px;
+    padding: 5px 8px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+/* Descuento */
+.discount-tag {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: white;
+    color: red;
+    font-size: 12px;
+    padding: 5px 8px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+/* Botones */
+.product-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.btn {
+    padding: 12px 18px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Botón "Ver Opciones" */
+.btn-primary {
+    background: #1D252C;
+    color: white;
+    border: 2px solid #1D252C;
+}
+
+.btn-primary:hover {
+    background: white;
+    color: #1D252C;
+}
+
+/* Botón "Agregar al carrito" */
+.btn-cart {
+    background: #D5BA8C;
+    color: #1D252C;
+    border: 2px solid #D5BA8C;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.btn-cart:hover {
+    background: white;
+    color: #D5BA8C;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .shop-container {
+        flex-direction: column;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    }
+
+    .product-buttons {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+
+
+/* Importar fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Vollkorn:wght@400;600;700&family=Libre+Franklin:wght@300;400;600&display=swap');
+
+/* Contenedor de botones */
+.product-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* Estilos generales de botones */
+.btn {
+    padding: 12px 18px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Botón "Ver Opciones" */
+.btn-options {
+    background: #1D252C;
+    color: white;
+    border: 2px solid #1D252C;
+}
+
+.btn-options:hover {
+    background: white;
+    color: #1D252C;
+}
+
+/* Botón "Agregar al carrito" */
+.btn-cart {
+    background: #D5BA8C;
+    color: #1D252C;
+    border: 2px solid #D5BA8C;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.btn-cart:hover {
+    background: white;
+    color: #D5BA8C;
+}
+
+/* Icono dentro del botón */
+.btn-cart i {
+    font-size: 16px;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .product-buttons {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}

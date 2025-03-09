@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
 import { CartContext } from "../../context/CartContext";
 import { Link } from "react-router-dom";
+import { FaPhoneAlt, FaMapMarkerAlt, FaCalendarAlt, FaHeart, FaUser, FaShoppingBag, FaBars, FaTimes } from "react-icons/fa";
 import AuthModal from "../sections/auth/AuthModal";
-import { FaPhoneAlt, FaMapMarkerAlt, FaCalendarAlt, FaHeart, FaUser, FaShoppingBag, FaSearch } from "react-icons/fa";
-import marca from "../../assets/img/peruJoyas/Logotipo horizontal en formato PNG - A color para fondo claro.png"; // ✅ Importamos la imagen correctamente
-// import "./Header.css"; // ✅ Importar los estilos
+import marca from "../../assets/img/peruJoyas/Logotipo horizontal en formato PNG - A color para fondo claro.png"; 
+
 
 const Header = () => {
   const { cart } = useContext(CartContext);
@@ -31,42 +31,44 @@ const Header = () => {
       {/* Barra Principal */}
       <div className="main-header">
         <div className="container">
+           {/* Botón Menú Móvil */}
+           {/* <div className="menu-toggle" onClick={toggleMenu}>
+            {menuOpen ? <FaTimes /> : <FaBars />}
+          </div> */}
+
           {/* Logo */}
           <div className="logo">
             <Link to="/">
-              <img src={marca} alt="Logo" className="logo-img" />
-              {/* <span>Peru Joyas</span> */}
+              <img src={marca} alt="Perú Joyas" />
             </Link>
           </div>
 
+         
           {/* Menú de Navegación */}
           <nav className={menuOpen ? "nav-menu open" : "nav-menu"}>
             <ul>
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/about">Nosotros</Link></li>
-              <li><Link to="/shop-left">Catálogo</Link></li>
-              <li><Link to="/contact">Contáctanos</Link></li>
+              <li><Link to="/" onClick={toggleMenu}>Home</Link></li>
+              <li><Link to="/about" onClick={toggleMenu}>Nosotros</Link></li>
+              <li><Link to="/shop-left" onClick={toggleMenu}>Catálogo</Link></li>
+              <li><Link to="/contact" onClick={toggleMenu}>Contáctanos</Link></li>
+
+              <li className="icons">
+                <FaHeart className="icon" />
+                <span>Favoritos</span>
+                <FaUser className="icon" onClick={() => setShowAuthModal(true)} />
+                <span>Iniciar Sesión</span>
+              </li>
 
               <li>
-              <div className="icons">
-                <FaHeart className="icon" /> <span>Favoritos</span>
-                <FaUser className="icon" onClick={() => setShowAuthModal(true)} /> <span>Iniciar Sesion</span>
-              </div>
-              </li>
-              <li><Link to="/cart">
-                <div className="cart-icon">
-                  <FaShoppingBag className="icon" />
-                  <span className="cart-badge">{cart.reduce((total, item) => total + item.quantity, 0)}</span>
-                </div>
-              </Link>
+                <Link to="/cart" onClick={toggleMenu}>
+                  <div className="cart-icon">
+                    <FaShoppingBag className="icon" />
+                    <span className="cart-badge">{cart.reduce((total, item) => total + item.quantity, 0)}</span>
+                  </div>
+                </Link>
               </li>
             </ul>
           </nav>
-          {/* Barra de Búsqueda */}
-          {/* <div className="search-bar"> */}
-          {/* <input type="text" placeholder="Buscar en tienda..." /> */}
-          {/* <button><FaSearch /></button> */}
-          {/* </div> */}
         </div>
       </div>
 

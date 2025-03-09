@@ -17,9 +17,9 @@ const Aboutv2 = () => {
         
         
          
-        <div className="about-section container pt-115 pb-115">
+        <div className="about-section">
             
-            <div className="about-content subcontainer">
+            <div className="about-content ">
                 <div className="about-text">
                     <div>
                         <h3>Misión</h3>

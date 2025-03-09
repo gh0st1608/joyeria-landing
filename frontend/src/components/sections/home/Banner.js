@@ -2,15 +2,10 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import ReactWOW from 'react-wow';
-import Cursor from '../../layouts/Cursor';
-
-// import img1 from '../../../assets/img/banner/01.jpg';
 import img2 from '../../../assets/img/banner/02.jpg';
 
-const bannerposts = [
-    // { img: img1 },
-    { img: img2 },
-]
+
+const bannerposts = [{ img: img2 }];
 
 class Banner extends Component {
     render() {
@@ -23,68 +18,42 @@ class Banner extends Component {
             autoplaySpeed: 4000,
             arrows: false,
             dots: false,
-        }
+        };
+
         return (
-            <section className="banner-area banner-style-one position-relative">
-                {/* Follow Circle */}
-                <Cursor />
-                <ReactWOW animation='fadeIn' data-delay=".3s">
-                    <div className="d-none d-md-block vertical-text">
+            <section className="banner-area">
+                <div className="banner-content-container">
+                    {/* Contenido a la izquierda */}
+                    <div className="banner-content">
+                        <ReactWOW animation='fadeInDown' data-delay=".3s">
+                            <span className="promo-tag">Diseño de joyas con amor</span>
+                        </ReactWOW>
+                        <ReactWOW animation='fadeInLeft' data-delay=".5s">
+                            <h1 className="title">Artículos de <br /> joyería de alta gama</h1>
+                        </ReactWOW>
                         <ul>
                             <li>
-                                <Link to="#"> <i className="fab fa-facebook" /> Facebook </Link>
-                            </li>
-                            <li>
-                                <Link to="#"> <i className="fab fa-instagram" /> Instagram </Link>
-                            </li>
-                            <li>
-                                <Link to="#"> <i className="fab fa-twitter" /> Twitter </Link>
+                                <ReactWOW animation='fadeInUp' data-delay=".7s">
+                                    <Link className="main-btn" to="/about">Nosotros</Link>
+                                </ReactWOW>
                             </li>
                         </ul>
                     </div>
-                </ReactWOW>
-                <ReactWOW animation='fadeIn' data-delay=".3s">
-                    <div className="d-none d-md-block vertical-text right">
-                        <span>Call us on: </span>
-                        <span>+123 456 789</span>
-                    </div>
-                </ReactWOW>
-                <div className="container container-custom-two">
-                    <div className="row align-items-center">
-                        <div className="col-lg-6 col-md-6">
-                            <div className="banner-content">
-                                <ReactWOW animation='fadeInDown' data-delay=".3s">
-                                    <span className="promo-tag" >Diseño de joyas con amor</span>
-                                </ReactWOW>
-                                <ReactWOW animation='fadeInLeft' data-delay=".5s">
-                                    <h1 className="title">Artículos de  <br />joyería de alta gama</h1>
-                                </ReactWOW>
-                                <ul>
-                                    <li>
-                                        <ReactWOW animation='fadeInUp' data-delay=".7s">
-                                            <Link className="main-btn btn-filled" to="/about">Nosotros </Link>
-                                        </ReactWOW>
-                                    </li>
 
-                                </ul>
-                            </div>
+                    {/* Imagen dinámica a la derecha */}
+                    <ReactWOW animation='fadeInRight' data-delay="0.5s">
+                        <div className="banner-thumb">
+                            <Slider className="carousel hero-slider-one" {...settings}>
+                                {bannerposts.map((item, i) => (
+                                    <div key={i} className="single-thumb">
+                                        <img src={item.img} alt="images" />
+                                    </div>
+                                ))}
+                            </Slider>
                         </div>
-                        <ReactWOW animation='fadeInRight' data-delay="0.5s">
-                            <div className="col-lg-6 col-md-6">
-                                <div className="banner-thumb d-none d-md-block">
-                                    <Slider className="carousel hero-slider-one" {...settings}>
-                                        {bannerposts.map((item, i) => (
-                                            <div key={i} className="single-thumb">
-                                                <img src={item.img} alt="images" />
-                                            </div>
-                                        ))}
-                                    </Slider>
-                                </div>
-                            </div>
-                        </ReactWOW>
-                    </div>
-                </div >
-            </section >
+                    </ReactWOW>
+                </div>
+            </section>
         );
     }
 }
