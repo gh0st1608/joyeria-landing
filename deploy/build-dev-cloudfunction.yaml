@@ -2,33 +2,22 @@ steps:
   # Install dependencies and build
   - name: 'gcr.io/cloud-builders/npm'
     entrypoint: 'bash'
-    args: 
-      - '-c'
-      - |
-        cd backend/task && 
-        npm install &&
-        mkdir -p dist &&
-        npx nest build &&
-        cp package.json dist/ && 
-        cp tsconfig.json dist/ && 
-        cp tsconfig.build.json dist/ && 
-        cp dist/function.js dist/index.js
+    args: ['-c', 'cd backend/notification && npm install && npm run build:function']
+
   # Deploy Cloud Function
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'
     args:
       - 'functions'
       - 'deploy'
-      - 'taskService'
+      - 'notificationService'
       - '--region=us-central1'
       - '--memory=512MB'
       - '--allow-unauthenticated'
       - '--trigger-http'
       - '--runtime=nodejs20'
-      - '--source=./backend/task/dist'
-      - '--entry-point=taskHandler'
-      - '--min-instances=0'
-      - '--max-instances=10'
+      - '--source=./backend/notification/dist'
+      - '--entry-point=notificationHandler'
 
 options:
   logging: CLOUD_LOGGING_ONLY
