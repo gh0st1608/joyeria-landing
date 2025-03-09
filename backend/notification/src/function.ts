@@ -5,26 +5,21 @@ import { ExpressAdapter } from '@nestjs/platform-express';
 import express from 'express';
 import * as functions from '@google-cloud/functions-framework';
 
-
-async function bootstrap() {
+async function bootstrap(): Promise<express.Express> {
   const expressApp = express();
-
-  // Crea la aplicación NestJS usando Express como base
   const app = await NestFactory.create(NotificationModule, new ExpressAdapter(expressApp));
   const configService = app.get(ConfigService);
 
   app.setGlobalPrefix('notification');
   app.enableCors();
-
-  // Inicializa la aplicación NestJS
-  await app.init();
-
-  // Devolvemos la app para ser usada en el manejador de Cloud Functions
-  return expressApp;
+  
+  await app.init(); // Esperar la inicialización completa
+  return expressApp; // Regresar la app ya inicializada
 }
 
-// 🟢 Exportar la función explícitamente
+// Exporta la función de Cloud Function con nombre
 export const notificationHandler = functions.http('notificationService', async (req, res) => {
-  const expressApp = await bootstrap(); // Esperar a que la app se inicialic
-  expressApp(req, res); // Llamar a la aplicación Express
+  // Asegúrate de que la app esté completamente inicializada antes de manejar la solicitud
+  const expressApp = await bootstrap(); // Esta espera que NestJS esté listo
+  expressApp(req, res); // Procesa la solicitud HTTP con Express
 });
