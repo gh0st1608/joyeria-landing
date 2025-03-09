@@ -7,7 +7,6 @@ steps:
       - |
         cd backend/task && 
         npm install &&
-        rm -rf dist &&
         mkdir -p dist &&
         npx nest build &&
         shx cp package.json dist/ && 
