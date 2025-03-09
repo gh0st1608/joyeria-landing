@@ -9,11 +9,10 @@ steps:
         npm install &&
         mkdir -p dist &&
         npx nest build &&
-        shx cp package.json dist/ && 
-        shx cp tsconfig.json dist/ && 
-        shx cp tsconfig.build.json dist/ && 
-        shx cp dist/function.js dist/index.js
-
+        cp package.json dist/ && 
+        cp tsconfig.json dist/ && 
+        cp tsconfig.build.json dist/ && 
+        cp dist/function.js dist/index.js
   # Deploy Cloud Function
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'
