@@ -3,6 +3,10 @@ steps:
   - name: 'gcr.io/cloud-builders/npm'
     entrypoint: 'bash'
     args: ['-c', 'cd backend/notification && npm install && npm run build:function']
+  
+  - name: 'gcr.io/cloud-builders/npm'
+    entrypoint: 'bash'
+    args: ['-c', 'cd backend/task && npm install && npm run build:function']
 
   # Deploy Cloud Function
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -19,6 +23,21 @@ steps:
       - '--source=./backend/notification/dist'
       - '--set-env-vars=MONGO_DB_URI=mongodb+srv://vady123:vady123!@proyectos.bihss.mongodb.net,NODEMAILER_USER=egalindoa@uni.pe,NODEMAILER_PASS=alhl uyov wnxt zgfe'
       - '--entry-point=notificationHandler'
+  
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args:
+      - 'functions'
+      - 'deploy'
+      - 'taskService'
+      - '--region=us-central1'
+      - '--memory=512MB'
+      - '--allow-unauthenticated'
+      - '--trigger-http'
+      - '--runtime=nodejs20'
+      - '--source=./backend/task/dist'
+      - '--set-env-vars=MONGO_DB_URI=mongodb+srv://vady123:vady123!@proyectos.bihss.mongodb.net,NODEMAILER_USER=egalindoa@uni.pe,NODEMAILER_PASS=alhl uyov wnxt zgfe'
+      - '--entry-point=taskHandler'
 
 options:
   logging: CLOUD_LOGGING_ONLY
