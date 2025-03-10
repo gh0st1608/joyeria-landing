@@ -22,7 +22,7 @@ steps:
     args:
       - 'functions'
       - 'deploy'
-      - 'shopService'
+      - 'notificationService'
       - '--region=us-central1'
       - '--memory=512MB'
       - '--allow-unauthenticated'
@@ -30,7 +30,7 @@ steps:
       - '--runtime=nodejs20'
       - '--source=./backend/notification/dist'
       - '--set-env-vars=MONGO_DB_URI=mongodb+srv://vady123:vady123!@proyectos.bihss.mongodb.net,NODEMAILER_USER=egalindoa@uni.pe,NODEMAILER_PASS=alhl uyov wnxt zgfe'
-      - '--entry-point=shopHandler'
+      - '--entry-point=notificationHandler'
   
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'
@@ -44,7 +44,7 @@ steps:
       - '--trigger-http'
       - '--runtime=nodejs20'
       - '--source=./backend/task/dist'
-      - '--set-env-vars=MONGO_DB_URI=mongodb+srv://vady123:vady123!@proyectos.bihss.mongodb.net,NODEMAILER_USER=egalindoa@uni.pe,NODEMAILER_PASS=alhl uyov wnxt zgfe'
+      - '--set-env-vars=MONGO_DB_URI=mongodb+srv://vady123:vady123!@proyectos.bihss.mongodb.net'
       - '--entry-point=taskHandler'
 
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -73,7 +73,7 @@ steps:
       - '--allow-unauthenticated'
       - '--trigger-http'
       - '--runtime=nodejs20'
-      - '--source=./backend/shop/dist'
+      - '--source=./backend/auth/dist'
       - '--set-env-vars=MONGO_DB_URI=mongodb+srv://vady123:vady123!@proyectos.bihss.mongodb.net,TOKEN_TIMEOUT=3600,TOKEN_SECRET_WORD=Santiago123!'
       - '--entry-point=authHandler'
 
