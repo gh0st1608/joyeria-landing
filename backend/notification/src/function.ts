@@ -18,7 +18,7 @@ async function bootstrap(): Promise<express.Express> {
 }
 
 // Exporta la función de Cloud Function con nombre
-export const notificationHandler = functions.http('notificationService', async (req, res) => {
+export const notificationHandler = functions.http('notificationHandler', async (req, res) => {
   // Asegúrate de que la app esté completamente inicializada antes de manejar la solicitud
   const expressApp = await bootstrap(); // Esta espera que NestJS esté listo
   expressApp(req, res); // Procesa la solicitud HTTP con Express
