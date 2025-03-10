@@ -16,7 +16,7 @@ async function bootstrap() {
   await app.init();
 }
 
-export const taskHandler = async (req: functions.Request, res: functions.Response) => {
+export const taskHandler = functions.http('taskHandler', async ( req, res) => {
   await bootstrap();
   server(req, res);
-};
+});
