@@ -29,7 +29,7 @@ const Sidebar = ({ onSearchChange, onFilterChange }) => {
       <div className="search-box">
         <input
           type="text"
-          placeholder="Search your keyword..."
+          placeholder="Buscar palabra clave..."
           onChange={(e) => onSearchChange(e.target.value)}
         />
         <button>

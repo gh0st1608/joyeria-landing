@@ -1,98 +1,96 @@
+
+
 /* Importar fuentes */
 @import url('https://fonts.googleapis.com/css2?family=Vollkorn:wght@400;600;700&family=Libre+Franklin:wght@300;400;600&display=swap');
 
-/* Estilos generales de la sección "About" */
+/* Sección principal */
 .about-section {
-    padding: 115px 0;
-    background-color: #f9f9f9;
-    font-family: 'Libre Franklin', sans-serif;
+    width: 100%;
+    padding: 60px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f8f8f8;
 }
 
-/* Contenedor de la sección */
+/* Contenedor del contenido */
 .about-content {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: auto;
     gap: 50px;
+    max-width: 1200px;
+    padding: 20px;
 }
 
-/* Columna de texto */
+/* Texto de Misión y Visión */
 .about-text {
-    width: 50%;
-    color: #1D252C;
+    flex: 1;
+    max-width: 600px;
 }
 
+/* Títulos de Misión y Visión */
 .about-text h3 {
     font-family: 'Vollkorn', serif;
-    font-size: 32px;
+    font-size: 28px;
     font-weight: bold;
-    color: #D5BA8C; /* Color secundario */
-    margin-bottom: 15px;
+    color: #1D252C;
+    margin-bottom: 10px;
 }
 
+/* Párrafos */
 .about-text p {
+    font-family: 'Libre Franklin', sans-serif;
     font-size: 16px;
-    line-height: 1.6;
-    color: #1D252C;
+    line-height: 1.8;
+    color: #333;
+    text-align: justify; /* 🔥 Cuadra el texto */
     margin-bottom: 20px;
 }
 
+/* Negrita dentro del texto */
 .about-text p strong {
-    color: #D5BA8C; /* Resaltar palabras clave */
+    color: #D5BA8C;
+    font-weight: bold;
 }
 
-/* Columna de imágenes */
+/* Contenedor de imágenes */
 .about-images {
-    width: 50%;
+    flex: 1;
     display: flex;
-    gap: 20px;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    max-width: 500px;
 }
 
+/* Imágenes */
 .about-images img {
     width: 100%;
-    max-width: 300px;
+    max-width: 230px;
+    height: auto;
     border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.about-images img:hover {
-    transform: scale(1.05);
-}
-
-/* Diseño Responsive */
-@media (max-width: 1024px) {
+/* Responsivo */
+@media (max-width: 768px) {
     .about-content {
         flex-direction: column;
         text-align: center;
     }
 
     .about-text {
-        width: 100%;
-    }
-
-    .about-images {
-        width: 100%;
-        justify-content: center;
-    }
-
-    .about-images img {
-        max-width: 45%;
-    }
-}
-
-@media (max-width: 768px) {
-    .about-text h3 {
-        font-size: 28px;
+        max-width: 100%;
     }
 
     .about-text p {
-        font-size: 15px;
+        text-align: center; /* 🔥 Centra el texto en pantallas pequeñas */
     }
 
-    .about-images img {
-        max-width: 100%;
+    .about-images {
+        flex-direction: column;
+        gap: 20px;
     }
 }

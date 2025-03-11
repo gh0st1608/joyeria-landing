@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { FaPhone, FaEnvelope } from "react-icons/fa";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 
@@ -9,8 +10,8 @@ const Footer = () => {
       <div className="footer-container">
         <div className="footer-section">
           <h4>Contactanos</h4>
-          <p>📞 +987 876 765 76 577</p>
-          <p>📧 info@webmail.com</p>
+          <p> <FaPhone /> +987 876 765 76 577</p>
+          <p> <FaEnvelope /> info@webmail.com</p>
         </div>
 
         <div className="footer-section">

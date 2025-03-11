@@ -21,7 +21,7 @@ class Habout extends Component {
                                 <div className="icon">
                                     <i className="flaticon-ring" />
                                 </div>
-                                <h4>New Rings</h4>
+                                <h4>Nuevos anillos</h4>
                                 <p>Los más finos y delicados anillos para nuestros valiosos clientes.</p>
                             </div>
                             <div 
@@ -36,7 +36,7 @@ class Habout extends Component {
                                 <div className="icon">
                                     <i className="flaticon-necklace" />
                                 </div>
-                                <h4>Wedding Collection</h4>
+                                <h4>Colección de bodas</h4>
                                 <p>Nuestros collares de colección con diseños asombrosos.</p>
                             </div>
                         </div>

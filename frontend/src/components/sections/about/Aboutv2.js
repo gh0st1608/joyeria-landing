@@ -1,29 +1,16 @@
 import React from "react";
+import img1 from '../../../assets/img/about/peru-joyas-about-1.png';
+import img2 from '../../../assets/img/about/peru-joyas-about-2.png';
 
-import img1 from '../../../assets/img/banner/01.jpg';
-import img2 from '../../../assets/img/banner/02.jpg';
-import img3 from '../../../assets/img/about/peru-joyas-about-1.png';
-import img4 from '../../../assets/img/about/peru-joyas-about-2.png';
-
-const bannerposts = [
-    { img: img1 },
-    { img: img2 },
-    { img: img3 },
-    { img: img4 },
-]
 
 const Aboutv2 = () => {
     return (
-        
-        
-         
         <div className="about-section">
-            
-            <div className="about-content ">
+            <div className="about-content">
                 <div className="about-text">
                     <div>
                         <h3>Misión</h3>
-                        <p>Nos compretemos a perfeccionar la artesanía de la joyería con una obsesión por la calidad, fusionando tradición y tecnología para crear piezas únicas y personalizadas. Buscamos emocionar y <strong>ser parte de los momentos más significativos en la vida de nuestros clientes, estableciendo estándares globales de excelencia en diseño y fabricación, con un enfoque constante en la innovación y la satisfación del cliente.</strong></p>
+                        <p>Nos comprometemos a perfeccionar la artesanía de la joyería con una obsesión por la calidad, fusionando tradición y tecnología para crear piezas únicas y personalizadas. Buscamos emocionar y <strong>ser parte de los momentos más significativos en la vida de nuestros clientes, estableciendo estándares globales de excelencia en diseño y fabricación, con un enfoque constante en la innovación y la satisfacción del cliente.</strong></p>
                     </div>
                     <div>
                         <h3>Visión</h3>
@@ -31,13 +18,11 @@ const Aboutv2 = () => {
                     </div>
                 </div>
                 <div className="about-images">
-                    <img src={`${bannerposts[2].img}`} alt="images" />
-                    <img src={`${bannerposts[3].img}`} alt="images" />
+                    <img src={img1} alt="Misión" />
+                    <img src={img2} alt="Visión" />
                 </div>
-                
             </div>
         </div>
-        
     )
 };
 
