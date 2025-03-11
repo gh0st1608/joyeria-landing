@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { CartContext } from "../../context/CartContext";
 import { Link } from "react-router-dom";
-import { FaPhoneAlt, FaMapMarkerAlt, FaCalendarAlt, FaHeart, FaUser, FaShoppingBag, FaBars, FaTimes } from "react-icons/fa";
+import { FaPhoneAlt, FaMapMarkerAlt, FaCalendarAlt, FaHeart, FaUser, FaShoppingBag } from "react-icons/fa";
 import AuthModal from "../sections/auth/AuthModal";
 import marca from "../../assets/img/peruJoyas/Logotipo horizontal en formato PNG - A color para fondo claro.png"; 
 

@@ -4,6 +4,7 @@ import Pagination from "../../layouts/Pagination";
 import Sidebar from "../../layouts/Shopsidebar";
 import { getProducts } from "../../servicios/shop/productService";
 import { CartContext } from "../../../context/CartContext";
+import { FaEye } from "react-icons/fa";
 
 import '@fortawesome/fontawesome-free/css/all.min.css'; // ✅ Importamos FontAwesome
 
@@ -115,7 +116,7 @@ class Content extends Component {
 
                       <div className="product-buttons">
                         <Link to={`/shop-detail/${item.id}`} className="btn btn-options">
-                          🔍 Ver Opciones
+                          <FaEye style={{ marginRight: "5px" }} /> Ver Opciones
                         </Link>
                         <button
                           className="btn btn-cart"

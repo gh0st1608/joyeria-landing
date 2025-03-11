@@ -4,6 +4,9 @@ import { createCart, createPayment } from "../../servicios/payment/paymentServic
 import { Link, useHistory } from "react-router-dom";
 import { io } from "socket.io-client";
 import { BASE_URL } from "../../servicios/endpoints";
+import { FaTrash, FaCreditCard, FaCheckCircle } from "react-icons/fa";
+
+
 
 const CartContent = () => {
   const { cart, removeFromCart, clearCart, updateQuantity } = useContext(CartContext);
@@ -53,7 +56,7 @@ const CartContent = () => {
   if (!cart || cart.length === 0) {
     return (
       <div className="cart-container">
-        <h2>🛒 Carrito de Compras</h2>
+        <h2>Carrito de Compras</h2>
         <p>Tu carrito está vacío.</p>
         <Link to="/shop-left" className="btn btn-primary">Ver productos</Link>
       </div>
@@ -62,7 +65,7 @@ const CartContent = () => {
 
   return (
     <div className="cart-container">
-      <h2>🛒 Carrito de Compras</h2>
+      <h2>Carrito de Compras</h2>
       <table className="cart-table">
         <thead>
           <tr>
@@ -93,10 +96,11 @@ const CartContent = () => {
               </td>
               <td>S/ {(item.price * item.quantity).toFixed(2)}</td>
               <td>
-                {/* <button className="btn btn-danger" onClick={() => removeFromCart(item._id)}>❌</button> */}
+
                 <button className="btn btn-danger btn-sm" onClick={() => removeFromCart(item._id)}>
-                  <span role="img" aria-label="Eliminar">Eliminar </span>
+                  <FaTrash style={{ marginRight: "5px" }} /> Eliminar
                 </button>
+
 
               </td>
             </tr>
@@ -107,10 +111,22 @@ const CartContent = () => {
         🏷 Total: S/ {cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)}
       </h3>
       <div className="cart-actions">
-        <button className="btn btn-secondary" onClick={clearCart}>🗑 Vaciar Carrito</button>
-        <button className="btn btn-success" onClick={handlePayment} disabled={paymentCompleted}>
-          {paymentCompleted ? "✅ Pago confirmado" : "💳 Ir a Pagar"}
+        <button className="btn btn-secondary" onClick={clearCart}>
+          <FaTrash style={{ marginRight: "5px" }} /> Vaciar Carrito
         </button>
+
+        <button className="btn btn-success" onClick={handlePayment} disabled={paymentCompleted}>
+          {paymentCompleted ? (
+            <>
+              <FaCheckCircle style={{ marginRight: "5px" }} /> Pago confirmado
+            </>
+          ) : (
+            <>
+              <FaCreditCard style={{ marginRight: "5px" }} /> Ir a Pagar
+            </>
+          )}
+        </button>
+
       </div>
     </div>
   );

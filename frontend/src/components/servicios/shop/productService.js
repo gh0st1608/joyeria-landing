@@ -1,5 +1,5 @@
- // Importa correctamente la instancia de Axios
- import { getRequest, postRequest } from "./api";
+// Importa correctamente la instancia de Axios
+import { getRequest} from "./api";
 import { ENDPOINTS } from "../endpoints";
 
 // Obtener todos los productos

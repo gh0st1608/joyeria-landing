@@ -34,22 +34,7 @@ class About extends Component {
                             </div>
                         </div>
                     </div>
-                    {/*<div className="about-text-box">
-                        <div className="row align-items-center">
-                            <div className="col-lg-6">
-                                <div className="about-img">
-                                    <img src={visionImage} alt="Visión" />
-                                </div>
-                            </div>
-                            <div className="col-lg-6">
-                                <div className="about-text">
-                                    <h3>Visión</h3>
-                                    <p className="mb-4"></p>
-                                    <p><strong>Ser líder global en joyería</strong>, destacando por nuestra inquebrantable dedicación a la calidad y artesanía excepcional. Creamos joyas personalizadas que celebran momentos especiales, fusionando la tradición con tecnología innovadora para cautivar a una audiencia moderna.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>*/}
+
                 </div>
             </section>
         );

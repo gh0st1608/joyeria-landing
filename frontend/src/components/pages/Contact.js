@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import MetaTags from "react-meta-tags";
 import Header from "../layouts/Header";
 import ContactForm from "../sections/contact/Content";
