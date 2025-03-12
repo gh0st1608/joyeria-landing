@@ -20,6 +20,7 @@ const AuthModal = ({ onClose }) => {
       if (isLogin) {
         // ✅ Login
         const response = await loginUser({ email: formData.email, password: formData.password });
+        console.log('response login',response)
         if (response) {
           localStorage.setItem("accessToken", response.accessToken);
           alert("✅ Login successful! Redirecting...");
