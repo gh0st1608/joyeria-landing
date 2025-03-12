@@ -1,6 +1,5 @@
 import { NestFactory } from '@nestjs/core';
-import { NotificationModule } from './notification/notification.module';
-import { ConfigService } from '@nestjs/config';
+import { NotificationModule } from './notification.module';
 import { ExpressAdapter } from '@nestjs/platform-express';
 import express from 'express';
 import * as functions from '@google-cloud/functions-framework';
@@ -8,7 +7,6 @@ import * as functions from '@google-cloud/functions-framework';
 async function bootstrap(): Promise<express.Express> {
   const expressApp = express();
   const app = await NestFactory.create(NotificationModule, new ExpressAdapter(expressApp));
-  const configService = app.get(ConfigService);
 
   app.setGlobalPrefix('notification');
   app.enableCors();
