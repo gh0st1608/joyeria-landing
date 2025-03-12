@@ -16,7 +16,7 @@ import { CartProvider } from "./context/CartContext";
 import { AuthProvider } from "./context/AuthContext";
 import { getProducts } from "./components/servicios/shop/productService"; // ✅ Importa la API de productos
 import Footer from "./components/layouts/Footer";
-import Sidebar from "./components/layouts/Sidebar";
+// import Sidebar from "./components/layouts/Sidebar";
 import Products from './components/pages/Products';
 import Users from './components/pages/Users';
 import Clients from './components/pages/Clients';
