@@ -19,7 +19,6 @@ export class LoginUseCase {
         authLogin.password,
         user.properties().password,
       );
-
       if (isMatchPassword) {
         return {
           accessToken: AuthAppService.generateAccessToken(user.properties().id, authLogin.name),

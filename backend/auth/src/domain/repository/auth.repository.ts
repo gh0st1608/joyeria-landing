@@ -1,8 +1,9 @@
 import { Auth } from "../entities/auth.entity";
 
 export interface Tokens {
-  accessToken: string;
-  refreshToken: string;
+  accessToken?: string;
+  refreshToken?: string;
+  message?: string;
 }
 
 export interface IAuthRepository {
