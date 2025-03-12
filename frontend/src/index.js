@@ -14,6 +14,7 @@ import './assets/css/sidebar.css';
 import './assets/css/contact.css';
 import './assets/css/login.css';
 import './assets/css/carrito.css';
+import './assets/css/dashboard.css';
 
 ReactDOM.render(
   <CartProvider>

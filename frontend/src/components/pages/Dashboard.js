@@ -1,27 +1,16 @@
-import React, { Component, Fragment } from 'react';
-import MetaTags from "react-meta-tags";
-import Header from '../layouts/Header';
+import React from "react";
+import Sidebar from "../../components/layouts/Sidebar"; // ✅ Importamos el Sidebar
 
+const Dashboard = () => {
+  return (
+    <div className="dashboard-container">
+      <Sidebar />
+      <div className="dashboard-content">
+        <h2>Panel de Administración</h2>
+        <p>Bienvenido al panel de control.</p>
+      </div>
+    </div>
+  );
+};
 
-class Login extends Component {
-    render() {
-        return (
-            <Fragment>
-                <MetaTags>
-                    <title>Laramiss | Login</title>
-                    <meta
-                        name="description"
-                        content="#"
-                    />
-                </MetaTags>
-                <Header/>
-                {/* <Breadcrumb breadcrumb={{pagename:'Login'}}/> */}
-                {/* <Content/> */}
-                {/* <Instafeeds/> */}
-                {/* <Footer/> */}
-            </Fragment>
-        );
-    }
-}
-
-export default Login;
+export default Dashboard;
