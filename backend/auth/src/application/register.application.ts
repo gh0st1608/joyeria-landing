@@ -14,13 +14,14 @@ export class RegisterUseCase {
     async execute(
         authRegister : AuthRegisterDto
       ): Promise<Tokens> {
+        const user = await this.userRepository.findOne({email : authRegister.email});
+        if(user) return null
         const refreshToken = AuthAppService.generateRefreshToken();
         const cipherPassword = await AuthAppService.cipherPassword(authRegister.password);
         const auth = new Auth(authRegister.name,authRegister.email, cipherPassword, refreshToken);
         const userRegistered = await this.userRepository.register(auth);
         const id = userRegistered.properties().id
         const accessToken = AuthAppService.generateAccessToken(id, authRegister.name);
-    
         return { accessToken, refreshToken };
       }
 }
