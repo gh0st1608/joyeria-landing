@@ -3,6 +3,7 @@ import Sidebar from "../../components/layouts/Sidebar";
 import { getUsers } from "../servicios/dashboard/userService";
 import UserTable from "../sections/dashboard/UserTable";
 
+
 const Users = () => {
   const [users, setUsers] = useState([]);
 
