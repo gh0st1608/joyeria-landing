@@ -8,8 +8,6 @@ import { FaEye } from "react-icons/fa";
 
 import '@fortawesome/fontawesome-free/css/all.min.css'; // ✅ Importamos FontAwesome
 
-
-
 class Content extends Component {
   static contextType = CartContext;
 
@@ -20,7 +18,7 @@ class Content extends Component {
       filteredProducts: [],
       loading: true,
       currentPage: 1,
-      itemsPerPage: 6,
+      itemsPerPage: 8, // ✅ Cambiado a 8 productos por página
       searchQuery: "",
       selectedColors: [],
     };
@@ -29,6 +27,7 @@ class Content extends Component {
   async componentDidMount() {
     try {
       const products = await getProducts();
+      console.log("📢 Productos cargados:", products.length); // ✅ Verifica cuántos productos hay
       this.setState({ products, filteredProducts: products, loading: false });
     } catch (error) {
       console.error("❌ Error cargando productos", error);
@@ -46,7 +45,6 @@ class Content extends Component {
 
   filterProducts = () => {
     const { products, searchQuery, selectedColors } = this.state;
-
     let filtered = products;
 
     if (searchQuery) {
@@ -60,6 +58,8 @@ class Content extends Component {
         selectedColors.includes(product.color.toLowerCase())
       );
     }
+
+    console.log("📢 Productos después del filtrado:", filtered.length); // ✅ Verifica si se filtran correctamente
 
     this.setState({ filteredProducts: filtered, currentPage: 1 });
   };
@@ -135,7 +135,7 @@ class Content extends Component {
             <div className="pagination-wrap">
               <Pagination
                 totalItems={filteredProducts.length}
-                itemsPerPage={itemsPerPage}
+                itemsPerPage={itemsPerPage} // ✅ Asegura que Pagination reciba 8 productos por página
                 currentPage={currentPage}
                 onPageChange={this.handlePageChange}
               />
