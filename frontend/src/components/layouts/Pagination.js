@@ -16,12 +16,12 @@ const Pagination = ({ totalItems, itemsPerPage, currentPage, onPageChange }) => 
         <ul className="pagination">
             <li>
                 <Link to="#" onClick={() => handleClick(1)} disabled={currentPage === 1}>
-                    <i className="far fa-angle-double-left" />
+                    <i className="fas fa-angle-double-left"></i>
                 </Link>
             </li>
             <li>
                 <Link to="#" onClick={() => handleClick(currentPage - 1)} disabled={currentPage === 1}>
-                    <i className="far fa-angle-left" />
+                    <i className="fas fa-angle-left"></i>
                 </Link>
             </li>
 
@@ -33,12 +33,12 @@ const Pagination = ({ totalItems, itemsPerPage, currentPage, onPageChange }) => 
 
             <li>
                 <Link to="#" onClick={() => handleClick(currentPage + 1)} disabled={currentPage === totalPages}>
-                    <i className="far fa-angle-right" />
+                    <i className="fas fa-angle-right"></i>
                 </Link>
             </li>
             <li>
                 <Link to="#" onClick={() => handleClick(totalPages)} disabled={currentPage === totalPages}>
-                    <i className="far fa-angle-double-right" />
+                    <i className="fas fa-angle-double-right"></i>
                 </Link>
             </li>
         </ul>
