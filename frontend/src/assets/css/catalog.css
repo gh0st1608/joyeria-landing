@@ -263,3 +263,187 @@
         width: 100%;
     }
 }
+
+
+/* ShoooooopSiiiiiidebar*/
+/* Estilos generales para la barra lateral */
+.shop-sidebar {
+    margin: 10%;
+    width: 250px;
+    padding: 20px;
+    background: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: #1D252C;
+    font-family: 'Vollkorn', serif;
+  }
+  
+  /* Estilos del buscador */
+  .search-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .search-box input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #1D252C;
+    border-radius: 5px;
+    background: #FFFFFF;
+    color: #1D252C;
+    font-family: 'Libre Franklin', sans-serif;
+  }
+  .search-box button {
+    background: #D5BA8C;
+    color: #1D252C;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .search-box button:hover {
+    background: #B99E7A;
+  }
+  
+  /* Estilos del filtro de precio */
+  .price-filter h3, .color-filter h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-family: 'Vollkorn', serif;
+  }
+  .price-slider {
+    position: relative;
+    padding: 10px 0;
+  }
+  .price-markers {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #1D252C;
+  }
+  .price-slider input {
+    width: 100%;
+    margin-top: 5px;
+    appearance: none;
+    background: #D5BA8C;
+    height: 5px;
+    border-radius: 5px;
+    outline: none;
+  }
+  .price-slider input::-webkit-slider-thumb {
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: #1D252C;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  .price-slider input::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    background: #1D252C;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  .price-value {
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 8px;
+    color: #1D252C;
+  }
+  
+  /* Estilos del filtro de colores */
+  .color-options {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .color-options label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    color: #1D252C;
+    font-family: 'Libre Franklin', sans-serif;
+  }
+  .color-options input {
+    cursor: pointer;
+  }
+
+  /* 🔹 Contenedor de paginación */
+.pagination-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+/* 🔹 Estilos de los botones de paginación */
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 8px;
+}
+
+.pagination li {
+    display: inline-block;
+}
+
+.pagination li a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    background: #fff;
+    border: 1px solid #ddd;
+    transition: all 0.3s ease-in-out;
+}
+
+.pagination li a:hover {
+    background: #d5ba8c;
+    color: #fff;
+}
+
+/* 🔹 Botón activo */
+.pagination li.active a {
+    background: #d5ba8c;
+    color: white;
+    border: none;
+}
+
+/* 🔹 Botones de navegación (anterior/siguiente) */
+.pagination li.prev a,
+.pagination li.next a {
+    font-size: 18px;
+    padding: 5px;
+}
+
+/* 🔹 Corrección para evitar errores con íconos */
+.pagination li a i {
+    font-size: 18px;
+}
+
+/* 🔹 Responsive */
+@media (max-width: 768px) {
+    .pagination {
+        gap: 5px;
+    }
+
+    .pagination li a {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+    }
+}

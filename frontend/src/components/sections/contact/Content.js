@@ -74,6 +74,7 @@ const ContactForm = () => {
             <div className="info-box">
               <div className="icon"><i className="fa-solid fa-envelope"></i></div>
               <br />
+              
               <div className="desc">
                 <h4>Email Address</h4>
                 <p>info@webmail.com</p>
@@ -81,7 +82,7 @@ const ContactForm = () => {
             </div>
           </div>
         </div> 
-        
+      
 
         {/* Formulario de contacto */}
         <div className="contact-form">

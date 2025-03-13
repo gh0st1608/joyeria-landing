@@ -10,11 +10,11 @@ import './assets/css/style.css';
 import './assets/css/home.css';
 import './assets/css/about.css';
 import './assets/css/catalog.css';
-import './assets/css/sidebar.css';
+
 import './assets/css/contact.css';
 import './assets/css/login.css';
 import './assets/css/carrito.css';
-import './assets/css/dashboard.css';
+
 
 ReactDOM.render(
   <CartProvider>
