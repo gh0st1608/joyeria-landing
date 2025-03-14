@@ -1,0 +1,196 @@
+[{
+  "_id": {
+    "$oid": "67a96928d9c5390114b0a777"
+  },
+  "title": "product4",
+  "price": 15,
+  "category": "esclava",
+  "description": "esclava de oro",
+  "material": "oro",
+  "color": ["dorado"],
+  "image": "https://acortar.link/pcZ1t0",
+  "discount": 30,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67b96dc16faf8b070053102d"
+  },
+  "title": "product1",
+  "price": 10,
+  "category": "anillo",
+  "description": "anillo de matrimonio",
+  "material": "plata",
+  "color": ["dorado"],
+  "image": "https://acortar.link/VTjx4K",
+  "discount": 10,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d26efc3282b52a6d81728c"
+  },
+  "title": "collar matrimonial",
+  "price": 50,
+  "category": "collar",
+  "description": "collar fino",
+  "material": "oro",
+  "color": ["dorado"],
+  "image": "https://acortar.link/pcZ1t0",
+  "discount": 10,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d270bb4940af4f2163b642"
+  },
+  "title": "arete matrimonial",
+  "price": 50,
+  "category": "arete",
+  "description": "arete fino",
+  "material": "plata",
+  "color": ["dorado"],
+  "image": "https://acortar.link/iQ0Puj",
+  "discount": 10,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d300394940af4f2163b645"
+  },
+  "title": "esclava matrimonial",
+  "price": 5,
+  "category": "esclava",
+  "description": "esclava fino",
+  "material": "plata",
+  "color": ["dorado"],
+  "image": "https://acortar.link/UjAgnD",
+  "discount": 10,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d30f1f4940af4f2163b647"
+  },
+  "title": "esclava matrimonial 2",
+  "price": 6,
+  "category": "esclava",
+  "description": "esclava fino",
+  "material": "plata",
+  "color": ["dorado"],
+  "image": "https://acortar.link/UjAgnD",
+  "discount": 10,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d30f254940af4f2163b649"
+  },
+  "title": "esclava matrimonial 3",
+  "price": 7,
+  "category": "esclava",
+  "description": "esclava fino",
+  "material": "plata",
+  "color": ["dorado"],
+  "image": "https://acortar.link/UjAgnD",
+  "discount": 10,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d30f2b4940af4f2163b64b"
+  },
+  "title": "esclava matrimonial 4",
+  "price": 8,
+  "category": "esclava",
+  "description": "esclava fino",
+  "material": "plata",
+  "color": ["dorado"],
+  "image": "https://acortar.link/UjAgnD",
+  "discount": 10,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d30f2f4940af4f2163b64d"
+  },
+  "title": "esclava matrimonial 5",
+  "price": 9,
+  "category": "esclava",
+  "description": "esclava fino",
+  "material": "plata",
+  "color": ["dorado"],
+  "image": "https://acortar.link/UjAgnD",
+  "discount": 10,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d30f4f4940af4f2163b64f"
+  },
+  "title": "esclava matrimonial 6",
+  "price": 10,
+  "category": "esclava",
+  "description": "esclava fino",
+  "material": "oro",
+  "color": ["dorado"],
+  "image": "https://acortar.link/UjAgnD",
+  "discount": 10,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d30f544940af4f2163b651"
+  },
+  "title": "esclava matrimonial 7",
+  "price": 11,
+  "category": "esclava",
+  "description": "esclava fino",
+  "material": "bronce",
+  "color": ["plateado"],
+  "image": "https://acortar.link/UjAgnD",
+  "discount": 10,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d30f584940af4f2163b653"
+  },
+  "title": "esclava matrimonial 8",
+  "price": 12,
+  "category": "esclava",
+  "description": "esclava fino",
+  "material": "bronce",
+  "color": ["plateado"],
+  "image": "https://acortar.link/UjAgnD",
+  "discount": 10,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d3106c4940af4f2163b655"
+  },
+  "title": "esclava matrimonial 9",
+  "price": 13,
+  "category": "esclava",
+  "description": "esclava fino",
+  "material": "bronce",
+  "color": ["plateado"],
+  "image": "https://acortar.link/UjAgnD",
+  "discount": 10,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d3108a4940af4f2163b657"
+  },
+  "title": "esclava matrimonial 10",
+  "price": 14,
+  "category": "esclava",
+  "description": "esclava fino",
+  "material": "bronce",
+  "color": ["plateado"],
+  "image": "https://acortar.link/UjAgnD",
+  "discount": 10,
+  "__v": 0
+}]

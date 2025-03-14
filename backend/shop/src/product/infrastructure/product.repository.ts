@@ -26,6 +26,33 @@ export class ProductInfrastructureRepository implements IProductRepository {
      return products.map(product => new Product(product));
   }
 
+  async findByParams(filters: Record<string, string>): Promise<Product[]> {
+    // Construimos el objeto de búsqueda dinámicamente
+    const query: Record<string, any> = {};
+  
+    if (filters.color) {
+      const colorArray = filters.color.split(',').map(color => color.trim().toLowerCase()); // ✅ Convierte en array
+      query.color = { $in: colorArray }; // ✅ Busca productos que coincidan con los colores
+    }
+    
+    if (filters.price) {
+      query.price = { $lte: parseFloat(filters.price) }; // Filtra por precio menor o igual
+    }
+
+    if (filters.title) {
+      query.title = { $regex: filters.title, $options: "i" }; // Filtra por precio menor o igual
+    }
+  
+    // Agrega más filtros aquí según sea necesario...
+  
+    // Ejecutar la consulta con los filtros dinámicos
+    const products = await this.productModel.find(query).lean().exec();
+    
+    return products.map(product => new Product(product));
+  }
+  
+
+
   // Implementación del método para actualizar un usuario
 /*   async update(product: Product): Promise<Product> {
     return this.productModel.findByIdAndUpdate(product.id, product, { new: true }).exec();

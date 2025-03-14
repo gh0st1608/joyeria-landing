@@ -28,6 +28,22 @@ export const getProductById = async (id) => {
   }
 };
 
+export const getProductsByParams = async (params) => {
+  try {
+    const queryString = new URLSearchParams(params).toString();
+    console.log('queryString',queryString)
+    const endpoint = ENDPOINTS.shop.getProductsByParams(queryString);
+    console.log(`📡 Fetching products from ${endpoint}`);
+    const response = await getRequest(endpoint);
+
+    console.log("✅ Product filtered by color:", response);
+    return response;
+  } catch (error) {
+    console.error(`❌ Error fetching product ${params}:`, error.response ? error.response.data : error.message);
+    return null;
+  }
+};
+
 // ✅ Crear un nuevo producto
 /* export const createProduct = async (productData) => {
   try {

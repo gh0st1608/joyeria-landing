@@ -8,7 +8,7 @@ export class Product extends Document {
   @Prop({ required: true })
   title: string;
 
-  @Prop({ required: true, unique: true })
+  @Prop({ required: true})
   price: number;
 
   @Prop({ required: true })
@@ -16,6 +16,12 @@ export class Product extends Document {
 
   @Prop({ required: true })
   description: string;
+
+  @Prop({ required: true })
+  color: string[];
+
+  @Prop({ required: true })
+  material: string;
 
   @Prop({ required: false })
   image: string;

@@ -27,6 +27,7 @@ import { MaterialsController } from './material/infrastructure/material.controll
 import { GetMaterialUseCase } from './material/application/get-all.application';
 import { CreateMaterialUseCase } from './material/application/create.application';
 import { DeleteMaterialUseCase } from './material/application/delete.application';
+import { GetProductsByParamsUseCase } from './product/application/get-by-params.application';
 
 
 @Module({
@@ -64,6 +65,7 @@ import { DeleteMaterialUseCase } from './material/application/delete.application
     GetMaterialUseCase,
     CreateMaterialUseCase,
     DeleteMaterialUseCase,
+    GetProductsByParamsUseCase,
     {
       provide: 'ICategoryProductRepository', // Proveedor para inyectar la interfaz del repositorio
       useClass: CategoryProductInfrastructureRepository, // Implementación que usa Mongoose
