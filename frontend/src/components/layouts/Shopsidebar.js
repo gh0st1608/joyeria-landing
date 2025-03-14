@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 
-const Sidebar = ({ onSearchChange, onFilterChange }) => {
+const Sidebar = ({ onFilterChange }) => {
+  const [searchQuery, setSearchQuery] = useState("");
   const [price, setPrice] = useState(500); // Estado para el precio seleccionado
   const [selectedColors, setSelectedColors] = useState([]); // Estado para los colores seleccionados
+
+  const handleSearchChange = (e) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+    onFilterChange({ title: query, price, colors: selectedColors }); // 🔄 Aplicar búsqueda con filtros activos
+  };
 
   // Manejar el cambio de precio y actualizar el filtro
   const handlePriceChange = (e) => {
@@ -30,7 +37,8 @@ const Sidebar = ({ onSearchChange, onFilterChange }) => {
         <input
           type="text"
           placeholder="Buscar palabra clave..."
-          onChange={(e) => onSearchChange(e.target.value)}
+          value={searchQuery}
+          onChange={handleSearchChange}
         />
         <button>
           <i className="fas fa-search"></i>
@@ -68,7 +76,7 @@ const Sidebar = ({ onSearchChange, onFilterChange }) => {
       <div className="color-filter">
         <h3>Color</h3>
         <div className="color-options">
-          {["Red", "Green", "Brown", "Grey", "Orange"].map((color) => (
+          {["Red", "Green", "Brown", "Grey", "Orange","dorado"].map((color) => (
             <label key={color}>
               <input
                 type="checkbox"

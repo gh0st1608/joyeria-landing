@@ -20,6 +20,7 @@ export const ENDPOINTS = {
   shop: {
     products: `/products`,
     getProductById: (id) => `/products/${id}`,
+    getProductsByParams: (params) => `/products/filters?${params}`,
     categoryProducts: '/category-products',
     getCategoryProductById: (id) => `/category-products/${id}`,
   },
