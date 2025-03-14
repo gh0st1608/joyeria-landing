@@ -8,7 +8,7 @@ import Account from './components/pages/Account';
 import Cart from './components/pages/Cart';
 import Checkout from './components/pages/Checkout';
 import Contact from './components/pages/Contact';
-import Dashboard from './components/pages/Dashboard';
+import Dashboard from './components/pages/Dashboard'; // ✅ Importamos el Dashboard
 import Register from './components/pages/Register';
 import Shopdetail from './components/sections/shopdetail/Content';
 import Shopleft from './components/pages/Shopleft';
@@ -17,9 +17,9 @@ import { AuthProvider } from "./context/AuthContext";
 import { getProducts } from "./components/servicios/shop/productService"; // ✅ Importa la API de productos
 import Footer from "./components/layouts/Footer";
 
-import Products from './components/pages/Products';
-import Users from './components/pages/Users';
-import Clients from './components/pages/Clients';
+import Products from './components/pages/Products'; // ✅ Importamos Productos
+import Users from './components/pages/Users'; // ✅ Importamos Usuarios
+import Clients from './components/pages/Clients'; // ✅ Importamos Clientes
 
 function App() {
   // const [setProductos] = useState([]);

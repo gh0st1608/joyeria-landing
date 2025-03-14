@@ -39,14 +39,14 @@ header {
 
 
 /* Barra Superior */
-.top-bar {
+.top-cab {
     background: #1D252C;
     color: white;
     padding: 8px 0;
     font-size: 14px;
 }
 
-.top-bar .container {
+.top-cab .container {
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -197,7 +197,7 @@ header {
 }
 
 @media (max-width: 768px) {
-    .top-bar .container {
+    .top-cab .container {
         justify-content: center;
     }
 

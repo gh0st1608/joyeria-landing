@@ -1,116 +1,328 @@
-/* Estilos generales del Dashboard */
+/* ============================= */
+/* 🔹 ESTILOS GENERALES */
+/* ============================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Vollkorn", serif;
+}
+
+body {
+  background-color: #f5f5f5;
+  color: #1D252C;
+  overflow-x: hidden;
+}
+
+/* ============================= */
+/* 🔹 CONTENEDOR PRINCIPAL */
+/* ============================= */
 .dashboard-container {
   display: flex;
-  min-height: 100vh;
-  background-color: #f4f4f4;
+  height: 100vh;
+  transition: margin-left 0.3s ease-in-out;
 }
 
-/* Estilos para la Sidebar */
+/* ============================= */
+/* 🔹 SIDEBAR (MENÚ LATERAL) */
+/* ============================= */
 .sidebar {
-  width: 250px;
-  background-color: #2c3e50;
-  color: white;
+  width: 260px;
+  background-color: #1D252C;
+  color: #D5BA8C;
+  height: 100vh;
   padding: 20px;
-  min-height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease-in-out;
 }
 
-.sidebar h2 {
-  font-size: 22px;
-  margin-bottom: 20px;
+.sidebar.hidden {
+  transform: translateX(-100%);
 }
 
-.sidebar nav ul {
+.sidebar.visible {
+  transform: translateX(0);
+}
+
+/* 🔹 Botón para abrir/cerrar Sidebar */
+.toggle-menu-btn {
+  position: fixed;
+  left: 15px;
+  top: 15px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #D5BA8C;
+  cursor: pointer;
+  z-index: 100;
+}
+
+/* 🔹 Elementos del Sidebar */
+.sidebar ul {
   list-style: none;
   padding: 0;
 }
 
-.sidebar nav ul li {
-  margin-bottom: 10px;
-}
-
-.sidebar nav ul li a {
-  text-decoration: none;
-  color: white;
-  font-size: 18px;
+.sidebar ul li {
+  padding: 15px 20px;
+  cursor: pointer;
+  font-size: 16px;
   display: flex;
   align-items: center;
-  padding: 10px;
-  border-radius: 5px;
+  gap: 10px;
   transition: background 0.3s ease;
 }
 
-.sidebar nav ul li a:hover {
-  background-color: #34495e;
+.sidebar ul li a {
+  text-decoration: none;
+  color: #D5BA8C;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-/* Estilos para la Sección del Contenido */
+.sidebar ul li:hover {
+  background-color: #D5BA8C;
+  color: #1D252C;
+}
+
+.sidebar ul li:hover a {
+  color: #1D252C;
+}
+
+/* 🔹 Botón de Cerrar Sesión */
+.logout-btn {
+  background-color: #B22222;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  border: none;
+  width: 100%;
+  padding: 15px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #8B0000;
+}
+
+/* ============================= */
+/* 🔹 BARRA SUPERIOR (TOPBAR) */
+/* ============================= */
+.topbar {
+  width: calc(100% - 260px);
+  height: 60px;
+  background-color: #1D252C;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  position: fixed;
+  top: 0;
+  left: 260px;
+  z-index: 1000;
+  transition: left 0.3s ease-in-out;
+}
+
+/* 🔹 Botón Modo Oscuro */
+.toggle-theme-btn {
+  background: none;
+  border: none;
+  color: #D5BA8C;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* 🔹 PERFIL DEL USUARIO */
+.profile-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  gap: 10px;
+}
+
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #D5BA8C;
+  transition: transform 0.3s ease;
+}
+
+.profile-pic:hover {
+  transform: scale(1.1);
+}
+
+/* 🔹 MENÚ DESPLEGABLE DE PERFIL */
+.profile-dropdown {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  width: 150px;
+  padding: 10px;
+  text-align: left;
+  z-index: 100;
+}
+
+.profile-dropdown ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.profile-dropdown ul li {
+  padding: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.3s ease;
+}
+
+.profile-dropdown ul li:hover {
+  background-color: #D5BA8C;
+  color: #1D252C;
+}
+
+/* ============================= */
+/* 🔹 CONTENIDO DEL DASHBOARD */
+/* ============================= */
+.main-content {
+  display: flex;
+  flex: 1;
+  margin-top: 60px;
+  margin-left: 260px;
+  padding: 20px;
+  width: calc(100% - 260px);
+  transition: margin-left 0.3s ease-in-out;
+}
+
 .dashboard-content {
   flex: 1;
-  padding: 20px;
+  padding: 40px;
   background-color: white;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   margin: 20px;
 }
 
-.dashboard-content h2 {
-  font-size: 24px;
-  margin-bottom: 20px;
-  color: #333;
+/* ============================= */
+/* 🔹 RESPONSIVE DESIGN (MÓVILES) */
+/* ============================= */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 220px;
+  }
+
+  .topbar {
+    width: calc(100% - 220px);
+    left: 220px;
+  }
+
+  .main-content {
+    margin-left: 220px;
+    width: calc(100% - 220px);
+  }
 }
 
-/* Estilos para las Tablas */
-table {
+@media (max-width: 576px) {
+  .sidebar {
+    width: 200px;
+  }
+
+  .topbar {
+    width: calc(100% - 200px);
+    left: 200px;
+  }
+
+  .main-content {
+    margin-left: 200px;
+    width: calc(100% - 200px);
+  }
+
+  .profile-name {
+    display: none; /* Oculta el nombre en móviles */
+  }
+}
+
+/* ============================= */
+/* 🔹 ANIMACIONES Y EFECTOS */
+/* ============================= */
+.menu-closed .sidebar {
+  transform: translateX(-100%);
+}
+
+.menu-closed .topbar {
+  left: 0;
+  width: 100%;
+}
+
+.menu-closed .main-content {
+  margin-left: 0;
+  width: 100%;
+}
+/* src/styles/Dashboard.css */
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  background: #2c3e50;
+  color: white;
+  padding: 20px;
+}
+
+.dashboard-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.dashboard-table {
   width: 100%;
   border-collapse: collapse;
-  background-color: white;
   margin-top: 20px;
-  border-radius: 5px;
-  overflow: hidden;
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-table thead {
-  background-color: #2c3e50;
+.dashboard-table th, .dashboard-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.dashboard-table th {
+  background: #3498db;
   color: white;
 }
 
-table th, table td {
-  padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
+.btn-edit {
+  background: #f39c12;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
 }
 
-table tbody tr:hover {
-  background-color: #f5f5f5;
-}
-
-table td {
-  color: #333;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .dashboard-container {
-    flex-direction: column;
-  }
-
-  .sidebar {
-    width: 100%;
-    text-align: center;
-  }
-
-  .sidebar nav ul li {
-    display: inline-block;
-    margin: 5px;
-  }
-
-  .dashboard-content {
-    margin: 10px;
-  }
-
-  table {
-    display: block;
-    overflow-x: auto;
-  }
+.btn-delete {
+  background: #e74c3c;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
 }

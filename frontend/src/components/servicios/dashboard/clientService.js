@@ -1,11 +1,13 @@
-import api from "./api";
+import { getDashboardData, postDashboardData, putDashboardData, deleteDashboardData } from "../dashboard/api";
 
-export const getClients = async () => {
-  const response = await api.get("/clients");
-  return response.data;
-};
+// ✅ Obtener clientes
+export const getClients = async () => getDashboardData("/clients");
 
-export const createClient = async (clientData) => {
-  const response = await api.post("/clients", clientData);
-  return response.data;
-};
+// ✅ Crear un nuevo cliente
+export const createClient = async (clientData) => postDashboardData("/clients", clientData);
+
+// ✅ Actualizar un cliente
+export const updateClient = async (clientData) => putDashboardData(`/clients/${clientData.id}`, clientData);
+
+// ✅ Eliminar un cliente
+export const deleteClient = async (id) => deleteDashboardData(`/clients/${id}`);
