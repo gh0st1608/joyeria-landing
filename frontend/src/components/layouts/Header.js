@@ -18,7 +18,7 @@ const Header = () => {
   return (
     <header>
       {/* Barra Superior */}
-      <div className="top-bar">
+      <div className="top-cab">
         <div className="container">
           <div className="top-info">
             <FaPhoneAlt className="icon" /> <span>914 027 437</span>

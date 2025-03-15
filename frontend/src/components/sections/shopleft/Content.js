@@ -5,8 +5,7 @@ import Sidebar from "../../layouts/Shopsidebar";
 import { getProductsByParams, getProducts } from "../../servicios/shop/productService";
 import { CartContext } from "../../../context/CartContext";
 import { FaEye } from "react-icons/fa";
-
-import '@fortawesome/fontawesome-free/css/all.min.css'; // ✅ Importamos FontAwesome
+import "@fortawesome/fontawesome-free/css/all.min.css"; // ✅ Importamos FontAwesome
 
 class Content extends Component {
   static contextType = CartContext;
@@ -18,20 +17,19 @@ class Content extends Component {
       filteredProducts: [],
       loading: true,
       currentPage: 1,
-      itemsPerPage: 8, // ✅ Cambiado a 8 productos por página
+      itemsPerPage: 8, // ✅ Paginación con 8 productos por página
       searchQuery: "",
       selectedColors: [],
-      //price: 500, // Filtro de precio
     };
   }
 
   async componentDidMount() {
     try {
       const products = await getProducts();
-      console.log("📢 Productos cargados:", products.length); // ✅ Verifica cuántos productos hay
+      console.log("📢 Productos cargados:", products.length);
       this.setState({ products, filteredProducts: products, loading: false });
     } catch (error) {
-      console.error("❌ Error cargando productos", error);
+      console.error("❌ Error cargando productos:", error);
       this.setState({ loading: false });
     }
   }
@@ -40,36 +38,28 @@ class Content extends Component {
     this.setState({ searchQuery: query }, this.filterProducts);
   };
 
-  handleFilterChange = async ({title, colors, price }) => {
-    this.setState({ searchQuery: title, price: price, selectedColors: colors, loading: true });
+  handleFilterChange = async ({ title, colors, price }) => {
+    this.setState({ searchQuery: title, selectedColors: colors, loading: true });
 
-  try {
-    const colorQuery = colors.length > 0 ? colors.join(",") : "";
-    const params = {};
-    if (title) params.title = title;
-    if (colorQuery) params.color = colorQuery;
-    if (price) params.price = price; 
-    /* const colorQuery = colors.length > 0 ? colors.join(",") : ""; // Si hay varios colores, los une en una string*/
-    const products = await getProductsByParams(params) || []; // Llamada a la API con los colores como parámetro 
-    console.log('products content',products)
-    this.setState({ products, filteredProducts: products, loading: false, currentPage: 1 });
-  } catch (error) {
-    console.error("❌ Error filtrando productos por color", error);
-    //this.setState({ loading: false });
-    this.setState({ loading: false, filteredProducts: [] });
-  }
-    //this.setState({ selectedColors: colors }, this.filterProducts);
+    try {
+      const params = {};
+      if (title) params.title = title;
+      if (colors.length > 0) params.color = colors.join(",");
+      if (price) params.price = price;
+
+      const products = (await getProductsByParams(params)) || [];
+      console.log("📢 Productos filtrados:", products.length);
+
+      this.setState({ products, filteredProducts: products, loading: false, currentPage: 1 });
+    } catch (error) {
+      console.error("❌ Error filtrando productos:", error);
+      this.setState({ loading: false, filteredProducts: [] });
+    }
   };
 
   filterProducts = () => {
-    const { products, searchQuery, selectedColors, price } = this.state;
+    const { products, searchQuery, selectedColors } = this.state;
     let filtered = products;
-
-    if (searchQuery) {
-      filtered = filtered.filter((product) =>
-        product.title.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-    }
 
     if (searchQuery) {
       filtered = filtered.filter((product) =>
@@ -83,13 +73,7 @@ class Content extends Component {
       );
     }
 
-    // Filtrado por precio
-    if (price) {
-      filtered = filtered.filter((product) => product.price <= price);
-    }
-
-    console.log("📢 Productos después del filtrado:", filtered.length); // ✅ Verifica si se filtran correctamente
-
+    console.log("📢 Productos después del filtrado:", filtered.length);
     this.setState({ filteredProducts: filtered, currentPage: 1 });
   };
 
@@ -104,75 +88,75 @@ class Content extends Component {
     const indexOfLastProduct = currentPage * itemsPerPage;
     const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
     const currentProducts = (filteredProducts || []).slice(indexOfFirstProduct, indexOfLastProduct);
-    //const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
 
     return (
       <section className="shop-section">
         <div className="shop-container">
-
-          {/* Filtros en la izquierda */}
+          {/* 🔹 Sidebar de Filtros */}
           <div className="">
-            <Sidebar
-              onFilterChange={this.handleFilterChange}
-            />
+            <Sidebar onFilterChange={this.handleFilterChange} />
           </div>
 
-          {/* Productos a la derecha */}
+          {/* 🔹 Productos */}
           <div className="product-container">
             <h2 className="product-count">🛍 {filteredProducts.length} Productos</h2>
+
             {loading ? (
               <p className="loading-text">Cargando productos...</p>
             ) : (
               <div className="product-grid">
-                {currentProducts.map((item) => (
-                  <div key={item.id} className="product-card">
-                    {/* Etiquetas de "Sale" o "New" */}
-                    {item.discount && <span className="discount-tag">-{item.discount}%</span>}
-                    {item.isNew && <span className="product-badge">New</span>}
+                {currentProducts.length > 0 ? (
+                  currentProducts.map((item) => (
+                    <div key={item.id} className="product-card">
+                      {/* Etiquetas de "Sale" o "New" */}
+                      {item.discount && <span className="discount-tag">-{item.discount}%</span>}
+                      {item.isNew && <span className="product-badge">Nuevo</span>}
 
-                    <img
-                      src={item.image || "https://via.placeholder.com/150"}
-                      alt={item.title}
-                      className="product-image"
-                    />
+                      <img
+                        src={item.image || "https://via.placeholder.com/150"}
+                        alt={item.title}
+                        className="product-image"
+                      />
 
-                    <div className="product-details">
-                      <h3 className="product-name">{item.title}</h3>
-                      <h3 className="product-name">{item.category}</h3>
-                      <h3 className="product-name">{item.color}</h3>
-                      <p className="product-price">
-                        S/ {item.price.toFixed(2)}{" "}
-                        {item.oldPrice && <span className="old-price">S/ {item.oldPrice.toFixed(2)}</span>}
-                      </p>
+                      <div className="product-details">
+                        <h3 className="product-name">{item.title}</h3>
+                        <h4 className="product-category">{item.category}</h4>
+                        <h4 className="product-color">{item.color}</h4>
+                        <p className="product-price">
+                          S/ {item.price.toFixed(2)}{" "}
+                          {item.oldPrice && <span className="old-price">S/ {item.oldPrice.toFixed(2)}</span>}
+                        </p>
 
-                      <div className="product-buttons">
-                        <Link to={`/shop-detail/${item.id}`} className="btn btn-options">
-                          <FaEye style={{ marginRight: "5px" }} /> Ver Opciones
-                        </Link>
-                        <button
-                          className="btn btn-cart"
-                          onClick={() => addToCart({ ...item, quantity: 1 })}
-                        >
-                          <i className="fa-solid fa-cart-plus"></i> Agregar al carrito
-                        </button>
+                        <div className="product-buttons">
+                          <Link to={`/shop-detail/${item.id}`} className="btn btn-options">
+                            <FaEye style={{ marginRight: "5px" }} /> Ver Opciones
+                          </Link>
+                          <button
+                            className="btn btn-cart"
+                            onClick={() => addToCart({ ...item, quantity: 1 })}
+                          >
+                            <i className="fa-solid fa-cart-plus"></i> Agregar al carrito
+                          </button>
+                        </div>
                       </div>
-
                     </div>
-                  </div>
-                ))}
+                  ))
+                ) : (
+                  <p className="no-products"> No hay productos disponibles.</p>
+                )}
               </div>
-
             )}
+
+            {/* 🔹 Paginación */}
             <div className="pagination-wrap">
               <Pagination
                 totalItems={filteredProducts.length}
-                itemsPerPage={itemsPerPage} // ✅ Asegura que Pagination reciba 8 productos por página
+                itemsPerPage={itemsPerPage}
                 currentPage={currentPage}
                 onPageChange={this.handlePageChange}
               />
             </div>
           </div>
-
         </div>
       </section>
     );

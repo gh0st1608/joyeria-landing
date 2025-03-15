@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { useHistory } from "react-router-dom"; // ✅ Para redireccionar después del login
+import { AuthContext } from "../../../context/AuthContext";
 import { loginUser, registerUser } from "../../servicios/auth/authService";
 
 const AuthModal = ({ onClose }) => {
-  const [isLogin, setIsLogin] = useState(true); // ✅ Alternar entre Login y Registro
+  const { login } = useContext(AuthContext);
+  const history = useHistory(); // ✅ Hook para redirigir después del login
+
+  const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({ email: "", password: "", name: "" });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -18,30 +23,30 @@ const AuthModal = ({ onClose }) => {
 
     try {
       if (isLogin) {
-        // ✅ Login
+        // 🔹 Login
         const response = await loginUser({ email: formData.email, password: formData.password });
-        console.log('response login',response)
-        if (response) {
+        if (response && response.accessToken) {
+          login(response.user, response.accessToken); // Guardar usuario y token
           localStorage.setItem("accessToken", response.accessToken);
-          alert("✅ Login successful! Redirecting...");
+          localStorage.setItem("user", JSON.stringify(response.user));
+          alert("✅ Login exitoso!");
           onClose();
+          history.push("/dashboard"); // ✅ Redirigir automáticamente
         } else {
-          setError("❌ Invalid credentials. Please try again.");
+          setError("❌ Credenciales incorrectas.");
         }
       } else {
-        // ✅ Registro
+        // 🔹 Registro
         const response = await registerUser(formData);
-        if (response?.accessToken && response?.refreshToken) {
-          localStorage.setItem("accessToken", response.accessToken);
-          localStorage.setItem("refreshToken", response.refreshToken);
-          alert("✅ Registration successful! You can now log in.");
-          setIsLogin(true); // ✅ Cambiar a Login después del registro
+        if (response?.accessToken) {
+          alert("✅ Registro exitoso! Ahora puedes iniciar sesión.");
+          setIsLogin(true);
         } else {
-          setError("❌ Registration failed. Try again.");
+          setError("❌ Error en el registro.");
         }
       }
     } catch (err) {
-      setError("❌ Error processing request.");
+      setError("❌ Error en la solicitud. Verifica tu conexión.");
     } finally {
       setLoading(false);
     }
@@ -51,7 +56,7 @@ const AuthModal = ({ onClose }) => {
     <div className="modal-backdrop">
       <div className="modal-container">
         <div className="modal-header">
-          <h2>{isLogin ? "Login" : "Register"}</h2>
+          <h2>{isLogin ? "Iniciar Sesión" : "Registrarse"}</h2>
           <button className="close-btn" onClick={onClose}>✖</button>
         </div>
 
@@ -63,10 +68,10 @@ const AuthModal = ({ onClose }) => {
               <input 
                 type="text" 
                 name="name" 
-                placeholder="Full Name" 
+                placeholder="Nombre Completo" 
                 value={formData.name} 
                 onChange={handleChange} 
-                required
+                required 
               />
             </div>
           )}
@@ -74,31 +79,31 @@ const AuthModal = ({ onClose }) => {
             <input 
               type="email" 
               name="email" 
-              placeholder="Email Address" 
+              placeholder="Correo Electrónico" 
               value={formData.email} 
               onChange={handleChange} 
-              required
+              required 
             />
           </div>
           <div className="form-group">
             <input 
               type="password" 
               name="password" 
-              placeholder="Password" 
+              placeholder="Contraseña" 
               value={formData.password} 
               onChange={handleChange} 
-              required
+              required 
             />
           </div>
           <button type="submit" className="btn btn-primary btn-full" disabled={loading}>
-            {loading ? "Processing..." : isLogin ? "Login" : "Registrarse"}
+            {loading ? "Procesando..." : isLogin ? "Iniciar Sesión" : "Registrarse"}
           </button>
         </form>
 
         <p className="toggle-auth">
-          {isLogin ? "Si aun no eta reistrado? " : "Already have an account?"}
+          {isLogin ? "¿Aún no tienes cuenta?" : "¿Ya tienes una cuenta?"}
           <button onClick={() => setIsLogin(!isLogin)}>
-            {isLogin ? "Registrarse" : "Login"}
+            {isLogin ? "Registrarse" : "Iniciar Sesión"}
           </button>
         </p>
       </div>

@@ -1,15 +1,13 @@
-import api from "./api";
+import { getDashboardData, postDashboardData, putDashboardData, deleteDashboardData } from "../dashboard/api";
 
-export const getUsers = async () => {
-  const response = await api.get("/users");
-  return response.data;
-};
+// ✅ Obtener todos los usuarios
+export const getUsers = async () => getDashboardData("/users");
 
-export const createUser = async (userData) => {
-  const response = await api.post("/users", userData);
-  return response.data;
-};
+// ✅ Crear un nuevo usuario
+export const createUser = async (userData) => postDashboardData("/users", userData);
 
-export const deleteUser = async (userId) => {
-  await api.delete(`/users/${userId}`);
-};
+// ✅ Actualizar un usuario existente
+export const updateUser = async (userData) => putDashboardData(`/users/${userData.id}`, userData);
+
+// ✅ Eliminar un usuario
+export const deleteUser = async (id) => deleteDashboardData(`/users/${id}`);

@@ -1,6 +1,6 @@
 import React from "react";
 
-const ClientTable = ({ clients }) => {
+const ClientTable = ({ clients, onEdit, onDelete }) => {
   return (
     <table>
       <thead>
@@ -8,22 +8,21 @@ const ClientTable = ({ clients }) => {
           <th>ID</th>
           <th>Nombre</th>
           <th>Email</th>
+          <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
-        {clients.length > 0 ? (
-          clients.map((client) => (
-            <tr key={client.id}>
-              <td>{client.id}</td>
-              <td>{client.name}</td>
-              <td>{client.email}</td>
-            </tr>
-          ))
-        ) : (
-          <tr>
-            <td colSpan="3">No hay clientes registrados</td>
+        {clients.map((c) => (
+          <tr key={c.id}>
+            <td>{c.id}</td>
+            <td>{c.name}</td>
+            <td>{c.email}</td>
+            <td>
+              <button onClick={() => onEdit(c)}> Editar</button>
+              <button onClick={() => onDelete(c.id)}> Eliminar</button>
+            </td>
           </tr>
-        )}
+        ))}
       </tbody>
     </table>
   );
