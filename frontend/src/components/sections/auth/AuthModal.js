@@ -1,9 +1,12 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom"; // ✅ Usar useHistory en React Router v5
+import React, { useState, useContext } from "react";
+import { useHistory } from "react-router-dom"; // ✅ Para redireccionar después del login
+import { AuthContext } from "../../../context/AuthContext";
 import { loginUser, registerUser } from "../../servicios/auth/authService";
 
 const AuthModal = ({ onClose }) => {
-  const history = useHistory(); // ✅ Hook para redireccionar al Dashboard
+  const { login } = useContext(AuthContext);
+  const history = useHistory(); // ✅ Hook para redirigir después del login
+
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({ email: "", password: "", name: "" });
   const [loading, setLoading] = useState(false);
@@ -20,29 +23,30 @@ const AuthModal = ({ onClose }) => {
 
     try {
       if (isLogin) {
-        // ✅ Login
+        // 🔹 Login
         const response = await loginUser({ email: formData.email, password: formData.password });
         if (response && response.accessToken) {
+          login(response.user, response.accessToken); // Guardar usuario y token
           localStorage.setItem("accessToken", response.accessToken);
-          alert("✅ Login exitoso! Redirigiendo...");
-          onClose(); 
-          history.push("/dashboard"); // ✅ Redirigir al Dashboard con useHistory()
+          localStorage.setItem("user", JSON.stringify(response.user));
+          alert("✅ Login exitoso!");
+          onClose();
+          history.push("/dashboard"); // ✅ Redirigir automáticamente
         } else {
-          setError("❌ Credenciales incorrectas. Inténtelo de nuevo.");
+          setError("❌ Credenciales incorrectas.");
         }
       } else {
-        // ✅ Registro
+        // 🔹 Registro
         const response = await registerUser(formData);
         if (response?.accessToken) {
-          localStorage.setItem("accessToken", response.accessToken);
           alert("✅ Registro exitoso! Ahora puedes iniciar sesión.");
           setIsLogin(true);
         } else {
-          setError("❌ Error en el registro. Inténtelo de nuevo.");
+          setError("❌ Error en el registro.");
         }
       }
     } catch (err) {
-      setError("❌ Error en la solicitud.");
+      setError("❌ Error en la solicitud. Verifica tu conexión.");
     } finally {
       setLoading(false);
     }
@@ -67,7 +71,7 @@ const AuthModal = ({ onClose }) => {
                 placeholder="Nombre Completo" 
                 value={formData.name} 
                 onChange={handleChange} 
-                required
+                required 
               />
             </div>
           )}
@@ -78,7 +82,7 @@ const AuthModal = ({ onClose }) => {
               placeholder="Correo Electrónico" 
               value={formData.email} 
               onChange={handleChange} 
-              required
+              required 
             />
           </div>
           <div className="form-group">
@@ -88,7 +92,7 @@ const AuthModal = ({ onClose }) => {
               placeholder="Contraseña" 
               value={formData.password} 
               onChange={handleChange} 
-              required
+              required 
             />
           </div>
           <button type="submit" className="btn btn-primary btn-full" disabled={loading}>

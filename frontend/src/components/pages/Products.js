@@ -5,7 +5,7 @@ import ProductTable from "../sections/dashboard/ProductTable";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
-  const [formData, setFormData] = useState({ id: "", name: "", price: "" });
+  const [formData, setFormData] = useState({ id: "", title: "", price: "" });
   const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
@@ -40,7 +40,7 @@ const Products = () => {
       const newProduct = await createProduct(formData);
       setProducts([...products, newProduct]);
     }
-    setFormData({ id: "", name: "", price: "" });
+    setFormData({ id: "", title: "", price: "" });
     setIsEditing(false);
   };
 
@@ -48,14 +48,14 @@ const Products = () => {
     <div className="dashboard-container">
       <Sidebar />
       <div className="dashboard-content">
-        <h2>🛒 Gestión de Productos</h2>
+        <h2>Gestión de Productos</h2>
         
         <form onSubmit={handleSubmit}>
           <input
             type="text"
             placeholder="Nombre"
-            value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            value={formData.title}
+            onChange={(e) => setFormData({ ...formData, title: e.target.value })}
             required
           />
           <input

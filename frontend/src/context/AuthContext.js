@@ -1,38 +1,63 @@
 import React, { createContext, useState, useEffect } from "react";
-import { useHistory } from "react-router-dom"; // ✅ Para redirigir al usuario
+import { useHistory } from "react-router-dom";
 
-// Crear el contexto de autenticación
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const history = useHistory();
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const history = useHistory(); // ✅ Hook para redirigir
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    setIsAuthenticated(!!token);
+    const token = localStorage.getItem("accessToken");
+    const storedUser = localStorage.getItem("user");
+
+    if (token && storedUser) {
+      try {
+        setUser(JSON.parse(storedUser));
+      } catch (error) {
+        console.error("❌ Error al parsear `user` desde localStorage:", error);
+        localStorage.removeItem("user"); // Eliminar datos corruptos
+        setUser(null);
+      }
+    } else {
+      setUser(null);
+    }
+
     setLoading(false);
   }, []);
 
-  const login = (token) => {
-    localStorage.setItem("token", token);
-    setIsAuthenticated(true);
+  const login = (userData, token) => {
+    if (!userData || !token) {
+      console.error("❌ Error: Datos de usuario o token inválidos.");
+      return;
+    }
+
+    console.log("✅ Guardando usuario en localStorage y contexto...", userData);
+
+    localStorage.setItem("accessToken", token);
+    localStorage.setItem("user", JSON.stringify(userData));
+    setUser(userData);
+
+    if (history.location.pathname !== "/dashboard") {
+      history.push("/dashboard");
+    }
   };
 
   const logout = () => {
-    localStorage.removeItem("token"); // ✅ Eliminar token
-    setIsAuthenticated(false);
-    history.push("/login"); // ✅ Redirigir a la página de login
+    console.log("🔐 Cerrando sesión...");
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("user");
+    setUser(null);
+
+    if (history.location.pathname !== "/login") {
+      history.push("/login");
+    }
   };
 
-  if (loading) {
-    return <div style={{ color: "white", textAlign: "center", marginTop: "20%" }}>Loading...</div>;
-  }
-
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
-      {children}
+    <AuthContext.Provider value={{ user, login, logout, loading }}>
+      {!loading ? children : <p>Cargando...</p>}
     </AuthContext.Provider>
   );
 };

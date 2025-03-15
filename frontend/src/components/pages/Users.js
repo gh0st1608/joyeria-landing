@@ -82,7 +82,7 @@ const Users = () => {
     <div className="dashboard-container">
       <Sidebar />
       <div className="dashboard-content">
-        <h2>👤 Gestión de Usuarios</h2>
+        <h2> Gestión de Usuarios</h2>
         
         {error && <p className="error-message">{error}</p>}
         {success && <p className="success-message">{success}</p>}

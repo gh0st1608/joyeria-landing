@@ -326,3 +326,226 @@ body {
   border: none;
   cursor: pointer;
 }
+
+
+/* 📌 Contenedor de la tabla */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 20px;
+}
+
+/* 📌 Estilos generales para la tabla */
+.dashboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* 📌 Estilos para el encabezado de la tabla */
+.dashboard-table thead {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+.dashboard-table th, .dashboard-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.dashboard-table th {
+  font-weight: bold;
+}
+
+/* 📌 Filas alternas para mejorar la legibilidad */
+.dashboard-table tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+/* 📌 Mensaje cuando no hay productos */
+.no-data {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 20px;
+  color: #888;
+}
+
+/* 📌 Botones de acción */
+.btn-edit, .btn-delete {
+  border: none;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-right: 5px;
+  transition: 0.3s ease;
+}
+
+.btn-edit {
+  background-color: #ffc107;
+  color: #333;
+}
+
+.btn-edit:hover {
+  background-color: #e0a800;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.btn-delete:hover {
+  background-color: #c82333;
+}
+
+/* 📌 Diseño responsivo para pantallas pequeñas */
+@media (max-width: 768px) {
+  .dashboard-table th, .dashboard-table td {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .btn-edit, .btn-delete {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+}
+
+/* 📌 Asegurar que el sidebar no cubra el contenido */
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* 📌 Estilos para el Sidebar */
+.sidebar {
+  width: 250px; /* Ajusta el ancho */
+  height: 100vh;
+  position: fixed; /* Lo mantiene fijo a la izquierda */
+  top: 0;
+  left: 0;
+  background-color: #222; /* Color oscuro */
+  color: #fff;
+  padding: 20px;
+  transition: width 0.3s ease;
+  z-index: 1000; /* Para asegurarse de que no tape contenido */
+}
+
+/* 📌 Ajustar el contenido para que no lo tape */
+.dashboard-content {
+  flex: 1;
+  margin-left: 260px; /* Mismo ancho del Sidebar + un poco de espacio */
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+
+/* 📌 Responsivo: Ocultar el Sidebar en pantallas pequeñas */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 60px; /* Hacerlo más delgado */
+    overflow: hidden;
+  }
+
+  .dashboard-content {
+    margin-left: 80px; /* Ajustar margen */
+  }
+
+  .sidebar:hover {
+    width: 250px; /* Expandir cuando el usuario pasa el mouse */
+  }
+}
+
+/* 📌 Contenedor principal que incluye Sidebar y Contenido */
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Hace que ocupe toda la pantalla */
+}
+
+/* 📌 Contenedor de contenido para evitar que el Sidebar lo tape */
+.dashboard-main {
+  display: flex;
+  flex: 1;
+}
+
+/* 📌 Sidebar */
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #222;
+  color: #fff;
+  padding: 20px;
+  transition: width 0.3s ease;
+  z-index: 1000;
+}
+
+/* 📌 Ajustar contenido principal para no ser tapado */
+.dashboard-content {
+  flex: 1;
+  margin-left: 260px;
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+  min-height: calc(100vh - 60px); /* Resta el espacio del Footer */
+}
+
+/* 📌 Footer siempre abajo */
+.footer {
+  background-color: #222;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  position: relative;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+
+/* 📌 Diseño responsivo */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 60px;
+    overflow: hidden;
+  }
+
+  .dashboard-content {
+    margin-left: 80px;
+  }
+
+  .sidebar:hover {
+    width: 250px;
+  }
+}
+
+
+/* 📌 Asegurar que el contenido tenga margen suficiente */
+.dashboard-content {
+  flex: 1;
+  margin-left: 260px; /* Mismo ancho del Sidebar */
+  padding: 20px;
+  padding-top: 80px; /* Asegurar espacio para el encabezado */
+  min-height: calc(100vh - 60px); /* Ajusta la altura para el Footer */
+}
+
+/* 📌 Estilo para los encabezados */
+.dashboard-content h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* 📌 Evitar que el Sidebar lo tape en pantallas pequeñas */
+@media (max-width: 768px) {
+  .dashboard-content {
+    margin-left: 80px;
+    padding-top: 100px; /* Mayor espacio en pantallas pequeñas */
+  }
+}

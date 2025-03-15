@@ -18,8 +18,8 @@ const ClientTable = ({ clients, onEdit, onDelete }) => {
             <td>{c.name}</td>
             <td>{c.email}</td>
             <td>
-              <button onClick={() => onEdit(c)}>✏️ Editar</button>
-              <button onClick={() => onDelete(c.id)}>🗑️ Eliminar</button>
+              <button onClick={() => onEdit(c)}> Editar</button>
+              <button onClick={() => onDelete(c.id)}> Eliminar</button>
             </td>
           </tr>
         ))}

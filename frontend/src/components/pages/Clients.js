@@ -49,7 +49,7 @@ const Clients = () => {
     <div className="dashboard-container">
       <Sidebar />
       <div className="dashboard-content">
-        <h2>📋 Gestión de Clientes</h2>
+        <h2> Gestión de Clientes</h2>
         
         <form onSubmit={handleSubmit}>
           <input

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-import { FaChartBar, FaShoppingCart, FaUser, FaClipboardList, FaSignOutAlt } from "react-icons/fa";
+import { FaChartBar, FaShoppingCart, FaUser, FaClipboardList } from "react-icons/fa";
 import "../../assets/css/dashboard.css";
 
 const Sidebar = () => {
@@ -34,7 +34,7 @@ const Sidebar = () => {
         </ul>
       </nav>
       <button className="logout-btn" onClick={logout}>
-        <FaSignOutAlt /> <span>Cerrar Sesión</span>
+        {/* <FaSignOutAlt /> <span>Cerrar Sesión</span> */}
       </button>
     </div>
   );
