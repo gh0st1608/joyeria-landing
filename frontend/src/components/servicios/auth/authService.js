@@ -7,6 +7,7 @@ export const loginUser = async (credentials) => {
     console.log("📡 Enviando solicitud de inicio de sesión...", credentials);
 
     const response = await postRequest(ENDPOINTS.auth.login, credentials);
+    
 
     if (response?.accessToken) {
       console.log("✅ Inicio de sesión exitoso:", response);

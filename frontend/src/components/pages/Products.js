@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "../layouts/Sidebar";
+import Dashboard from "../pages/Dashboard"; // Asegúrate de importar el contenedor principal
 import { getProducts, deleteProduct, createProduct, updateProduct } from "../servicios/shop/productService";
-import ProductTable from "../sections/dashboard/ProductTable"; // Ahora solo es la tabla
-import ProductFormModal from "../sections/dashboard/ProductFormModal"; // Importa el modal
-
-
-
+import ProductTable from "../sections/dashboard/ProductTable";
+import "../../assets/css/dashboard.css";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -61,8 +58,7 @@ const Products = () => {
   });
 
   return (
-    <div className="dashboard-container">
-      <Sidebar />
+    <Dashboard>
       <div className="dashboard-content">
         <h2>Gestión de Productos</h2>
 
@@ -96,7 +92,7 @@ const Products = () => {
           </button>
         </div>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="product-form">
           <input
             type="text"
             placeholder="Nombre"
@@ -116,7 +112,7 @@ const Products = () => {
 
         <ProductTable products={filteredProducts} onEdit={handleEdit} onDelete={handleDelete} />
       </div>
-    </div>
+    </Dashboard>
   );
 };
 
