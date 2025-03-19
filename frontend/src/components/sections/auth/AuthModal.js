@@ -2,10 +2,12 @@ import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom"; // ✅ Para redireccionar después del login
 import { AuthContext } from "../../../context/AuthContext";
 import { loginUser, registerUser } from "../../servicios/auth/authService";
+import { jwtDecode } from "jwt-decode";
+ // ✅ Importa jwt-decode
 
 const AuthModal = ({ onClose }) => {
   const { login } = useContext(AuthContext);
-  const history = useHistory(); // ✅ Hook para redirigir después del login
+  const history = useHistory();
 
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({ email: "", password: "", name: "" });
@@ -23,20 +25,25 @@ const AuthModal = ({ onClose }) => {
 
     try {
       if (isLogin) {
-        // 🔹 Login
+        // ✅ Login
         const response = await loginUser({ email: formData.email, password: formData.password });
         if (response && response.accessToken) {
-          login(response.user, response.accessToken); // Guardar usuario y token
-          localStorage.setItem("accessToken", response.accessToken);
-          localStorage.setItem("user", JSON.stringify(response.user));
+          const decoded = jwtDecode(response.accessToken);
+          const userData = {
+            id: decoded._id,
+            name: decoded.name,
+            email: decoded.email
+          };
+
+          login(userData, response.accessToken); // Guardamos en contexto
           alert("✅ Login exitoso!");
           onClose();
-          history.push("/dashboard"); // ✅ Redirigir automáticamente
+          history.push("/dashboard");
         } else {
-          setError("❌ Credenciales incorrectas.");
+          setError("❌ Credenciales incorrectas o datos faltantes.");
         }
       } else {
-        // 🔹 Registro
+        // ✅ Registro
         const response = await registerUser(formData);
         if (response?.accessToken) {
           alert("✅ Registro exitoso! Ahora puedes iniciar sesión.");
@@ -65,34 +72,34 @@ const AuthModal = ({ onClose }) => {
         <form onSubmit={handleSubmit} className="modal-form">
           {!isLogin && (
             <div className="form-group">
-              <input 
-                type="text" 
-                name="name" 
-                placeholder="Nombre Completo" 
-                value={formData.name} 
-                onChange={handleChange} 
-                required 
+              <input
+                type="text"
+                name="name"
+                placeholder="Nombre Completo"
+                value={formData.name}
+                onChange={handleChange}
+                required
               />
             </div>
           )}
           <div className="form-group">
-            <input 
-              type="email" 
-              name="email" 
-              placeholder="Correo Electrónico" 
-              value={formData.email} 
-              onChange={handleChange} 
-              required 
+            <input
+              type="email"
+              name="email"
+              placeholder="Correo Electrónico"
+              value={formData.email}
+              onChange={handleChange}
+              required
             />
           </div>
           <div className="form-group">
-            <input 
-              type="password" 
-              name="password" 
-              placeholder="Contraseña" 
-              value={formData.password} 
-              onChange={handleChange} 
-              required 
+            <input
+              type="password"
+              name="password"
+              placeholder="Contraseña"
+              value={formData.password}
+              onChange={handleChange}
+              required
             />
           </div>
           <button type="submit" className="btn btn-primary btn-full" disabled={loading}>

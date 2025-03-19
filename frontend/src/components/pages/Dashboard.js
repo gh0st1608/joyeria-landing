@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import Sidebar from "../layouts/Sidebar";
 import { AuthContext } from "../../context/AuthContext";
-import { FaSun, FaMoon, FaSearch, FaBars, FaUserCircle} from "react-icons/fa";
+import { FaSun, FaMoon, FaSearch, FaBars, FaUserCircle } from "react-icons/fa";
 import "../../assets/css/dashboard.css";
 
 const Dashboard = () => {
@@ -16,7 +16,6 @@ const Dashboard = () => {
     document.body.classList.toggle("dark-mode", darkMode);
   }, [darkMode]);
 
-  // Cerrar menú cuando se hace clic fuera
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -38,7 +37,7 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
-      {/* 🔹 Barra Superior */}
+      {/* 🔹 Barra superior */}
       <div className="topbar">
         <button className="menu-btn">
           <FaBars />
@@ -60,21 +59,16 @@ const Dashboard = () => {
               <div className="profile-dropdown">
                 <ul>
                   <li onClick={() => history.push("/dashboard/profile")}>Mi Perfil</li>
-                  <li onClick={logout}>Cerrar Sesión</li>
-                  <li onClick={() => history.push("/dashboard/profile")}>Mi Perfil</li>
                   <li onClick={() => history.push("/dashboard/settings")}>Configuración</li>
                   <li onClick={logout}>Cerrar Sesión</li>
                 </ul>
               </div>
-
-
-
             )}
           </div>
         </div>
       </div>
 
-      {/* 🔹 Sidebar y Contenido */}
+      {/* 🔹 Sidebar y contenido principal */}
       <div className="main-content">
         <Sidebar />
         <div className="dashboard-content">
