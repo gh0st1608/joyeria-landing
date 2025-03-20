@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "../../components/layouts/Sidebar";
+import Dashboard from "../pages/Dashboard"; // Contenedor principal con Sidebar y topbar
 import { getClients, deleteClient, createClient, updateClient } from "../servicios/dashboard/clientService";
 import ClientTable from "../sections/dashboard/ClientTable";
-
+import "../../assets/css/dashboard.css";
 
 const Clients = () => {
   const [clients, setClients] = useState([]);
@@ -46,12 +46,11 @@ const Clients = () => {
   };
 
   return (
-    <div className="dashboard-container">
-      <Sidebar />
+    <Dashboard>
       <div className="dashboard-content">
-        <h2> Gestión de Clientes</h2>
-        
-        <form onSubmit={handleSubmit}>
+        <h2>Gestión de Clientes</h2>
+
+        <form onSubmit={handleSubmit} className="client-form">
           <input
             type="text"
             placeholder="Nombre"
@@ -71,7 +70,7 @@ const Clients = () => {
 
         <ClientTable clients={clients} onEdit={handleEdit} onDelete={handleDelete} />
       </div>
-    </div>
+    </Dashboard>
   );
 };
 

@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
-import Sidebar from "../layouts/Sidebar";
+import Dashboard from "../pages/Dashboard";
 import { AuthContext } from "../../context/AuthContext";
-import { updateUserSettings } from "../../components/servicios/auth/authService";
+import { updateUserSettings } from "../servicios/auth/authService";
 import "../../assets/css/dashboard.css";
 
 const Settings = () => {
@@ -38,22 +38,31 @@ const Settings = () => {
   };
 
   return (
-    <div className="dashboard-container">
-      <Sidebar />
+    <Dashboard>
       <div className="dashboard-content">
-        <h2> Configuración de Cuenta</h2>
+        <h2>Configuración de Cuenta</h2>
 
         {error && <p className="error-msg">{error}</p>}
         {success && <p className="success-msg">{success}</p>}
 
         <form onSubmit={handleSubmit} className="settings-form">
           <label>
-            <input type="checkbox" name="emailNotifications" checked={settings.emailNotifications} onChange={handleToggle} />
+            <input
+              type="checkbox"
+              name="emailNotifications"
+              checked={settings.emailNotifications}
+              onChange={handleToggle}
+            />
             Recibir notificaciones por correo
           </label>
 
           <label>
-            <input type="checkbox" name="twoFactorAuth" checked={settings.twoFactorAuth} onChange={handleToggle} />
+            <input
+              type="checkbox"
+              name="twoFactorAuth"
+              checked={settings.twoFactorAuth}
+              onChange={handleToggle}
+            />
             Activar autenticación en dos pasos
           </label>
 
@@ -66,7 +75,7 @@ const Settings = () => {
           <button type="submit" className="btn btn-primary">Guardar Cambios</button>
         </form>
       </div>
-    </div>
+    </Dashboard>
   );
 };
 

@@ -5,11 +5,12 @@ import { AuthContext } from "../../context/AuthContext";
 import { FaSun, FaMoon, FaSearch, FaBars, FaUserCircle } from "react-icons/fa";
 import "../../assets/css/dashboard.css";
 
-const Dashboard = () => {
+const Dashboard = ({ children }) => {
   const history = useHistory();
   const { user, logout } = useContext(AuthContext);
-  const [darkMode, setDarkMode] = useState(() => localStorage.getItem("theme") === "dark");
+  const [darkMode, setDarkMode] = useState(localStorage.getItem("theme") === "dark");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const menuRef = useRef(null);
 
   useEffect(() => {
@@ -35,25 +36,28 @@ const Dashboard = () => {
     localStorage.setItem("theme", newTheme);
   };
 
+  const toggleSidebar = () => {
+    setSidebarCollapsed(!sidebarCollapsed);
+  };
+
   return (
-    <div className="dashboard-container">
-      {/* 🔹 Barra superior */}
-      <div className="topbar">
-        <button className="menu-btn">
+    <div className="dashboard-page">
+      <header className="topbar">
+        <button className="menu-btn" onClick={toggleSidebar}>
           <FaBars />
         </button>
         <div className="search-bar">
           <FaSearch className="search-icon" />
-          <input type="text" placeholder="Buscar en el dashboard..." />
+          <input type="text" placeholder="Buscar en el panel..." />
         </div>
-        <div className="topbar-icons">
-          <button className="toggle-theme-btn" onClick={toggleTheme}>
+        <div className="topbar-actions">
+          <button className="toggle-theme-btn" onClick={toggleTheme} title="Cambiar tema">
             {darkMode ? <FaSun /> : <FaMoon />}
           </button>
           <div className="profile-container" ref={menuRef}>
             <button className="profile-btn" onClick={() => setMenuOpen(!menuOpen)}>
               <FaUserCircle className="profile-icon" />
-              <span>{user?.name || "Usuario"}</span>
+              <span className="profile-name">{user?.name || "Usuario"}</span>
             </button>
             {menuOpen && (
               <div className="profile-dropdown">
@@ -66,14 +70,14 @@ const Dashboard = () => {
             )}
           </div>
         </div>
-      </div>
+      </header>
 
-      {/* 🔹 Sidebar y contenido principal */}
-      <div className="main-content">
-        <Sidebar />
-        <div className="dashboard-content">
+      <div className="dashboard-layout">
+        <Sidebar collapsed={sidebarCollapsed} showNamesOnHover={true} />
+        <div className={`dashboard-main-content ${sidebarCollapsed ? 'collapsed' : ''}`}>
           <h2>Panel de Administración</h2>
           <p>Bienvenido, {user?.name || "Usuario"}.</p>
+          {children}
         </div>
       </div>
     </div>

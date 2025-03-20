@@ -1,8 +1,7 @@
 import React, { useState, useContext } from "react";
+import Dashboard from "../pages/Dashboard";
 import { AuthContext } from "../../context/AuthContext";
-// import { updateUserProfile } from "../../servicios/auth/authService";
-import { updateUserSettings } from "../servicios/auth/authService"; 
-
+import { updateUserSettings } from "../servicios/auth/authService";
 import "../../assets/css/dashboard.css";
 
 const Profile = () => {
@@ -26,7 +25,7 @@ const Profile = () => {
 
     try {
       const updatedUser = await updateUserSettings(formData);
-      login(updatedUser, localStorage.getItem("accessToken")); // Actualizar el contexto
+      login(updatedUser, localStorage.getItem("accessToken"));
       setSuccess("✅ Perfil actualizado con éxito.");
     } catch (error) {
       setError("❌ Error al actualizar el perfil.");
@@ -34,9 +33,9 @@ const Profile = () => {
   };
 
   return (
-    <div className="dashboard-container">
+    <Dashboard>
       <div className="dashboard-content">
-        <h2> Mi Perfil</h2>
+        <h2>Mi Perfil</h2>
 
         {error && <p className="error-msg">{error}</p>}
         {success && <p className="success-msg">{success}</p>}
@@ -54,7 +53,7 @@ const Profile = () => {
           <button type="submit" className="btn btn-primary">Guardar Cambios</button>
         </form>
       </div>
-    </div>
+    </Dashboard>
   );
 };
 

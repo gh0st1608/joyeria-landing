@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "../../components/layouts/Sidebar";
+import Dashboard from "../pages/Dashboard";
 import { getUsers, deleteUser, createUser, updateUser } from "../servicios/dashboard/userService";
 import UserTable from "../sections/dashboard/UserTable";
 import "../../assets/css/dashboard.css";
@@ -79,14 +79,13 @@ const Users = () => {
   };
 
   return (
-    <div className="dashboard-container">
-      <Sidebar />
+    <Dashboard>
       <div className="dashboard-content">
-        <h2> Gestión de Usuarios</h2>
-        
+        <h2>Gestión de Usuarios</h2>
+
         {error && <p className="error-message">{error}</p>}
         {success && <p className="success-message">{success}</p>}
-        
+
         <form className="dashboard-form" onSubmit={handleSubmit}>
           <input
             type="text"
@@ -106,20 +105,20 @@ const Users = () => {
         </form>
 
         <UserTable users={users} onEdit={handleEdit} onDelete={handleDelete} />
-      </div>
-      
-      {showConfirm && (
-        <div className="modal-overlay show">
-          <div className="modal">
-            <p>¿Estás seguro de que quieres eliminar este usuario?</p>
-            <div className="modal-buttons">
-              <button className="btn-cancel" onClick={() => setShowConfirm(false)}>Cancelar</button>
-              <button className="btn-confirm" onClick={confirmDelete}>Confirmar</button>
+
+        {showConfirm && (
+          <div className="modal-overlay show">
+            <div className="modal">
+              <p>¿Estás seguro de que quieres eliminar este usuario?</p>
+              <div className="modal-buttons">
+                <button className="btn-cancel" onClick={() => setShowConfirm(false)}>Cancelar</button>
+                <button className="btn-confirm" onClick={confirmDelete}>Confirmar</button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </Dashboard>
   );
 };
 
