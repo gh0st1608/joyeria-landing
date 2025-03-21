@@ -34,6 +34,7 @@ steps:
         --network=default \
         --tags=http-server,https-server \
         --restart-on-failure
+        --container-env=PORT=4002,MONGO_DB_URI=mongodb+srv://vady123:vady123!@proyectos.bihss.mongodb.net/,CLIENT_ID_PAYPAL=AYDlGpRcwD4kri9RkqJ8LtmfjGyPJ0CHNOo2JlJCeJ5FCQ5jnA3aNSUtymrXjljqVKaaHMq7dAnjqcS4,CLIENT_SECRET_PAYPAL=EI6-diP48Khu4WbNYYDQj7W3cW9Yk1qQyD-J2TCDagHNIw2C7tiu899SanrWjHCoLozDMb-hDsUE5yPq,SANDBOX_PAYPAL=https://api-m.sandbox.paypal.com
 
 timeout: '1600s'
   # Install dependencies and build
