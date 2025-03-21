@@ -38,12 +38,15 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem("accessToken", token);
     localStorage.setItem("user", JSON.stringify(userData));
     setUser(userData);
+    console.log("user", JSON.stringify(userData))
 
-    if (history.location.pathname !== "/dashboard") {
-      history.push("/dashboard");
-    }
+    if (history.location.pathname !== "/dashboard") { 
+    history.push("/dashboard");
+    } 
+
+    console.log('entro despues del history location')
   };
-
+  
   const logout = () => {
     console.log("🔐 Cerrando sesión...");
     localStorage.removeItem("accessToken");
