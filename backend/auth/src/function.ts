@@ -7,7 +7,7 @@ import { NestFactory } from '@nestjs/core';
 async function bootstrap(): Promise<express.Express> {
   const expressApp = express();
   const app = await NestFactory.create(AuthModule, new ExpressAdapter(expressApp));
-  app.setGlobalPrefix('');
+  app.setGlobalPrefix('auth');
   app.enableCors();
   
   await app.init(); // Esperar la inicialización completa
