@@ -17,10 +17,10 @@ export const ENDPOINTS = {
 
   shop: {
     products: `/products`,
-    getProductById: (id) => `/products/${id}`,
+    getProductById: (_id) => `/products/${_id}`,
     getProductsByParams: (params) => `/products/filters?${params}`,
     categoryProducts: '/category-products',
-    getCategoryProductById: (id) => `/category-products/${id}`,
+    getCategoryProductById: (_id) => `/category-products/${_id}`,
   },
 
   payment: {

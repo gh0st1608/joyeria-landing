@@ -72,14 +72,17 @@ const Dashboard = ({ children }) => {
         </div>
       </header>
 
-      <div className="dashboard-layout">
-        <Sidebar collapsed={sidebarCollapsed} showNamesOnHover={true} />
-        <div className={`dashboard-main-content ${sidebarCollapsed ? 'collapsed' : ''}`}>
-          <h2>Panel de Administración</h2>
-          <p>Bienvenido, {user?.name || "Usuario"}.</p>
-          {children}
-        </div>
-      </div>
+      <div class="">
+  <Sidebar collapsed={sidebarCollapsed} showNamesOnHover={true} />
+  <center>
+    <div className={`dashboard-main-content ${sidebarCollapsed ? 'collapsed' : ''}`}>
+      <h2>Panel de Administración</h2>
+      <p>Bienvenido, {user?.name || "Usuario"}.</p>
+      {children}
+    </div>
+  </center>
+</div>
+
     </div>
   );
 };
