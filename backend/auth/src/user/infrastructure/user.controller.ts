@@ -21,7 +21,6 @@ export class UserController {
   async create(
     @Body() body: CreateUserDto
   ) {
-    console.log('body',body)
     return this.createUserUseCase.execute(body);
   }
 
