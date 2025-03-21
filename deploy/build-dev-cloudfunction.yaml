@@ -3,7 +3,7 @@ steps:
   - id: 'Build First Application'
     name: 'gcr.io/cloud-builders/npm'
     entrypoint: 'bash'
-    args: ['-c', 'cd ./backend/order && npm install && npm run build']
+    args: ['-c', 'cd ./backend/order && npm install --legacy-peer-deps && npm run build']
 
   - id: 'Build Docker Image for First Application'
     name: 'gcr.io/cloud-builders/docker'
