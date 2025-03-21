@@ -9,10 +9,11 @@ export default class AuthAppService {
     return uuidv4();
   }
 
-  static generateAccessToken(id: string, name: string): string {
+  static generateAccessToken(id: string, name: string, role : string): string {
     const payload = {
       id,
       name,
+      role,
       iat: moment().unix(),
       exp: moment().add(process.env.TOKEN_TIMEOUT, "minutes").unix(),
     };
