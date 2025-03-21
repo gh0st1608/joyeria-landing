@@ -5,7 +5,8 @@ import { ENDPOINTS } from "../endpoints";
 export const getProducts = async () => {
   try {
     console.log(`📡 Fetching products from: ${ENDPOINTS.shop.products}`);
-    return await getRequest(ENDPOINTS.shop.products);
+    const products = await getRequest(ENDPOINTS.shop.products);
+    return products || [];
   } catch (error) {
     console.error("❌ Error fetching products:", error);
     return [];
@@ -13,12 +14,12 @@ export const getProducts = async () => {
 };
 
 // ✅ Obtener un producto por ID
-export const getProductById = async (id) => {
+export const getProductById = async (_id) => {
   try {
-    console.log(`📡 Fetching product ID: ${id}`);
-    return await getRequest(ENDPOINTS.shop.getProductById(id));
+    console.log(`📡 Fetching product ID: ${_id}`);
+    return await getRequest(ENDPOINTS.shop.getProductById(_id));
   } catch (error) {
-    console.error(`❌ Error fetching product ${id}:`, error);
+    console.error(`❌ Error fetching product ${_id}:`, error);
     return null;
   }
 };
@@ -26,7 +27,7 @@ export const getProductById = async (id) => {
 // ✅ Crear un producto
 export const createProduct = async (productData) => {
   try {
-    console.log(`📡 Creating product`);
+    console.log(`📡 Creating product`, productData);
     return await postRequest(ENDPOINTS.shop.products, productData);
   } catch (error) {
     console.error("❌ Error creating product:", error);
@@ -35,27 +36,26 @@ export const createProduct = async (productData) => {
 };
 
 // ✅ Actualizar un producto
-export const updateProduct = async (id, productData) => {
+export const updateProduct = async (_id, productData) => {
   try {
-    console.log(`📡 Updating product ID: ${id}`);
-    return await putRequest(ENDPOINTS.shop.getProductById(id), productData);
+    console.log(`📡 Updating product ID: ${_id}`, productData);
+    return await putRequest(ENDPOINTS.shop.getProductById(_id), productData);
   } catch (error) {
-    console.error(`❌ Error updating product ${id}:`, error);
+    console.error(`❌ Error updating product ${_id}:`, error);
     return null;
   }
 };
 
 // ✅ Eliminar un producto
-export const deleteProduct = async (id) => {
+export const deleteProduct = async (_id) => {
   try {
-    console.log(`📡 Deleting product ID: ${id}`);
-    return await deleteRequest(ENDPOINTS.shop.getProductById(id));
+    console.log(`📡 Deleting product ID: ${_id}`);
+    return await deleteRequest(ENDPOINTS.shop.getProductById(_id));
   } catch (error) {
-    console.error(`❌ Error deleting product ${id}:`, error);
+    console.error(`❌ Error deleting product ${_id}:`, error);
     return false;
   }
 };
-
 
 // ✅ Obtener productos con parámetros de búsqueda
 export const getProductsByParams = async (params) => {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Dashboard from "../pages/Dashboard"; // Contenedor principal con Sidebar y topbar
-import { getClients, deleteClient, createClient, updateClient } from "../servicios/dashboard/clientService";
+import { getUsers, deleteUser, createUser, updateUser } from "../servicios/dashboard/userService";
 import ClientTable from "../sections/dashboard/ClientTable";
 import "../../assets/css/dashboard.css";
 
@@ -12,7 +12,7 @@ const Clients = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getClients();
+        const data = await getUsers();  // ✅ Aquí cambia a getUsers
         setClients(data);
       } catch (error) {
         console.error("Error cargando clientes:", error);
@@ -23,7 +23,7 @@ const Clients = () => {
   }, []);
 
   const handleDelete = async (id) => {
-    await deleteClient(id);
+    await deleteUser(id);  // ✅ Cambiar a deleteUser
     setClients(clients.filter(client => client.id !== id));
   };
 
@@ -35,10 +35,10 @@ const Clients = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (isEditing) {
-      await updateClient(formData);
+      await updateUser(formData);  // ✅ Cambiar a updateUser
       setClients(clients.map(c => (c.id === formData.id ? formData : c)));
     } else {
-      const newClient = await createClient(formData);
+      const newClient = await createUser(formData);  // ✅ Cambiar a createUser
       setClients([...clients, newClient]);
     }
     setFormData({ id: "", name: "", email: "" });

@@ -1,60 +1,71 @@
 import React, { useEffect, useState } from "react";
-import Dashboard from "../pages/Dashboard"; // Asegúrate de importar el contenedor principal
+import Dashboard from "../pages/Dashboard";
 import { getProducts, deleteProduct, createProduct, updateProduct } from "../servicios/shop/productService";
 import ProductTable from "../sections/dashboard/ProductTable";
 import "../../assets/css/dashboard.css";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
-  const [formData, setFormData] = useState({ id: "", title: "", price: "" });
-  const [isEditing, setIsEditing] = useState(false);
-  const [filters, setFilters] = useState({ name: "", minPrice: "", maxPrice: "" });
+  const [filters, setFilters] = useState({ title: "", color: "", material: "" });
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await getProducts();
-        setProducts(data);
-      } catch (error) {
-        console.error("Error cargando productos:", error);
-      }
-    };
-
-    fetchData();
+    fetchProducts();
   }, []);
 
-  const handleDelete = async (id) => {
-    await deleteProduct(id);
-    setProducts(products.filter(product => product.id !== id));
-  };
-
-  const handleEdit = (product) => {
-    setFormData(product);
-    setIsEditing(true);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (isEditing) {
-      await updateProduct(formData);
-      setProducts(products.map(p => (p.id === formData.id ? formData : p)));
-    } else {
-      const newProduct = await createProduct(formData);
-      setProducts([...products, newProduct]);
+  const fetchProducts = async () => {
+    try {
+      const data = await getProducts();
+      setProducts(data || []);
+    } catch (error) {
+      console.error("Error al cargar productos:", error);
     }
-    setFormData({ id: "", title: "", price: "" });
-    setIsEditing(false);
+  };
+
+  const handleAddOrUpdate = async (productData) => {
+    try {
+      if (productData._id) {
+        await updateProduct(productData._id, productData);
+      } else {
+        // Si incluye imagen, debes enviarlo como FormData
+        if (productData.imageFile) {
+          const formData = new FormData();
+          Object.keys(productData).forEach((key) => {
+            formData.append(key, productData[key]);
+          });
+          await createProduct(formData);
+        } else {
+          await createProduct(productData);
+        }
+      }
+      // Vuelve a cargar todos los productos después de guardar
+      const refreshedProducts = await getProducts();
+      setProducts(refreshedProducts);
+    } catch (error) {
+      console.error("Error al guardar producto:", error);
+    }
+  };
+  
+  
+
+  const handleDelete = async (id) => {
+    try {
+      await deleteProduct(id);
+      setProducts((prev) => prev.filter((product) => product._id !== id));
+    } catch (error) {
+      console.error("Error al eliminar producto:", error);
+    }
   };
 
   const handleFilterChange = (e) => {
-    setFilters({ ...filters, [e.target.name]: e.target.value });
+    const { title, value } = e.target;
+    setFilters((prevFilters) => ({ ...prevFilters, [title]: value }));
   };
 
   const filteredProducts = products.filter((p) => {
-    const nameMatch = p.title.toLowerCase().includes(filters.name.toLowerCase());
-    const minPriceMatch = filters.minPrice === "" || p.price >= parseFloat(filters.minPrice);
-    const maxPriceMatch = filters.maxPrice === "" || p.price <= parseFloat(filters.maxPrice);
-    return nameMatch && minPriceMatch && maxPriceMatch;
+    const nameMatch = String(p.title || "").toLowerCase().includes(filters.title.toLowerCase());
+    const colorMatch = String(p.color || "").toLowerCase().includes(filters.color.toLowerCase());
+    const materialMatch = String(p.material || "").toLowerCase().includes(filters.material.toLowerCase());
+    return nameMatch && colorMatch && materialMatch;
   });
 
   return (
@@ -65,52 +76,38 @@ const Products = () => {
         <div className="filter-container">
           <input
             type="text"
-            name="name"
+            name="title"
             placeholder="Filtrar por nombre"
-            value={filters.name}
+            value={filters.title}
             onChange={handleFilterChange}
           />
           <input
-            type="number"
-            name="minPrice"
-            placeholder="Precio mínimo"
-            value={filters.minPrice}
+            type="text"
+            name="color"
+            placeholder="Filtrar por color"
+            value={filters.color}
             onChange={handleFilterChange}
           />
           <input
-            type="number"
-            name="maxPrice"
-            placeholder="Precio máximo"
-            value={filters.maxPrice}
+            type="text"
+            name="material"
+            placeholder="Filtrar por material"
+            value={filters.material}
             onChange={handleFilterChange}
           />
           <button
             className="btn-clear-filters"
-            onClick={() => setFilters({ name: "", minPrice: "", maxPrice: "" })}
+            onClick={() => setFilters({ title: "", color: "", material: "" })}
           >
             Limpiar Filtros
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="product-form">
-          <input
-            type="text"
-            placeholder="Nombre"
-            value={formData.title}
-            onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-            required
-          />
-          <input
-            type="number"
-            placeholder="Precio"
-            value={formData.price}
-            onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-            required
-          />
-          <button type="submit">{isEditing ? "Actualizar" : "Agregar"}</button>
-        </form>
-
-        <ProductTable products={filteredProducts} onEdit={handleEdit} onDelete={handleDelete} />
+        <ProductTable
+          products={filteredProducts}
+          onAddOrUpdate={handleAddOrUpdate}
+          onDelete={handleDelete}
+        />
       </div>
     </Dashboard>
   );
