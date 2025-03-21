@@ -1,0 +1,34 @@
+steps:
+  # Construcción y subida de la imagen para Auth Service
+  - id: 'Build & Push Auth Service'
+    name: 'gcr.io/cloud-builders/docker'
+    args: 
+      - 'build'
+      - '--tag'
+      - 'us-central1-docker.pkg.dev/oval-crawler-444615-k3/joyasperu-apiscore/msa-order-img:$COMMIT_SHA'
+      - '-f'
+      - './backend/order/Dockerfile'
+      - './backend/order'
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'us-central1-docker.pkg.dev/oval-crawler-444615-k3/joyasperu-apiscore/msa-order-img:$COMMIT_SHA']
+
+  # Desplegar en Compute Engine
+  - id: 'Deploy to Compute Engine'
+    name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        gcloud compute instances create-with-container msa-joyasperu-order \
+        --container-image=us-central1-docker.pkg.dev/oval-crawler-444615-k3/joyasperu-apiscore/msa-order-img:$COMMIT_SHA \
+        --zone=us-central1-a \
+        --machine-type=e2-micro \
+        --boot-disk-size=10GB \
+        --network=default \
+        --tags=http-server,https-server \
+        --restart-on-failure
+
+timeout: '1600s'
+
+logsBucket: 'gs://joyasperu-dev-app-cloud-build'
+serviceAccount: '1094025365695-compute@developer.gserviceaccount.com'
