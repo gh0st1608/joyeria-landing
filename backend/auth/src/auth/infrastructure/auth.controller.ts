@@ -5,7 +5,7 @@ import { AuthLoginDto } from './dto/login.dto';
 import { AuthRegisterDto } from './dto/register.dto';
 import { RegisterUseCase } from '../application/register.application';
 
-@Controller('auth')
+@Controller()
 export class AuthController {
   constructor(
     private readonly loginUseCase: LoginUseCase,

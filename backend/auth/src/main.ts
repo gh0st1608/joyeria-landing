@@ -11,7 +11,7 @@ async function bootstrap(): Promise<void> {
   const configService = app.get(ConfigService);
   const port = configService.get<number>('PORT') || 5000;
   
-  app.setGlobalPrefix('');
+  app.setGlobalPrefix('auth');
   app.enableCors();
   
   await app.init(); // Esperar la inicialización completa
@@ -20,3 +20,5 @@ async function bootstrap(): Promise<void> {
     console.log(`🚀 Servidor corriendo en http://localhost:${port}`);
   });
 }
+
+bootstrap();

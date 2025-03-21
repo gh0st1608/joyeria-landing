@@ -3,21 +3,30 @@ import { Document } from 'mongoose';
 
 // Definir el esquema de "Product" usando Mongoose
 @Schema()
-export class Auth extends Document {
-  // Campo "name" de tipo string y obligatorio
+export class User extends Document {
+
   @Prop({ required: true })
+  email: string;
+
+  @Prop({ required: true, unique : false})
   name: string;
 
   @Prop({ required: true})
-  email: string;
+  roles: string;
 
-  @Prop({ required: true })
+  @Prop({ required: true})
   password: string;
 
-  @Prop({ required: false })
+  @Prop({ required: false})
+  lastname: string;
+
+  @Prop({ required: false})
+  active: boolean;
+
+  @Prop({ required: false})
   refreshToken: string;
 
 }
 
 // Crear el esquema de Mongoose a partir de la clase "Product"
-export const AuthSchema = SchemaFactory.createForClass(Auth);
+export const UserSchema = SchemaFactory.createForClass(User);
