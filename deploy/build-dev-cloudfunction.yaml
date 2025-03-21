@@ -1,6 +1,11 @@
 steps:
   # Construcción y subida de la imagen para Auth Service
-  - id: 'Build Order Service'
+  - id: 'Build First Application'
+    name: 'gcr.io/cloud-builders/npm'
+    entrypoint: 'bash'
+    args: ['-c', 'cd ./backend/order && npm install && npm run build']
+
+  - id: 'Build Docker Image for First Application'
     name: 'gcr.io/cloud-builders/docker'
     args: 
       - 'build'
@@ -9,7 +14,7 @@ steps:
       - '-f'
       - './backend/order/Dockerfile'
       - './backend/order'
-      
+
   - id: 'Push Order Service'
     name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'us-central1-docker.pkg.dev/oval-crawler-444615-k3/joyasperu-apiscore/msa-order-img:$COMMIT_SHA']
