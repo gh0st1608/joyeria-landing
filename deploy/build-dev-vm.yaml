@@ -1,6 +1,11 @@
 steps:
-  # Construcción y subida de la imagen para Auth Service
-  - id: 'Build & Push Auth Service'
+  # Construcción y subida de la imagen para Order Service
+  - id: 'Build First Application'
+    name: 'gcr.io/cloud-builders/npm'
+    entrypoint: 'bash'
+    args: ['-c', 'cd ./backend/order && npm install --legacy-peer-deps && npm run build']
+
+  - id: 'Build Docker Image for First Application'
     name: 'gcr.io/cloud-builders/docker'
     args: 
       - 'build'
@@ -9,26 +14,41 @@ steps:
       - '-f'
       - './backend/order/Dockerfile'
       - './backend/order'
-  - name: 'gcr.io/cloud-builders/docker'
+
+  - id: 'Push Order Service'
+    name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'us-central1-docker.pkg.dev/oval-crawler-444615-k3/joyasperu-apiscore/msa-order-img:$COMMIT_SHA']
 
-  # Desplegar en Compute Engine
-  - id: 'Deploy to Compute Engine'
+  # Verificar si la instancia ya existe
+  - id: 'Check and Update Instance'
     name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'bash'
     args:
       - '-c'
       - |
-        gcloud compute instances create-with-container msa-joyasperu-order \
-        --container-image=us-central1-docker.pkg.dev/oval-crawler-444615-k3/joyasperu-apiscore/msa-order-img:$COMMIT_SHA \
-        --zone=us-central1-a \
-        --machine-type=e2-micro \
-        --boot-disk-size=10GB \
-        --network=default \
-        --tags=http-server,https-server \
-        --restart-on-failure
+        if gcloud compute instances describe msa-joyasperu-order --zone=us-central1-a; then
+          echo "Instance exists. Stopping it first..."
+          gcloud compute instances stop msa-joyasperu-order --zone=us-central1-a
+          
+          echo "Updating container..."
+          gcloud compute instances update-container msa-joyasperu-order \
+            --zone=us-central1-a \
+            --container-image=us-central1-docker.pkg.dev/oval-crawler-444615-k3/joyasperu-apiscore/msa-order-img:$COMMIT_SHA \
+            --container-env=PORT=4002,MONGO_DB_URI=mongodb+srv://vady123:vady123!@proyectos.bihss.mongodb.net/,CLIENT_ID_PAYPAL=AYDlGpRcwD4kri9RkqJ8LtmfjGyPJ0CHNOo2JlJCeJ5FCQ5jnA3aNSUtymrXjljqVKaaHMq7dAnjqcS4,CLIENT_SECRET_PAYPAL=EI6-diP48Khu4WbNYYDQj7W3cW9Yk1qQyD-J2TCDagHNIw2C7tiu899SanrWjHCoLozDMb-hDsUE5yPq,SANDBOX_PAYPAL=https://api-m.sandbox.paypal.com
 
-timeout: '1600s'
+          echo "Starting instance again..."
+          gcloud compute instances start msa-joyasperu-order --zone=us-central1-a
+        else
+          echo "Instance does not exist. Creating new instance..."
+          gcloud compute instances create-with-container msa-joyasperu-order \
+            --container-image=us-central1-docker.pkg.dev/oval-crawler-444615-k3/joyasperu-apiscore/msa-order-img:$COMMIT_SHA \
+            --zone=us-central1-a \
+            --machine-type=e2-micro \
+            --boot-disk-size=10GB \
+            --network=default \
+            --tags=http-server,https-server \
+            --restart-on-failure \
+            --container-env=PORT=4002,MONGO_DB_URI=mongodb+srv://vady123:vady123!@proyectos.bihss.mongodb.net/,CLIENT_ID_PAYPAL=AYDlGpRcwD4kri9RkqJ8LtmfjGyPJ0CHNOo2JlJCeJ5FCQ5jnA3aNSUtymrXjljqVKaaHMq7dAnjqcS4,CLIENT_SECRET_PAYPAL=EI6-diP48Khu4WbNYYDQj7W3cW9Yk1qQyD-J2TCDagHNIw2C7tiu899SanrWjHCoLozDMb-hDsUE5yPq,SANDBOX_PAYPAL=https://api-m.sandbox.paypal.com
+        fi
 
-logsBucket: 'gs://joyasperu-dev-app-cloud-build'
-serviceAccount: '1094025365695-compute@developer.gserviceaccount.com'
+timeout: '1400s'

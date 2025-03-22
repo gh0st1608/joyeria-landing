@@ -21,4 +21,3 @@ export const updateUser = async (id, userData) => {
 export const deleteUser = async (id) => {
   return await deleteRequest(`${BASE_URL.auth}${ENDPOINTS.dashboard.deleteUser(id)}`);
 
-};
