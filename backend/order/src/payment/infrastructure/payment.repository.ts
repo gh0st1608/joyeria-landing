@@ -4,6 +4,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { IPaymentRepository } from '../domain/repository/payment.repository';
+import { Payment } from '../domain/entities/payment.entity';
+import { Payment as PaymentMongoose} from './schemas/payment.schema';
 import { Order as OrderMongoose} from './schemas/order.schema';
 import { Order } from '../domain/entities/order.entity'
 import { PayPalAuthService } from '../services/paypal.service';
@@ -14,8 +16,8 @@ import axios  from 'axios'
 export class PaymentInfrastructureRepository implements IPaymentRepository {
   constructor(
     @InjectModel(OrderMongoose.name) private orderModel: Model<OrderMongoose>,
-    private readonly payPalAuthService: PayPalAuthService
-
+    private readonly payPalAuthService: PayPalAuthService,
+    @InjectModel(PaymentMongoose.name) private paymentModel: Model<PaymentMongoose>,
 ) {}
 
   // Implementación del método para crear un usuario
@@ -35,6 +37,27 @@ export class PaymentInfrastructureRepository implements IPaymentRepository {
     console.log(JSON.stringify(error))
   }
 
+  }
+
+  async createPay(payment: Payment): Promise<Payment> {
+    // Convierte el objeto de Mongoose a un objeto de dominio
+    const paymentDomain = new Payment(payment.properties());
+    const paymentMongoose = new this.paymentModel(paymentDomain); // Ahora puedes usar el objeto de dominio para crear el pago en Mongoose
+    const savedPayment = await paymentMongoose.save();
+    return new Payment(savedPayment.toObject());
+  }
+
+  async updatePay(payment: Partial<Payment>): Promise<Payment> {
+    // Convierte el objeto de Mongoose a un objeto de dominio
+    const paymentDomain = new Payment(payment.properties());
+    const paymentMongoose = new this.paymentModel(paymentDomain); // Ahora puedes usar el objeto de dominio para crear el pago en Mongoose
+    const updatedPayment = await paymentMongoose.updateOne(paymentMongoose);
+    return new Payment(updatedPayment.toObject());
+  }
+
+  async find(where: { [s: string]: string | number }) : Promise<Payment>{
+    const payment = await this.paymentModel.findOne(where).lean().exec();
+    return payment ? new Payment(payment) : null;
   }
 
 

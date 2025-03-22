@@ -32,6 +32,8 @@ const AuthModal = ({ onClose }) => {
           const userData = {
             id: decoded._id,
             name: decoded.name,
+            roles: decoded.roles,
+            /* email: decoded.email */
             email: decoded.email
           };
 
