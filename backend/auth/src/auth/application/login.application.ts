@@ -15,6 +15,7 @@ export class LoginUseCase {
   async execute(authLogin: AuthLoginDto): Promise<Tokens> {
     const user = await this.userRepository.findUser({email : authLogin.email});
     if (user) {
+      console.log()
       const isMatchPassword = await AuthAppService.isMatchPassword(
         authLogin.password,
         user.properties().password,

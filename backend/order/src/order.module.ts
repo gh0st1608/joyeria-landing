@@ -25,6 +25,8 @@ import { PaymentInfrastructureRepository } from './payment/infrastructure/paymen
 import { PayPalAuthService } from './payment/services/paypal.service';
 import { PaymentGateway } from './payment/infrastructure/websockets/payment.gateway';
 import { PaymentStatusUseCase } from './payment/application/send-status.application';
+import { CreatePaymentLocalUseCase } from './payment/application/create-payment.application';
+import { Payment, PaymentSchema } from './payment/infrastructure/schemas/payment.schema';
 
 
 @Module({
@@ -38,7 +40,8 @@ import { PaymentStatusUseCase } from './payment/application/send-status.applicat
       [
         { name: Cartbuy.name, schema: CartbuySchema },
         { name: Itembuy.name, schema: ItembuySchema},
-        { name: Order.name, schema: OrderSchema}
+        { name: Order.name, schema: OrderSchema},
+        { name: Payment.name, schema: PaymentSchema }
       ]
     ), // Define el esquema de Product
   ],
@@ -61,6 +64,7 @@ import { PaymentStatusUseCase } from './payment/application/send-status.applicat
     ExecutePaymentUseCase,
     PaymentGateway,
     PaymentStatusUseCase,
+    CreatePaymentLocalUseCase,
     {
       provide: 'ICartbuyRepository', // Proveedor para inyectar la interfaz del repositorio
       useClass: CartbuyInfrastructureRepository, // Implementación que usa Mongoose

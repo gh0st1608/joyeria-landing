@@ -32,7 +32,7 @@ export class CreatePaymentUseCase {
     };
 
     const entity = new Order(orderEntity);
-
+    
     return this.paymentRepository.create(entity);
   }
 }
