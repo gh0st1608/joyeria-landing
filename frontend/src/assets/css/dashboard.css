@@ -1081,3 +1081,73 @@ body.dark-mode .dashboard-content {
   object-fit: cover;
   box-shadow: 0 0 5px rgba(0,0,0,0.1);
 }
+
+
+.dashboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.dashboard-table th,
+.dashboard-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.dashboard-table th {
+  background-color: #1D252C;
+  color: #D5BA8C;
+  font-weight: bold;
+}
+
+.dashboard-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.dashboard-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.no-data {
+  text-align: center;
+  padding: 20px;
+  font-style: italic;
+  color: #888;
+}
+
+/* Botones */
+.btn-edit {
+  background-color: #D5BA8C;
+  color: #1D252C;
+  border: none;
+  padding: 6px 12px;
+  margin: 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.btn-edit:hover {
+  background-color: #bfa36f;
+}
+
+.btn-delete {
+  background-color: #1D252C;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  margin: 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.btn-delete:hover {
+  background-color: #000;
+}

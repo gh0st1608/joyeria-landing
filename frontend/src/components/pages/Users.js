@@ -4,6 +4,7 @@ import { getUsers, deleteUser, createUser, updateUser } from "../servicios/dashb
 import UserTable from "../sections/dashboard/UserTable";
 import "../../assets/css/dashboard.css";
 
+
 const Users = () => {
   const [users, setUsers] = useState([]);
   const [formData, setFormData] = useState({ _id: "", name: "", lastname: "", email: "", password: "" });
@@ -25,8 +26,8 @@ const Users = () => {
     fetchData();
   }, []);
 
-  const handleDelete = async (id) => {
-    setDeleteId(id);
+  const handleDelete = async (_id) => {
+    setDeleteId(_id);
     setShowConfirm(true);
   };
 
@@ -117,7 +118,9 @@ const Users = () => {
               required
             />
           )}
-          <button className="btn-submit" type="submit">{isEditing ? "Actualizar" : "Agregar"}</button>
+          <button className="btn-submit" type="submit">
+            {isEditing ? "Actualizar" : "Agregar"}
+          </button>
         </form>
 
         <UserTable users={users} onEdit={handleEdit} onDelete={handleDelete} />

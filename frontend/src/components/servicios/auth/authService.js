@@ -4,7 +4,7 @@ import { ENDPOINTS } from "../endpoints";
 // ✅ Iniciar Sesión
 export const loginUser = async (credentials) => {
   try {
-    console.log("📡 Enviando solicitud de inicio de sesión...", credentials);
+    console.log(" Enviando solicitud de inicio de sesión...", credentials);
     
 
     const response = await postRequest(ENDPOINTS.auth.login, credentials);
