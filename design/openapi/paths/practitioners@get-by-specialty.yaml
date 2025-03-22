@@ -1,0 +1,31 @@
+post:
+  summary: Busqueda de Médicos según una Especialidad
+  operationId: postSearchBySpecialty
+  description: >
+    📦 Procesos: Busqueda de Médicos según una Especialidad Ingresada
+  
+  
+    🔧 Funcionalidad: Devolver el listado de médicos según una especialidad solicitada
+  
+      
+    🚀 Objetivo: Listar los profesionales de salud con su especialidad
+  
+  
+    📌 Comentarios: 
+
+  tags:
+    - Médicos
+  requestBody:
+    $ref: ../components/requestBodies/SpecialtyReq.yaml
+  responses:
+    '200':
+      $ref: ../components/responses/PractitionersBySpecialtyResponse.yaml
+    '400':
+      $ref: ../components/responses/BadRequestResponse.yaml
+    default:
+      $ref: ../components/responses/UnexpectedErrorResponse.yaml
+
+  security:
+    - api_key: []
+
+

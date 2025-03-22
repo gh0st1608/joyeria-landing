@@ -1,0 +1,5 @@
+type: string
+enum: [Presencial,Virtual]
+description: >
+  Tipo de citas de esa especialidad
+example: 'Presencial'

@@ -1,0 +1,5 @@
+type: string
+description: >
+  Correo electrónico del usuario
+maxLength: 500
+example: "juanperez@example.com"

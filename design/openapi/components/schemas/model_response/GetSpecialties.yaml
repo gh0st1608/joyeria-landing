@@ -1,0 +1,37 @@
+type: object
+description: Devuelve las especialidades de los profesionales de salud
+properties:
+  Data:
+    type: object    
+    properties:
+      code: 
+        $ref: ../attributes/code.yaml
+      message: 
+        $ref: ../attributes/message.yaml
+      Specialties:
+        type: array
+        items:
+          type: object
+          properties: 
+            specialtyName:
+                $ref: ../attributes/practitioners/specialtyName.yaml
+            specialtyCode:
+                $ref: ../attributes/practitioners/specialtyCode.yaml
+          required:
+            - specialtyName
+            - specialtyCode
+    required:
+      - code
+      - message  
+  links:
+    type: object
+    description: Entidad de Enlace de la respuesta
+    properties:
+      self:
+          $ref : ../attributes/self.yaml
+  meta:
+    type: object
+    description: Entidad de la paginación
+    properties:
+      total-pages:
+          $ref : ../attributes/totalPages.yaml

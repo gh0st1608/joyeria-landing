@@ -1,0 +1,4 @@
+type: string
+description: >
+  Categoría de la cita
+example: 'Ambulatorio'

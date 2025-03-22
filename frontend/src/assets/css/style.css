@@ -1,0 +1,235 @@
+/* Importar fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Vollkorn:wght@400;600;700&family=Libre+Franklin:wght@300;400;600&display=swap');
+
+/* Contenedor principal */
+.categories-box-layout {
+    padding: 40px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #1D252C; /* Fondo oscuro */
+}
+
+/* Contenedor de categorías en fila */
+.categories-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap; /* Ajuste responsivo */
+    justify-content: center;
+}
+
+/* Cada categoría */
+.categories-box {
+    background: #2B2B2B;
+    padding: 20px;
+    width: 220px;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+    text-decoration: none;
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.categories-box:hover {
+    transform: translateY(-5px);
+}
+
+/* Fondo del icono */
+.icon-container {
+    width: 50px;
+    height: 50px;
+    background: #D5BA8C;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+/* Icono */
+.icon-container i {
+    font-size: 24px;
+    color: #1D252C;
+}
+
+/* Título */
+.categories-box h5 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #FFFFFF;
+    font-family: 'Vollkorn', serif;
+    margin-bottom: 5px;
+}
+
+/* Cantidad de productos */
+.categories-box p {
+    font-size: 14px;
+    color: #D5BA8C;
+    font-family: 'Libre Franklin', sans-serif;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .categories-container {
+        justify-content: center;
+    }
+
+    .categories-box {
+        width: 180px;
+        padding: 15px;
+    }
+
+    .icon-container {
+        width: 40px;
+        height: 40px;
+    }
+
+    .icon-container i {
+        font-size: 20px;
+    }
+
+    .categories-box h5 {
+        font-size: 16px;
+    }
+}
+
+
+
+/* Importar fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Vollkorn:wght@400;600;700&family=Libre+Franklin:wght@300;400;600&display=swap');
+
+/* Contenedor del breadcrumb */
+.breadcrumb-area {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 60px 0;
+    text-align: center;
+    color: white;
+    font-family: 'Libre Franklin', sans-serif;
+}
+
+/* Fondo con opacidad para mejorar visibilidad del texto */
+.breadcrumb-area::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Fondo oscuro con transparencia */
+}
+
+/* Contenedor interno */
+.breadcrumb-text {
+    position: relative;
+    z-index: 2;
+}
+
+/* Texto superior */
+.breadcrumb-text span {
+    font-size: 16px;
+    font-weight: 600;
+    color: #D5BA8C;
+}
+
+/* Título de la página */
+.page-title {
+    font-size: 36px;
+    font-weight: bold;
+    font-family: 'Vollkorn', serif;
+    margin: 10px 0;
+}
+
+/* Navegación */
+.breadcrumb-nav {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    font-size: 16px;
+}
+
+.breadcrumb-nav li {
+    display: inline-block;
+}
+
+.breadcrumb-nav li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease-in-out;
+}
+
+.breadcrumb-nav li a:hover {
+    color: #D5BA8C;
+}
+
+/* Página activa */
+.breadcrumb-nav .active {
+    color: #D5BA8C;
+    font-weight: bold;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .breadcrumb-area {
+        padding: 40px 0;
+    }
+
+    .page-title {
+        font-size: 28px;
+    }
+
+    .breadcrumb-nav {
+        font-size: 14px;
+    }
+}
+/* Ajuste para evitar que el header lo tape */
+.breadcrumb-area {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 120px 0 60px; /* 🔥 Aseguramos suficiente espacio arriba */
+    text-align: center;
+    color: white;
+    font-family: 'Libre Franklin', sans-serif;
+}
+
+/* Opcional: Si el header tiene `position: fixed`, asegúrate de compensarlo */
+@media (max-width: 768px) {
+    .breadcrumb-area {
+        padding: 140px 0 50px; /* 🔥 Más espacio para pantallas pequeñas */
+    }
+}
+/* ---------------------------------------------------------------------------- */
+/* Dashboard */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f4f4f4;
+  }
+  
+  tr:hover {
+    background-color: #f1f1f1;
+  }
+  

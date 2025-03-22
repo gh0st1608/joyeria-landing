@@ -1,0 +1,7 @@
+type: string
+format: date-time
+description: >
+  Fecha de nacimiento del usuario
+minLength: 20
+maxLength: 20
+example: "2021-01-30T08:30:00Z"

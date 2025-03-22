@@ -1,0 +1,15 @@
+description: Entidad para la busqueda de un profesional médico por especialidad
+required: true
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/model_request/Specialty.yaml
+    examples:
+      Caso-Prueba-01:
+        summary: Caso Prueba 01
+        value:
+          Data:
+            Specialties: 
+              locationCode: 1001
+              specialtyCode: S3
+              appointmentType: Presencial

@@ -1,0 +1,8 @@
+name: userDocument
+in: header
+description: Tipo y número de documento del usuario
+required: true
+schema:
+  type: string
+  maxLength: 20
+  example: DNI_10797881

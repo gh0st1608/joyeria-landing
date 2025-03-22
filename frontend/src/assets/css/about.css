@@ -1,0 +1,96 @@
+
+
+/* Importar fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Vollkorn:wght@400;600;700&family=Libre+Franklin:wght@300;400;600&display=swap');
+
+/* Sección principal */
+.about-section {
+    width: 100%;
+    padding: 60px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f8f8f8;
+}
+
+/* Contenedor del contenido */
+.about-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    max-width: 1200px;
+    padding: 20px;
+}
+
+/* Texto de Misión y Visión */
+.about-text {
+    flex: 1;
+    max-width: 600px;
+}
+
+/* Títulos de Misión y Visión */
+.about-text h3 {
+    font-family: 'Vollkorn', serif;
+    font-size: 28px;
+    font-weight: bold;
+    color: #1D252C;
+    margin-bottom: 10px;
+}
+
+/* Párrafos */
+.about-text p {
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+    color: #333;
+    text-align: justify; /* 🔥 Cuadra el texto */
+    margin-bottom: 20px;
+}
+
+/* Negrita dentro del texto */
+.about-text p strong {
+    color: #D5BA8C;
+    font-weight: bold;
+}
+
+/* Contenedor de imágenes */
+.about-images {
+    flex: 1;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    max-width: 500px;
+}
+
+/* Imágenes */
+.about-images img {
+    width: 100%;
+    max-width: 230px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-text {
+        max-width: 100%;
+    }
+
+    .about-text p {
+        text-align: center; /* 🔥 Centra el texto en pantallas pequeñas */
+    }
+
+    .about-images {
+        flex-direction: column;
+        gap: 20px;
+    }
+}

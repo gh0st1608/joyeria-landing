@@ -1,0 +1,5 @@
+type: string
+description: >
+  URI a la primera página de este conjunto. Obligatorio si esta respuesta no es la primera página
+maxLength: 500
+example: 'http://url'

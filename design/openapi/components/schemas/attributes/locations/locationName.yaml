@@ -1,0 +1,5 @@
+type: string
+description: >
+  Nombre de la sede donde se lleva a cabo la cita
+maxLength: 500
+example: "Clinica Internacional Sede Lima"

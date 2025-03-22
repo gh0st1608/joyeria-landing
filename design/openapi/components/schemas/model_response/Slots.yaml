@@ -1,0 +1,34 @@
+type: object
+description: Devuelve los cupos médicos según un médico, sede, fecha y tipo de atención
+properties:
+  Data:
+    type: object    
+    properties:
+      code: 
+        $ref: ../attributes/code.yaml
+      message: 
+        $ref: ../attributes/message.yaml
+      MedicalSlots:
+        type: object
+        properties:
+          Slots: 
+            type: array
+            items:
+              type: object
+              properties: 
+                appointmentTime:
+                  $ref: ../attributes/appointments/appointmentTime.yaml
+                startTime:
+                    $ref: ../attributes/practitioners/startTime.yaml
+                locationCode:
+                  $ref: ../attributes/locations/locationCode.yaml
+                timeShift:
+                  $ref: ../attributes/practitioners/timeShift.yaml
+              required:
+                - appointmentTime
+                - startTime
+                - locationCode
+                - timeShift
+    required: 
+      - code
+      - message  
