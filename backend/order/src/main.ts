@@ -29,6 +29,6 @@ async function bootstrap() {
       console.log("🔴 Cliente desconectado:", socket.id);
     });
   }); */
-  await app.listen(port);
+  await app.listen(port,'0.0.0.0');
 }
 bootstrap();
