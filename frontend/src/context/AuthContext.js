@@ -48,7 +48,7 @@ export const AuthProvider = ({ children }) => {
   };
   
   const logout = () => {
-    console.log("🔐 Cerrando sesión...");
+    console.log("Cerrando sesión...");
     localStorage.removeItem("accessToken");
     localStorage.removeItem("user");
     setUser(null);

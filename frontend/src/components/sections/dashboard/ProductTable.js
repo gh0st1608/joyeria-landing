@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../../../assets/css/dashboard.css";
 
-// Reemplaza estos valores con tu configuración de Cloudinary:
+// ✅ Configura con tus datos de Cloudinary
 const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/tu_cloud_name/upload";
 const UPLOAD_PRESET = "tu_upload_preset";
 
@@ -53,7 +53,7 @@ const ProductTable = ({ products, onAddOrUpdate, onDelete }) => {
     setShowModal(true);
   };
 
-  // ✅ Manejo de carga de imagen a Cloudinary
+  // ✅ Manejo de carga de imagen hacia Cloudinary
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -69,18 +69,20 @@ const ProductTable = ({ products, onAddOrUpdate, onDelete }) => {
         body: formDataUpload,
       });
       const data = await response.json();
-      setFormData((prev) => ({ ...prev, image: data.secure_url }));
+      if (data.secure_url) {
+        setFormData((prev) => ({ ...prev, image: data.secure_url }));
+      } else {
+        console.error("❌ Error: No se recibió URL de Cloudinary:", data);
+      }
     } catch (error) {
-      console.error("Error subiendo la imagen:", error);
+      console.error("Error subiendo la imagen a Cloudinary:", error);
     }
     setUploading(false);
   };
 
-
-
   const handleSubmit = (e) => {
     e.preventDefault();
-  
+
     const updatedData = {
       title: formData.title,
       color: formData.color,
@@ -89,19 +91,15 @@ const ProductTable = ({ products, onAddOrUpdate, onDelete }) => {
       stock: parseInt(formData.stock),
       price: parseFloat(formData.price),
       category: formData.category,
-      image: formData.image, // solo URL
+      image: formData.image, // URL de la imagen cargada
     };
-  
+
     if (editingProductId) updatedData._id = editingProductId;
-  
+
+    // ✅ Aquí se llama a onAddOrUpdate para que Products.js maneje la creación
     onAddOrUpdate(updatedData);
     closeModal();
   };
-  
-
-
-
-
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

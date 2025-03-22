@@ -24,28 +24,26 @@ const Products = () => {
   const handleAddOrUpdate = async (productData) => {
     try {
       if (productData._id) {
+        // Actualizar producto existente
         await updateProduct(productData._id, productData);
       } else {
-        // Si incluye imagen, debes enviarlo como FormData
+        // Crear nuevo producto
         if (productData.imageFile) {
-          const formData = new FormData();
+          const formDataData = new FormData();
           Object.keys(productData).forEach((key) => {
-            formData.append(key, productData[key]);
+            formDataData.append(key, productData[key]);
           });
-          await createProduct(formData);
+          await createProduct(formDataData);
         } else {
           await createProduct(productData);
         }
       }
-      // Vuelve a cargar todos los productos después de guardar
-      const refreshedProducts = await getProducts();
-      setProducts(refreshedProducts);
+      // Actualizar la lista después de agregar/editar
+      await fetchProducts();
     } catch (error) {
       console.error("Error al guardar producto:", error);
     }
   };
-  
-  
 
   const handleDelete = async (id) => {
     try {
@@ -57,15 +55,15 @@ const Products = () => {
   };
 
   const handleFilterChange = (e) => {
-    const { title, value } = e.target;
-    setFilters((prevFilters) => ({ ...prevFilters, [title]: value }));
+    const { name, value } = e.target; // ✅ corregido aquí
+    setFilters((prevFilters) => ({ ...prevFilters, [name]: value }));
   };
 
   const filteredProducts = products.filter((p) => {
-    const nameMatch = String(p.title || "").toLowerCase().includes(filters.title.toLowerCase());
+    const titleMatch = String(p.title || "").toLowerCase().includes(filters.title.toLowerCase());
     const colorMatch = String(p.color || "").toLowerCase().includes(filters.color.toLowerCase());
     const materialMatch = String(p.material || "").toLowerCase().includes(filters.material.toLowerCase());
-    return nameMatch && colorMatch && materialMatch;
+    return titleMatch && colorMatch && materialMatch;
   });
 
   return (
