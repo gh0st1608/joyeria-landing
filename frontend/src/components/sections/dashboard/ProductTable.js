@@ -174,12 +174,13 @@ const ProductTable = ({ products, onAddOrUpdate, onDelete }) => {
                   <td>${p.price.toFixed(2)}</td>
                   <td>{p.category}</td>
                   <td>
-                    <button className="btn-edit" onClick={() => handleEdit(p)}>
-                      Editar
+                    <button className="icon-btn edit-icon" onClick={() => handleEdit(p)} title="Editar">
+                      <i className="fas fa-pen"></i>
                     </button>
-                    <button className="btn-delete" onClick={() => onDelete(p._id)}>
-                      Eliminar
+                    <button className="icon-btn delete-icon" onClick={() => onDelete(p._id)} title="Eliminar">
+                      <i className="fas fa-trash-alt"></i>
                     </button>
+
                   </td>
                 </tr>
               ))
@@ -207,21 +208,29 @@ const ProductTable = ({ products, onAddOrUpdate, onDelete }) => {
         <div className="custom-modal-overlay">
           <div className="custom-modal">
             <h3>{editingProductId ? "Editar Producto" : "Nuevo Producto"}</h3>
+
+
             <form onSubmit={handleSubmit}>
-              <input name="title" placeholder="Nombre" value={formData.title} onChange={handleChange} required />
-              <input name="color" placeholder="Color" value={formData.color} onChange={handleChange} required />
-              <input name="material" placeholder="Material" value={formData.material} onChange={handleChange} required />
-              <input name="description" placeholder="Descripción" value={formData.description} onChange={handleChange} required />
-              <input type="number" name="stock" placeholder="Stock" value={formData.stock} onChange={handleChange} required />
-              <input type="number" name="price" placeholder="Precio" step="0.01" value={formData.price} onChange={handleChange} required />
-              <input name="category" placeholder="Categoría" value={formData.category} onChange={handleChange} required />
+              <div className="form-grid">
+                <input name="title" placeholder="Nombre" value={formData.title} onChange={handleChange} required />
+                <input name="color" placeholder="Color" value={formData.color} onChange={handleChange} required />
+                <input name="material" placeholder="Material" value={formData.material} onChange={handleChange} required />
+                <input name="description" placeholder="Descripción" value={formData.description} onChange={handleChange} required />
+                <input type="number" name="stock" placeholder="Stock" value={formData.stock} onChange={handleChange} required />
+                <input type="number" name="price" placeholder="Precio" step="0.01" value={formData.price} onChange={handleChange} required />
+                <input name="category" placeholder="Categoría" value={formData.category} onChange={handleChange} required />
+              </div>
 
               <label>Cargar imagen:</label>
               <input type="file" accept="image/*" onChange={handleImageUpload} />
               {uploading && <p>Subiendo imagen...</p>}
+
               {formData.image && (
-                <img src={formData.image} alt="Preview" style={{ width: "100%", marginTop: "10px" }} />
+                <div className="image-preview-container">
+                  <img src={formData.image} alt="Preview" className="image-preview" />
+                </div>
               )}
+
 
               <div className="custom-modal-buttons">
                 <button type="submit" className="btn-edit" disabled={uploading}>
@@ -232,6 +241,7 @@ const ProductTable = ({ products, onAddOrUpdate, onDelete }) => {
                 </button>
               </div>
             </form>
+
           </div>
         </div>
       )}
