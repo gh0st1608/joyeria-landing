@@ -26,8 +26,8 @@ export class CreatePaymentUseCase {
       intent: 'CAPTURE', 
       purchase_units: [purchase_unit],
       application_context: {
-        return_url : 'http://localhost:4002/order/payment',
-        cancel_url : 'http://localhost:4002/order/cancel_url'
+        return_url : `${process.env.HOST}/order/payment`,
+        cancel_url : `${process.env.HOST}/order/cancel_url`
       }
     };
 
