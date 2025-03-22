@@ -1,22 +1,23 @@
 import { getRequest, postRequest, putRequest, deleteRequest } from "./api";
-import { ENDPOINTS } from "../endpoints";
+import { ENDPOINTS, BASE_URL } from "../endpoints";
 
 // Obtener todos los usuarios
 export const getUsers = async () => {
-  return await getRequest(ENDPOINTS.dashboard.users);
+  console.log('ENDPOINTS.dashboard.users',ENDPOINTS.dashboard.user)
+  return await getRequest(`${BASE_URL.auth}${ENDPOINTS.dashboard.user}`);
 };
 
 // Crear usuario
 export const createUser = async (userData) => {
-  return await postRequest(ENDPOINTS.dashboard.createUser, userData);
+  return await postRequest(`${BASE_URL.auth}${ENDPOINTS.dashboard.createUser}`, userData);
 };
 
 // Actualizar usuario
 export const updateUser = async (id, userData) => {
-  return await putRequest(ENDPOINTS.dashboard.updateUser(id), userData);
+  return await putRequest(`${BASE_URL.auth}${ENDPOINTS.dashboard.updateUser(id)}`, userData);
 };
 
 // Eliminar usuario
 export const deleteUser = async (id) => {
-  return await deleteRequest(ENDPOINTS.dashboard.deleteUser(id));
+  return await deleteRequest(`${BASE_URL.auth}${ENDPOINTS.dashboard.deleteUser(id)}`);
 };

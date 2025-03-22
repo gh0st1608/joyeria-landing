@@ -35,6 +35,7 @@ export const putRequest = async (url, data) => {
 export const deleteRequest = async (url) => {
   try {
     const response = await axios.delete(url);
+    console.log('response',response)
     return response.data;
   } catch (error) {
     handleApiError(error);
