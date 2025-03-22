@@ -30,10 +30,11 @@ const AuthModal = ({ onClose }) => {
         if (response && response.accessToken) {
           const decoded = jwtDecode(response.accessToken);
           const userData = {
-            id: decoded.id,
+            id: decoded._id,
             name: decoded.name,
-            roles: decoded.roles
+            roles: decoded.roles,
             /* email: decoded.email */
+            email: decoded.email
           };
 
           login(userData, response.accessToken); // Guardamos en contexto

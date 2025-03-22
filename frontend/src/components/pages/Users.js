@@ -6,7 +6,7 @@ import "../../assets/css/dashboard.css";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
-  const [formData, setFormData] = useState({ id: "", name: "", email: "" });
+  const [formData, setFormData] = useState({ _id: "", name: "", lastname: "", email: "", password: "" });
   const [isEditing, setIsEditing] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -32,7 +32,7 @@ const Users = () => {
 
   const confirmDelete = async () => {
     await deleteUser(deleteId);
-    setUsers(users.filter(user => user.id !== deleteId));
+    setUsers(users.filter(user => user._id !== deleteId));
     setSuccess("Usuario eliminado exitosamente.");
     setTimeout(() => setSuccess(""), 3000);
     setShowConfirm(false);
@@ -40,7 +40,7 @@ const Users = () => {
   };
 
   const handleEdit = (user) => {
-    setFormData(user);
+    setFormData({ ...user, password: "" }); // no mostramos la contraseña
     setIsEditing(true);
   };
 
@@ -49,7 +49,7 @@ const Users = () => {
     setError("");
     setSuccess("");
 
-    if (!formData.name.trim() || !formData.email.trim()) {
+    if (!formData.name.trim() || !formData.lastname.trim() || !formData.email.trim()) {
       setError("Todos los campos son obligatorios.");
       return;
     }
@@ -61,15 +61,15 @@ const Users = () => {
 
     try {
       if (isEditing) {
-        await updateUser(formData);
-        setUsers(users.map(u => (u.id === formData.id ? formData : u)));
+        await updateUser(formData._id, formData);
+        setUsers(users.map(u => (u._id === formData._id ? formData : u)));
         setSuccess("Usuario actualizado exitosamente.");
       } else {
         const newUser = await createUser(formData);
         setUsers([...users, newUser]);
         setSuccess("Usuario agregado exitosamente.");
       }
-      setFormData({ id: "", name: "", email: "" });
+      setFormData({ _id: "", name: "", lastname: "", email: "", password: "" });
       setIsEditing(false);
     } catch (error) {
       setError("Ocurrió un error al guardar el usuario.");
@@ -95,12 +95,28 @@ const Users = () => {
             required
           />
           <input
+            type="text"
+            placeholder="Apellido"
+            value={formData.lastname}
+            onChange={(e) => setFormData({ ...formData, lastname: e.target.value })}
+            required
+          />
+          <input
             type="email"
             placeholder="Email"
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             required
           />
+          {!isEditing && (
+            <input
+              type="password"
+              placeholder="Contraseña"
+              value={formData.password}
+              onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+              required
+            />
+          )}
           <button className="btn-submit" type="submit">{isEditing ? "Actualizar" : "Agregar"}</button>
         </form>
 
