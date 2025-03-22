@@ -34,7 +34,7 @@ export const ENDPOINTS = {
   },
 
   dashboard: {
-    users: "/users",
+    user: "/users",
     createUser: "/user",
     updateUser: (_id) => `/user/${_id}`,
     deleteUser: (_id) => `/user/${_id}`,
