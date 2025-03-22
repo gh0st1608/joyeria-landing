@@ -10,8 +10,8 @@ export const ENDPOINTS = {
   auth: {
     login: `/login`,
     register: `/register`,
-    users: `/users`,    // 👉 agregamos este endpoint para traer usuarios desde authService
-    getUserById: (_id) => `/users/${_id}`,
+    user: `/user`,    // 👉 agregamos este endpoint para traer usuarios desde authService
+    getUserById: (_id) => `/user/${_id}`,
   },
 
   shop: {
@@ -34,9 +34,9 @@ export const ENDPOINTS = {
   },
 
   dashboard: {
-    users: "/users",
-    createUser: "/users",
-    updateUser: (_id) => `/users/${_id}`,
-    deleteUser: (_id) => `/users/${_id}`,
+    user: "/user",
+    createUser: "/user",
+    updateUser: (_id) => `/user/${_id}`,
+    deleteUser: (_id) => `/user/${_id}`,
   },
 };
