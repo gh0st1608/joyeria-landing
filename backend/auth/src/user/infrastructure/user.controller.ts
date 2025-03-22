@@ -7,7 +7,7 @@ import { UpdateUserUseCase } from '../application/update.application';
 import { GetListUserUseCase } from '../application/get-all.application';
 import { GetUserUseCase } from '../application/get.application';
 
-@Controller('user')
+@Controller('users')
 export class UserController {
   constructor(
     private readonly createUserUseCase: CreateUserUseCase,
