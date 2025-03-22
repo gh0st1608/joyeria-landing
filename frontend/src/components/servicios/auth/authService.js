@@ -5,9 +5,10 @@ import { ENDPOINTS } from "../endpoints";
 export const loginUser = async (credentials) => {
   try {
     console.log("📡 Enviando solicitud de inicio de sesión...", credentials);
+    
 
     const response = await postRequest(ENDPOINTS.auth.login, credentials);
-    
+    console.log('Respuesta', response);
 
     if (response?.accessToken) {
       console.log("✅ Inicio de sesión exitoso:", response);
