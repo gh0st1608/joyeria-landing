@@ -1,61 +1,62 @@
+steps:
 # Install dependencies and build
-- name: 'gcr.io/cloud-builders/npm'
-  entrypoint: 'bash'
-  args: ['-c', 'cd backend/notification && npm install --omit=dev --quiet && npm run build:function']
+  - name: 'gcr.io/cloud-builders/npm'
+    entrypoint: 'bash'
+    args: ['-c', 'cd backend/notification && npm install --omit=dev --quiet && npm run build:function']
 
-- name: 'gcr.io/cloud-builders/npm'
-  entrypoint: 'bash'
-  args: ['-c', 'cd backend/shop && npm install --omit=dev --quiet && npm run build:function']
+  - name: 'gcr.io/cloud-builders/npm'
+    entrypoint: 'bash'
+    args: ['-c', 'cd backend/shop && npm install --omit=dev --quiet && npm run build:function']
 
-- name: 'gcr.io/cloud-builders/npm'
-  entrypoint: 'bash'
-  args: ['-c', 'cd backend/auth && npm install --omit=dev --quiet && npm run build:function']
+  - name: 'gcr.io/cloud-builders/npm'
+    entrypoint: 'bash'
+    args: ['-c', 'cd backend/auth && npm install --omit=dev --quiet && npm run build:function']
 
-# Deploy Cloud Function
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  entrypoint: 'gcloud'
-  args:
-    - 'functions'
-    - 'deploy'
-    - 'notificationService'
-    - '--region=us-central1'
-    - '--memory=512MB'
-    - '--allow-unauthenticated'
-    - '--trigger-http'
-    - '--runtime=nodejs20'
-    - '--source=./backend/notification/dist'
-    - '--set-env-vars=MONGO_DB_URI=mongodb+srv://vady123:vady123!@proyectos.bihss.mongodb.net,NODEMAILER_USER=egalindoa@uni.pe,NODEMAILER_PASS=alhluyovwnxtzgfe'
-    - '--entry-point=notificationHandler'
+  # Deploy Cloud Function
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args:
+      - 'functions'
+      - 'deploy'
+      - 'notificationService'
+      - '--region=us-central1'
+      - '--memory=512MB'
+      - '--allow-unauthenticated'
+      - '--trigger-http'
+      - '--runtime=nodejs20'
+      - '--source=./backend/notification/dist'
+      - '--set-env-vars=MONGO_DB_URI=mongodb+srv://vady123:vady123!@proyectos.bihss.mongodb.net,NODEMAILER_USER=egalindoa@uni.pe,NODEMAILER_PASS=alhluyovwnxtzgfe'
+      - '--entry-point=notificationHandler'
 
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  entrypoint: 'gcloud'
-  args:
-    - 'functions'
-    - 'deploy'
-    - 'shopService'
-    - '--region=us-central1'
-    - '--memory=512MB'
-    - '--allow-unauthenticated'
-    - '--trigger-http'
-    - '--runtime=nodejs20'
-    - '--source=./backend/shop/dist'
-    - '--set-env-vars=MONGO_DB_URI=mongodb+srv://vady123:vady123!@proyectos.bihss.mongodb.net'
-    - '--entry-point=shopHandler'
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args:
+      - 'functions'
+      - 'deploy'
+      - 'shopService'
+      - '--region=us-central1'
+      - '--memory=512MB'
+      - '--allow-unauthenticated'
+      - '--trigger-http'
+      - '--runtime=nodejs20'
+      - '--source=./backend/shop/dist'
+      - '--set-env-vars=MONGO_DB_URI=mongodb+srv://vady123:vady123!@proyectos.bihss.mongodb.net'
+      - '--entry-point=shopHandler'
 
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  entrypoint: 'gcloud'
-  args:
-    - 'functions'
-    - 'deploy'
-    - 'authService'
-    - '--region=us-central1'
-    - '--memory=512MB'
-    - '--allow-unauthenticated'
-    - '--trigger-http'
-    - '--runtime=nodejs20'
-    - '--source=./backend/auth/dist'
-    - '--set-env-vars=MONGO_DB_URI=mongodb+srv://vady123:vady123!@proyectos.bihss.mongodb.net,TOKEN_TIMEOUT=3600,TOKEN_SECRET_WORD=Santiago123!'
-    - '--entry-point=authHandler'
-  options:
-    logging: CLOUD_LOGGING_ONLY
-  serviceAccount: '1094025365695-compute@developer.gserviceaccount.com'
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args:
+      - 'functions'
+      - 'deploy'
+      - 'authService'
+      - '--region=us-central1'
+      - '--memory=512MB'
+      - '--allow-unauthenticated'
+      - '--trigger-http'
+      - '--runtime=nodejs20'
+      - '--source=./backend/auth/dist'
+      - '--set-env-vars=MONGO_DB_URI=mongodb+srv://vady123:vady123!@proyectos.bihss.mongodb.net,TOKEN_TIMEOUT=3600,TOKEN_SECRET_WORD=Santiago123!'
+      - '--entry-point=authHandler'
+options:
+  logging: CLOUD_LOGGING_ONLY
+serviceAccount: '1094025365695-compute@developer.gserviceaccount.com'
