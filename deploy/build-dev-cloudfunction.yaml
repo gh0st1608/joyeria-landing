@@ -1,5 +1,5 @@
 steps:
-  # Construcción y subida de la imagen para Auth Service
+  # Construcción y subida de la imagen para Order Service
   - id: 'Build First Application'
     name: 'gcr.io/cloud-builders/npm'
     entrypoint: 'bash'
@@ -20,17 +20,23 @@ steps:
     args: ['push', 'us-central1-docker.pkg.dev/oval-crawler-444615-k3/joyasperu-apiscore/msa-order-img:$COMMIT_SHA']
 
   # Verificar si la instancia ya existe
-  - id: 'Check Instance'
+  - id: 'Check and Update Instance'
     name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'bash'
     args:
       - '-c'
       - |
         if gcloud compute instances describe msa-joyasperu-order --zone=us-central1-a; then
-          echo "Instance exists. Updating container..."
+          echo "Instance exists. Stopping it first..."
+          gcloud compute instances stop msa-joyasperu-order --zone=us-central1-a
+          
+          echo "Updating container..."
           gcloud compute instances update-container msa-joyasperu-order \
             --zone=us-central1-a \
             --container-image=us-central1-docker.pkg.dev/oval-crawler-444615-k3/joyasperu-apiscore/msa-order-img:$COMMIT_SHA
+          
+          echo "Starting instance again..."
+          gcloud compute instances start msa-joyasperu-order --zone=us-central1-a
         else
           echo "Instance does not exist. Creating new instance..."
           gcloud compute instances create-with-container msa-joyasperu-order \
