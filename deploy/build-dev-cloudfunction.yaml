@@ -33,7 +33,8 @@ steps:
           echo "Updating container..."
           gcloud compute instances update-container msa-joyasperu-order \
             --zone=us-central1-a \
-            --container-image=us-central1-docker.pkg.dev/oval-crawler-444615-k3/joyasperu-apiscore/msa-order-img:$COMMIT_SHA
+            --container-image=us-central1-docker.pkg.dev/oval-crawler-444615-k3/joyasperu-apiscore/msa-order-img:$COMMIT_SHA \
+            --container-port=4002 \
             --container-env=PORT=4002,MONGO_DB_URI=mongodb+srv://vady123:vady123!@proyectos.bihss.mongodb.net/,CLIENT_ID_PAYPAL=AYDlGpRcwD4kri9RkqJ8LtmfjGyPJ0CHNOo2JlJCeJ5FCQ5jnA3aNSUtymrXjljqVKaaHMq7dAnjqcS4,CLIENT_SECRET_PAYPAL=EI6-diP48Khu4WbNYYDQj7W3cW9Yk1qQyD-J2TCDagHNIw2C7tiu899SanrWjHCoLozDMb-hDsUE5yPq,SANDBOX_PAYPAL=https://api-m.sandbox.paypal.com
 
           echo "Starting instance again..."
@@ -48,6 +49,7 @@ steps:
             --network=default \
             --tags=http-server,https-server \
             --restart-on-failure \
+            --container-port=4002 \
             --container-env=PORT=4002,MONGO_DB_URI=mongodb+srv://vady123:vady123!@proyectos.bihss.mongodb.net/,CLIENT_ID_PAYPAL=AYDlGpRcwD4kri9RkqJ8LtmfjGyPJ0CHNOo2JlJCeJ5FCQ5jnA3aNSUtymrXjljqVKaaHMq7dAnjqcS4,CLIENT_SECRET_PAYPAL=EI6-diP48Khu4WbNYYDQj7W3cW9Yk1qQyD-J2TCDagHNIw2C7tiu899SanrWjHCoLozDMb-hDsUE5yPq,SANDBOX_PAYPAL=https://api-m.sandbox.paypal.com
         fi
 
