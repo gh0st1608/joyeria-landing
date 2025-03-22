@@ -2,15 +2,15 @@ steps:
 # Install dependencies and build
   - name: 'gcr.io/cloud-builders/npm'
     entrypoint: 'bash'
-    args: ['-c', 'cd backend/notification && npm install --omit=dev --quiet && npm run build:function']
+    args: ['-c', 'cd backend/notification && npm install --quiet && npm run build:function']
 
   - name: 'gcr.io/cloud-builders/npm'
     entrypoint: 'bash'
-    args: ['-c', 'cd backend/shop && npm install --omit=dev --quiet && npm run build:function']
+    args: ['-c', 'cd backend/shop && npm install --quiet && npm run build:function']
 
   - name: 'gcr.io/cloud-builders/npm'
     entrypoint: 'bash'
-    args: ['-c', 'cd backend/auth && npm install --omit=dev --quiet && npm run build:function']
+    args: ['-c', 'cd backend/auth && npm install --quiet && npm run build:function']
 
   # Deploy Cloud Function
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
