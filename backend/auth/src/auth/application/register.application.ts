@@ -16,7 +16,6 @@ export class RegisterUseCase {
         authRegister : AuthRegisterDto
       ): Promise<Tokens> {
         const user = await this.userRepository.findUser({email : authRegister.email});
-        console.log('user',user)
         if(user) return null
         const refreshToken = AuthAppService.generateRefreshToken();
         const cipherPassword = await AuthAppService.cipherPassword(authRegister.password);

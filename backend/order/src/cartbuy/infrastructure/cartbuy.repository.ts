@@ -23,6 +23,7 @@ export class CartbuyInfrastructureRepository implements ICartbuyRepository {
   async get(id: string): Promise<Cartbuy> {
     const cartbuyModel = await this.cartbuyModel.findById(id).lean().exec();
     const cartbuy = plainToClass(Cartbuy,cartbuyModel)
+    console.log('cartbuy',cartbuy)
     return cartbuy;
   }
 

@@ -11,6 +11,6 @@ export class GetCategoryProductsUseCase {
     private readonly CategoryProductRepository: ICategoryProductRepository) {}
 
   async execute(): Promise<CategoryProduct[]> {
-    return await this.CategoryProductRepository.findAll();
+    return this.CategoryProductRepository.findAll();
   }
 }
