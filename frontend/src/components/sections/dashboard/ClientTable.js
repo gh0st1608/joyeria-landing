@@ -1,25 +1,30 @@
 import React from "react";
+import { FaEdit, FaTrashAlt } from "react-icons/fa";
 
 const ClientTable = ({ clients, onEdit, onDelete }) => {
   return (
-    <table>
+    <table className="dashboard-table">
       <thead>
         <tr>
-          <th>ID</th>
+          <th>N°</th>
           <th>Nombre</th>
           <th>Email</th>
           <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
-        {clients.map((c) => (
-          <tr key={c.id}>
-            <td>{c.id}</td>
+        {clients.map((c, index) => (
+          <tr key={c._id}>
+            <td>{index + 1}</td>
             <td>{c.name}</td>
             <td>{c.email}</td>
             <td>
-              <button onClick={() => onEdit(c)}> Editar</button>
-              <button onClick={() => onDelete(c.id)}> Eliminar</button>
+              <button className="icon-btn edit-icon" onClick={() => onEdit(c)} title="Editar">
+                <FaEdit />
+              </button>
+              <button className="icon-btn delete-icon" onClick={() => onDelete(c._id)} title="Eliminar">
+                <FaTrashAlt />
+              </button>
             </td>
           </tr>
         ))}
