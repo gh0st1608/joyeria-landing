@@ -52,3 +52,5 @@ steps:
         fi
 
 timeout: '1400s'
+logsBucket: 'gs://joyasperu-dev-app-cloud-build'
+serviceAccount: '1094025365695-compute@developer.gserviceaccount.com'
