@@ -48,8 +48,7 @@ steps:
             --tags=http-server,https-server \
             --restart-on-failure \
             --container-env=PORT=4002,HOST=http://35.209.6.164:4002,MONGO_DB_URI=mongodb+srv://vady123:vady123!@proyectos.bihss.mongodb.net/,PAYPAL_CLIENT_ID=AYDlGpRcwD4kri9RkqJ8LtmfjGyPJ0CHNOo2JlJCeJ5FCQ5jnA3aNSUtymrXjljqVKaaHMq7dAnjqcS4,PAYPAL_CLIENT_SECRET=EI6-diP48Khu4WbNYYDQj7W3cW9Yk1qQyD-J2TCDagHNIw2C7tiu899SanrWjHCoLozDMb-hDsUE5yPq,PAYPAL_API_BASE_URL=https://api-m.sandbox.paypal.com \
-            --address=msa-joyasperu-order-ip \
-            --container-port=4002
+            --address=msa-joyasperu-order-ip 
         fi
 
 
