@@ -25,7 +25,7 @@ export class PaymentInfrastructureRepository implements IPaymentRepository {
     try {
     const accessToken = await this.payPalAuthService.getAuthToken();
 
-    const responseOrder = await axios.post(`${process.env.SANDBOX_PAYPAL}/v2/checkout/orders`, order, {
+    const responseOrder = await axios.post(`${process.env.PAYPAL_API_BASE_URL}/v2/checkout/orders`, order, {
       headers: {
         'Content-Type': 'application/json',
         //'PayPal-Request-Id': 'f98d6c31-f5ec-4233-92ff-c2d0c04b4886',
@@ -44,6 +44,7 @@ export class PaymentInfrastructureRepository implements IPaymentRepository {
     const paymentDomain = new Payment(payment.properties());
     const paymentMongoose = new this.paymentModel(paymentDomain); // Ahora puedes usar el objeto de dominio para crear el pago en Mongoose
     const savedPayment = await paymentMongoose.save();
+    console.log('savedPayment',savedPayment)
     return new Payment(savedPayment.toObject());
   }
 
@@ -63,7 +64,7 @@ export class PaymentInfrastructureRepository implements IPaymentRepository {
 
   async execute(tokenPayment : string): Promise <any> {
     const accessToken = await this.payPalAuthService.getAuthToken();
-    const responseOrder = await axios.post(`${process.env.SANDBOX_PAYPAL}/v2/checkout/orders/${tokenPayment}/capture`,{},{
+    const responseOrder = await axios.post(`${process.env.PAYPAL_API_BASE_URL}/v2/checkout/orders/${tokenPayment}/capture`,{},{
       headers: {
         'Content-Type': 'application/json',
         //'PayPal-Request-Id': '7b92603e-77ed-4896-8e78-5dea2050476a',

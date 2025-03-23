@@ -18,13 +18,25 @@ export class Payment extends Document {
   orderId: string;
 
   @Prop({ required: true })
+  payerId: string;
+
+  @Prop({ required: true })
+  amount: number;
+
+  @Prop({ required: true })
   methodPayment: string;
+
+  @Prop({ required: true })
+  currency: string;
 
   @Prop({ required: false })
   status: string;
 
   @Prop({ required: false })
-  created_at: Date;
+  email: string;
+
+  @Prop({ required: false })
+  createTime: Date;
 
   // Campo "email" de tipo string, obligatorio y único
 }
