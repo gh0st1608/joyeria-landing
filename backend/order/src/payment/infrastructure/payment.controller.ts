@@ -28,7 +28,6 @@ export class PaymentController {
 
   @Post('/webhook-get-status')
   async handleWebhook(@Body() body: any) {
-      console.log("Webhook recibido:", body);
       if (body.event_type === "PAYMENT.CAPTURE.COMPLETED") {
         const orderId = body.resource.supplementary_data.related_ids.order_id;
         console.log(`✅ Pago completado - Payment ID: ${body.resource.id}`);
