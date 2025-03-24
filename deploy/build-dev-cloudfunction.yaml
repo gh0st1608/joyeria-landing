@@ -40,7 +40,7 @@ steps:
       - '--trigger-http'
       - '--runtime=nodejs20'
       - '--source=./backend/shop/dist'
-      - '--set-env-vars=MONGO_DB_URI=mongodb+srv://vady123:vady123!@proyectos.bihss.mongodb.net'
+      - '--set-env-vars=MONGO_DB_URI=mongodb+srv://vady123:vady123!@proyectos.bihss.mongodb.net,AWS_ACCESS_KEY_ID=AKIAXYKJRXXQLNHAQCUK,AWS_SECRET_ACCESS_KEY=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,AWS_REGION=us-east-1,AWS_S3_BUCKET_NAME=joyasperu-images'
       - '--entry-point=shopHandler'
 
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
