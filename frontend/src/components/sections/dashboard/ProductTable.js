@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import "../../../assets/css/dashboard.css";
-
-// ✅ Configura con tus datos de Cloudinary
-const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/tu_cloud_name/upload";
-const UPLOAD_PRESET = "tu_upload_preset";
+import { createProduct } from "components/servicios/shop/productService";
 
 const ProductTable = ({ products, onAddOrUpdate, onDelete }) => {
   const [showModal, setShowModal] = useState(false);
@@ -15,7 +12,7 @@ const ProductTable = ({ products, onAddOrUpdate, onDelete }) => {
     stock: "",
     price: "",
     category: "",
-    image: "",
+    image: null,  // Cambiado a null para poder manejar archivos
   });
   const [editingProductId, setEditingProductId] = useState(null);
   const [uploading, setUploading] = useState(false);
@@ -32,7 +29,7 @@ const ProductTable = ({ products, onAddOrUpdate, onDelete }) => {
       stock: product.stock,
       price: product.price,
       category: product.category,
-      image: product.image,
+      image: product.image,  // Mantener la imagen si la edita
     });
     setEditingProductId(product._id);
     setShowModal(true);
@@ -47,58 +44,60 @@ const ProductTable = ({ products, onAddOrUpdate, onDelete }) => {
       stock: "",
       price: "",
       category: "",
-      image: "",
+      image: null,  // Inicializar la imagen como null
     });
     setEditingProductId(null);
     setShowModal(true);
   };
 
-  // ✅ Manejo de carga de imagen hacia Cloudinary
-  const handleImageUpload = async (e) => {
+  // ✅ Manejo de carga de imagen hacia el backend (con Multer y S3)
+  const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (!file) return;
-
-    const formDataUpload = new FormData();
-    formDataUpload.append("file", file);
-    formDataUpload.append("upload_preset", UPLOAD_PRESET);
-
-    setUploading(true);
-    try {
-      const response = await fetch(CLOUDINARY_URL, {
-        method: "POST",
-        body: formDataUpload,
-      });
-      const data = await response.json();
-      if (data.secure_url) {
-        setFormData((prev) => ({ ...prev, image: data.secure_url }));
-      } else {
-        console.error("❌ Error: No se recibió URL de Cloudinary:", data);
-      }
-    } catch (error) {
-      console.error("Error subiendo la imagen a Cloudinary:", error);
-    }
-    setUploading(false);
+    console.log("Imagen seleccionada:", file);
+    setFormData((prev) => ({ ...prev, image: file }));  // Guardar el archivo en el state
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const updatedData = {
-      title: formData.title,
-      color: formData.color,
-      material: formData.material,
-      description: formData.description,
-      stock: parseInt(formData.stock),
-      price: parseFloat(formData.price),
-      category: formData.category,
-      image: formData.image, // URL de la imagen cargada
-    };
+    // Primero, verifica si la imagen fue seleccionada
+    if (!formData.image) {
+      console.error("❌ Error: No se ha seleccionado una imagen.");
+      return;
+    }
 
-    if (editingProductId) updatedData._id = editingProductId;
+    // Crear FormData y agregar todos los datos
+    const formDataUpload = new FormData();
+    formDataUpload.append("title", formData.title);
+    formDataUpload.append("color", formData.color);
+    formDataUpload.append("material", formData.material);
+    formDataUpload.append("description", formData.description);
+    formDataUpload.append("stock", formData.stock);
+    formDataUpload.append("price", formData.price);
+    formDataUpload.append("category", formData.category);
 
-    // ✅ Aquí se llama a onAddOrUpdate para que Products.js maneje la creación
-    onAddOrUpdate(updatedData);
-    closeModal();
+    // Añadir la imagen
+    formDataUpload.append("file", formData.image);
+
+  // Verificar el contenido de formDataUpload
+    setUploading(true);
+
+    try {
+      // Enviar todo al backend, con los datos del producto y la imagen
+/*       console.log('formDataUpload',formDataUpload)
+      const response = await createProduct(formDataUpload);
+      const { _id, ...data } = response; */
+      if (formData) {
+        console.log("Producto creado con éxito", formData);
+        onAddOrUpdate(formData); // Llamar a la función que maneja el producto creado
+        closeModal(); // Cerrar el modal después de guardar el producto
+      }
+    } catch (error) {
+      console.error("Error subiendo el producto al backend:", error);
+    }
+
+    setUploading(false);
   };
 
   const handleChange = (e) => {
@@ -115,7 +114,7 @@ const ProductTable = ({ products, onAddOrUpdate, onDelete }) => {
       stock: "",
       price: "",
       category: "",
-      image: "",
+      image: null,
     });
     setEditingProductId(null);
   };
@@ -167,7 +166,7 @@ const ProductTable = ({ products, onAddOrUpdate, onDelete }) => {
                     )}
                   </td>
                   <td>{p.title}</td>
-                  <td>{p.color}</td>
+                  <td>{Array.isArray(p.color) ? p.color.join(", ") : p.color}</td>
                   <td>{p.material}</td>
                   <td>{p.description}</td>
                   <td>{p.stock}</td>
@@ -180,7 +179,6 @@ const ProductTable = ({ products, onAddOrUpdate, onDelete }) => {
                     <button className="icon-btn delete-icon" onClick={() => onDelete(p._id)} title="Eliminar">
                       <i className="fas fa-trash-alt"></i>
                     </button>
-
                   </td>
                 </tr>
               ))
@@ -209,7 +207,6 @@ const ProductTable = ({ products, onAddOrUpdate, onDelete }) => {
           <div className="custom-modal">
             <h3>{editingProductId ? "Editar Producto" : "Nuevo Producto"}</h3>
 
-
             <form onSubmit={handleSubmit}>
               <div className="form-grid">
                 <input name="title" placeholder="Nombre" value={formData.title} onChange={handleChange} required />
@@ -227,10 +224,9 @@ const ProductTable = ({ products, onAddOrUpdate, onDelete }) => {
 
               {formData.image && (
                 <div className="image-preview-container">
-                  <img src={formData.image} alt="Preview" className="image-preview" />
+                  <img src={URL.createObjectURL(formData.image)} alt="Preview" className="image-preview" />
                 </div>
               )}
-
 
               <div className="custom-modal-buttons">
                 <button type="submit" className="btn-edit" disabled={uploading}>
@@ -241,7 +237,6 @@ const ProductTable = ({ products, onAddOrUpdate, onDelete }) => {
                 </button>
               </div>
             </form>
-
           </div>
         </div>
       )}

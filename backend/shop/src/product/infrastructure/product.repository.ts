@@ -16,7 +16,6 @@ export class ProductInfrastructureRepository implements IProductRepository {
     const productEntity = product.properties()
       const productMongoose = new this.productModel(productEntity);
       const savedProduct = await productMongoose.save();
-      console.log('savedProduct',savedProduct)
       return new Product(savedProduct.toObject());
   }
 
