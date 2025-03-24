@@ -1,25 +1,39 @@
-import { IsString, IsOptional, IsBoolean, IsNumber, IsArray, IsNotEmpty } from 'class-validator';
+import { IsString, IsOptional, IsNotEmpty, IsNumber } from 'class-validator';
 
 export class CreatePaymentDto {
-
-  @IsNotEmpty()  // Usamos IsOptional porque puede que no actualices todos los campos
-  @IsString()    // Validamos que sea una cadena de texto
+  @IsNotEmpty()
+  @IsString()
   bank: string;
 
-  @IsNotEmpty()  // Usamos IsOptional porque puede que no actualices todos los campos
-  @IsString()    // Validamos que sea una cadena de texto
+  @IsNotEmpty()
+  @IsString()
   orderId: string;
 
-  @IsNotEmpty()  // Usamos IsOptional porque puede que no actualices todos los campos
-  @IsString()    // Validamos que sea una cadena de texto
+  @IsNotEmpty()
+  @IsString()
   userId: string;
 
-  @IsNotEmpty()  // Usamos IsOptional porque puede que no actualices todos los campos
-  @IsString()    // Validamos que sea una cadena de texto
+  @IsNotEmpty()
+  @IsString()
   methodPayment: string;
 
-  @IsOptional()  // Usamos IsOptional porque puede que no actualices todos los campos
-  @IsString()    // Validamos que sea una cadena de texto
-  status: string;
+  @IsOptional()
+  @IsString()
+  status?: string;
 
+  // 🔹 Nuevos campos necesarios
+  @IsNotEmpty()
+  @IsString()
+  payerId: string;
+
+  @IsNotEmpty()
+  @IsNumber()
+  amount: number;
+
+  @IsNotEmpty()
+  @IsString()
+  currency: string;
+
+  @IsNotEmpty()
+  createTime: Date;
 }

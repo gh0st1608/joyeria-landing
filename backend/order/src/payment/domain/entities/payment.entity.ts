@@ -1,6 +1,9 @@
 export interface PaymentRequired {
     readonly methodPayment : string;
+    readonly payerId : string;
     readonly bank : string;
+    readonly amount: number;
+    readonly currency: string;
     readonly orderId : string;
     readonly userId : string;
   }
@@ -8,11 +11,11 @@ export interface PaymentRequired {
 export interface PaymentOptional {
     readonly id : string;
     readonly status : string;
-    readonly created_at : Date;
+    readonly createTime : Date;
 }
 
 export type PaymentProperties = PaymentRequired & Partial<PaymentOptional>
-export type PaymentPropertiesUpdate = Partial<Omit<PaymentRequired, ''>> & Partial<Pick<PaymentOptional, 'id' | 'created_at' | 'status'>>;
+export type PaymentPropertiesUpdate = Partial<Omit<PaymentRequired, ''>> & Partial<Pick<PaymentOptional, 'id' | 'createTime' | 'status'>>;
 //export type PaymentPropertiesUpdate = Partial<PaymentProperties>;
 
 export class Payment {
@@ -20,9 +23,12 @@ export class Payment {
     private bank: string;
     private orderId: string;
     private methodPayment : string;
+    private payerId : string;
+    private amount : number;
+    private currency: string;
     private userId : string;
     private status : string;
-    private created_at : Date;
+    private createTime : Date;
   
     constructor(properties: PaymentProperties) {
         this.status = 'INITIALIZED' 
@@ -35,9 +41,12 @@ export class Payment {
           bank: this.bank,
           orderId: this.orderId,
           methodPayment: this.methodPayment,
+          payerId: this.payerId,
+          amount: this.amount,
+          currency: this.currency,
           status: this.status,
           userId: this.userId,
-          created_at : this.created_at
+          createTime : this.createTime
       }
     }
 
