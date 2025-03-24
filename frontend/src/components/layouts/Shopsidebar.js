@@ -76,7 +76,7 @@ const Sidebar = ({ onFilterChange }) => {
       <div className="color-filter">
         <h3>Color</h3>
         <div className="color-options">
-          {["Red", "Green", "Brown", "Grey", "Orange","dorado"].map((color) => (
+          {["Red", "Green", "Zafiro", "Amarillo", "Dorado","Plateado"].map((color) => (
             <label key={color}>
               <input
                 type="checkbox"

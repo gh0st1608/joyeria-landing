@@ -47,7 +47,6 @@ export class ProductsController {
     if (queryParams.color) {
       queryParams.color = decodeURIComponent(queryParams.color);
     }
-    console.log("🔍 Filtros decodificados:", queryParams);
     return this.getProductsByParamsUseCase.execute(queryParams);
   }
 
