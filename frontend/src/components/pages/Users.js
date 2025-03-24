@@ -27,7 +27,7 @@ const Users = () => {
   }, []);
 
   const openNewUserModal = () => {
-    setFormData({ _id: "", name: "", lastname: "", email: "", password: "" });
+    setFormData({name: "", lastname: "", email: "", password: "", photo: "", roles: "ADMIN" });
     setIsEditing(false);
     setShowModal(true);
   };
