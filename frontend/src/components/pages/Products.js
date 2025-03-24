@@ -23,27 +23,35 @@ const Products = () => {
 
   const handleAddOrUpdate = async (productData) => {
     try {
+      console.log('productDataaaaa',productData)
       if (productData._id) {
         // Actualizar producto existente
+
         await updateProduct(productData._id, productData);
       } else {
         // Crear nuevo producto
-        if (productData.imageFile) {
-          const formDataData = new FormData();
-          Object.keys(productData).forEach((key) => {
-            formDataData.append(key, productData[key]);
-          });
-          await createProduct(formDataData);
-        } else {
-          await createProduct(productData);
+         const formDataData = new FormData();
+  
+        // Añadir todos los campos del producto al FormData
+        Object.keys(productData).forEach((key) => {
+          formDataData.append(key, productData[key]);
+        });
+        console.log('formDataData2',formDataData)
+        // Si el producto tiene una imagen, añadirla al FormData
+        if (productData.image) {
+          formDataData.append("file", productData.image);  // Asegúrate de enviar el archivo con el campo 'file'
         }
+        console.log('formDataDataaaaaaa',formDataData) 
+        await createProduct(formDataData);
       }
+  
       // Actualizar la lista después de agregar/editar
       await fetchProducts();
     } catch (error) {
       console.error("Error al guardar producto:", error);
     }
   };
+  
 
   const handleDelete = async (id) => {
     try {

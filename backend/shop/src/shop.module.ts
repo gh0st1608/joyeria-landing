@@ -28,6 +28,7 @@ import { GetMaterialUseCase } from './material/application/get-all.application';
 import { CreateMaterialUseCase } from './material/application/create.application';
 import { DeleteMaterialUseCase } from './material/application/delete.application';
 import { GetProductsByParamsUseCase } from './product/application/get-by-params.application';
+import { S3Service } from './product/infrastructure/services/s3.service';
 
 
 @Module({
@@ -66,6 +67,7 @@ import { GetProductsByParamsUseCase } from './product/application/get-by-params.
     CreateMaterialUseCase,
     DeleteMaterialUseCase,
     GetProductsByParamsUseCase,
+    S3Service,
     {
       provide: 'ICategoryProductRepository', // Proveedor para inyectar la interfaz del repositorio
       useClass: CategoryProductInfrastructureRepository, // Implementación que usa Mongoose

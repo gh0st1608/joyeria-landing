@@ -1,6 +1,8 @@
 export interface ProductRequired {
   readonly title : string;
   readonly category: string;
+  readonly material: string;
+  readonly color: string[];
   readonly price : number;
   readonly description : string;
 }
@@ -21,7 +23,9 @@ export class Product {
     private title : string;
     private price : number;
     private state: boolean;
+    private color: string[];
     private category: string;
+    private material: string;
     private description: string;
     private discount: number;
     private image: string;
@@ -37,6 +41,8 @@ export class Product {
           title : this.title,
           price: this.price,
           category: this.category,
+          material: this.material,
+          color: this.color,
           description: this.description,
           discount: this.discount,
           image: this.image,

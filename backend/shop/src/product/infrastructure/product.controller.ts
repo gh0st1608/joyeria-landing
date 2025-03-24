@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Put, Delete, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Put, Delete, Query, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { CreateProductUseCase } from '../application/create.application';
 import { GetProductsUseCase } from '../application/get-all.application';
 /* import { UpdateProductUseCase } from '../application/update.application'; */
@@ -6,6 +6,8 @@ import { DeleteProductUseCase } from '../application/delete.application';
 import { Product } from '../domain/entities/product.entity';
 import { CreateProductDto } from './dto/create.dto';
 import { GetProductsByParamsUseCase } from '../application/get-by-params.application';
+import { S3Service } from './services/s3.service';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('products')
 export class ProductsController {
@@ -15,11 +17,22 @@ export class ProductsController {
     /* private readonly updateProductUseCase: UpdateProductUseCase, */
     private readonly deleteProductUseCase: DeleteProductUseCase,
     private readonly getProductsByParamsUseCase: GetProductsByParamsUseCase,
+    private readonly s3Service: S3Service,
   ) {}
 
   @Post()
-  async create(@Body() body: CreateProductDto): Promise<Product> {
-    return this.createProductUseCase.execute(body);
+  @UseInterceptors(FileInterceptor('file')) 
+  async create(
+    @Body() body: CreateProductDto,
+    @UploadedFile() file: Express.Multer.File, ): Promise<Product> {
+    let imageUrl = '';
+    if (file) {
+      const uploadResult = await this.s3Service.uploadFile(file);
+      imageUrl = uploadResult; // URL del archivo en S3
+    }
+    const productData = { ...body, image: imageUrl };
+    console.log('productData',productData)
+    return this.createProductUseCase.execute(productData);
   }
 
   @Get()

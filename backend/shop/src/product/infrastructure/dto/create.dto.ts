@@ -1,18 +1,26 @@
-import { IsString, IsOptional, IsBoolean, IsNumber } from 'class-validator';
+import { IsString, IsOptional, IsBoolean, IsNumber, IsNotEmpty } from 'class-validator';
 
 export class CreateProductDto {
 
-  @IsOptional()  // Usamos IsOptional porque puede que no actualices todos los campos
+  @IsNotEmpty()  // Usamos IsOptional porque puede que no actualices todos los campos
   @IsString()    // Validamos que sea una cadena de texto
   title: string;
 
-  @IsOptional()  // Usamos IsOptional porque puede que no actualices todos los campos
+  @IsNotEmpty()  // Usamos IsOptional porque puede que no actualices todos los campos
   @IsString()    // Validamos que sea una cadena de texto
   price: number;
 
-  @IsOptional()  // Usamos IsOptional porque puede que no actualices todos los campos
+  @IsNotEmpty()  // Usamos IsOptional porque puede que no actualices todos los campos
   @IsString()    // Validamos que sea una cadena de texto
   category: string;
+
+  @IsNotEmpty()  // Usamos IsOptional porque puede que no actualices todos los campos
+  @IsString()    // Validamos que sea una cadena de texto
+  material: string;
+
+  @IsOptional()  // Usamos IsOptional porque puede que no actualices todos los campos
+  @IsString()    // Validamos que sea una cadena de texto
+  color: string[];
 
   @IsOptional()  // Usamos IsOptional porque puede que no actualices todos los campos
   @IsString()    // Validamos que sea una cadena de texto
@@ -20,7 +28,7 @@ export class CreateProductDto {
 
   @IsOptional()  // Usamos IsOptional porque puede que no actualices todos los campos
   @IsString()    // Validamos que sea una cadena de texto
-  image: string;
+  image?: string;
 
   @IsOptional()  // Usamos IsOptional porque puede que no actualices todos los campos
   @IsNumber()    // Validamos que sea una cadena de texto
