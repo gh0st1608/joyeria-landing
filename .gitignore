@@ -10,10 +10,10 @@ backend/order/dist/
 backend/notification/dist/
 backend/task/dist/
 
-#auth/.env
-#shop/.env
-#payment/.env
-backend/order/.env.prod
+backend/auth/.env
+backend/shop/.env
+#backend/payment/.env
+backend/order/.env
 
 backend/auth/.build/
 backend/shop/.build/
