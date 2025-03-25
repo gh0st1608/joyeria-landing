@@ -5,9 +5,9 @@ import axios from 'axios';
 
 @Injectable()
 export class PayPalAuthService {
-  private readonly paypalAuthUrl = `${process.env.SANDBOX_PAYPAL}/v1/oauth2/token`;
-  private readonly clientId = process.env.CLIENT_ID_PAYPAL;
-  private readonly clientSecret = process.env.CLIENT_SECRET_PAYPAL;
+  private readonly paypalAuthUrl = `${process.env.PAYPAL_API_BASE_URL}/v1/oauth2/token`;
+  private readonly clientId = process.env.PAYPAL_CLIENT_ID;
+  private readonly clientSecret = process.env.PAYPAL_CLIENT_SECRET;
 
   // Método para obtener el token de autenticación
   async getAuthToken(): Promise<string> {

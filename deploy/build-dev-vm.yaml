@@ -33,7 +33,7 @@ steps:
           gcloud compute instances update-container msa-joyasperu-order \
             --zone=us-central1-a \
             --container-image=us-central1-docker.pkg.dev/oval-crawler-444615-k3/joyasperu-apiscore/msa-order-img:$COMMIT_SHA \
-            --container-env=PORT=4002,HOST=http://35.209.6.164:4002,MONGO_DB_URI=mongodb+srv://vady123:vady123!@proyectos.bihss.mongodb.net/,PAYPAL_CLIENT_ID=AYDlGpRcwD4kri9RkqJ8LtmfjGyPJ0CHNOo2JlJCeJ5FCQ5jnA3aNSUtymrXjljqVKaaHMq7dAnjqcS4,PAYPAL_CLIENT_SECRET=EI6-diP48Khu4WbNYYDQj7W3cW9Yk1qQyD-J2TCDagHNIw2C7tiu899SanrWjHCoLozDMb-hDsUE5yPq,PAYPAL_API_BASE_URL=https://api-m.sandbox.paypal.com
+            --container-env=PORT=4002,HOST=https://dev.miningsculture.com,MONGO_DB_URI=mongodb+srv://vady123:vady123!@proyectos.bihss.mongodb.net/,PAYPAL_CLIENT_ID=AYDlGpRcwD4kri9RkqJ8LtmfjGyPJ0CHNOo2JlJCeJ5FCQ5jnA3aNSUtymrXjljqVKaaHMq7dAnjqcS4,PAYPAL_CLIENT_SECRET=EI6-diP48Khu4WbNYYDQj7W3cW9Yk1qQyD-J2TCDagHNIw2C7tiu899SanrWjHCoLozDMb-hDsUE5yPq,PAYPAL_API_BASE_URL=https://api-m.sandbox.paypal.com
           
           echo "Starting instance again..."
           gcloud compute instances start msa-joyasperu-order --zone=us-central1-a
@@ -48,7 +48,7 @@ steps:
             --network-tier=STANDARD \
             --tags=http-server,https-server \
             --restart-on-failure \
-            --container-env=PORT=4002,HOST=http://35.209.6.164:4002,MONGO_DB_URI=mongodb+srv://vady123:vady123!@proyectos.bihss.mongodb.net/,PAYPAL_CLIENT_ID=AYDlGpRcwD4kri9RkqJ8LtmfjGyPJ0CHNOo2JlJCeJ5FCQ5jnA3aNSUtymrXjljqVKaaHMq7dAnjqcS4,PAYPAL_CLIENT_SECRET=EI6-diP48Khu4WbNYYDQj7W3cW9Yk1qQyD-J2TCDagHNIw2C7tiu899SanrWjHCoLozDMb-hDsUE5yPq,PAYPAL_API_BASE_URL=https://api-m.sandbox.paypal.com \
+            --container-env=PORT=4002,HOST=https://dev.miningsculture.com,MONGO_DB_URI=mongodb+srv://vady123:vady123!@proyectos.bihss.mongodb.net/,PAYPAL_CLIENT_ID=AYDlGpRcwD4kri9RkqJ8LtmfjGyPJ0CHNOo2JlJCeJ5FCQ5jnA3aNSUtymrXjljqVKaaHMq7dAnjqcS4,PAYPAL_CLIENT_SECRET=EI6-diP48Khu4WbNYYDQj7W3cW9Yk1qQyD-J2TCDagHNIw2C7tiu899SanrWjHCoLozDMb-hDsUE5yPq,PAYPAL_API_BASE_URL=https://api-m.sandbox.paypal.com \
             --address=joyasperu-ip
         fi
 
