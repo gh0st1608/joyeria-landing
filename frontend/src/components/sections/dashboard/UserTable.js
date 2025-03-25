@@ -1,4 +1,5 @@
 import React from "react";
+import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import "../../../assets/css/dashboard.css";
 
 const UserTable = ({ users, onEdit, onDelete }) => {
@@ -6,7 +7,7 @@ const UserTable = ({ users, onEdit, onDelete }) => {
     <table className="dashboard-table">
       <thead>
         <tr>
-          <th>ID</th>
+          <th>N°</th>
           <th>Nombre</th>
           <th>Apellido</th>
           <th>Email</th>
@@ -15,21 +16,35 @@ const UserTable = ({ users, onEdit, onDelete }) => {
       </thead>
       <tbody>
         {users.length > 0 ? (
-          users.map((u) => (
+          users.map((u, index) => (
             <tr key={u._id}>
-              <td>{u._id}</td>
+              <td>{index + 1}</td>
               <td>{u.name}</td>
               <td>{u.lastname}</td>
               <td>{u.email}</td>
               <td>
-                <button className="btn-edit" onClick={() => onEdit(u)}>Editar</button>
-                <button className="btn-delete" onClick={() => onDelete(u._id)}>Eliminar</button>
+                <button
+                  className="icon-btn edit-icon"
+                  onClick={() => onEdit(u)}
+                  title="Editar usuario"
+                >
+                  <FaEdit />
+                </button>
+                <button
+                  className="icon-btn delete-icon"
+                  onClick={() => onDelete(u._id)}
+                  title="Eliminar usuario"
+                >
+                  <FaTrashAlt />
+                </button>
               </td>
             </tr>
           ))
         ) : (
           <tr>
-            <td colSpan="5" className="no-data">No hay usuarios disponibles</td>
+            <td colSpan="5" className="no-data">
+              No hay usuarios disponibles
+            </td>
           </tr>
         )}
       </tbody>

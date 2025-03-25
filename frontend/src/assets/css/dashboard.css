@@ -1151,3 +1151,456 @@ body.dark-mode .dashboard-content {
 .btn-delete:hover {
   background-color: #000;
 }
+
+
+.btn-new-user {
+  background-color: #1d252c;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.btn-new-user:hover {
+  background-color: #000;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal-form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.modal h3 {
+  margin-bottom: 15px;
+  color: #1d252c;
+}
+.btn-new-user {
+  background-color: #1d252c;
+  color: #d5ba8c;
+  border: none;
+  padding: 10px 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  transition: background-color 0.3s;
+}
+
+.btn-new-user:hover {
+  background-color: #000;
+}
+
+/* Modal Form (dentro del modal) */
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal-form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.btn-new-product {
+  background-color: #d5ba8c;
+  color: #1d252c;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  transition: background-color 0.3s;
+}
+
+.btn-new-product:hover {
+  background-color: #bfa36f;
+}
+
+/* Modal general */
+.custom-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.custom-modal {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 95%;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.custom-modal h3 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #1d252c;
+}
+
+.modal-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.custom-modal input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.custom-modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.custom-modal-buttons .btn-edit,
+.custom-modal-buttons .btn-delete {
+  flex: 1;
+  margin: 0 5px;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin: 0 6px;
+  padding: 4px;
+  font-size: 24px;
+  transition: transform 0.2s;
+}
+
+.icon-btn:hover {
+  transform: scale(1.15);
+}
+
+/* Color del lápiz */
+.edit-icon svg {
+  color: #d5ba8c; /* color dorado claro */
+}
+
+/* Color del tacho */
+.delete-icon svg {
+  color: #1d252c; /* negro azulado oscuro */
+}
+
+/* Ajuste para alinear íconos centrados verticalmente */
+.dashboard-table td {
+  vertical-align: middle;
+}
+
+.custom-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.custom-modal {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  width: 450px;
+  max-width: 95%;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+.custom-modal h3 {
+  text-align: center;
+  color: #1d252c;
+  margin-bottom: 25px;
+  font-size: 22px;
+}
+
+.modal-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.custom-modal input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  transition: border-color 0.2s;
+}
+
+.custom-modal input:focus {
+  border-color: #d5ba8c;
+  outline: none;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.custom-modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.custom-modal-buttons button {
+  flex: 1;
+  margin: 0 5px;
+  padding: 10px 0;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.custom-modal-buttons .btn-edit {
+  background-color: #d5ba8c;
+  color: #1d252c;
+  border: none;
+}
+
+.custom-modal-buttons .btn-edit:hover {
+  background-color: #bfa36f;
+}
+
+.custom-modal-buttons .btn-delete {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+}
+
+.custom-modal-buttons .btn-delete:hover {
+  background-color: #b92c3b;
+}
+
+
+/* ===== Tabla ===== */
+.dashboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.dashboard-table th {
+  background-color: #1d252c;
+  color: #d5ba8c;
+  text-align: left;
+  padding: 12px;
+}
+
+.dashboard-table td {
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+  vertical-align: middle;
+}
+
+.dashboard-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.dashboard-table tr:hover {
+  background-color: #f0f0f0;
+}
+
+.no-data {
+  text-align: center;
+  padding: 20px;
+  font-style: italic;
+  color: #666;
+}
+
+/* ===== Íconos de acción ===== */
+.icon-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  margin: 0 6px;
+  transition: transform 0.2s;
+}
+
+.icon-btn:hover {
+  transform: scale(1.2);
+}
+
+.edit-icon svg {
+  color: #d5ba8c;
+}
+
+.delete-icon svg {
+  color: #1d252c;
+}
+
+/* ===== Botón nuevo registro ===== */
+.btn-new-product {
+  background-color: #d5ba8c;
+  color: #1d252c;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-bottom: 20px;
+}
+
+.btn-new-product:hover {
+  background-color: #bfa36f;
+}
+
+/* ===== Modal ===== */
+.custom-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.custom-modal {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  width: 450px;
+  max-width: 95%;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+.custom-modal h3 {
+  text-align: center;
+  color: #1d252c;
+  margin-bottom: 25px;
+  font-size: 22px;
+}
+
+.modal-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.custom-modal input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  transition: border-color 0.2s;
+}
+
+.custom-modal input:focus {
+  border-color: #d5ba8c;
+  outline: none;
+}
+
+.custom-modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.custom-modal-buttons button {
+  flex: 1;
+  margin: 0 5px;
+  padding: 10px 0;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.custom-modal-buttons .btn-edit {
+  background-color: #d5ba8c;
+  color: #1d252c;
+  border: none;
+}
+
+.custom-modal-buttons .btn-edit:hover {
+  background-color: #bfa36f;
+}
+
+.custom-modal-buttons .btn-delete {
+  background-color: #1d252c;
+  color: #fff;
+  border: none;
+}
+
+.custom-modal-buttons .btn-delete:hover {
+  background-color: #1d252c;
+}
+
+/* ===== Filtro de búsqueda ===== */
+.filters-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  padding: 10px;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.search-input:focus {
+  border-color: #d5ba8c;
+  outline: none;
+}
+
+/* ===== Mensajes de éxito y error ===== */
+.error-message {
+  color: #0c0c0c;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.success-message {
+  color: #28a745;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+

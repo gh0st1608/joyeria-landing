@@ -4,7 +4,6 @@ import { getUsers, deleteUser, createUser, updateUser } from "../servicios/dashb
 import UserTable from "../sections/dashboard/UserTable";
 import "../../assets/css/dashboard.css";
 
-
 const Users = () => {
   const [users, setUsers] = useState([]);
   const [formData, setFormData] = useState({ _id: "", name: "", lastname: "", email: "", password: "" });
@@ -12,6 +11,7 @@ const Users = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [showConfirm, setShowConfirm] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [deleteId, setDeleteId] = useState(null);
 
   useEffect(() => {
@@ -26,10 +26,28 @@ const Users = () => {
     fetchData();
   }, []);
 
-  const handleDelete = async (_id) => {
-    setDeleteId(_id);
-    setShowConfirm(true);
+  const openNewUserModal = () => {
+    setFormData({name: "", lastname: "", email: "", password: "", photo: "", roles: "ADMIN" });
+    setIsEditing(false);
+    setShowModal(true);
   };
+
+  const handleEdit = (user) => {
+    setFormData({ ...user, password: "" });
+    setIsEditing(true);
+    setShowModal(true);
+  };
+
+  const handleDelete = async (_id) => {
+    const confirm = window.confirm("¿Estás seguro de que deseas eliminar este usuario?");
+    if (confirm) {
+      await deleteUser(_id);
+      setUsers(users.filter(user => user._id !== _id));
+      setSuccess("Usuario eliminado exitosamente.");
+      setTimeout(() => setSuccess(""), 3000);
+    }
+  };
+
 
   const confirmDelete = async () => {
     await deleteUser(deleteId);
@@ -38,11 +56,6 @@ const Users = () => {
     setTimeout(() => setSuccess(""), 3000);
     setShowConfirm(false);
     setDeleteId(null);
-  };
-
-  const handleEdit = (user) => {
-    setFormData({ ...user, password: "" }); // no mostramos la contraseña
-    setIsEditing(true);
   };
 
   const handleSubmit = async (e) => {
@@ -72,6 +85,7 @@ const Users = () => {
       }
       setFormData({ _id: "", name: "", lastname: "", email: "", password: "" });
       setIsEditing(false);
+      setShowModal(false);
     } catch (error) {
       setError("Ocurrió un error al guardar el usuario.");
     }
@@ -87,43 +101,63 @@ const Users = () => {
         {error && <p className="error-message">{error}</p>}
         {success && <p className="success-message">{success}</p>}
 
-        <form className="dashboard-form" onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Nombre"
-            value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            required
-          />
-          <input
-            type="text"
-            placeholder="Apellido"
-            value={formData.lastname}
-            onChange={(e) => setFormData({ ...formData, lastname: e.target.value })}
-            required
-          />
-          <input
-            type="email"
-            placeholder="Email"
-            value={formData.email}
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            required
-          />
-          {!isEditing && (
-            <input
-              type="password"
-              placeholder="Contraseña"
-              value={formData.password}
-              onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-              required
-            />
-          )}
-          <button className="btn-submit" type="submit">
-            {isEditing ? "Actualizar" : "Agregar"}
-          </button>
-        </form>
+        <button className="btn-new-product" onClick={openNewUserModal}>Nuevo Usuario</button>
 
         <UserTable users={users} onEdit={handleEdit} onDelete={handleDelete} />
+
+        {showModal && (
+          <div className="custom-modal-overlay">
+            <div className="custom-modal">
+              <h3>{isEditing ? "Editar Usuario" : "Nuevo Usuario"}</h3>
+
+
+              <form onSubmit={handleSubmit}>
+                <div className="modal-form-grid">
+                  <input
+                    type="text"
+                    placeholder="Nombre"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    required
+                  />
+                  <input
+                    type="text"
+                    placeholder="Apellido"
+                    value={formData.lastname}
+                    onChange={(e) => setFormData({ ...formData, lastname: e.target.value })}
+                    required
+                  />
+                </div>
+                <input
+                  type="email"
+                  placeholder="Email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  required
+                  className="full-width"
+                />
+                {!isEditing && (
+                  <input
+                    type="password"
+                    placeholder="Contraseña"
+                    value={formData.password}
+                    onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                    required
+                    className="full-width"
+                  />
+                )}
+                <div className="custom-modal-buttons">
+                  <button type="submit" className="btn-edit">Guardar</button>
+                  <button type="button" className="btn-delete" onClick={() => setShowModal(false)}>Cerrar</button>
+                </div>
+              </form>
+
+
+
+
+            </div>
+          </div>
+        )}
 
         {showConfirm && (
           <div className="modal-overlay show">

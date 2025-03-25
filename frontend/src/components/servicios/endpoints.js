@@ -17,7 +17,7 @@ export const ENDPOINTS = {
   shop: {
     products: `/products`,
     getProductById: (_id) => `/products/${_id}`,
-    getProductsByParams: (params) => `/products/filters?${params}`,
+    getProductsByParams: `/products/filters?`,
     categoryProducts: '/category-products',
     getCategoryProductById: (_id) => `/category-products/${_id}`,
   },

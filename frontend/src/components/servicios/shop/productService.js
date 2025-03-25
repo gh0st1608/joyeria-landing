@@ -62,7 +62,7 @@ export const getProductsByParams = async (params) => {
   try {
     console.log(`📡 Fetching products with params:`, params);
     const queryString = new URLSearchParams(params).toString();
-    return await getRequest(`${ENDPOINTS.shop.products}?${queryString}`);
+    return await getRequest(`${ENDPOINTS.shop.getProductsByParams}${queryString}`);
   } catch (error) {
     console.error("❌ Error fetching products with params:", error);
     return [];
