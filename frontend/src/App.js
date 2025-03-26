@@ -22,6 +22,8 @@ import Products from './components/pages/Products';
 import Users from './components/pages/Users';
 import Clients from "./components/pages/Clients";
 import Profile from "./components/pages/Profile";
+import Purchases from "./components/pages/Purchases";  // ✅ NUEVO
+import Payments from "./components/pages/Payments";    // ✅ NUEVO
 
 // ✅ Importaciones de Layout
 import Footer from "./components/layouts/Footer";
@@ -42,7 +44,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 
 function App() {
   useEffect(() => {
-    let isMounted = true; // ✅ Evitar actualización de estado en componente desmontado
+    let isMounted = true;
 
     async function fetchProducts() {
       try {
@@ -58,7 +60,7 @@ function App() {
     fetchProducts();
 
     return () => {
-      isMounted = false; // ✅ Cancelar actualización si el componente se desmonta
+      isMounted = false;
     };
   }, []);
 
@@ -84,6 +86,8 @@ function App() {
             <PrivateRoute exact path="/dashboard/products" component={Products} />
             <PrivateRoute exact path="/dashboard/users" component={Users} />
             <PrivateRoute exact path="/dashboard/clients" component={Clients} />
+            <PrivateRoute exact path="/dashboard/purchases" component={Purchases} />   {/* ✅ NUEVO */}
+            <PrivateRoute exact path="/dashboard/payments" component={Payments} />     {/* ✅ NUEVO */}
             <PrivateRoute exact path="/dashboard/settings" component={Settings} />
             <PrivateRoute exact path="/dashboard/profile" component={Profile} />
 

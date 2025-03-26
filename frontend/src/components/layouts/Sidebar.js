@@ -31,6 +31,18 @@ const Sidebar = ({ collapsed }) => {
               <FaClipboardList /> {!collapsed && <span>Clientes</span>}
             </Link>
           </li>
+          <li>
+            <Link to="/purchases">
+              <i className="fas fa-shopping-basket"></i> Compras
+            </Link>
+          </li>
+          <li>
+            <Link to="/payments">
+              <i className="fas fa-credit-card"></i> Pagos
+            </Link>
+          </li>
+
+
         </ul>
       </nav>
 
