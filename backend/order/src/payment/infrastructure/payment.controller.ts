@@ -32,6 +32,7 @@ export class PaymentController {
         const orderId = body.resource.supplementary_data.related_ids.order_id;
         console.log(`✅ Pago completado - Payment ID: ${body.resource.id}`);
         // Aquí actualizas tu base de datos
+        console.log('cuerpo del pago',body.resource)
         await this.getStatusPaymentUseCase.sendStatus(orderId, "COMPLETED");
     }
       return { message: "Webhook recibido correctamente" };

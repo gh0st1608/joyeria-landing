@@ -64,6 +64,32 @@ export class PaymentInfrastructureRepository implements IPaymentRepository {
 
   async execute(tokenPayment : string): Promise <any> {
     const accessToken = await this.payPalAuthService.getAuthToken();
+     const response = await axios.get(
+      `${process.env.PAYPAL_API_BASE_URL}/v2/checkout/orders/${tokenPayment}`,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+    const paymentData = response.data;
+    console.log('paymentData',paymentData)
+    const payment = new Payment({
+      orderId: paymentData.id,
+      payerId: paymentData.payer.payer_id,
+      status: paymentData.status,
+      amount: parseFloat(paymentData.purchase_units[0].amount.value),
+      currency: paymentData.purchase_units[0].amount.currency_code,
+      createTime: new Date(paymentData.create_time), // Convertir a Date
+      id: paymentData.id,  // Si es necesario
+      bank: 'PayPal', // Si la plataforma de pago es PayPal
+      methodPayment: 'Online', // Definir método de pago
+      userId: paymentData.payer.email_address, // O algún identificador del usuario
+    })
+    
+    await this.createPay(payment);
+ 
+
     const responseOrder = await axios.post(`${process.env.PAYPAL_API_BASE_URL}/v2/checkout/orders/${tokenPayment}/capture`,{},{
       headers: {
         'Content-Type': 'application/json',
