@@ -15,6 +15,7 @@ export const ENDPOINTS = {
     getUserById: (_id) => `/user/${_id}`,
   },
 
+  
   shop: {
     products: `/products`,
     getProductById: (_id) => `/products/${_id}`,

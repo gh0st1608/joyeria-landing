@@ -1,5 +1,6 @@
 import React from "react";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import "../../../assets/css/dashboard.css";
 
 const PurchaseTable = ({ purchases, onEdit, onDelete }) => {
   return (
