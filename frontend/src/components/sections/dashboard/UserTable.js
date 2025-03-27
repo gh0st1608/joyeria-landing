@@ -11,6 +11,7 @@ const UserTable = ({ users, onEdit, onDelete }) => {
           <th>Nombre</th>
           <th>Apellido</th>
           <th>Email</th>
+          <th>Rol</th>
           <th>Acciones</th>
         </tr>
       </thead>
@@ -22,6 +23,7 @@ const UserTable = ({ users, onEdit, onDelete }) => {
               <td>{u.name}</td>
               <td>{u.lastname}</td>
               <td>{u.email}</td>
+              <td>{u.roles}</td>
               <td>
                 <button
                   className="icon-btn edit-icon"
@@ -42,7 +44,7 @@ const UserTable = ({ users, onEdit, onDelete }) => {
           ))
         ) : (
           <tr>
-            <td colSpan="5" className="no-data">
+            <td colSpan="6" className="no-data">
               No hay usuarios disponibles
             </td>
           </tr>
