@@ -12,7 +12,7 @@ const PaymentSuccessModal = ({ isOpen, onClose, clearCart }) => {
       }, 5000); // Cierra automáticamente en 5 segundos
       return () => clearTimeout(timer);
     }
-  }, [isOpen]);
+  }, [isOpen,handleClose]);
 
   const handleClose = () => {
     clearCart();

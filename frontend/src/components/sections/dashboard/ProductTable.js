@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "../../../assets/css/dashboard.css";
-import { createProduct } from "components/servicios/shop/productService";
 
 const ProductTable = ({ products, onAddOrUpdate, onDelete }) => {
   const [showModal, setShowModal] = useState(false);
