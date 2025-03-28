@@ -1,0 +1,26 @@
+name: Trigger deploy from deploy folder
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  trigger-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # Paso 1: Checkout del repositorio
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Paso 2: Usar un script para ejecutar el YAML en la carpeta deploy
+      - name: Run deploy script
+        run: |
+          # Mover el archivo YAML desde deploy/ a .github/workflows/ y luego ejecutarlo
+          cp deploy/buid-dev-frontend.yaml .github/workflows/buid-dev-frontend.yaml
+          
+          # Aquí puedes usar `act` o algún otro mecanismo para ejecutar el flujo de trabajo en el archivo YAML
+          # Si deseas que el YAML dentro de deploy/ se ejecute como parte del flujo
+          # Sin embargo, esto no es necesario en la mayoría de los casos, ya que la acción se ejecutará desde .github/workflows/
+
+      # Opcional: Para procesos adicionales, como la ejecución de pruebas o validaciones antes de despliegue.
