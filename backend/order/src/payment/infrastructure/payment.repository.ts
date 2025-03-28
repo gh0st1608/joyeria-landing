@@ -10,6 +10,7 @@ import { Order as OrderMongoose} from './schemas/order.schema';
 import { Order } from '../domain/entities/order.entity'
 import { PayPalAuthService } from '../services/paypal.service';
 import axios  from 'axios'
+import { plainToClass } from 'class-transformer';
 
 
 @Injectable()
@@ -37,6 +38,13 @@ export class PaymentInfrastructureRepository implements IPaymentRepository {
     console.log(JSON.stringify(error))
   }
 
+  }
+
+  async listPays(): Promise<Payment[]> {
+      const payments = await this.paymentModel.find().lean().exec();
+      return payments.map(payment => plainToClass(Payment, {
+        ...payment, // Usamos el objeto plano de Mongoose
+      }));
   }
 
   async createPay(payment: Payment): Promise<Payment> {
