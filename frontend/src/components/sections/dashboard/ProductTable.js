@@ -1,9 +1,5 @@
 import React, { useState } from "react";
 import "../../../assets/css/dashboard.css";
-<<<<<<< HEAD
-
-=======
->>>>>>> 6bd13572511ebc67fe8074794f47193a762e4923
 
 const ProductTable = ({ products, onAddOrUpdate, onDelete }) => {
   const [showModal, setShowModal] = useState(false);
