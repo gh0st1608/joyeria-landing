@@ -113,7 +113,7 @@ class Content extends Component {
                       {item.isNew && <span className="product-badge">Nuevo</span>}
 
                       <img
-                        src={item.image || "https://via.placeholder.com/150"}
+                        src={item.image}
                         alt={item.title}
                         className="product-image"
                       />

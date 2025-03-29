@@ -28,6 +28,7 @@ import { PaymentGateway } from './payment/infrastructure/websockets/payment.gate
 import { PaymentStatusUseCase } from './payment/application/send-status.application';
 import { CreatePaymentLocalUseCase } from './payment/application/create-payment.application';
 import { Payment, PaymentSchema } from './payment/infrastructure/schemas/payment.schema';
+import { GetListPaysUseCase } from './payment/application/get-pays.application';
 
 @Module({
   imports: [
@@ -66,6 +67,7 @@ import { Payment, PaymentSchema } from './payment/infrastructure/schemas/payment
     PaymentGateway,
     PaymentStatusUseCase,
     CreatePaymentLocalUseCase,
+    GetListPaysUseCase,
     {
       provide: 'ICartbuyRepository', // Proveedor para inyectar la interfaz del repositorio
       useClass: CartbuyInfrastructureRepository, // Implementación que usa Mongoose

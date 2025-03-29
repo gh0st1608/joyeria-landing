@@ -3,6 +3,7 @@ import { CreatePaymentUseCase } from '../application/create.application';
 import { ExecutePaymentUseCase } from '../application/execute.application';
 import { CreateOrderDto } from './dto/create.dto';
 import { PaymentStatusUseCase } from '../application/send-status.application';
+import { GetListPaysUseCase } from '../application/get-pays.application';
 
 
 @Controller('payment')
@@ -10,12 +11,18 @@ export class PaymentController {
   constructor(
     private readonly createPaymentUseCase: CreatePaymentUseCase,
     private readonly executePaymentUseCase: ExecutePaymentUseCase,
-    private readonly getStatusPaymentUseCase: PaymentStatusUseCase
+    private readonly getStatusPaymentUseCase: PaymentStatusUseCase,
+    private readonly getListPaysUseCase: GetListPaysUseCase
   ) {}
 
   @Post()
   async create(@Body() body: CreateOrderDto) {
-     return await this.createPaymentUseCase.execute(body);
+     return  this.createPaymentUseCase.execute(body);
+  }
+
+  @Get('/list')
+  async getList() {
+     return  this.getListPaysUseCase.execute();
   }
 
   @Get()
@@ -32,6 +39,7 @@ export class PaymentController {
         const orderId = body.resource.supplementary_data.related_ids.order_id;
         console.log(`✅ Pago completado - Payment ID: ${body.resource.id}`);
         // Aquí actualizas tu base de datos
+        console.log('cuerpo del pago',body.resource)
         await this.getStatusPaymentUseCase.sendStatus(orderId, "COMPLETED");
     }
       return { message: "Webhook recibido correctamente" };

@@ -11,6 +11,8 @@ async function bootstrap() {
   console.log('port',port)
   app.setGlobalPrefix('order')
   app.enableCors();
-  await app.listen(port,'0.0.0.0');
+  await app.listen(port);
+  //await app.listen(port,'0.0.0.0');
+  console.log('🚀 Servidor WebSocket escuchando en http://localhost:4002');
 }
 bootstrap();

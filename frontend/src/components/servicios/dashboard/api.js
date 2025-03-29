@@ -8,9 +8,9 @@ export const handleApiError = (error) => {
 };
 
 // GET: base = BASE_URL.shop, url = /products
-export const getRequest = async (base, url) => {
+export const getRequest = async (url) => {
   try {
-    const response = await axios.get(`${base}${url}`);
+    const response = await axios.get(`${BASE_URL.payment}${url}`);
     return response.data;
   } catch (error) {
     handleApiError(error);
@@ -18,9 +18,9 @@ export const getRequest = async (base, url) => {
 };
 
 // POST
-export const postRequest = async (base, url, data) => {
+export const postRequest = async (url, data) => {
   try {
-    const response = await axios.post(`${base}${url}`, data, {
+    const response = await axios.post(`${BASE_URL.payment}${url}`, data, {
       headers: { "Content-Type": "application/json" }
     });
     return response.data;

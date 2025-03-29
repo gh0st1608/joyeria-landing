@@ -55,77 +55,74 @@ steps:
     name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'us-central1-docker.pkg.dev/oval-crawler-444615-k3/joyasperu-apiscore/msa-notification-img:$COMMIT_SHA']
 
-  # Desplegar la primera aplicación en Cloud Run
-  #- id: 'Deploy First Application to Cloud Run'
-  #  name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  #  entrypoint: 'gcloud'
-  #  args:
-  #    [
-  #      'run', 'deploy', 'msa-joyasperu-auth',
-  #      '--image', 'us-central1-docker.pkg.dev/oval-crawler-444615-k3/joyasperu-apiscore/msa-auth-img:$COMMIT_SHA',
-  #      '--port', '4000',
-  #      '--platform', 'managed',
-  #      '--region', 'us-east1',
-  #      '--allow-unauthenticated',  # Asegura exposición pública
-  #      '--ingress', 'all',  # Para exponer a internet
-  #      '--project', 'oval-crawler-444615-k3',
-  #      '--service-account', '1094025365695-compute@developer.gserviceaccount.com',
-  #      '--max-instances', '1'
-  #    ]
-#
-  ## Desplegar la segunda aplicación en Cloud Run
-  #- id: 'Deploy Second Application to Cloud Run'
-  #  name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  #  entrypoint: 'gcloud'
-  #  args:
-  #    [
-  #      'run', 'deploy', 'msa-joyasperu-shop',  # Cambiar nombre del servicio
-  #      '--image', 'us-central1-docker.pkg.dev/oval-crawler-444615-k3/joyasperu-apiscore/msa-shop-img:$COMMIT_SHA',
-  #      '--port', '4001',  # Puerto diferente si se requiere
-  #      '--platform', 'managed',
-  #      '--region', 'us-east1',
-  #      '--allow-unauthenticated',  # Asegura exposición pública
-  #      '--ingress', 'all',  # Para exponer a internet
-  #      '--project', 'oval-crawler-444615-k3',
-  #      '--service-account', '1094025365695-compute@developer.gserviceaccount.com',
-  #      '--max-instances', '1'
-  #    ]
-#
-  ## Desplegar la tercera aplicación en Cloud Run
-  #- id: 'Deploy Third Application to Cloud Run'
-  #  name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  #  entrypoint: 'gcloud'
-  #  args:
-  #    [
-  #      'run', 'deploy', 'msa-joyasperu-order',  # Cambiar nombre del servicio
-  #      '--image', 'us-central1-docker.pkg.dev/oval-crawler-444615-k3/joyasperu-apiscore/msa-order-img:$COMMIT_SHA',
-  #      '--port', '4002',  # Puerto diferente si se requiere
-  #      '--platform', 'managed',
-  #      '--region', 'us-east1',
-  #      '--allow-unauthenticated',  # Asegura exposición pública
-  #      '--ingress', 'all',  # Para exponer a internet
-  #      '--project', 'oval-crawler-444615-k3',
-  #      '--service-account', '1094025365695-compute@developer.gserviceaccount.com',
-  #      '--max-instances', '1'
-  #    ]
-#
-  ## Desplegar la cuarta aplicación en Cloud Run
-  #- id: 'Deploy Fourth Application to Cloud Run'
-  #  name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  #  entrypoint: 'gcloud'
-  #  args:
-  #    [
-  #      'run', 'deploy', 'msa-joyasperu-notification',  # Cambiar nombre del servicio
-  #      '--image', 'us-central1-docker.pkg.dev/oval-crawler-444615-k3/joyasperu-apiscore/msa-notification-img:$COMMIT_SHA',
-  #      '--port', '4003',  # Puerto diferente si se requiere
-  #      '--platform', 'managed',
-  #      '--region', 'us-east1',
-  #      '--allow-unauthenticated',  # Asegura exposición pública
-  #      '--ingress', 'all',  # Para exponer a internet
-  #      '--project', 'oval-crawler-444615-k3',
-  #      '--service-account', '1094025365695-compute@developer.gserviceaccount.com',
-  #      '--max-instances', '1'
-  #    ]
+ #Desplegar la primera aplicación en Cloud Run
+  - id: 'Deploy First Application to Cloud Run'
+    name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args:
+      [
+        'run', 'deploy', 'msa-joyasperu-auth',
+        '--image', 'us-central1-docker.pkg.dev/oval-crawler-444615-k3/joyasperu-apiscore/msa-auth-img:$COMMIT_SHA',
+        '--port', '4000',
+        '--platform', 'managed',
+        '--region', 'us-east1',
+        '--allow-unauthenticated',  # Asegura exposición pública
+        '--ingress', 'all',  # Para exponer a internet
+        '--project', 'oval-crawler-444615-k3',
+        '--service-account', '1094025365695-compute@developer.gserviceaccount.com',
+        '--max-instances', '1'
+      ]
+ # Desplegar la segunda aplicación en Cloud Run
+  - id: 'Deploy Second Application to Cloud Run'
+    name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args:
+      [
+        'run', 'deploy', 'msa-joyasperu-shop',  # Cambiar nombre del servicio
+        '--image', 'us-central1-docker.pkg.dev/oval-crawler-444615-k3/joyasperu-apiscore/msa-shop-img:$COMMIT_SHA',
+        '--port', '4001',  # Puerto diferente si se requiere
+        '--platform', 'managed',
+        '--region', 'us-east1',
+        '--allow-unauthenticated',  # Asegura exposición pública
+        '--ingress', 'all',  # Para exponer a internet
+        '--project', 'oval-crawler-444615-k3',
+        '--service-account', '1094025365695-compute@developer.gserviceaccount.com',
+        '--max-instances', '1'
+      ]
+ # Desplegar la tercera aplicación en Cloud Run
+  - id: 'Deploy Third Application to Cloud Run'
+    name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args:
+      [
+        'run', 'deploy', 'msa-joyasperu-order',  # Cambiar nombre del servicio
+        '--image', 'us-central1-docker.pkg.dev/oval-crawler-444615-k3/joyasperu-apiscore/msa-order-img:$COMMIT_SHA',
+        '--port', '4002',  # Puerto diferente si se requiere
+        '--platform', 'managed',
+        '--region', 'us-east1',
+        '--allow-unauthenticated',  # Asegura exposición pública
+        '--ingress', 'all',  # Para exponer a internet
+        '--project', 'oval-crawler-444615-k3',
+        '--service-account', '1094025365695-compute@developer.gserviceaccount.com',
+        '--max-instances', '1'
+      ]
+ # Desplegar la cuarta aplicación en Cloud Run
+  - id: 'Deploy Fourth Application to Cloud Run'
+    name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args:
+      [
+        'run', 'deploy', 'msa-joyasperu-notification',  # Cambiar nombre del servicio
+        '--image', 'us-central1-docker.pkg.dev/oval-crawler-444615-k3/joyasperu-apiscore/msa-notification-img:$COMMIT_SHA',
+        '--port', '4003',  # Puerto diferente si se requiere
+        '--platform', 'managed',
+        '--region', 'us-east1',
+        '--allow-unauthenticated',  # Asegura exposición pública
+        '--ingress', 'all',  # Para exponer a internet
+        '--project', 'oval-crawler-444615-k3',
+        '--service-account', '1094025365695-compute@developer.gserviceaccount.com',
+        '--max-instances', '1'
+      ]
 
 logsBucket: 'gs://joyasperu-dev-app-cloud-build'
 serviceAccount: '1094025365695-compute@developer.gserviceaccount.com'

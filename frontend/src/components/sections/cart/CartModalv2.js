@@ -5,6 +5,7 @@ import { Link, useHistory } from "react-router-dom";
 import { io } from "socket.io-client";
 import { BASE_URL } from "../../servicios/endpoints";
 import { FaTrash, FaCreditCard, FaCheckCircle } from "react-icons/fa";
+import PaymentSuccessModal from "./PaymentSuccessModal"; 
 
 
 
@@ -13,23 +14,39 @@ const CartContent = () => {
   const history = useHistory();
   const [orderId, setOrderId] = useState(null);
   const [paymentCompleted, setPaymentCompleted] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   useEffect(() => {
+    //if (!orderId) return;
+  
+    console.log("✅ Suscribiéndose al canal:", `payment-status-${orderId}`);
+    console.log("🌐 Conectando a WebSocket en:", 'http://localhost:4002/order');
+  
     const socket = io(BASE_URL.wsPayment, { transports: ["websocket"] });
-    if (orderId) {
-      console.log("✅ Suscribiéndose al canal:", `payment-status-${orderId}`);
-      socket.on(`payment-status-${orderId}`, (data) => {
-        console.log('🟢 WebSocket:', `payment-status-${orderId}`, data);
-        if (data.status === "COMPLETED") {
-          setPaymentCompleted(true);
-          alert("✅ ¡Pago confirmado!");
-          clearCart();
+  
+    socket.on("connect", () => {
+      console.log("🟢 Conectado al WebSocket con ID:", socket.id);
+    });
+  
+    socket.on(`payment-status-${orderId}`, (data) => {
+      console.log('🟢 WebSocket:', `payment-status-${orderId}`, data);
+      if (data.status === "COMPLETED") {
+        setPaymentCompleted(true);
+        setShowSuccessModal(true);
+        clearCart();
+        setTimeout(() => {
+          setShowSuccessModal(false);
           history.push("/shop-left");
-        }
-      });
-    }
-    return () => socket.disconnect();
+        }, 3000); // Cierra el modal automáticamente en 3s
+      }
+    });
+  
+    return () => {
+      console.log("❌ Desconectando socket...");
+      socket.disconnect();
+    };
   }, [orderId, clearCart, history]);
+  
 
   const handlePayment = async () => {
     try {
@@ -40,10 +57,12 @@ const CartContent = () => {
       };
       const cartCreated = await createCart(paymentData);
       const paymentCreated = await createPayment({ idCartBuy: cartCreated._id });
-
       if (paymentCreated?.status === "CREATED") {
-        setOrderId(paymentCreated._id);
-        window.open(paymentCreated.links[1].href, "_blank");
+        setOrderId(paymentCreated.id);
+        setTimeout(() => {
+          window.open(paymentCreated.links[1].href, "_blank");
+        }, 500); // Un pequeño retraso para que el estado se propague correctamente
+        console.log('🆗 Pago iniciado con orderId:', paymentCreated.id);
       } else {
         alert("❌ Hubo un problema con el pago. Intenta nuevamente.");
       }
@@ -58,7 +77,7 @@ const CartContent = () => {
       <div className="cart-container">
         <h2>Carrito de Compras</h2>
         <p>Tu carrito está vacío.</p>
-        <Link to="/shop-left" className="btn btn-primary">Ver productos</Link>
+        <PaymentSuccessModal isOpen={showSuccessModal} onClose={() => setShowSuccessModal(false)} />
       </div>
     );
   }
@@ -81,10 +100,10 @@ const CartContent = () => {
             <tr key={item._id}>
               <td className="cart-item">
                 <img
-                  src={item.image || "https://via.placeholder.com/100"}
+                  src={item.image}
                   alt={item.title}
                   className="cart-item-image"
-                  onError={(e) => (e.target.src = "https://via.placeholder.com/100")}
+                  onError={(e) => (e.target.src = "")}
                 />
                 <span>{item.title}</span>
               </td>

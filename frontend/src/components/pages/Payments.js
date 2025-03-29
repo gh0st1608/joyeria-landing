@@ -12,6 +12,7 @@ const Payments = () => {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getPayments();
+      console.log('data payment list',data)
       setPayments(data);
     };
     fetchData();
