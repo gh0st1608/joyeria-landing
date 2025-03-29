@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { CartContext } from "../../../context/CartContext";
 import { createCart, createPayment } from "../../servicios/payment/paymentService";
-import { Link, useHistory } from "react-router-dom";
+import {  useHistory } from "react-router-dom";
 import { io } from "socket.io-client";
 import { BASE_URL } from "../../servicios/endpoints";
 import { FaTrash, FaCreditCard, FaCheckCircle } from "react-icons/fa";

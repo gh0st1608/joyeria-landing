@@ -1,24 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import { FaCheckCircle } from "react-icons/fa";
 
 const PaymentSuccessModal = ({ isOpen, onClose, clearCart }) => {
   const history = useHistory();
 
+  const handleClose = useCallback(() => {
+    clearCart();
+    onClose();
+    history.push("/shop-left");
+  }, [clearCart, onClose, history]);
+
   useEffect(() => {
     if (isOpen) {
       const timer = setTimeout(() => {
         handleClose();
-      }, 5000); // Cierra automáticamente en 5 segundos
+      }, 5000);
       return () => clearTimeout(timer);
     }
-  }, [isOpen]);
-
-  const handleClose = () => {
-    clearCart();
-    onClose();
-    history.push("/shop-left"); // Redirige al catálogo
-  };
+  }, [isOpen, handleClose]);
 
   if (!isOpen) return null;
 
