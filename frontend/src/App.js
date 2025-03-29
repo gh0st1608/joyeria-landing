@@ -11,7 +11,7 @@ import Cart from './components/pages/Cart';
 import Checkout from './components/pages/Checkout';
 import Contact from './components/pages/Contact';
 import Register from './components/pages/Register';
-import Shopdetail from './components/sections/shopdetail/Content';
+import Shopdetail from './components/pages/Shopdetail'; // ✅ Ruta corregida
 import Shopleft from './components/pages/Shopleft';
 
 // ✅ Importaciones de autenticación y dashboard
@@ -22,14 +22,14 @@ import Products from './components/pages/Products';
 import Users from './components/pages/Users';
 import Clients from "./components/pages/Clients";
 import Profile from "./components/pages/Profile";
-import Purchases from "./components/pages/Purchases";  // ✅ NUEVO
-import Payments from "./components/pages/Payments";    // ✅ NUEVO
+import Purchases from "./components/pages/Purchases";
+import Payments from "./components/pages/Payments";
 
 // ✅ Importaciones de Layout
 import Footer from "./components/layouts/Footer";
-import { getProducts } from "./components/servicios/shop/productService"; // ✅ Importa la API de productos
+import { getProducts } from "./components/servicios/shop/productService";
 
-// ✅ Función para proteger rutas privadas
+// ✅ Ruta protegida personalizada
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const { user } = useContext(AuthContext);
   return (
@@ -78,7 +78,9 @@ function App() {
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/shop-left" component={Shopleft} />
-            <Route exact path="/shop-detail/:id" component={Shopdetail} />
+            <Route exact path="/shop-detail/:_id" component={Shopdetail} />
+            {/* ✅ Aquí capturas el _id de Mongo como "id" */}
+
             <Route exact path="/login" component={AuthModal} />
 
             {/* 🔹 Rutas protegidas del Dashboard */}
@@ -86,8 +88,8 @@ function App() {
             <PrivateRoute exact path="/dashboard/products" component={Products} />
             <PrivateRoute exact path="/dashboard/users" component={Users} />
             <PrivateRoute exact path="/dashboard/clients" component={Clients} />
-            <PrivateRoute exact path="/dashboard/purchases" component={Purchases} />   {/* ✅ NUEVO */}
-            <PrivateRoute exact path="/dashboard/payments" component={Payments} />     {/* ✅ NUEVO */}
+            <PrivateRoute exact path="/dashboard/purchases" component={Purchases} />
+            <PrivateRoute exact path="/dashboard/payments" component={Payments} />
             <PrivateRoute exact path="/dashboard/settings" component={Settings} />
             <PrivateRoute exact path="/dashboard/profile" component={Profile} />
 

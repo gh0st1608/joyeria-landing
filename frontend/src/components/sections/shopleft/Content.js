@@ -107,7 +107,7 @@ class Content extends Component {
               <div className="product-grid">
                 {currentProducts.length > 0 ? (
                   currentProducts.map((item) => (
-                    <div key={item.id} className="product-card">
+                    <div key={item._id} className="product-card">
                       {/* Etiquetas de "Sale" o "New" */}
                       {item.discount && <span className="discount-tag">-{item.discount}%</span>}
                       {item.isNew && <span className="product-badge">Nuevo</span>}
@@ -128,7 +128,7 @@ class Content extends Component {
                         </p>
 
                         <div className="product-buttons">
-                          <Link to={`/shop-detail/${item.id}`} className="btn btn-options">
+                          <Link to={`/shop-detail/${item._id}`} className="btn btn-options">
                             <FaEye style={{ marginRight: "5px" }} /> Ver Opciones
                           </Link>
                           <button
