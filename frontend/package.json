@@ -42,7 +42,7 @@
     "sweetalert2": "^11.17.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "env-cmd -f .env react-scripts start",
     "dev": "env-cmd -f .env.development react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

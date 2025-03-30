@@ -11,7 +11,7 @@ const PurchaseTable = ({ purchases, onEdit, onDelete }) => {
           <th>Proveedor</th>
           <th>Fecha</th>
           <th>Monto</th>
-          <th>Acciones</th>
+          <th>Detalle</th>
         </tr>
       </thead>
       <tbody>
