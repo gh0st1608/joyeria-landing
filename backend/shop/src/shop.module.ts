@@ -29,6 +29,7 @@ import { CreateMaterialUseCase } from './material/application/create.application
 import { DeleteMaterialUseCase } from './material/application/delete.application';
 import { GetProductsByParamsUseCase } from './product/application/get-by-params.application';
 import { S3Service } from './product/infrastructure/services/s3.service';
+import { GetProductsByIdUseCase } from './product/application/get-by-Id.application';
 
 
 @Module({
@@ -67,6 +68,7 @@ import { S3Service } from './product/infrastructure/services/s3.service';
     CreateMaterialUseCase,
     DeleteMaterialUseCase,
     GetProductsByParamsUseCase,
+    GetProductsByIdUseCase,
     S3Service,
     {
       provide: 'ICategoryProductRepository', // Proveedor para inyectar la interfaz del repositorio

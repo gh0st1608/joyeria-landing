@@ -1,7 +1,31 @@
-import React, { useEffect, useState } from "react";
-import ShopInfo from "../sections/shopdetail/Shopinfo"; // Asegúrate de importar correctamente este componente
+import React, { Component, Fragment } from 'react';
+import MetaTags from "react-meta-tags";
+import Header from '../layouts/Header';
+import Breadcrumb from '../sections/home/Breadcrumbs';
+import Content from "../sections/shopdetail/Content"; // Asegúrate de importar correctamente este componente
 
-const Shopdetail = (props) => {
+class Shopdetail extends Component {
+  render() {
+      return (
+          <Fragment>
+              <MetaTags>
+                  <title>Laramiss | Shop Detail</title>
+                  <meta
+                      name="description"
+                      content="#"
+                  />
+              </MetaTags>
+              <Header/>
+              <Breadcrumb breadcrumb={{pagename:'Shop Detail'}}/>
+              <Content/>
+          </Fragment>
+      );
+  }
+}
+
+export default Shopdetail;
+
+/* const Shopdetail = (props) => {
   const _id = props.match?.params?._id;
   const [product, setProduct] = useState(null);
 
@@ -42,3 +66,4 @@ const Shopdetail = (props) => {
 };
 
 export default Shopdetail;
+ */
