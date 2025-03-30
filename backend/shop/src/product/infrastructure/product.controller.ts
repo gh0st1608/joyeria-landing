@@ -8,7 +8,7 @@ import { CreateProductDto } from './dto/create.dto';
 import { GetProductsByParamsUseCase } from '../application/get-by-params.application';
 import { S3Service } from './services/s3.service';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { GetProductsByIdUseCase } from '../application/get-by-Id.application';
+import { GetProductsByIdUseCase } from '../application/get-by-id.application';
 
 @Controller('products')
 export class ProductsController {
