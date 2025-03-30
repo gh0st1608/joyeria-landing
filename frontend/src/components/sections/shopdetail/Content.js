@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ShopInfo from "./Shopinfo"; // Asegúrate que el nombre del archivo sea Shopinfo.js
 import { getProductById } from "../../servicios/shop/productService";
+import '../../../assets/css/product-detail.css'; // Importa el archivo de estilos CSS
 import { useParams } from "react-router-dom";
 
 const ShopDetail = () => {
@@ -45,18 +46,35 @@ const ShopDetail = () => {
   );
 
   return (
-    <div className="product-detail">
-      <h2>{product.title}</h2>
-      <img 
-        src={product.image} 
-        alt={product.title} 
-        width="300" 
-        style={{ maxWidth: "100%" }}
-      />
-      <p>{product.description}</p>
-      <p>
-        <strong>Precio:</strong> S/ {product.price?.toFixed(2) ?? "0.00"}
-      </p>
+    <div className="product-detail-container">
+      <div className="product-detail">
+        <div className="product-image-container">
+          <img 
+            src={product.image} 
+            alt={product.title} 
+            className="product-image" 
+          />
+        </div>
+        <div className="product-info">
+          <h1 className="product-title">{product.title}</h1>
+          <p className="product-price">
+            <strong>Precio:</strong> S/ {product.price?.toFixed(2) ?? "0.00"}
+          </p>
+          <p className="product-description">{product.description}</p>
+
+          <div className="product-specs">
+            <h3>Especificaciones del producto</h3>
+            <ul>
+              <li><strong>Categoría:</strong> {product.category || "No especificada"}</li>
+              <li><strong>Stock:</strong> {product.stock ?? "No disponible"}</li>
+              <li><strong>Modelo:</strong> {product.model || "No especificado"}</li>
+              {/* Agrega más especificaciones según el producto */}
+            </ul>
+          </div>
+
+          <button className="add-to-cart-btn">Agregar al carrito</button>
+        </div>
+      </div>
       <ShopInfo product={product} />
     </div>
   );

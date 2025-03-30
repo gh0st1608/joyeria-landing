@@ -1,0 +1,133 @@
+/* General layout */
+.product-detail-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+  background-color: #f4f4f9;
+  min-height: 100vh;
+}
+
+.product-detail {
+  display: flex;
+  max-width: 1200px;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.product-image-container {
+  flex: 1;
+  padding-right: 20px;
+  border-right: 1px solid #f0f0f0;
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  max-width: 400px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.product-info {
+  flex: 2;
+  padding-left: 20px;
+}
+
+.product-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.product-price {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #d9534f;
+  margin-top: 10px;
+}
+
+.product-description {
+  font-size: 1rem;
+  color: #555;
+  margin: 20px 0;
+}
+
+.product-specs {
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.product-specs h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.product-specs ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.product-specs li {
+  font-size: 1rem;
+  color: #555;
+  padding: 5px 0;
+}
+
+.add-to-cart-btn {
+  background-color: #5cb85c;
+  color: white;
+  font-size: 1rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #4cae4c;
+}
+
+/* Error and loading states */
+.loading-text, .error-text {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #d9534f;
+}
+
+.error-text {
+  color: #d9534f;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.product-detail-container {
+  padding: 20px;
+  background-color: #f4f4f9;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .product-detail {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .product-image-container {
+    padding-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .product-info {
+    padding-left: 0;
+  }
+}
