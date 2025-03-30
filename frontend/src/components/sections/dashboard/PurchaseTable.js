@@ -8,7 +8,7 @@ const PurchaseTable = ({ purchases, onEdit, onDelete }) => {
       <thead>
         <tr>
           <th>N°</th>
-          <th>Proveedor</th>
+          <th>Cliente</th>
           <th>Fecha</th>
           <th>Monto</th>
           <th>Detalle</th>
@@ -18,9 +18,10 @@ const PurchaseTable = ({ purchases, onEdit, onDelete }) => {
         {purchases.map((p, index) => (
           <tr key={p._id}>
             <td>{index + 1}</td>
-            <td>{p.provider}</td>
-            <td>{p.date}</td>
-            <td>${p.amount}</td>
+            <td>{p.cliente}</td>
+            <td>{new Date(p.fecha).toLocaleDateString()}</td>
+            <td>${Number(p.total).toFixed(2)}</td>
+            <td>{p.estado}</td>
             <td>
               <button className="icon-btn edit-icon" onClick={() => onEdit(p)} title="Editar">
                 <FaEdit />

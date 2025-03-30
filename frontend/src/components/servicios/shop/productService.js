@@ -1,70 +1,154 @@
 import { getRequest, postRequest, putRequest, deleteRequest } from "./api";
-import { ENDPOINTS } from "../endpoints";
+import { BASE_URL, ENDPOINTS } from "../endpoints";
+
+/**
+ * Servicio para manejar operaciones relacionadas con productos
+ */
+
+// Cache simple para productos
+const productCache = new Map();
 
 // ✅ Obtener todos los productos
 export const getProducts = async () => {
   try {
-    console.log(`📡 Fetching products from: ${ENDPOINTS.shop.products}`);
+    const cacheKey = 'all_products';
+    console.log(`📡 [GET] Fetching products from: ${ENDPOINTS.shop.products}`);
+    
+    // Verificar cache primero
+    if (productCache.has(cacheKey)) {
+      console.log('⚡ Using cached products');
+      return productCache.get(cacheKey);
+    }
+
     const products = await getRequest(ENDPOINTS.shop.products);
-    return products || [];
+    const result = Array.isArray(products) ? products : [];
+    
+    // Almacenar en cache
+    productCache.set(cacheKey, result);
+    return result;
   } catch (error) {
-    console.error("❌ Error fetching products:", error);
-    return [];
+    console.error("❌ [GET] Error fetching products:", error);
+    throw new Error('Failed to fetch products'); // Mejor manejo de errores
   }
 };
 
 // ✅ Obtener un producto por ID
+
+
+
 export const getProductById = async (_id) => {
   try {
-    console.log(`📡 Fetching product ID: ${_id}`);
-    return await getRequest(ENDPOINTS.shop.getProductById(_id));
+    const endpoint = ENDPOINTS.shop.getProductById(_id);
+    const fullUrl = `${BASE_URL.shop}${endpoint}`;
+    console.log('🔍 URL completa de la solicitud:', fullUrl); // <-- Añade esto
+    
+    const response = await getRequest(fullUrl);
+    console.log('📦 Respuesta recibida:', response); // <-- Añade logging de la respuesta
+    
+    if (!response) {
+      throw new Error(`Producto con ID ${_id} no encontrado`);
+    }
+    return response;
   } catch (error) {
-    console.error(`❌ Error fetching product ${_id}:`, error);
-    return null;
+    console.error(`❌ Error completo:`, error); // <-- Muestra el error completo
+    throw error;
   }
 };
 
+
+
+
+
 // ✅ Crear un producto
 export const createProduct = async (productData) => {
+  if (!productData) {
+    console.error("❌ [POST] No product data provided");
+    throw new Error('Product data is required');
+  }
+
   try {
-    console.log(`📡 Creating product`, productData);
-    return await postRequest(ENDPOINTS.shop.products, productData);
+    console.log(`📡 [POST] Creating product`, productData);
+    const newProduct = await postRequest(ENDPOINTS.shop.products, productData);
+    
+    // Invalidar cache de todos los productos
+    productCache.delete('all_products');
+    
+    return newProduct;
   } catch (error) {
-    console.error("❌ Error creating product:", error);
-    return null;
+    console.error("❌ [POST] Error creating product:", error);
+    throw new Error('Failed to create product');
   }
 };
 
 // ✅ Actualizar un producto
 export const updateProduct = async (_id, productData) => {
+  if (!_id || !productData) {
+    console.error("❌ [PUT] Missing ID or product data");
+    throw new Error('Product ID and data are required');
+  }
+
   try {
-    console.log(`📡 Updating product ID: ${_id}`, productData);
-    return await putRequest(ENDPOINTS.shop.getProductById(_id), productData);
+    console.log(`📡 [PUT] Updating product ID: ${_id}`, productData);
+    const updatedProduct = await putRequest(
+      ENDPOINTS.shop.getProductById(_id), 
+      productData
+    );
+    
+    // Actualizar cache
+    productCache.set(_id, updatedProduct);
+    productCache.delete('all_products');
+    
+    return updatedProduct;
   } catch (error) {
-    console.error(`❌ Error updating product ${_id}:`, error);
-    return null;
+    console.error(`❌ [PUT] Error updating product ${_id}:`, error);
+    throw new Error(`Failed to update product ${_id}`);
   }
 };
 
 // ✅ Eliminar un producto
 export const deleteProduct = async (_id) => {
+  if (!_id) {
+    console.error("❌ [DELETE] No product ID provided");
+    throw new Error('Product ID is required');
+  }
+
   try {
-    console.log(`📡 Deleting product ID: ${_id}`);
-    return await deleteRequest(ENDPOINTS.shop.getProductById(_id));
+    console.log(`📡 [DELETE] Deleting product ID: ${_id}`);
+    const result = await deleteRequest(ENDPOINTS.shop.getProductById(_id));
+    
+    // Limpiar cache
+    productCache.delete(_id);
+    productCache.delete('all_products');
+    
+    return result;
   } catch (error) {
-    console.error(`❌ Error deleting product ${_id}:`, error);
-    return false;
+    console.error(`❌ [DELETE] Error deleting product ${_id}:`, error);
+    throw new Error(`Failed to delete product ${_id}`);
   }
 };
 
 // ✅ Obtener productos con parámetros de búsqueda
-export const getProductsByParams = async (params) => {
+export const getProductsByParams = async (params = {}) => {
   try {
-    console.log(`📡 Fetching products with params:`, params);
+    console.log(`📡 [GET] Fetching products with params:`, params);
     const queryString = new URLSearchParams(params).toString();
-    return await getRequest(`${ENDPOINTS.shop.getProductsByParams}${queryString}`);
+    const cacheKey = `products_${queryString}`;
+    
+    // Verificar cache
+    if (productCache.has(cacheKey)) {
+      console.log('⚡ Using cached products with params');
+      return productCache.get(cacheKey);
+    }
+
+    const url = `${ENDPOINTS.shop.getProductsByParams}?${queryString}`;
+    const products = await getRequest(url);
+    const result = Array.isArray(products) ? products : [];
+    
+    // Almacenar en cache
+    productCache.set(cacheKey, result);
+    return result;
   } catch (error) {
-    console.error("❌ Error fetching products with params:", error);
-    return [];
+    console.error("❌ [GET] Error fetching products with params:", error);
+    throw new Error('Failed to fetch products with params');
   }
 };

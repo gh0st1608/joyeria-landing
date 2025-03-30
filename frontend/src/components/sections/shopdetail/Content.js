@@ -1,42 +1,62 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import ShopInfo from "./Shopinfo";  
+import ShopInfo from "./Shopinfo"; // Asegúrate que el nombre del archivo sea Shopinfo.js
 import { getProductById } from "../../servicios/shop/productService";
+import { useParams } from "react-router-dom";
 
 const ShopDetail = () => {
-  const { _id } = useParams(); // Capturar ID desde la URL
-  console.log("🟢 ID recibido desde la URL:", _id); // 🔍 Debugging
-
+  const { _id } = useParams();
   const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     if (!_id) {
-      console.error("❌ ID no recibido en ShopDetail");
+      const errorMsg = "❌ _id no recibido en ShopDetail";
+      console.error(errorMsg);
+      setError(errorMsg);
+      setLoading(false);
       return;
     }
 
     const fetchProduct = async () => {
       try {
-        console.log(`Fetching product data from: /shop/products/${_id}`);
+        console.log("🟡 _id recibido:", _id);
         const data = await getProductById(_id);
+        console.log("✅ Producto obtenido:", data);
         setProduct(data);
       } catch (error) {
-        console.error("❌ Error al cargar el producto:", error);
+        const errorMsg = `❌ Error al obtener el producto: ${error.message}`;
+        console.error(errorMsg);
+        setError(errorMsg);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchProduct();
   }, [_id]);
 
-  if (!product) return <p>Cargando producto...</p>;
+  if (loading) return <p>Cargando producto...</p>;
+  if (error) return <p style={{ color: "red" }}>{error}</p>;
+  if (!product) return (
+    <p style={{ color: "red" }}>
+      <span role="img" aria-label="advertencia">⚠️</span> Producto no encontrado
+    </p>
+  );
 
   return (
-    <div>
+    <div className="product-detail">
       <h2>{product.title}</h2>
-      <img src={product.image} alt={product.title} width="300" />
+      <img 
+        src={product.image} 
+        alt={product.title} 
+        width="300" 
+        style={{ maxWidth: "100%" }}
+      />
       <p>{product.description}</p>
-      <p>Precio: S/ {product.price.toFixed(2)}</p>
-
+      <p>
+        <strong>Precio:</strong> S/ {product.price?.toFixed(2) ?? "0.00"}
+      </p>
       <ShopInfo product={product} />
     </div>
   );

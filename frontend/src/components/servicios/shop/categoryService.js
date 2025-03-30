@@ -16,27 +16,16 @@ export const getCategoryProducts = async () => {
 };
 
 // Obtener un producto por ID
-export const getCategoryProductById = async (id) => {
+export const getCategoryProductById = async (_id) => {
   try {
-    console.log(`📡 Fetching product ID: ${id} from ${ENDPOINTS.shop.getCategoryProductById(id)}`);
-    const response = await getRequest(ENDPOINTS.shop.getCategoryProductById(id));
+    console.log(`📡 Fetching product ID: ${_id} from ${ENDPOINTS.shop.getCategoryProductById(_id)}`);
+    const response = await getRequest(ENDPOINTS.shop.getCategoryProductById(_id));
     console.log("✅ Categoria de Producto recibida:", response);
     return response.data;
   } catch (error) {
-    console.error(`❌ Error fetching product ${id}:`, error.response ? error.response.data : error.message);
+    console.error(`❌ Error fetching product ${_id}:`, error.response ? error.response.data : error.message);
     return null;
   }
 };
 
-// ✅ Crear un nuevo producto
-/* export const createProduct = async (productData) => {
-  try {
-    console.log(`📡 Creating category product at: ${ENDPOINTS.shop.createProduct}`);
-    const response = await postRequest(ENDPOINTS.shop.createProduct, productData);
-    console.log("✅ Product created:", response.data);
-    return response.data;
-  } catch (error) {
-    console.error("❌ Error creating product:", error.response ? error.response.data : error.message);
-    return null;
-  } 
-};*/
+
