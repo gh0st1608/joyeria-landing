@@ -29,7 +29,7 @@ import { CreateMaterialUseCase } from './material/application/create.application
 import { DeleteMaterialUseCase } from './material/application/delete.application';
 import { GetProductsByParamsUseCase } from './product/application/get-by-params.application';
 import { S3Service } from './product/infrastructure/services/s3.service';
-import { GetProductsByIdUseCase } from './product/application/get-by-Id.application';
+import { GetProductsByIdUseCase } from './product/application/get-by-id.application';
 
 
 @Module({
