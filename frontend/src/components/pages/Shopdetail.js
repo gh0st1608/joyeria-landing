@@ -1,57 +1,69 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { Component, Fragment } from 'react';
 import MetaTags from "react-meta-tags";
-import Header from "../layouts/Header";
-import Breadcrumb from "../sections/home/Breadcrumbs";
+import Header from '../layouts/Header';
+import Breadcrumb from '../sections/home/Breadcrumbs';
+import Content from "../sections/shopdetail/Content"; // Asegúrate de importar correctamente este componente
 
+class Shopdetail extends Component {
+  render() {
+      return (
+          <Fragment>
+              <MetaTags>
+                  <title>Laramiss | Shop Detail</title>
+                  <meta
+                      name="description"
+                      content="#"
+                  />
+              </MetaTags>
+              <Header/>
+              <Breadcrumb breadcrumb={{pagename:'Shop Detail'}}/>
+              <Content/>
+          </Fragment>
+      );
+  }
+}
 
-import { getProductById } from "../servicios/shop/productService"; // ✅ Importa la API
+export default Shopdetail;
 
-const Shopdetail = () => {
-  const { id } = useParams(); // ✅ Obtiene el ID de la URL
+/* const Shopdetail = (props) => {
+  const _id = props.match?.params?._id;
   const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchProduct() {
-      console.log(`📡 Fetching product details for ID: ${id}`);
-      const data = await getProductById(id);
-      if (data) {
-        setProduct(data);
-      }
-      setLoading(false);
+    if (!_id) {
+      console.error("❌ _id no recibido");
+      return;
     }
-    fetchProduct();
-  }, [id]);
+
+    const productosGuardados = JSON.parse(localStorage.getItem("productos")) || [];
+    const encontrado = productosGuardados.find((p) => p._id === _id);
+
+    if (encontrado) {
+      console.log("✅ Producto encontrado:", encontrado);
+      setProduct(encontrado);
+    } else {
+      console.error("❌ Producto no encontrado con _id:", _id);
+    }
+  }, [_id]);
+
+  if (!product) {
+    return (
+      <p style={{ color: "red" }}>
+        <span role="img" aria-label="advertencia">⚠️</span> Producto no encontrado
+      </p>
+    );
+  }
 
   return (
-    <>
-      <MetaTags>
-        <title>Product Details</title>
-        <meta name="description" content="Product details page" />
-      </MetaTags>
-      <Header />
-      <Breadcrumb breadcrumb={{ pagename: "Product Details" }} />
-
-      <div className="container">
-        {loading ? (
-          <p>Loading product details...</p>
-        ) : product ? (
-          <div className="product-details">
-            <h2>{product.title}</h2>
-            <img src={product.image} alt={product.title} />
-            <p>{product.description}</p>
-            <p><strong>Price:</strong> ${product.price}</p>
-          </div>
-        ) : (
-          <p style={{ color: "red" }}>⚠️ Product not found</p>
-        )}
-      </div>
-
- 
-  
-    </>
+    <div>
+      <h2>{product.title}</h2>
+      <img src={product.image} alt={product.title} width="300" />
+      <p>{product.description}</p>
+      <p><strong>Precio:</strong> S/ {product.price.toFixed(2)}</p>
+      <ShopInfo product={product} />
+    </div>
   );
 };
 
 export default Shopdetail;
+ */

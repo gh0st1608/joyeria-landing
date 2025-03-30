@@ -60,7 +60,7 @@ const CartContent = () => {
                   src={item.image}
                   alt={item.name}
                   className="cart-item-image"
-                  onError={(e) => (e.target.src = "https://via.placeholder.com/100")}
+                  onError={(e) => (e.target.src = "")}
                 />
                 <div className="cart-item-info">
                   <span>{item.name} - ${Number(item.price || 0).toFixed(2)} x {item.quantity}</span>

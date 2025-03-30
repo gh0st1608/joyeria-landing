@@ -1,6 +1,6 @@
 import axios from "axios";
 import { BASE_URL } from "../endpoints"; // ✅ Importa los endpoints
-console.log('BASE_URL_shopppp',BASE_URL.shop)
+
 // ✅ Configura la URL base de la API
 const api = axios.create({
   baseURL: BASE_URL.shop, 

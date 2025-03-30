@@ -8,6 +8,7 @@ import { CreateProductDto } from './dto/create.dto';
 import { GetProductsByParamsUseCase } from '../application/get-by-params.application';
 import { S3Service } from './services/s3.service';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { GetProductsByIdUseCase } from '../application/get-by-Id.application';
 
 @Controller('products')
 export class ProductsController {
@@ -17,6 +18,7 @@ export class ProductsController {
     /* private readonly updateProductUseCase: UpdateProductUseCase, */
     private readonly deleteProductUseCase: DeleteProductUseCase,
     private readonly getProductsByParamsUseCase: GetProductsByParamsUseCase,
+    private readonly getProductByIdUseCase: GetProductsByIdUseCase,
     private readonly s3Service: S3Service,
   ) {}
 
@@ -49,6 +51,14 @@ export class ProductsController {
     }
     return this.getProductsByParamsUseCase.execute(queryParams);
   }
+
+  @Get(':idProduct')
+  async update(
+    @Param('idProduct') idProduct: string,
+  ): Promise<Product> {
+    return this.getProductByIdUseCase.execute(idProduct);
+  }
+
 
 /*   @Put(':id')
   async update(

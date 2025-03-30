@@ -13,7 +13,7 @@ export class ProductInfrastructureRepository implements IProductRepository {
 
   // Implementación del método para crear un usuario
   async create(product: Product): Promise<Product> {
-    const productEntity = product.properties()
+      const productEntity = product.properties()
       const productMongoose = new this.productModel(productEntity);
       const savedProduct = await productMongoose.save();
       return new Product(savedProduct.toObject());
@@ -50,7 +50,11 @@ export class ProductInfrastructureRepository implements IProductRepository {
     return products.map(product => new Product(product));
   }
   
-
+  // Implementación del método para obtener un producto
+  async getProduct(id: string): Promise<Product> {
+    const product = await this.productModel.findById(id).lean().exec();
+    return new Product(product)
+  }
 
   // Implementación del método para actualizar un usuario
 /*   async update(product: Product): Promise<Product> {

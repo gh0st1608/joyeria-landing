@@ -10,9 +10,8 @@ const PurchaseTable = ({ purchases, onEdit, onDelete }) => {
           <th>N°</th>
           <th>Cliente</th>
           <th>Fecha</th>
-          <th>Monto Total</th>
-          <th>Estado</th>
-          <th>Acciones</th>
+          <th>Monto</th>
+          <th>Detalle</th>
         </tr>
       </thead>
       <tbody>
