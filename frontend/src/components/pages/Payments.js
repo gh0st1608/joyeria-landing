@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Dashboard from "../pages/Dashboard";
-import { getPayments, deletePayment } from "../servicios/dashboard/paymentService";
+import { getAllPayments, deletePaymentById } from "../servicios/dashboard/paymentService";
+// import {  } from "../servicios/dashboard/paymentService";
+
 import PaymentTable from "../sections/dashboard/PaymentTable";
 import "../../assets/css/dashboard.css";
 import Swal from "sweetalert2";
@@ -11,7 +13,7 @@ const Payments = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getPayments();
+      const data = await getAllPayments();
       console.log('data payment list',data)
       setPayments(data);
     };
@@ -28,7 +30,7 @@ const Payments = () => {
       confirmButtonText: "Sí, eliminar",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await deletePayment(id);
+        await deletePaymentById(id);
         setPayments(payments.filter((p) => p._id !== id));
         Swal.fire("¡Eliminado!", "El pago fue eliminado.", "success");
       }

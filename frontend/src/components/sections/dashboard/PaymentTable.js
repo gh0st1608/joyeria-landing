@@ -32,7 +32,7 @@ const PaymentTable = ({ payments, onEdit, onDelete }) => {
               </button>
             </td>
           </tr>
-        ))}
+        ))} 
       </tbody>
     </table>
   );
