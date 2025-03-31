@@ -24,7 +24,7 @@ export class NotificationInfrastructureRepository implements INotificationReposi
     try {
       // Llamar al servicio de correo para enviar el email
       await this.emailService.sendEmail(email, subject, message);
-      console.log('Correo enviado con éxito');
+  
     } catch (error) {
       console.error('Error al enviar el correo:', error);
       throw new Error('No se pudo enviar el correo');
