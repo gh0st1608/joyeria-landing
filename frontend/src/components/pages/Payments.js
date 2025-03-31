@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Dashboard from "../pages/Dashboard";
-import { getPayments, deletePayment } from "../servicios/dashboard/paymentService";
+import { getAllPayments, deletePaymentById } from "../servicios/dashboard/paymentService";
 import PaymentTable from "../sections/dashboard/PaymentTable";
 import "../../assets/css/dashboard.css";
 import Swal from "sweetalert2";
@@ -11,14 +11,19 @@ const Payments = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getPayments();
-      console.log('data payment list',data)
-      setPayments(data);
+      try {
+        const data = await getAllPayments();
+        console.log("✅ data payment list:", data);
+        setPayments(data);
+      } catch (err) {
+        console.error("❌ Error al obtener pagos:", err);
+        Swal.fire("Error", "No se pudieron cargar los pagos", "error");
+      }
     };
     fetchData();
   }, []);
 
-  const handleDelete = (id) => {
+  const handleDelete = (_id) => {
     Swal.fire({
       title: "¿Eliminar pago?",
       icon: "warning",
@@ -28,31 +33,39 @@ const Payments = () => {
       confirmButtonText: "Sí, eliminar",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await deletePayment(id);
-        setPayments(payments.filter((p) => p._id !== id));
-        Swal.fire("¡Eliminado!", "El pago fue eliminado.", "success");
+        try {
+          await deletePaymentById(_id);
+          setPayments((prev) => prev.filter((p) => p._id !== _id));
+          Swal.fire("¡Eliminado!", "El pago fue eliminado.", "success");
+        } catch (err) {
+          console.error("❌ Error al eliminar pago:", err);
+          Swal.fire("Error", "No se pudo eliminar el pago", "error");
+        }
       }
     });
   };
 
+  // Filtrado: por cliente, payerId o userId
   const filteredPayments = payments.filter((p) =>
-    p.cliente?.toLowerCase().includes(searchTerm.toLowerCase())
+    (p.cliente || p.payerId || p.userId || "")
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase())
   );
 
   return (
     <Dashboard>
       <div className="dashboard-content">
-        <h2>Historial de Pagos (CartBuy)</h2>
+        <h2>📋 Historial de Pagos (CartBuy)</h2>
         <div className="filters-container">
           <input
             type="text"
-            placeholder="Buscar por cliente"
+            placeholder="Buscar por cliente, email o ID de pago"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="search-input"
           />
         </div>
-        <PaymentTable payments={filteredPayments} onDelete={handleDelete} />
+        <PaymentTable payments={filteredPayments} onDelete={handleDelete} onEdit={() => {}} />
       </div>
     </Dashboard>
   );
