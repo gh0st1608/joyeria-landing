@@ -9,7 +9,8 @@ export class NotificationController {
   ) {}
 
   @Post('mail')
-  async create(@Body() body: CreateContactDto): Promise<void> {
+  async create(@Body() body: CreateContactDto) {
     await this.createNotificationUseCase.execute(body);
+    return { sucess : true}
   }
 }
