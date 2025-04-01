@@ -30,11 +30,14 @@ const Dashboard = ({ children }) => {
   }, []);
 
   const toggleTheme = () => {
-    const newTheme = darkMode ? "light" : "dark";
-    setDarkMode(!darkMode);
-    document.body.classList.toggle("dark-mode", !darkMode);
+    const newDarkMode = !darkMode;
+    const newTheme = newDarkMode ? "dark" : "light";
+  
+    setDarkMode(newDarkMode);
+    document.body.classList.toggle("dark-mode", newDarkMode);
     localStorage.setItem("theme", newTheme);
   };
+  
 
   const toggleSidebar = () => {
     setSidebarCollapsed(!sidebarCollapsed);

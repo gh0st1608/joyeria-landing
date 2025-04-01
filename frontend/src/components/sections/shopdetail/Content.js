@@ -56,7 +56,7 @@ const ShopDetail = () => {
   }, [_id]);
 
   if (loading) return <p>Cargando producto...</p>;
-  if (!product) return <p style={{ color: "red" }}>❌ Producto no encontrado</p>;
+  if (!product) return <p style={{ color: "red" }}>Producto no encontrado</p>;
 
   return (
     <div className="product-detail-container">

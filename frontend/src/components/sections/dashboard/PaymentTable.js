@@ -1,8 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import "../../../assets/css/dashboard.css";
 
 const PaymentTable = ({ payments = [], onEdit, onDelete }) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
+
+  // Total de páginas
+  const totalPages = Math.ceil(payments.length / itemsPerPage);
+
+  // Paginación: obtener solo los pagos de la página actual
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const currentPayments = payments.slice(startIndex, startIndex + itemsPerPage);
+
+  const handlePrev = () => {
+    if (currentPage > 1) setCurrentPage(currentPage - 1);
+  };
+
+  const handleNext = () => {
+    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+  };
+
   return (
     <div className="dashboard-table-container">
       <h2>Historial de Pagos</h2>
@@ -18,16 +36,16 @@ const PaymentTable = ({ payments = [], onEdit, onDelete }) => {
           </tr>
         </thead>
         <tbody>
-          {payments.length === 0 ? (
+          {currentPayments.length === 0 ? (
             <tr>
               <td colSpan="6" style={{ textAlign: "center", padding: "1rem" }}>
                 No hay pagos registrados.
               </td>
             </tr>
           ) : (
-            payments.map((p, index) => (
+            currentPayments.map((p, index) => (
               <tr key={p._id || index}>
-                <td>{index + 1}</td>
+                <td>{startIndex + index + 1}</td>
                 <td>{p.payerId || "N/A"}</td>
                 <td>{new Date(p.createTime).toLocaleString()}</td>
                 <td>S/ {Number(p.montoTotal || 0).toFixed(2)}</td>
@@ -37,29 +55,15 @@ const PaymentTable = ({ payments = [], onEdit, onDelete }) => {
                   </span>
                 </td>
                 <td>
-
-                  <button
-                    className="icon-btn edit-icon"
-                    onClick={() => onEdit(p)}
-                    title="Editar"
-                    disabled
-                    style={{ opacity: 0.5, cursor: "not-allowed" }}
-                  >
-                    <FaEdit />
-                  </button>
-
-                  <button
-                    className="icon-btn delete-icon"
-                    onClick={() => onDelete(p._id)}
-                    title="Eliminar"
-                    disabled
-                    style={{ opacity: 0.5, cursor: "not-allowed" }}
-                  >
-                    <FaTrashAlt />
-                  </button>
-
-
-
+                <td>
+  <button
+    className="cancel-btn"
+    title="Acción no disponible"
+    disabled
+  >
+    Cancelar
+  </button>
+</td>
 
                 </td>
               </tr>
@@ -67,6 +71,27 @@ const PaymentTable = ({ payments = [], onEdit, onDelete }) => {
           )}
         </tbody>
       </table>
+
+      {/* Controles de paginación */}
+      {totalPages > 1 && (
+        <div className="pagination-controls">
+          <button onClick={handlePrev} disabled={currentPage === 1}>
+            Anterior
+          </button>
+          {[...Array(totalPages)].map((_, i) => (
+            <button
+              key={i}
+              className={currentPage === i + 1 ? "active" : ""}
+              onClick={() => setCurrentPage(i + 1)}
+            >
+              {i + 1}
+            </button>
+          ))}
+          <button onClick={handleNext} disabled={currentPage === totalPages}>
+            Siguiente
+          </button>
+        </div>
+      )}
     </div>
   );
 };
