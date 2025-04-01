@@ -26,7 +26,6 @@ class Content extends Component {
   async componentDidMount() {
     try {
       const products = await getProducts();
-      console.log("📢 Productos cargados:", products.length);
       this.setState({ products, filteredProducts: products, loading: false });
     } catch (error) {
       console.error("❌ Error cargando productos:", error);
@@ -48,7 +47,6 @@ class Content extends Component {
       if (price) params.price = price;
 
       const products = (await getProductsByParams(params)) || [];
-      console.log("📢 Productos filtrados:", products.length);
 
       this.setState({ products, filteredProducts: products, loading: false, currentPage: 1 });
     } catch (error) {
@@ -72,8 +70,6 @@ class Content extends Component {
         selectedColors.includes(product.color.toLowerCase())
       );
     }
-
-    console.log("📢 Productos después del filtrado:", filtered.length);
     this.setState({ filteredProducts: filtered, currentPage: 1 });
   };
 

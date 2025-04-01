@@ -4,14 +4,9 @@ import { ENDPOINTS } from "../endpoints";
 // ✅ Iniciar Sesión
 export const loginUser = async (credentials) => {
   try {
-    console.log(" Enviando solicitud de inicio de sesión...", credentials);
-    
-
     const response = await postRequest(ENDPOINTS.auth.login, credentials);
-    console.log('Respuesta', response);
 
     if (response?.accessToken) {
-      console.log("✅ Inicio de sesión exitoso:", response);
 
       // Guardamos tokens y usuario en localStorage
       localStorage.setItem("accessToken", response.accessToken);
@@ -41,12 +36,9 @@ export const loginUser = async (credentials) => {
 // ✅ Registrar Usuario
 export const registerUser = async (userData) => {
   try {
-    console.log("📡 Enviando solicitud de registro...", userData);
-
     const response = await postRequest(ENDPOINTS.auth.register, userData);
 
     if (response?.accessToken) {
-      console.log("✅ Registro exitoso:", response);
 
       // Guardamos tokens y usuario en localStorage
       localStorage.setItem("accessToken", response.accessToken);
@@ -75,7 +67,6 @@ export const registerUser = async (userData) => {
 
 // ✅ Cerrar Sesión
 export const logoutUser = () => {
-  console.log("🔐 Cerrando sesión...");
   localStorage.removeItem("accessToken");
   localStorage.removeItem("refreshToken");
   localStorage.removeItem("user");
@@ -85,12 +76,9 @@ export const logoutUser = () => {
 // ✅ Actualizar Configuración del Usuario
 export const updateUserSettings = async (settings) => {
   try {
-    console.log("📡 Enviando configuración del usuario:", settings);
-
     const response = await putRequest(ENDPOINTS.auth.updateSettings, settings);
 
     if (response?.user) {
-      console.log("✅ Configuración actualizada:", response);
       localStorage.setItem("user", JSON.stringify(response.user));
       alert("✅ Configuración actualizada correctamente.");
       return response.user;

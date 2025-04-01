@@ -23,7 +23,6 @@ const Products = () => {
 
   const handleAddOrUpdate = async (productData) => {
     try {
-      console.log('productDataaaaa',productData)
       if (productData._id) {
         // Actualizar producto existente
 
@@ -36,12 +35,10 @@ const Products = () => {
         Object.keys(productData).forEach((key) => {
           formDataData.append(key, productData[key]);
         });
-        console.log('formDataData2',formDataData)
         // Si el producto tiene una imagen, añadirla al FormData
         if (productData.image) {
           formDataData.append("file", productData.image);  // Asegúrate de enviar el archivo con el campo 'file'
         }
-        console.log('formDataDataaaaaaa',formDataData) 
         await createProduct(formDataData);
       }
   

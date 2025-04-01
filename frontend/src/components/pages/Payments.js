@@ -13,7 +13,6 @@ const Payments = () => {
     const fetchData = async () => {
       try {
         const data = await getAllPayments();
-        console.log("✅ data payment list:", data);
         setPayments(data);
       } catch (err) {
         console.error("❌ Error al obtener pagos:", err);
@@ -54,7 +53,7 @@ const Payments = () => {
   return (
     <Dashboard>
       <div className="dashboard-content">
-        <h2>📋 Historial de Pagos (CartBuy)</h2>
+        <h2>Historial de Pagos (CartBuy)</h2>
         <div className="filters-container">
           <input
             type="text"

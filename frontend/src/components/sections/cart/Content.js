@@ -21,7 +21,6 @@ const CartContent = () => {
       <ul className="cart-list">
         {
           cart.map((item) => {
-            console.log("🔍 Revisando producto:", item); // ✅ Verifica qué valores tiene item.precio
             return (
               <li key={item.id} className="cart-item">
                 <img

@@ -31,9 +31,7 @@ const ContactForm = () => {
     setStatus({ success: false, error: false, loading: true });
 
     try {
-      console.log('📡 Enviando mensaje...', formData);
       const success = await sendContactMessage(formData);
-      console.log('success', success);
 
       if (success) {
         setStatus({ success: true, loading: false });

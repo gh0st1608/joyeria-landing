@@ -12,11 +12,8 @@ const productCache = new Map();
 export const getProducts = async () => {
   try {
     const cacheKey = 'all_products';
-    console.log(`📡 [GET] Fetching products from: ${ENDPOINTS.shop.products}`);
-    
     // Verificar cache primero
     if (productCache.has(cacheKey)) {
-      console.log('⚡ Using cached products');
       return productCache.get(cacheKey);
     }
 
@@ -40,10 +37,7 @@ export const getProductById = async (_id) => {
   try {
     const endpoint = ENDPOINTS.shop.getProductById(_id);
     const fullUrl = `${BASE_URL.shop}${endpoint}`;
-    console.log('🔍 URL completa de la solicitud:', fullUrl); // <-- Añade esto
-    
     const response = await getRequest(fullUrl);
-    console.log('📦 Respuesta recibida:', response); // <-- Añade logging de la respuesta
     
     if (!response) {
       throw new Error(`Producto con ID ${_id} no encontrado`);
@@ -67,7 +61,6 @@ export const createProduct = async (productData) => {
   }
 
   try {
-    console.log(`📡 [POST] Creating product`, productData);
     const newProduct = await postRequest(ENDPOINTS.shop.products, productData);
     
     // Invalidar cache de todos los productos
@@ -88,7 +81,6 @@ export const updateProduct = async (_id, productData) => {
   }
 
   try {
-    console.log(`📡 [PUT] Updating product ID: ${_id}`, productData);
     const updatedProduct = await putRequest(
       ENDPOINTS.shop.getProductById(_id), 
       productData
@@ -113,7 +105,6 @@ export const deleteProduct = async (_id) => {
   }
 
   try {
-    console.log(`📡 [DELETE] Deleting product ID: ${_id}`);
     const result = await deleteRequest(ENDPOINTS.shop.getProductById(_id));
     
     // Limpiar cache
@@ -130,13 +121,11 @@ export const deleteProduct = async (_id) => {
 // ✅ Obtener productos con parámetros de búsqueda
 export const getProductsByParams = async (params = {}) => {
   try {
-    console.log(`📡 [GET] Fetching products with params:`, params);
     const queryString = new URLSearchParams(params).toString();
     const cacheKey = `products_${queryString}`;
     
     // Verificar cache
     if (productCache.has(cacheKey)) {
-      console.log('⚡ Using cached products with params');
       return productCache.get(cacheKey);
     }
 
