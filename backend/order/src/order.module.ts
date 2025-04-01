@@ -2,7 +2,7 @@
 
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { HttpModule } from '@nestjs/axios';
+
 import { CartbuyInfrastructureRepository } from './cartbuy/infrastructure/cartbuy.repository'
 import { Cartbuy, CartbuySchema  } from './cartbuy/infrastructure/schemas/cartbuy.schema'; 
 import { Itembuy, ItembuySchema  } from './itembuy/infrastructure/schemas/itembuy.schema'; 
@@ -35,7 +35,7 @@ import { GetListPaysUseCase } from './payment/application/get-pays.application';
     ConfigModule.forRoot({
       isGlobal: true,  // Esto hará que las variables estén disponibles globalmente
     }),
-    HttpModule,
+   
     MongooseModule.forRoot(process.env.MONGO_DB_URI),
     //MongooseModule.forRoot('mongodb://root:example@localhost:27017/shop?authSource=admin'), // Configura la conexión a MongoDB
     MongooseModule.forFeature(
