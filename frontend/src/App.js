@@ -48,7 +48,7 @@ function App() {
 
     async function fetchProducts() {
       try {
-        const products = await getProducts();
+        await getProducts();
         if (isMounted) {
         }
       } catch (error) {

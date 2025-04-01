@@ -157,17 +157,17 @@ const ShopDetail = () => {
           {/* Info de entrega */}
           <div className="delivery-options">
             <p className="flex items-center gap-2">
-              <BsBoxSeam size={18} /> Llega mañana
-              <BsBagCheckFill size={18} /> Retira mañana
+              <span role="img" aria-label="Caja"></span><BsBoxSeam size={18} /> Llega mañana
+              <span role="img" aria-label="Compra confirmada"></span><BsBagCheckFill size={18} /> Retira mañana
             </p>
             <p className="envio-verde flex items-center gap-2">
-              <BsTruck size={18} /> Envío en <strong>180 min</strong>
+              <span role="img" aria-label="Camión de envío"></span><BsTruck size={18} /> Envío en <strong>180 min</strong>
             </p>
           </div>
 
           {/* Promo */}
           <div className="promo-info flex items-center gap-2 mt-2">
-            <BsCreditCard2FrontFill size={18} />
+            <span role="img" aria-label="Tarjeta de crédito"></span><BsCreditCard2FrontFill size={18} />
             <p>¡COMPRA CON TARJETA Y ACUMULA PUNTOS!</p>
           </div>
         </div>

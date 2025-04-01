@@ -4,8 +4,6 @@ import {
   FaChartBar,
   FaShoppingCart,
   FaUser,
-  FaClipboardList,
-  FaShoppingBasket,
   FaCreditCard
 } from "react-icons/fa";
 import { AuthContext } from "../../context/AuthContext";
