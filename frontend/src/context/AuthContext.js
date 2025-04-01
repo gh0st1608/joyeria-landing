@@ -28,6 +28,8 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = (userData, token) => {
+    console.log('userData',userData)
+    console.log('token',token)
     if (!userData || !token) {
       console.error("❌ Error: Datos de usuario o token inválidos.");
       return;
@@ -39,7 +41,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem("user", JSON.stringify(userData));
     setUser(userData);
     console.log("user", JSON.stringify(userData))
-
+    console.log('history', history);
     if (history.location.pathname !== "/dashboard") { 
     history.push("/dashboard");
     } 

@@ -1,8 +1,6 @@
 // src/components/ContactForm.js
 import React, { useState } from 'react';
 import { sendContactMessage } from '../../servicios/contactUs/contactService';
-import ReCAPTCHA from 'react-google-recaptcha';
-import { Alert } from 'react-bootstrap';
 import '@fortawesome/fontawesome-free/css/all.min.css'; // ✅ Importación de FontAwesome
 import ContactModal from './ContactSucessModal'; // Importamos el Modal
 
@@ -45,7 +43,7 @@ const ContactForm = () => {
 
         setTimeout(() => {
           setShowModal(false);
-        }, 3000);
+        }, 5000);
       } else {
         setStatus({ success: false, error: true, loading: false });
         setModalMessage('Oops! Hubo un error, inténtelo más tarde.');

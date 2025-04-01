@@ -27,12 +27,14 @@ const AuthModal = ({ onClose }) => {
       if (isLogin) {
         // ✅ Login
         const response = await loginUser({ email: formData.email, password: formData.password });
+        console.log('response del login user',response)
         if (response && response.accessToken) {
           const decoded = jwtDecode(response.accessToken);
+          console.log('decoded',decoded)
           const userData = {
             id: decoded._id,
             name: decoded.name,
-            roles: decoded.roles,
+            role: decoded.role,
             /* email: decoded.email */
             email: decoded.email
           };
