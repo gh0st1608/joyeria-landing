@@ -45,7 +45,6 @@ const Payments = () => {
     });
   };
 
-  // Filtrado: por cliente, payerId o userId
   const filteredPayments = payments.filter((p) =>
     (p.cliente || p.payerId || p.userId || "")
       .toLowerCase()
@@ -65,7 +64,12 @@ const Payments = () => {
             className="search-input"
           />
         </div>
-        <PaymentTable payments={filteredPayments} onDelete={handleDelete} onEdit={() => {}} />
+        <PaymentTable
+          payments={filteredPayments}
+          onDelete={handleDelete}
+          onEdit={() => {}}
+          disabledActionsCondition={(p) => Number(p.amount) === 0}
+        />
       </div>
     </Dashboard>
   );
