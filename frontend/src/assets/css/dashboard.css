@@ -2298,3 +2298,296 @@ body.dark-mode .dashboard-table tr:nth-child(odd) td {
   pointer-events: none;
 }
 
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.custom-modal {
+  animation: fadeInScale 0.3s ease;
+}
+button,
+.btn-edit,
+.btn-delete,
+.btn-new-product {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:active,
+.btn-edit:active,
+.btn-delete:active,
+.btn-new-product:active {
+  transform: scale(0.96);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+@media (max-width: 768px) {
+  .form-grid,
+  .modal-form-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .custom-modal {
+    width: 95% !important;
+    padding: 20px;
+  }
+
+  .custom-modal-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .custom-modal-buttons button {
+    width: 100%;
+  }
+
+  .dashboard-table th,
+  .dashboard-table td {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .topbar,
+  .sidebar,
+  .dashboard-main-content {
+    padding: 12px;
+  }
+}
+.dashboard-table,
+.card,
+.custom-modal {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.dashboard-table tr:hover,
+.card:hover {
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;600&family=Vollkorn:wght@600&display=swap');
+
+.custom-modal-overlay {
+  background: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.custom-modal {
+  background-color: #1D252C;
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 800px;
+  width: 100%;
+  box-shadow: 0 0 25px rgba(0,0,0,0.3);
+  color: #D5BA8C;
+  font-family: 'Libre Franklin', sans-serif;
+}
+
+.custom-modal h3 {
+  font-family: 'Vollkorn', serif;
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #D5BA8C;
+  text-align: center;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.form-grid input,
+.form-grid select {
+  background-color: #1D252C;
+  border: 1px solid #D5BA8C;
+  color: #D5BA8C;
+  padding: 10px;
+  border-radius: 8px;
+  font-family: 'Libre Franklin', sans-serif;
+  font-size: 14px;
+}
+
+.form-grid input::placeholder {
+  color: #D5BA8C88;
+}
+
+label {
+  font-size: 14px;
+  color: #D5BA8C;
+  margin-bottom: 5px;
+  display: block;
+  font-weight: 600;
+}
+
+.image-preview-container {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.image-preview {
+  max-width: 150px;
+  max-height: 150px;
+  object-fit: cover;
+  border: 2px solid #D5BA8C;
+  border-radius: 8px;
+}
+
+.custom-modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.custom-modal-buttons button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-family: 'Libre Franklin', sans-serif;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.custom-modal-buttons .btn-edit {
+  background-color: #D5BA8C;
+  color: #1D252C;
+}
+
+.custom-modal-buttons .btn-edit:hover {
+  background-color: #c3a977;
+}
+
+.custom-modal-buttons .btn-delete {
+  background-color: transparent;
+  color: #D5BA8C;
+  border: 1px solid #D5BA8C;
+}
+
+.custom-modal-buttons .btn-delete:hover {
+  background-color: #D5BA8C;
+  color: #1D252C;
+}
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;600&family=Vollkorn:wght@600&display=swap');
+
+.custom-modal-overlay {
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.custom-modal {
+  background-color: #fff; /* Fondo claro */
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 800px;
+  width: 100%;
+  box-shadow: 0 0 25px rgba(0,0,0,0.1);
+  font-family: 'Libre Franklin', sans-serif;
+  color: #1D252C;
+  border: 2px solid #D5BA8C;
+}
+
+.custom-modal h3 {
+  font-family: 'Vollkorn', serif;
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #1D252C;
+  text-align: center;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.form-grid input,
+.form-grid select {
+  background-color: #fff;
+  border: 1px solid #D5BA8C;
+  color: #1D252C;
+  padding: 10px;
+  border-radius: 8px;
+  font-family: 'Libre Franklin', sans-serif;
+  font-size: 14px;
+}
+
+.form-grid input::placeholder {
+  color: #999;
+}
+
+label {
+  font-size: 14px;
+  color: #1D252C;
+  margin-bottom: 5px;
+  display: block;
+  font-weight: 600;
+}
+
+.image-preview-container {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.image-preview {
+  max-width: 150px;
+  max-height: 150px;
+  object-fit: cover;
+  border: 2px solid #D5BA8C;
+  border-radius: 8px;
+}
+
+.custom-modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.custom-modal-buttons button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-family: 'Libre Franklin', sans-serif;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.custom-modal-buttons .btn-edit {
+  background-color: #D5BA8C;
+  color: #1D252C;
+}
+
+.custom-modal-buttons .btn-edit:hover {
+  background-color: #c3a977;
+}
+
+.custom-modal-buttons .btn-delete {
+  background-color: transparent;
+  color: #1D252C;
+  border: 1px solid #1D252C;
+}
+
+.custom-modal-buttons .btn-delete:hover {
+  background-color: #1D252C;
+  color: #fff;
+}
