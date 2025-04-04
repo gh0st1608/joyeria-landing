@@ -30,17 +30,15 @@ const AuthModal = ({ onClose }) => {
         if (response && response.accessToken) {
           const decoded = jwtDecode(response.accessToken);
           const userData = {
-            id: decoded._id,
             name: decoded.name,
-            roles: decoded.roles,
+            role: decoded.role,
             /* email: decoded.email */
-            email: decoded.email
           };
-
+          history.push("/dashboard");
           login(userData, response.accessToken); // Guardamos en contexto
           alert("✅ Login exitoso!");
           onClose();
-          history.push("/dashboard");
+          
         } else {
           setError("❌ Credenciales incorrectas o datos faltantes.");
         }

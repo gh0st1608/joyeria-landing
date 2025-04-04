@@ -36,7 +36,6 @@ class Contacthelper extends Component {
     }
     // REcaptcha
     reCaptchaLoaded(value) {
-        console.log("Captcha Successfully Loaded", value);
     }
     
     handleSubmit(e) {

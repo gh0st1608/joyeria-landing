@@ -3,7 +3,6 @@ import { ENDPOINTS, BASE_URL } from "../endpoints";
 
 // Obtener todos los usuarios (si tu API devuelve un array desde /user)
 export const getUsers = async () => {
-  console.log('ENDPOINTS.dashboard.users',ENDPOINTS.dashboard.user)
   return await getRequest(`${BASE_URL.auth}${ENDPOINTS.dashboard.user}`);
 };
 

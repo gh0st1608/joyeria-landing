@@ -53,7 +53,6 @@ const ProductTable = ({ products, onAddOrUpdate, onDelete }) => {
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (!file) return;
-    console.log("Imagen seleccionada:", file);
     setFormData((prev) => ({ ...prev, image: file }));  // Guardar el archivo en el state
   };
 
@@ -83,12 +82,7 @@ const ProductTable = ({ products, onAddOrUpdate, onDelete }) => {
     setUploading(true);
 
     try {
-      // Enviar todo al backend, con los datos del producto y la imagen
-/*       console.log('formDataUpload',formDataUpload)
-      const response = await createProduct(formDataUpload);
-      const { _id, ...data } = response; */
       if (formData) {
-        console.log("Producto creado con éxito", formData);
         onAddOrUpdate(formData); // Llamar a la función que maneja el producto creado
         closeModal(); // Cerrar el modal después de guardar el producto
       }

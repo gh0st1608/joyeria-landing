@@ -31,9 +31,7 @@ const ContactForm = () => {
     setStatus({ success: false, error: false, loading: true });
 
     try {
-      console.log('📡 Enviando mensaje...', formData);
       const success = await sendContactMessage(formData);
-      console.log('success', success);
 
       if (success) {
         setStatus({ success: true, loading: false });
@@ -43,7 +41,7 @@ const ContactForm = () => {
 
         setTimeout(() => {
           setShowModal(false);
-        }, 3000);
+        }, 5000);
       } else {
         setStatus({ success: false, error: true, loading: false });
         setModalMessage('Oops! Hubo un error, inténtelo más tarde.');
