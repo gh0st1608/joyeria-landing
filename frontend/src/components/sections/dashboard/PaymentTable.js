@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import "../../../assets/css/dashboard.css";
 
 const PaymentTable = ({ payments = [], onEdit, onDelete }) => {
