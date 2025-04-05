@@ -7,7 +7,13 @@ import { Product } from '../domain/entities/product.entity';
 import { CreateProductDto } from './dto/create.dto';
 import { GetProductsByParamsUseCase } from '../application/get-by-params.application';
 import { S3Service } from './services/s3.service';
-import { FileInterceptor } from '@nestjs/platform-express';
+import { FileUploadInterceptor } from './services/interceptor.service';
+import { GetProductsByIdUseCase } from '../application/get-by-id.application';
+
+interface S3File extends Express.Multer.File {
+  location: string;  // Esta propiedad es proporcionada por multer-s3 cuando el archivo se carga en S3
+}
+
 
 @Controller('products')
 export class ProductsController {
@@ -17,23 +23,31 @@ export class ProductsController {
     /* private readonly updateProductUseCase: UpdateProductUseCase, */
     private readonly deleteProductUseCase: DeleteProductUseCase,
     private readonly getProductsByParamsUseCase: GetProductsByParamsUseCase,
+    private readonly getProductByIdUseCase: GetProductsByIdUseCase,
     private readonly s3Service: S3Service,
   ) {}
 
   @Post()
-  @UseInterceptors(FileInterceptor('file')) 
+  @UseInterceptors(FileUploadInterceptor) // Usamos nuestro interceptor personalizado
   async create(
     @Body() body: CreateProductDto,
-    @UploadedFile() file: Express.Multer.File, ): Promise<Product> {
-    let imageUrl = '';
-    if (file) {
-      const uploadResult = await this.s3Service.uploadFile(file);
-      imageUrl = uploadResult; // URL del archivo en S3
+    @UploadedFile() file: S3File
+  ): Promise<any> {
+    // Verifica si el archivo tiene la propiedad 'location'
+    if (!file?.location) {
+      throw new Error('No se pudo obtener la URL de la imagen cargada en S3');
     }
+
+    // Accede a la URL del archivo subido en S3
+    const imageUrl = file.location;
+
+    // Combina los datos del producto con la URL de la imagen
     const productData = { ...body, image: imageUrl };
-    console.log('productData',productData)
-    return this.createProductUseCase.execute(productData);
+
+    // Aquí puedes procesar el producto, guardarlo en la base de datos, etc.
+    return this.createProductUseCase.execute(productData);; // Retorna el producto con la URL de la imagen
   }
+
 
   @Get()
   async findAll(): Promise<Product[]> {
@@ -49,6 +63,14 @@ export class ProductsController {
     }
     return this.getProductsByParamsUseCase.execute(queryParams);
   }
+
+  @Get(':idProduct')
+  async update(
+    @Param('idProduct') idProduct: string,
+  ): Promise<Product> {
+    return this.getProductByIdUseCase.execute(idProduct);
+  }
+
 
 /*   @Put(':id')
   async update(

@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
-import { AuthContext, AuthProvider } from "./context/AuthContext";
+import { AuthContext } from "./context/AuthContext"; // Asegúrate de que AuthContext esté bien importado
 import { CartProvider } from "./context/CartContext";
 
 // ✅ Importaciones de páginas públicas
@@ -11,7 +11,7 @@ import Cart from './components/pages/Cart';
 import Checkout from './components/pages/Checkout';
 import Contact from './components/pages/Contact';
 import Register from './components/pages/Register';
-import Shopdetail from './components/sections/shopdetail/Content';
+import Shopdetail from './components/pages/Shopdetail'; // ✅ Ruta corregida
 import Shopleft from './components/pages/Shopleft';
 
 // ✅ Importaciones de autenticación y dashboard
@@ -22,12 +22,14 @@ import Products from './components/pages/Products';
 import Users from './components/pages/Users';
 import Clients from "./components/pages/Clients";
 import Profile from "./components/pages/Profile";
+/* import Purchases from "./components/pages/Purchases"; */
+import Payments from "./components/pages/Payments";
 
 // ✅ Importaciones de Layout
 import Footer from "./components/layouts/Footer";
-import { getProducts } from "./components/servicios/shop/productService"; // ✅ Importa la API de productos
+import { getProducts } from "./components/servicios/shop/productService";
 
-// ✅ Función para proteger rutas privadas
+// ✅ Ruta protegida personalizada
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const { user } = useContext(AuthContext);
   return (
@@ -42,13 +44,12 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 
 function App() {
   useEffect(() => {
-    let isMounted = true; // ✅ Evitar actualización de estado en componente desmontado
+    let isMounted = true;
 
     async function fetchProducts() {
       try {
-        const products = await getProducts();
+        await getProducts();
         if (isMounted) {
-          console.log("📦 Productos obtenidos:", products);
         }
       } catch (error) {
         console.error("❌ Error cargando productos:", error);
@@ -58,12 +59,11 @@ function App() {
     fetchProducts();
 
     return () => {
-      isMounted = false; // ✅ Cancelar actualización si el componente se desmonta
+      isMounted = false;
     };
   }, []);
 
   return (
-    <AuthProvider>
       <CartProvider>
         <Router>
           <Switch>
@@ -76,7 +76,7 @@ function App() {
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/shop-left" component={Shopleft} />
-            <Route exact path="/shop-detail/:id" component={Shopdetail} />
+            <Route exact path="/shop-detail/:_id" component={Shopdetail} />
             <Route exact path="/login" component={AuthModal} />
 
             {/* 🔹 Rutas protegidas del Dashboard */}
@@ -84,6 +84,8 @@ function App() {
             <PrivateRoute exact path="/dashboard/products" component={Products} />
             <PrivateRoute exact path="/dashboard/users" component={Users} />
             <PrivateRoute exact path="/dashboard/clients" component={Clients} />
+            {/* <PrivateRoute exact path="/dashboard/purchases" component={Purchases} /> */}
+            <PrivateRoute exact path="/dashboard/payments" component={Payments} />
             <PrivateRoute exact path="/dashboard/settings" component={Settings} />
             <PrivateRoute exact path="/dashboard/profile" component={Profile} />
 
@@ -93,7 +95,6 @@ function App() {
           <Footer />
         </Router>
       </CartProvider>
-    </AuthProvider>
   );
 }
 

@@ -1,0 +1,48 @@
+name: Deploy React App to S3
+
+on:
+  push:
+    branches:
+      - frontend  # Esto activa el flujo de trabajo cuando se hace un push a la rama "main" (puedes cambiar a la rama que prefieras)
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Paso 1: Checkout del repositorio
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Paso 2: Configurar Node.js (asegúrate de que la versión de Node.js sea compatible con tu aplicación React)
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'  # Puedes cambiar esta versión según tus necesidades
+
+      # Paso 3: Instalar dependencias
+      - name: Install dependencies
+        run: |
+          cd ../frontend && npm install --legacy-peer-deps
+
+      # Paso 4: Construir la aplicación React
+      - name: Build React app
+        run: |
+          cd ../frontend && npm run build
+
+      # Paso 5: Configurar AWS CLI
+      - name: Configure AWS CLI
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: 'us-east-1'  # Cambia esto a la región de tu bucket de S3
+
+      # Paso 6: Sincronizar los archivos del build con S3
+      - name: Deploy to S3
+        run: |
+          aws s3 sync ../frontend/build/ s3://molly-dear-bear.ngrok-free.app/ --delete
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+

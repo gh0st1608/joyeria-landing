@@ -21,37 +21,24 @@ const Products = () => {
     }
   };
 
-  const handleAddOrUpdate = async (productData) => {
+  const handleAddOrUpdate = async (formDataUpload) => {
     try {
-      console.log('productDataaaaa',productData)
-      if (productData._id) {
-        // Actualizar producto existente
-
-        await updateProduct(productData._id, productData);
+      // Si el producto tiene un _id, es una actualización
+      if (formDataUpload.get("_id")) {
+        const id = formDataUpload.get("_id");
+        await updateProduct(id, formDataUpload);
       } else {
-        // Crear nuevo producto
-         const formDataData = new FormData();
-  
-        // Añadir todos los campos del producto al FormData
-        Object.keys(productData).forEach((key) => {
-          formDataData.append(key, productData[key]);
-        });
-        console.log('formDataData2',formDataData)
-        // Si el producto tiene una imagen, añadirla al FormData
-        if (productData.image) {
-          formDataData.append("file", productData.image);  // Asegúrate de enviar el archivo con el campo 'file'
-        }
-        console.log('formDataDataaaaaaa',formDataData) 
-        await createProduct(formDataData);
+        // Si no tiene _id, es creación
+        console.log('antes de ingresar al createProduct',formDataUpload)
+        await createProduct(formDataUpload);
       }
-  
+
       // Actualizar la lista después de agregar/editar
       await fetchProducts();
     } catch (error) {
       console.error("Error al guardar producto:", error);
     }
   };
-  
 
   const handleDelete = async (id) => {
     try {
@@ -63,7 +50,7 @@ const Products = () => {
   };
 
   const handleFilterChange = (e) => {
-    const { name, value } = e.target; // ✅ corregido aquí
+    const { name, value } = e.target; 
     setFilters((prevFilters) => ({ ...prevFilters, [name]: value }));
   };
 

@@ -1,57 +1,28 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { Component, Fragment } from 'react';
 import MetaTags from "react-meta-tags";
-import Header from "../layouts/Header";
-import Breadcrumb from "../sections/home/Breadcrumbs";
+import Header from '../layouts/Header';
+import Breadcrumb from '../sections/home/Breadcrumbs';
+import Content from "../sections/shopdetail/Content"; // Asegúrate de importar correctamente este componente
+import "../../assets/css/ShopDetail.css"; // Asegúrate de que la ruta sea correcta
 
 
-import { getProductById } from "../servicios/shop/productService"; // ✅ Importa la API
-
-const Shopdetail = () => {
-  const { id } = useParams(); // ✅ Obtiene el ID de la URL
-  const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchProduct() {
-      console.log(`📡 Fetching product details for ID: ${id}`);
-      const data = await getProductById(id);
-      if (data) {
-        setProduct(data);
-      }
-      setLoading(false);
-    }
-    fetchProduct();
-  }, [id]);
-
-  return (
-    <>
-      <MetaTags>
-        <title>Product Details</title>
-        <meta name="description" content="Product details page" />
-      </MetaTags>
-      <Header />
-      <Breadcrumb breadcrumb={{ pagename: "Product Details" }} />
-
-      <div className="container">
-        {loading ? (
-          <p>Loading product details...</p>
-        ) : product ? (
-          <div className="product-details">
-            <h2>{product.title}</h2>
-            <img src={product.image} alt={product.title} />
-            <p>{product.description}</p>
-            <p><strong>Price:</strong> ${product.price}</p>
-          </div>
-        ) : (
-          <p style={{ color: "red" }}>⚠️ Product not found</p>
-        )}
-      </div>
-
- 
-  
-    </>
-  );
-};
+class Shopdetail extends Component {
+  render() {
+      return (
+          <Fragment>
+              <MetaTags>
+                  <title>Laramiss | Shop Detail</title>
+                  <meta
+                      name="description"
+                      content="#"
+                  />
+              </MetaTags>
+              <Header/>
+              <Breadcrumb breadcrumb={{pagename:'Shop Detail'}}/>
+              <Content/>
+          </Fragment>
+      );
+  }
+}
 
 export default Shopdetail;

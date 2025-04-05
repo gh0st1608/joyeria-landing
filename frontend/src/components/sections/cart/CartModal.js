@@ -6,17 +6,14 @@ import { Link, useHistory } from "react-router-dom"; // Importa useHistory para 
 const CartContent = () => {
   const { cart, removeFromCart, clearCart } = useContext(CartContext);
   const history = useHistory(); // Para redirigir después del pago
-  console.log('cart',cart)
   // Función que se llama cuando el usuario hace clic en "Ir a Pagar"
   const handlePayment = async () => {
     try {
-        console.log('entro al pago')
       // Aquí puedes agregar más detalles si es necesario (total, dirección, etc.)
       const paymentData = {
         items: cart,
         totalAmount: cart.reduce((acc, item) => acc + (item.price * item.quantity), 0), // Calcula el total
       };
-      console.log('paymentData',paymentData)
       const cartCreated = await createCart(paymentData);
       
       const paymentCreated = await createPayment({idCartBuy : cartCreated._id});
@@ -36,7 +33,6 @@ const CartContent = () => {
       alert("Hubo un problema con el pago. Intenta nuevamente.");
     }
   };
-  console.log('cart.length',cart.length);
   if (!cart || cart.length === 0) {
     return (
       <div className="cart-container">
@@ -53,14 +49,13 @@ const CartContent = () => {
       <ul className="cart-list">
         {
           cart.map((item) => {
-            console.log("🔍 Revisando producto:", item); // ✅ Verifica qué valores tiene item.precio
             return (
               <li key={item.id} className="cart-item">
                 <img
                   src={item.image}
                   alt={item.name}
                   className="cart-item-image"
-                  onError={(e) => (e.target.src = "https://via.placeholder.com/100")}
+                  onError={(e) => (e.target.src = "")}
                 />
                 <div className="cart-item-info">
                   <span>{item.name} - ${Number(item.price || 0).toFixed(2)} x {item.quantity}</span>

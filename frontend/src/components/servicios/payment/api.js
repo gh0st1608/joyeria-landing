@@ -18,11 +18,7 @@ const handleApiError = (error, message) => {
 // ✅ Función para hacer peticiones POST
 export const postRequest = async (endpoint, data) => {
   try {
-    console.log('BASE_URL.payment',BASE_URL.payment)
-    console.log('endpoint',endpoint)
-    console.log(`📡 Sending data to: ${BASE_URL.payment}${endpoint}`, data);
     const response = await api.post(`${BASE_URL.payment}${endpoint}`, data);
-    console.log("✅ Data successfully posted:", response.data);
     return response.data;
   } catch (error) {
     return handleApiError(error, `Error posting to ${endpoint}`);
@@ -31,9 +27,7 @@ export const postRequest = async (endpoint, data) => {
 
 export const getRequest = async (endpoint) => {
   try {
-    console.log(`📡 Fetching data from: ${BASE_URL.payment}${endpoint}`);
     const response = await api.get(endpoint);
-    console.log("✅ Data received:", response.data);
     return response.data;
   } catch (error) {
     return handleApiError(error, `Error fetching ${endpoint}`);

@@ -26,7 +26,6 @@ class Content extends Component {
   async componentDidMount() {
     try {
       const products = await getProducts();
-      console.log("📢 Productos cargados:", products.length);
       this.setState({ products, filteredProducts: products, loading: false });
     } catch (error) {
       console.error("❌ Error cargando productos:", error);
@@ -48,7 +47,6 @@ class Content extends Component {
       if (price) params.price = price;
 
       const products = (await getProductsByParams(params)) || [];
-      console.log("📢 Productos filtrados:", products.length);
 
       this.setState({ products, filteredProducts: products, loading: false, currentPage: 1 });
     } catch (error) {
@@ -72,8 +70,6 @@ class Content extends Component {
         selectedColors.includes(product.color.toLowerCase())
       );
     }
-
-    console.log("📢 Productos después del filtrado:", filtered.length);
     this.setState({ filteredProducts: filtered, currentPage: 1 });
   };
 
@@ -107,13 +103,13 @@ class Content extends Component {
               <div className="product-grid">
                 {currentProducts.length > 0 ? (
                   currentProducts.map((item) => (
-                    <div key={item.id} className="product-card">
+                    <div key={item._id} className="product-card">
                       {/* Etiquetas de "Sale" o "New" */}
                       {item.discount && <span className="discount-tag">-{item.discount}%</span>}
                       {item.isNew && <span className="product-badge">Nuevo</span>}
 
                       <img
-                        src={item.image || "https://via.placeholder.com/150"}
+                        src={item.image}
                         alt={item.title}
                         className="product-image"
                       />
@@ -123,12 +119,12 @@ class Content extends Component {
                         <h4 className="product-category">{item.category}</h4>
                         <h4 className="product-color">{item.color}</h4>
                         <p className="product-price">
-                          S/ {item.price.toFixed(2)}{" "}
-                          {item.oldPrice && <span className="old-price">S/ {item.oldPrice.toFixed(2)}</span>}
+                          $/ {item.price.toFixed(2)}{" "}
+                          {item.oldPrice && <span className="old-price">$/ {item.oldPrice.toFixed(2)}</span>}
                         </p>
 
                         <div className="product-buttons">
-                          <Link to={`/shop-detail/${item.id}`} className="btn btn-options">
+                          <Link to={`/shop-detail/${item._id}`} className="btn btn-options">
                             <FaEye style={{ marginRight: "5px" }} /> Ver Opciones
                           </Link>
                           <button

@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from "react";
 import Dashboard from "../pages/Dashboard";
-import { getUsers, deleteUser, createUser, updateUser } from "../servicios/dashboard/userService";
+import { getUsers, deleteUser, createUser, updateUser } from "../servicios/auth/authService";
 import UserTable from "../sections/dashboard/UserTable";
 import "../../assets/css/dashboard.css";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
-  const [formData, setFormData] = useState({ _id: "", name: "", lastname: "", email: "", password: "" });
+  const [formData, setFormData] = useState({ 
+    _id: "", 
+    name: "", 
+    lastname: "", 
+    email: "", 
+    password: "", 
+    roles: "USER" 
+  });
   const [isEditing, setIsEditing] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -27,7 +34,14 @@ const Users = () => {
   }, []);
 
   const openNewUserModal = () => {
-    setFormData({name: "", lastname: "", email: "", password: "", photo: "", roles: "ADMIN" });
+    setFormData({
+      name: "", 
+      lastname: "", 
+      email: "", 
+      password: "", 
+      photo: "", 
+      roles: "USER" 
+    });
     setIsEditing(false);
     setShowModal(true);
   };
@@ -47,7 +61,6 @@ const Users = () => {
       setTimeout(() => setSuccess(""), 3000);
     }
   };
-
 
   const confirmDelete = async () => {
     await deleteUser(deleteId);
@@ -83,7 +96,7 @@ const Users = () => {
         setUsers([...users, newUser]);
         setSuccess("Usuario agregado exitosamente.");
       }
-      setFormData({ _id: "", name: "", lastname: "", email: "", password: "" });
+      setFormData({ _id: "", name: "", lastname: "", email: "", password: "", roles: "USER" });
       setIsEditing(false);
       setShowModal(false);
     } catch (error) {
@@ -109,7 +122,6 @@ const Users = () => {
           <div className="custom-modal-overlay">
             <div className="custom-modal">
               <h3>{isEditing ? "Editar Usuario" : "Nuevo Usuario"}</h3>
-
 
               <form onSubmit={handleSubmit}>
                 <div className="modal-form-grid">
@@ -146,15 +158,20 @@ const Users = () => {
                     className="full-width"
                   />
                 )}
+                <select
+                  value={formData.roles}
+                  onChange={(e) => setFormData({ ...formData, roles: e.target.value })}
+                  className="full-width"
+                  required
+                >
+                  <option value="USER">Usuario</option>
+                  <option value="ADMIN">Administrador</option>
+                </select>
                 <div className="custom-modal-buttons">
                   <button type="submit" className="btn-edit">Guardar</button>
                   <button type="button" className="btn-delete" onClick={() => setShowModal(false)}>Cerrar</button>
                 </div>
               </form>
-
-
-
-
             </div>
           </div>
         )}

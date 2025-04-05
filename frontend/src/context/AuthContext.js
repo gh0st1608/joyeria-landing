@@ -1,10 +1,10 @@
 import React, { createContext, useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom"; // Usa useHistory
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const history = useHistory();
+  const history = useHistory(); // Usa useHistory
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -33,28 +33,21 @@ export const AuthProvider = ({ children }) => {
       return;
     }
 
-    console.log("✅ Guardando usuario en localStorage y contexto...", userData);
-
     localStorage.setItem("accessToken", token);
     localStorage.setItem("user", JSON.stringify(userData));
     setUser(userData);
-    console.log("user", JSON.stringify(userData))
-
     if (history.location.pathname !== "/dashboard") { 
-    history.push("/dashboard");
+      history.push("/dashboard"); // Usa history.push
     } 
-
-    console.log('entro despues del history location')
   };
   
   const logout = () => {
-    console.log("Cerrando sesión...");
     localStorage.removeItem("accessToken");
     localStorage.removeItem("user");
     setUser(null);
 
     if (history.location.pathname !== "/login") {
-      history.push("/login");
+      history.push("/login"); // Usa history.push
     }
   };
 
@@ -64,3 +57,4 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+;

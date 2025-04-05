@@ -19,7 +19,6 @@ class Category extends Component {
     async componentDidMount() {
         try {
             const category_products = await getCategoryProducts();
-            console.log("📢 Productos recibidos:", category_products);
             this.setState({ category_products, loading: false });
         } catch (error) {
             console.error("❌ Error al cargar productos", error);

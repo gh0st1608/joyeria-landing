@@ -16,9 +16,7 @@ const handleApiError = (error, message) => {
 // ✅ Función para hacer peticiones POST (enviar mensajes de contacto)
 export const postRequest = async (endpoint, data) => {
   try {
-    console.log(`📡 Sending data to: ${BASE_URL.notification}${endpoint}`, data);
     const response = await contactApi.post(endpoint, data);
-    console.log("✅ Data successfully posted:", response.data);
     return response.data;
   } catch (error) {
     return handleApiError(error, `Error posting to ${endpoint}`);
