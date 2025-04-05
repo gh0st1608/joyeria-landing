@@ -53,6 +53,7 @@ const ProductTable = ({ products, onAddOrUpdate, onDelete }) => {
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (!file) return;
+    console.log("Imagen seleccionada:", file);
     setFormData((prev) => ({ ...prev, image: file }));  // Guardar el archivo en el state
   };
 
@@ -206,12 +207,73 @@ const ProductTable = ({ products, onAddOrUpdate, onDelete }) => {
             <form onSubmit={handleSubmit}>
               <div className="form-grid">
                 <input name="title" placeholder="Nombre" value={formData.title} onChange={handleChange} required />
-                <input name="color" placeholder="Color" value={formData.color} onChange={handleChange} required />
-                <input name="material" placeholder="Material" value={formData.material} onChange={handleChange} required />
+                {/* <input name="color" placeholder="Color" value={formData.color} onChange={handleChange} required /> */}
+                <select
+                  name="color"
+                  value={formData.color}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="">Seleccione un color</option>
+                  <option value="">Seleccione un color</option>
+                  <option value="Dorado">Dorado</option>
+                  <option value="Plateado">Plateado</option>
+                  <option value="Oro Rosa">Oro Rosa</option>
+                  <option value="Negro">Negro</option>
+                  <option value="Blanco">Blanco</option>
+                  <option value="Champán">Champán</option>
+                  <option value="Gris">Gris</option>
+                  <option value="Azul Marino">Azul Marino</option>
+                  <option value="Rojo Rubí">Rojo Rubí</option>
+                  <option value="Verde Esmeralda">Verde Esmeralda</option>
+                  <option value="Turquesa">Turquesa</option>
+                  <option value="Púrpura">Púrpura</option>
+                  <option value="Perla">Perla</option>
+                </select>
+
+
+                {/* <input name="material" placeholder="Material" value={formData.material} onChange={handleChange} required /> */}
+                <select
+                  name="material"
+                  value={formData.material}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="">Seleccione un material</option>
+                  <option value="Oro">Oro</option>
+                  <option value="Plata">Plata</option>
+                  <option value="Acero inoxidable">Acero inoxidable</option>
+                  <option value="Platino">Platino</option>
+                  <option value="Rodio">Rodio</option>
+                  <option value="Cobre">Cobre</option>
+                  <option value="Bronce">Bronce</option>
+                  <option value="Zamak">Zamak</option>
+                  <option value="Titanio">Titanio</option>
+                </select>
+
+
                 <input name="description" placeholder="Descripción" value={formData.description} onChange={handleChange} required />
                 <input type="number" name="stock" placeholder="Stock" value={formData.stock} onChange={handleChange} required />
                 <input type="number" name="price" placeholder="Precio" step="0.01" value={formData.price} onChange={handleChange} required />
-                <input name="category" placeholder="Categoría" value={formData.category} onChange={handleChange} required />
+                {/* <input name="category" placeholder="Categoría" value={formData.category} onChange={handleChange} required /> */}
+                <select
+                  name="category"
+                  value={formData.category}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="">Seleccione una categoría</option>
+                  <option value="Anillos">Anillos</option>
+                  <option value="Collares">Collares</option>
+                  <option value="Aretes">Aretes</option>
+                  <option value="Pulseras">Pulseras</option>
+                  <option value="Relojes">Relojes</option>
+                  <option value="Tobilleras">Tobilleras</option>
+                  <option value="Broches">Broches</option>
+                  <option value="Juegos de joyas">Juegos de joyas</option>
+                  <option value="Accesorios para hombres">Accesorios para hombres</option>
+                </select>
+
               </div>
 
               <label>Cargar imagen:</label>
@@ -220,9 +282,14 @@ const ProductTable = ({ products, onAddOrUpdate, onDelete }) => {
 
               {formData.image && (
                 <div className="image-preview-container">
-                  <img src={URL.createObjectURL(formData.image)} alt="Preview" className="image-preview" />
+                  <img
+                    src={formData.image instanceof File ? URL.createObjectURL(formData.image) : formData.image}
+                    alt="Preview"
+                    className="image-preview"
+                  />
                 </div>
               )}
+
 
               <div className="custom-modal-buttons">
                 <button type="submit" className="btn-edit" disabled={uploading}>
