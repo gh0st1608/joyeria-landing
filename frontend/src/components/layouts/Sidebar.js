@@ -21,9 +21,10 @@ const Sidebar = ({ collapsed}) => {
     isAdmin && { to: "/dashboard", icon: <FaChartBar />, label: "Dashboard" },
     isAdmin && { to: "/dashboard/products", icon: <FaShoppingCart />, label: "Productos" },
     isAdmin && { to: "/dashboard/users", icon: <FaUser />, label: "Usuarios" },
+    isAdmin && { to: "/dashboard/payments", icon: <FaCreditCard />, label: "Pagos" },
     /* isAdmin && { to: "/dashboard/clients", icon: <FaClipboardList />, label: "Clientes" }, */
     /* { to: "/dashboard/purchases", icon: <FaShoppingBasket />, label: "Compras" }, */
-    isClient && { to: "/dashboard/payments", icon: <FaCreditCard />, label: "Pagos" }
+    /* isClient && { to: "/dashboard/payments", icon: <FaCreditCard />, label: "Pagos" } */
   ].filter(Boolean); // Elimina los null cuando no es admin
 
   return (
