@@ -119,8 +119,8 @@ class Content extends Component {
                         <h4 className="product-category">{item.category}</h4>
                         <h4 className="product-color">{item.color}</h4>
                         <p className="product-price">
-                          S/ {item.price.toFixed(2)}{" "}
-                          {item.oldPrice && <span className="old-price">S/ {item.oldPrice.toFixed(2)}</span>}
+                          $/ {item.price.toFixed(2)}{" "}
+                          {item.oldPrice && <span className="old-price">$/ {item.oldPrice.toFixed(2)}</span>}
                         </p>
 
                         <div className="product-buttons">
