@@ -15,7 +15,7 @@ const Sidebar = ({ collapsed}) => {
     return null; // Si no hay un usuario, no mostramos el sidebar
   }
   const isAdmin = user.role === "ADMIN"; // Verifica si el usuario es admin
-  const isClient = user.role === "CLIENT";
+  /* const isClient = user.role === "CLIENT"; */
   /* const isAdmin = userRole === "ADMIN"; */
   const menuItems = [
     isAdmin && { to: "/dashboard", icon: <FaChartBar />, label: "Dashboard" },
