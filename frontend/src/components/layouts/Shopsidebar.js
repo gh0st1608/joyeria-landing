@@ -52,8 +52,8 @@ const Sidebar = ({ onFilterChange }) => {
           
           {/* Etiquetas flotantes de los valores */}
           <div className="price-markers">
-            <span className="price-marker">S/ 20</span>
-            <span className="price-marker">S/ 1,000</span>
+            <span className="price-marker">$/ 20</span>
+            <span className="price-marker">$/ 1,000</span>
           </div>
 
           {/* Control deslizante */}
@@ -67,7 +67,7 @@ const Sidebar = ({ onFilterChange }) => {
           />
 
           {/* Burbuja con el precio actual */}
-          <div className="price-value">S/ {price}</div>
+          <div className="price-value">$/ {price}</div>
           
         </div>
       </div>
@@ -76,7 +76,7 @@ const Sidebar = ({ onFilterChange }) => {
       <div className="color-filter">
         <h3>Color</h3>
         <div className="color-options">
-          {["Red", "Green", "Zafiro", "Amarillo", "Dorado","Plateado"].map((color) => (
+          {["Rojo", "Verde", "Rosa", "Negro", "Azulino", "Dorado","Plateado"].map((color) => (
             <label key={color}>
               <input
                 type="checkbox"

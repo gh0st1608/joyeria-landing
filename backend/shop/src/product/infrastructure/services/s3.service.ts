@@ -1,9 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3'; // Importa el cliente y los comandos de S3
+import multer from 'multer'; // Importar correctamente multer
+import multerS3 from 'multer-s3'; // Importar multer-s3
+import { S3Client } from '@aws-sdk/client-s3'; // Importar el cliente de S3
 import { config } from 'dotenv';
 
 // Cargar las variables de entorno desde el archivo .env
-config(); 
+config();
 
 @Injectable()
 export class S3Service {
@@ -22,26 +24,28 @@ export class S3Service {
     this.bucketName = process.env.AWS_S3_BUCKET_NAME; // Nombre del bucket
   }
 
-  // Función para subir archivos a S3
-  async uploadFile(file: Express.Multer.File): Promise<string> {
-    const uploadParams = {
-      Bucket: this.bucketName, // Nombre del bucket S3
-      Key: `${Date.now()}-${file.originalname}`, // Nombre del archivo (puedes personalizarlo si lo deseas)
-      Body: file.buffer, // Contenido del archivo
-      ContentType: file.mimetype, // Tipo de contenido del archivo
-    };
-    console.log('uploadFile',uploadParams)
-    try {
-      // Ejecuta el comando de carga de archivo
-      const command = new PutObjectCommand(uploadParams);
-      const response = await this.s3Client.send(command);
-      console.log("Archivo subido a S3:", response);
-      
-      // Retorna la URL del archivo subido
-      return `https://${this.bucketName}.s3.${process.env.AWS_REGION}.amazonaws.com/${uploadParams.Key}`;
-    } catch (error) {
-      console.error("Error subiendo el archivo a S3:", error);
-      throw new Error("Error subiendo el archivo a S3");
-    }
+  // Función para obtener la configuración de multer-s3
+  getMulterS3Config() {
+    // Configuración de multer usando multer-s3
+    return multer({
+      storage: multerS3({
+        s3: this.s3Client, // Cliente S3
+        bucket: this.bucketName, // Nombre del bucket
+        //acl: 'public-read', // Define permisos de acceso al archivo (puedes modificarlo según tu necesidad)
+        key: (req, file, cb) => {
+          // Define la clave (nombre del archivo) en el bucket S3
+          cb(null, `uploads/${Date.now()}-${file.originalname}`);
+        },
+      }),
+      fileFilter: (req, file, cb) => {
+        const allowedTypes = ['image/png', 'image/jpeg']; // Tipos permitidos
+        if (allowedTypes.includes(file.mimetype)) {
+          cb(null, true); // El archivo es válido
+        } else {
+          cb(null, false); // El archivo no es válido
+        }
+      },
+    });
   }
+
 }

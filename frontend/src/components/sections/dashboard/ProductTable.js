@@ -78,20 +78,18 @@ const ProductTable = ({ products, onAddOrUpdate, onDelete }) => {
 
     // Añadir la imagen
     formDataUpload.append("file", formData.image);
+    console.log('formDataUpload', formDataUpload);
+    formDataUpload.forEach((value, key) => {
+      console.log(`${key}:`, value);
+    });
 
     // Verificar el contenido de formDataUpload
     setUploading(true);
 
     try {
-      // Enviar todo al backend, con los datos del producto y la imagen
-      /*       console.log('formDataUpload',formDataUpload)
-            const response = await createProduct(formDataUpload);
-            const { _id, ...data } = response; */
-      if (formData) {
-        console.log("Producto creado con éxito", formData);
-        onAddOrUpdate(formData); // Llamar a la función que maneja el producto creado
-        closeModal(); // Cerrar el modal después de guardar el producto
-      }
+      // Usar formDataUpload en lugar de formData
+      onAddOrUpdate(formDataUpload); // Llamar a la función que maneja el producto creado
+      closeModal(); // Cerrar el modal después de guardar el producto
     } catch (error) {
       console.error("Error subiendo el producto al backend:", error);
     }
