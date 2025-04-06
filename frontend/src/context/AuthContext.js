@@ -1,10 +1,10 @@
 import React, { createContext, useState, useEffect } from "react";
-import { useHistory } from "react-router-dom"; // Usa useHistory
+import { useNavigate } from "react-router-dom"; // Cambiado de useHistory a useNavigate (para react-router-dom v6+)
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const history = useHistory(); // Usa useHistory
+  const navigate = useNavigate(); // useNavigate reemplaza a useHistory en v6+
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -17,7 +17,8 @@ export const AuthProvider = ({ children }) => {
         setUser(JSON.parse(storedUser));
       } catch (error) {
         console.error("❌ Error al parsear `user` desde localStorage:", error);
-        localStorage.removeItem("user"); // Eliminar datos corruptos
+        localStorage.removeItem("user");
+        localStorage.removeItem("accessToken"); // También eliminamos el token por consistencia
         setUser(null);
       }
     } else {
@@ -36,9 +37,11 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem("accessToken", token);
     localStorage.setItem("user", JSON.stringify(userData));
     setUser(userData);
-    if (history.location.pathname !== "/dashboard") { 
-      history.push("/dashboard"); // Usa history.push
-    } 
+    
+    // Redirigir solo si no está ya en el dashboard
+    if (window.location.pathname !== "/dashboard") {
+      navigate("/dashboard");
+    }
   };
   
   const logout = () => {
@@ -46,8 +49,9 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("user");
     setUser(null);
 
-    if (history.location.pathname !== "/login") {
-      history.push("/login"); // Usa history.push
+    // Redirigir solo si no está ya en el login
+    if (window.location.pathname !== "/login") {
+      navigate("/login");
     }
   };
 
@@ -57,4 +61,3 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
-;
