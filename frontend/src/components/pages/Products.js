@@ -24,8 +24,10 @@ const Products = () => {
   const handleAddOrUpdate = async (formDataUpload) => {
     try {
       // Si el producto tiene un _id, es una actualización
+      console.log('formDataUpload',formDataUpload.get("_id"))
       if (formDataUpload.get("_id")) {
         const id = formDataUpload.get("_id");
+        console.log('id',id)
         await updateProduct(id, formDataUpload);
       } else {
         // Si no tiene _id, es creación

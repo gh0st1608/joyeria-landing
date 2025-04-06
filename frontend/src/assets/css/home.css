@@ -259,8 +259,9 @@ header {
 /* Título de la categoría */
 .categories-box .title {
     font-size: 20px;
-    font-weight: 700;
+    font-weight: 250;
     margin-bottom: 5px;
+    color: #ffcc00;
 }
 
 /* Número de productos */

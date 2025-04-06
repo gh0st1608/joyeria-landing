@@ -19,6 +19,7 @@ class Category extends Component {
     async componentDidMount() {
         try {
             const category_products = await getCategoryProducts();
+            console.log('category_products',category_products)
             this.setState({ category_products, loading: false });
         } catch (error) {
             console.error("❌ Error al cargar productos", error);
@@ -51,7 +52,7 @@ class Category extends Component {
                                             <i className={`fa-solid ${iconMap[i % iconMap.length]}`} />
                                         </span>
                                         <h5 className="title">{item.name}</h5> 
-                                        <p>{item.numberofproduct} Productos</p>
+                                        {/* <p>{item.numberofproduct} Productos</p> */}
                                     </Link>
                                 ))}
                             </div>

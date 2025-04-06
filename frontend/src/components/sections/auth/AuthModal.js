@@ -2,8 +2,9 @@ import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom"; // ✅ Para redireccionar después del login
 import { AuthContext } from "../../../context/AuthContext";
 import { loginUser, registerUser } from "../../servicios/auth/authService";
-import { jwtDecode } from "jwt-decode";
- // ✅ Importa jwt-decode
+import { jwtDecode } from "jwt-decode"; // ✅ Importa jwt-decode
+import { toast, ToastContainer } from "react-toastify"; // Importamos Toastify
+import 'react-toastify/dist/ReactToastify.css'; // Importamos los estilos de Toastify
 
 const AuthModal = ({ onClose }) => {
   const { login } = useContext(AuthContext);
@@ -36,24 +37,27 @@ const AuthModal = ({ onClose }) => {
           };
           history.push("/dashboard");
           login(userData, response.accessToken); // Guardamos en contexto
-          alert("✅ Login exitoso!");
+          toast.success("✅ Login exitoso!"); // Reemplazamos el alert por una notificación
           onClose();
-          
         } else {
           setError("❌ Credenciales incorrectas o datos faltantes.");
+          toast.error("❌ Credenciales incorrectas o datos faltantes."); // Notificación de error
         }
       } else {
         // ✅ Registro
         const response = await registerUser(formData);
         if (response?.accessToken) {
-          alert("✅ Registro exitoso! Ahora puedes iniciar sesión.");
+          toast.success("✅ Registro exitoso! Ahora puedes iniciar sesión."); // Notificación de éxito
           setIsLogin(true);
         } else {
           setError("❌ Error en el registro.");
+          toast.error("❌ Error en el registro."); // Notificación de error
         }
       }
     } catch (err) {
       setError("❌ Error en la solicitud. Verifica tu conexión.");
+      console.log('err',err)
+      toast.error("❌ Error en la solicitud. Verifica tu conexión."); // Notificación de error
     } finally {
       setLoading(false);
     }
@@ -114,6 +118,7 @@ const AuthModal = ({ onClose }) => {
           </button>
         </p>
       </div>
+      <ToastContainer /> {/* Agregamos el contenedor de notificaciones */}
     </div>
   );
 };
