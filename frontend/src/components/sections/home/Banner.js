@@ -1,61 +1,46 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import Slider from 'react-slick';
-import ReactWOW from 'react-wow';
-import img2 from '../../../assets/img/banner/02.jpg';
+// import './HeroBanner.css';
+import imgHero from '../../../assets/img/banner/02.jpg';
+import { FaFacebookF, FaInstagram, FaTwitter } from 'react-icons/fa';
 
+const HeroBanner = () => {
+  return (
+    <section className="hero-banner">
+      <div className="container">
+        
+        {/* Texto a la izquierda */}
+        <div className="hero-text">
+          <p className="subtitle">Diseño de joyas con amor</p>
+          <h1 className="title">
+          Gama alta <br /> Artículos de joyería
+          </h1>
 
-const bannerposts = [{ img: img2 }];
+          <div className="buttons">
+            <Link to="/shop-left" className="btn outline">Compra ahora</Link>
+            <Link to="/about" className="btn outline">Sobre Nosotros</Link>
+          </div>
 
-class Banner extends Component {
-    render() {
-        const settings = {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            fade: true,
-            infinite: true,
-            autoplay: true,
-            autoplaySpeed: 4000,
-            arrows: false,
-            dots: false,
-        };
+          <div className="social-links">
+            <a href="https://www.facebook.com/profile.php?id=100063131836042"><FaFacebookF /></a>
+            <a href="https://www.facebook.com/profile.php?id=100063131836042"><FaInstagram /></a>
+            <a href="https://www.facebook.com/profile.php?id=100063131836042"><FaTwitter /></a>
+          </div>
+        </div>
+        <br />
+        <br />  
+        <br />
+        <br />
 
-        return (
-            <section className="banner-area">
-                <div className="banner-content-container">
-                    {/* Contenido a la izquierda */}
-                    <div className="banner-content">
-                        <ReactWOW animation='fadeInDown' data-delay=".3s">
-                            <span className="promo-tag">Diseño de joyas con amor</span>
-                        </ReactWOW>
-                        <ReactWOW animation='fadeInLeft' data-delay=".5s">
-                            <h1 className="title">Artículos de <br /> joyería de alta gama</h1>
-                        </ReactWOW>
-                        <ul>
-                            <li>
-                                <ReactWOW animation='fadeInUp' data-delay=".7s">
-                                    <Link className="main-btn" to="/about">Nosotros</Link>
-                                </ReactWOW>
-                            </li>
-                        </ul>
-                    </div>
+        {/* Imagen a la derecha */}
+        <div className="hero-image">
+          <img src={imgHero} alt="Jewelry Model" />
+          <span className="phone-number">Contáctanos: +51 983 217 772</span>
+        </div>
+        
+      </div>
+    </section>
+  );
+};
 
-                    {/* Imagen dinámica a la derecha */}
-                    <ReactWOW animation='fadeInRight' data-delay="0.5s">
-                        <div className="banner-thumb">
-                            <Slider className="carousel hero-slider-one" {...settings}>
-                                {bannerposts.map((item, i) => (
-                                    <div key={i} className="single-thumb">
-                                        <img src={item.img} alt="images" />
-                                    </div>
-                                ))}
-                            </Slider>
-                        </div>
-                    </ReactWOW>
-                </div>
-            </section>
-        );
-    }
-}
-
-export default Banner;
+export default HeroBanner;

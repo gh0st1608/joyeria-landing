@@ -18,7 +18,7 @@ const CartContent = () => {
 
   useEffect(() => {
     //if (!orderId) return;
-    console.log("🌐 Conectando a WebSocket en:", 'http://localhost:4002/order');
+    console.log("🌐 Conectando a WebSocket en: ", BASE_URL.wsPayment);
   
     const socket = io(BASE_URL.wsPayment, { transports: ["websocket"] });
   
@@ -35,7 +35,7 @@ const CartContent = () => {
         setTimeout(() => {
           setShowSuccessModal(false);
           history.push("/shop-left");
-        }, 3000); // Cierra el modal automáticamente en 3s
+        }, 5000); // Cierra el modal automáticamente en 3s
       }
     });
   
@@ -57,6 +57,8 @@ const CartContent = () => {
       if (paymentCreated?.status === "CREATED") {
         setOrderId(paymentCreated.id);
         setTimeout(() => {
+          console.log('paymentCreated.links[1].href',paymentCreated.links[1].href)
+          //window.location.href = paymentCreated.links[1].href; 
           window.open(paymentCreated.links[1].href, "_blank");
         }, 500); // Un pequeño retraso para que el estado se propague correctamente
       } else {

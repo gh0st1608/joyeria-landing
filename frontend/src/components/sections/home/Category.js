@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { getCategoryProducts } from "../../servicios/shop/categoryService";
-import { HomeContext } from 'context/HomeContext';
-import '@fortawesome/fontawesome-free/css/all.min.css'; // ✅ Importamos FontAwesome
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
+// Eliminamos la dependencia del contexto no definido
+// y añadimos valores por defecto seguros
 
 class Category extends Component {
-    static contextType = HomeContext;
+  _isMounted = false; // Para controlar montaje
     
     constructor(props) {
         super(props);
@@ -33,8 +34,8 @@ class Category extends Component {
         const iconMap = [
             'fa-ring', // Anillos
             'fa-gem', // Diamantes
-            'fa-necklace', // Collares
-            'fa-earrings', // Aretes
+            'fa-ring', // Collares
+            'fa-gem', // Aretes
         ];
 
         return (
@@ -51,7 +52,7 @@ class Category extends Component {
                                             <i className={`fa-solid ${iconMap[i % iconMap.length]}`} />
                                         </span>
                                         <h5 className="title">{item.name}</h5> 
-                                        <p>{item.numberofproduct} Productos</p>
+                                        {/* <p>{item.numberofproduct} Productos</p> */}
                                     </Link>
                                 ))}
                             </div>
