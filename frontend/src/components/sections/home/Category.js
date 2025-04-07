@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { getCategoryProducts } from "../../servicios/shop/categoryService";
-import { HomeContext } from 'context/HomeContext';
-import '@fortawesome/fontawesome-free/css/all.min.css'; // ✅ Importamos FontAwesome
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
+// Eliminamos la dependencia del contexto no definido
+// y añadimos valores por defecto seguros
+
+const DEFAULT_CATEGORY = {
+  title: 'Categoría sin nombre',
+  numberofproduct: 0,
+  _id: Math.random().toString(36).substr(2, 9)
+};
 
 class Category extends Component {
-    static contextType = HomeContext;
+  _isMounted = false; // Para controlar montaje
     
     constructor(props) {
         super(props);
@@ -19,7 +27,6 @@ class Category extends Component {
     async componentDidMount() {
         try {
             const category_products = await getCategoryProducts();
-            console.log('category_products',category_products)
             this.setState({ category_products, loading: false });
         } catch (error) {
             console.error("❌ Error al cargar productos", error);
@@ -52,7 +59,7 @@ class Category extends Component {
                                             <i className={`fa-solid ${iconMap[i % iconMap.length]}`} />
                                         </span>
                                         <h5 className="title">{item.name}</h5> 
-                                        {/* <p>{item.numberofproduct} Productos</p> */}
+                                        <p>{item.numberofproduct} Productos</p>
                                     </Link>
                                 ))}
                             </div>
