@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+/* import PropTypes from 'prop-types'; */
 import { getCategoryProducts } from "../../servicios/shop/categoryService";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
@@ -41,8 +41,8 @@ class Category extends Component {
         const iconMap = [
             'fa-ring', // Anillos
             'fa-gem', // Diamantes
-            'fa-necklace', // Collares
-            'fa-earrings', // Aretes
+            'fa-ring', // Collares
+            'fa-gem', // Aretes
         ];
 
         return (
@@ -59,7 +59,7 @@ class Category extends Component {
                                             <i className={`fa-solid ${iconMap[i % iconMap.length]}`} />
                                         </span>
                                         <h5 className="title">{item.name}</h5> 
-                                        <p>{item.numberofproduct} Productos</p>
+                                        {/* <p>{item.numberofproduct} Productos</p> */}
                                     </Link>
                                 ))}
                             </div>
