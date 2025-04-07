@@ -17,9 +17,9 @@ const Footer = () => {
         <div className="footer-section">
           <h4>Redes Sociales</h4>
           <div className="social-icons">
-            <Link to="#" aria-label="Facebook"><i className="fab fa-facebook-f"></i></Link>
+            <Link to="#" aria-label="Facebook"><i className="fab fa-facebook"></i></Link>
             <Link to="#" aria-label="Instagram"><i className="fab fa-instagram"></i></Link>
-            <Link to="#" aria-label="Twitter"><i className="fab fa-twitter"></i></Link>
+            <Link to="#" aria-label="Twitter"><i className="fab fa-whatsapp"></i></Link>
           </div>
         </div>
 
