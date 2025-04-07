@@ -22,9 +22,9 @@ const HeroBanner = () => {
           </div>
 
           <div className="social-links">
-            <a href="#"><FaFacebookF /></a>
-            <a href="#"><FaInstagram /></a>
-            <a href="#"><FaTwitter /></a>
+            <a href="https://www.facebook.com/profile.php?id=100063131836042"><FaFacebookF /></a>
+            <a href="https://www.facebook.com/profile.php?id=100063131836042"><FaInstagram /></a>
+            <a href="https://www.facebook.com/profile.php?id=100063131836042"><FaTwitter /></a>
           </div>
         </div>
         <br />
