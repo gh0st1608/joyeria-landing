@@ -2,7 +2,7 @@
 import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { FaCheckCircle } from 'react-icons/fa';
-import '../../../assets/css/contact-modal.css'; // Asegúrate de importar tus estilos
+import '../../../assets/css/contact.css'; // Asegúrate de importar tus estilos
 
 const ContactModal = ({ show, handleClose, message, success }) => {
   return (
