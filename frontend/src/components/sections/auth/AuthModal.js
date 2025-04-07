@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { sendContactMessage } from "../../servicios/contactUs/contactService";
-import ReCAPTCHA from "react-google-recaptcha";
+/* import ReCAPTCHA from "react-google-recaptcha"; */
 import { Alert } from "react-bootstrap";
 
 const ContactForm = () => {
@@ -116,7 +116,7 @@ const ContactForm = () => {
                 </div>
               </div>
               <div className="col-12 text-center">
-                <ReCAPTCHA sitekey="6LdxUhMaAAAAAIrQt-_6Gz7F_58S4FlPWaxOh5ib" size="invisible" />
+                {/* <ReCAPTCHA sitekey="6LdxUhMaAAAAAIrQt-_6Gz7F_58S4FlPWaxOh5ib" size="invisible" /> */}
                 <button type="submit" className="main-btn btn-filled" disabled={status.loading}>
                   {status.loading ? "Sending..." : "Get Free Quote"}
                 </button>
