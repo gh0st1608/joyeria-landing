@@ -18,14 +18,14 @@ import './assets/css/carrito.css';
 
 ReactDOM.render(
   <AuthProvider> {/* Envuelve App con AuthProvider */}
-  <CartProvider>
-  <App />
-  <link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-/>
-</CartProvider>,
-</AuthProvider>,
+    <CartProvider>
+      <App />
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      />
+    </CartProvider>,
+  </AuthProvider>,
   document.getElementById('laramiss')
 );
 

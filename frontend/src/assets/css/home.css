@@ -32,12 +32,6 @@ header {
     padding: 15px 0;
 }
 
-
-
-
-
-
-
 /* Barra Superior */
 .top-cab {
     background: #1D252C;
@@ -1008,6 +1002,164 @@ header {
   }
 }
 
+/* Videooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo */
+.text-block {
+  background-color: #1D252C;
+  padding: 100px 0;
+  position: relative;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+.block-text {
+  color: #fff;
+  max-width: 600px;
+}
+
+.title-tag {
+  color: #D5BA8C;
+  font-size: 14px;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  font-family: 'Libre Franklin', sans-serif;
+}
+
+.block-text h2 {
+  font-size: 54px;
+  font-family: 'Vollkorn', serif;
+  margin-bottom: 25px;
+  color: #D5BA8C;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+  font-size: 18px;
+  margin: 15px 0;
+}
+
+.social-icons i {
+  color: #D5BA8C;
+  cursor: pointer;
+}
+
+.btn-group {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.main-btn {
+  background: #D5BA8C;
+  color: #1D252C;
+  padding: 12px 24px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: 5px;
+  font-family: 'Libre Franklin', sans-serif;
+  transition: background 0.3s;
+}
+
+.main-btn:hover {
+  background: #e4c689;
+}
+
+.main-btn.alt {
+  background: transparent;
+  border: 1px solid #D5BA8C;
+  color: #D5BA8C;
+}
+
+.video-trigger-wrap {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+}
+
+.popup-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  background-color: #1D252C;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  transition: background 0.3s;
+  text-decoration: none;
+}
+
+.popup-video:hover {
+  background-color: #D5BA8C;
+  color: #1D252C;
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.8);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  position: relative;
+  max-width: 800px;
+  width: 90%;
+  background: #000;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.modal-close {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #D5BA8C;
+  border: none;
+  font-size: 24px;
+  padding: 5px 12px;
+  cursor: pointer;
+  border-radius: 50%;
+  color: #1D252C;
+}
+
+.video-responsive {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  padding-top: 25px;
+  height: 0;
+}
+
+.video-responsive iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 
 
 
@@ -1169,372 +1321,124 @@ header {
 }
 
 /* Foooooooooooooooooooooooter */
-/* Estilos generales del Footer */
+
+/* Footer Principal */
 .footer {
-    background-color: #1D252C ; /* Color primario */
-    color: white;
-    padding: 50px 0;
-    font-family: 'Libre Franklin', sans-serif;
+  background-color: #1D252C;
+  color: white;
+  padding: 50px 0;
+  font-family: 'Libre Franklin', sans-serif;
 }
 
-/* Contenedor del Footer con alineación correcta */
+/* Contenedor de Secciones */
 .footer-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center; /* Asegura que todo esté alineado en la misma línea */
-    max-width: 1200px;
-    margin: auto;
-    flex-wrap: wrap;
-    gap: 20px; /* Espaciado uniforme */
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: auto;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding: 0 20px;
 }
 
-/* Secciones del Footer */
+/* Sección individual */
 .footer-section {
-    flex: 1;
-    text-align: center;
-    min-width: 280px; /* Evita que se reduzcan demasiado */
+  flex: 1;
+  min-width: 250px;
+  text-align: left;
 }
 
-/* Títulos del Footer */
 .footer-section h4 {
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 15px;
-    font-family: 'Vollkorn', serif;
-    color: #D5BA8C; /* Color secundario */
+  font-size: 20px;
+  font-family: 'Vollkorn', serif;
+  color: #D5BA8C;
+  margin-bottom: 20px;
 }
 
-/* Texto del Footer */
 .footer-section p {
-    font-size: 16px;
-    margin-bottom: 10px;
+  font-size: 16px;
+  margin: 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #f1f1f1;
 }
 
-/* Enlaces del Footer */
-.footer-section a {
-    color: #D5BA8C; /* Color secundario */
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s;
-}
-
-.footer-section a:hover {
-    color: #ffffff;
-}
-
-/* Íconos de redes sociales */
+/* Redes Sociales */
 .social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
 }
 
 .social-icons a {
-    font-size: 18px;
-    background: #D5BA8C; /* Color secundario */
-    color: #1D252C; /* Color primario */
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    transition: background 0.3s ease-in-out;
+  background-color: #D5BA8C;
+  color: #1D252C;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 18px;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 .social-icons a i {
-    font-size: 18px;
+  pointer-events: none;
 }
 
 .social-icons a:hover {
-    background: white;
-    color: #1D252C;
+  background-color: white;
+  color: #1D252C;
+}
+
+/* Legal */
+.footer-legal-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.footer-legal-links a {
+  color: #D5BA8C;
+  text-decoration: none;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.3s ease-in-out;
+}
+
+.footer-legal-links a:hover {
+  color: white;
+}
+
+.divider {
+  color: #aaa;
 }
 
 /* Footer inferior */
 .footer-bottom {
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px solid #D5BA8C;
-    font-size: 14px;
-    text-align: center;
+  margin-top: 30px;
+  text-align: center;
+  font-size: 14px;
+  border-top: 1px solid #D5BA8C;
+  padding-top: 20px;
+  color: #ccc;
 }
 
-.footer-bottom strong {
-    font-family: 'Vollkorn', serif;
-    font-weight: 700;
-}
-
-/* Diseño Responsive */
-@media (max-width: 1024px) {
-    .footer-container {
-        flex-direction: column;
-        text-align: center;
-        gap: 30px;
-    }
-
-    .footer-section {
-        width: 100%;
-    }
-
-    .social-icons {
-        justify-content: center;
-    }
-}
-
-
-
-
-
-
-/* Estilos generales para la sección de categorías */
-.categories-section {
-    padding: 3rem 0;
-    background-color: #f9f9f9;
-    position: relative;
-  }
-  
-  .categories-section .container {
-    max-width: 100%;
-    padding: 0 20px;
-  }
-  
-  /* Encabezado */
-  .section-header {
-    text-align: center;
-    margin-bottom: 2rem;
-    padding: 0 20px;
-  }
-  
-  .section-title {
-    font-size: 2rem;
-    color: #333;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-  }
-  
-  .section-subtitle {
-    font-size: 1rem;
-    color: #777;
-    margin-bottom: 0;
-  }
-  
-  /* Contenedor horizontal con scroll */
-  .categories-grid {
-    display: flex;
-    overflow-x: auto;
-    gap: 1.5rem;
-    padding: 1rem 0 2rem 0;
-    scrollbar-width: thin;
-    scrollbar-color: #D5BA8C #f1f1f1;
-    -webkit-overflow-scrolling: touch; /* Para scroll suave en iOS */
-  }
-  
-  /* Personalización de scrollbar para WebKit */
-  .categories-grid::-webkit-scrollbar {
-    height: 6px;
-  }
-  
-  .categories-grid::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
-  }
-  
-  .categories-grid::-webkit-scrollbar-thumb {
-    background-color: #D5BA8C;
-    border-radius: 10px;
-  }
-  
-  /* Tarjetas de categoría (ahora horizontales) */
-  .category-card {
-    flex: 0 0 auto;
-    width: 220px;
-    display: flex;
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-container {
     flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-    background: white;
-    border-radius: 10px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
-    transition: all 0.3s ease;
-    border: 1px solid #eee;
-  }
-  
-  .category-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
-    border-color: #D5BA8C;
-  }
-  
-  /* Iconos */
-  .card-icon {
-    width: 50px;
-    height: 50px;
-    background-color: #f8f4ec;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.2rem;
-    color: #D5BA8C;
-    font-size: 1.3rem;
-  }
-  
-  /* Contenido de la tarjeta */
-  .card-body {
-    text-align: center;
-    width: 100%;
-  }
-  
-  .card-title {
-    font-size: 1.1rem;
-    color: #333;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100%;
-  }
-  
-  .card-count {
-    color: #777;
-    font-size: 0.85rem;
-    margin: 0;
-  }
-  
-  /* Mensajes de estado */
-  .loading-container,
-  .error-message {
-    padding: 2rem;
-    text-align: center;
-  }
-  
-  .error-message {
-    background-color: #fff8f8;
-    border: 1px solid #ffdddd;
-    border-radius: 8px;
-    max-width: 500px;
-    margin: 0 auto;
-  }
-  
-  .error-message p {
-    color: #d9534f;
-    margin-bottom: 1rem;
-  }
-  
-  .btn-retry {
-    background-color: #D5BA8C;
-    color: white;
-    border: none;
-    padding: 0.5rem 1.5rem;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: background-color 0.3s;
-  }
-  
-  .btn-retry:hover {
-    background-color: #c5aa7c;
-  }
-  
-  /* Spinner de carga */
-  .spinner {
-    width: 40px;
-    height: 40px;
-    border: 4px solid rgba(0, 0, 0, 0.1);
-    border-radius: 50%;
-    border-top-color: #D5BA8C;
-    animation: spin 1s ease-in-out infinite;
-    margin: 0 auto 1rem;
-  }
-  
-  @keyframes spin {
-    to { transform: rotate(360deg); }
-  }
-  
-  /* Responsive */
-  @media (max-width: 768px) {
-    .section-title {
-      font-size: 1.7rem;
-    }
-    
-    .category-card {
-      width: 180px;
-      padding: 1.2rem;
-    }
-    
-    .card-icon {
-      width: 45px;
-      height: 45px;
-      font-size: 1.2rem;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .categories-section {
-      padding: 2rem 0;
-    }
-    
-    .section-title {
-      font-size: 1.5rem;
-    }
-    
-    .category-card {
-      width: 160px;
-      padding: 1rem;
-    }
+    align-items: flex-start;
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* deseeeeeeeeeeesconocido */
-
-
-
-
-
-/* Si el header es fijo, agrega margen al body */
-body {
-    padding-top: 80px; /* 🔥 Ajusta según el tamaño del header */
+  .footer-section {
+    margin-bottom: 30px;
+  }
 }
-
-/* Si el header usa sticky, asegúrate de que no cubra el breadcrumb */
-.header {
-    position: sticky;
-    top: 0;
-    z-index: 999;
-    background: white;
-}
-
-
-
-/* hheheheheh */
-
-
-
-
-
