@@ -17,7 +17,7 @@ const CartContent = () => {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   useEffect(() => {
-    //if (!orderId) return;
+    /* if (!orderId) return; */
     console.log("🌐 Conectando a WebSocket en: ", BASE_URL.wsPayment);
   
     const socket = io(BASE_URL.wsPayment, { transports: ["websocket"] });
