@@ -1,19 +1,22 @@
-import React, { useState, useContext } from "react";
-import { useHistory } from "react-router-dom"; // ✅ Para redireccionar después del login
-import { AuthContext } from "../../../context/AuthContext";
-import { loginUser, registerUser } from "../../servicios/auth/authService";
-import { jwtDecode } from "jwt-decode"; // ✅ Importa jwt-decode
-import { toast, ToastContainer } from "react-toastify"; // Importamos Toastify
-import 'react-toastify/dist/ReactToastify.css'; // Importamos los estilos de Toastify
+import React, { useState } from "react";
+import { sendContactMessage } from "../../servicios/contactUs/contactService";
+import ReCAPTCHA from "react-google-recaptcha";
+import { Alert } from "react-bootstrap";
 
-const AuthModal = ({ onClose }) => {
-  const { login } = useContext(AuthContext);
-  const history = useHistory();
+const ContactForm = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
+  });
 
-  const [isLogin, setIsLogin] = useState(true);
-  const [formData, setFormData] = useState({ email: "", password: "", name: "" });
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [status, setStatus] = useState({
+    success: false,
+    error: false,
+    loading: false,
+  });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -21,106 +24,119 @@ const AuthModal = ({ onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    setError("");
+    setStatus({ success: false, error: false, loading: true });
 
     try {
-      if (isLogin) {
-        // ✅ Login
-        const response = await loginUser({ email: formData.email, password: formData.password });
-        if (response && response.accessToken) {
-          const decoded = jwtDecode(response.accessToken);
-          const userData = {
-            name: decoded.name,
-            role: decoded.role,
-            /* email: decoded.email */
-          };
-          history.push("/dashboard");
-          login(userData, response.accessToken); // Guardamos en contexto
-          toast.success("✅ Login exitoso!"); // Reemplazamos el alert por una notificación
-          onClose();
-        } else {
-          setError("❌ Credenciales incorrectas o datos faltantes.");
-          toast.error("❌ Credenciales incorrectas o datos faltantes."); // Notificación de error
-        }
+      console.log("📡 Enviando mensaje...", formData);
+      const response = await sendContactMessage(formData);
+
+      if (response?.success) {
+        setStatus({ success: true, loading: false });
+        setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
       } else {
-        // ✅ Registro
-        const response = await registerUser(formData);
-        if (response?.accessToken) {
-          toast.success("✅ Registro exitoso! Ahora puedes iniciar sesión."); // Notificación de éxito
-          setIsLogin(true);
-        } else {
-          setError("❌ Error en el registro.");
-          toast.error("❌ Error en el registro."); // Notificación de error
-        }
+        setStatus({ success: false, error: true, loading: false });
       }
-    } catch (err) {
-      setError("❌ Error en la solicitud. Verifica tu conexión.");
-      console.log('err',err)
-      toast.error("❌ Error en la solicitud. Verifica tu conexión."); // Notificación de error
-    } finally {
-      setLoading(false);
+    } catch (error) {
+      console.error("❌ Error al enviar mensaje:", error);
+      setStatus({ success: false, error: true, loading: false });
     }
   };
 
   return (
-    <div className="modal-backdrop">
-      <div className="modal-container">
-        <div className="modal-header">
-          <h2>{isLogin ? "Iniciar Sesión" : "Registrarse"}</h2>
-          <button className="close-btn" onClick={onClose}>✖</button>
-        </div>
+    <section className="contact-part pt-115 pb-115">
+      <div className="container">
 
-        {error && <p className="error-msg">{error}</p>}
+        {/* <div className="contact-info row justify-content-center">
+          <div className="col-md-4 col-sm-6">
+            <div className="info-box">
+              <div className="icon"><i className="flaticon-home" /></div>
+              <br />
+              <div className="desc">
+                <h4>Office Address</h4>
+                <p>19/A, Cirikon City hall Tower, New York, NYC</p>
 
-        <form onSubmit={handleSubmit} className="modal-form">
-          {!isLogin && (
-            <div className="form-group">
-              <input
-                type="text"
-                name="name"
-                placeholder="Nombre Completo"
-                value={formData.name}
-                onChange={handleChange}
-                required
-              />
+              </div>
             </div>
-          )}
-          <div className="form-group">
-            <input
-              type="email"
-              name="email"
-              placeholder="Correo Electrónico"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
           </div>
-          <div className="form-group">
-            <input
-              type="password"
-              name="password"
-              placeholder="Contraseña"
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
+          <div className="col-md-4 col-sm-6">
+            <div className="info-box">
+              <div className="icon"><i className="flaticon-phone" /></div>
+              <br />
+              <div className="desc">
+                <h4>Phone Number</h4>
+                <p>+ 97656 8675 7864 7 <br /> + 876 766 8675 765 6</p>
+              </div>
+            </div>
           </div>
-          <button type="submit" className="btn btn-primary btn-full" disabled={loading}>
-            {loading ? "Procesando..." : isLogin ? "Iniciar Sesión" : "Registrarse"}
-          </button>
-        </form>
+          <div className="col-md-4 col-sm-6">
+            <div className="info-box">
+              <div className="icon"><i className="flaticon-message" /></div>
+              <br />
+              <div className="desc">
+                <h4>Email Address</h4>
+                <p>info@webmail.com <br /> jobs.webmail@mail.com</p>
+              </div>
+            </div>
+          </div>
+        </div> */}
 
-        <p className="toggle-auth">
-          {isLogin ? "¿Aún no tienes cuenta?" : "¿Ya tienes una cuenta?"}
-          <button onClick={() => setIsLogin(!isLogin)}>
-            {isLogin ? "Registrarse" : "Iniciar Sesión"}
-          </button>
-        </p>
+
+
+        <div className="contact-form">
+          <form onSubmit={handleSubmit}>
+            <div className="row">
+              <div className="col-md-6">
+                <div className="input-group mb-30">
+                  <span className="icon"><i className="far fa-user" /></span>
+                  <input type="text" placeholder="Your full name" name="name" value={formData.name} onChange={handleChange} required />
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="input-group mb-30">
+                  <span className="icon"><i className="far fa-envelope" /></span>
+                  <input type="email" placeholder="Enter email address" name="email" value={formData.email} onChange={handleChange} required />
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="input-group mb-30">
+                  <span className="icon"><i className="far fa-phone" /></span>
+                  <input type="text" placeholder="Add phone number" name="phone" value={formData.phone} onChange={handleChange} required />
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="input-group mb-30">
+                  <span className="icon"><i className="far fa-book" /></span>
+                  <input type="text" placeholder="Select Subject" name="subject" value={formData.subject} onChange={handleChange} required />
+                </div>
+              </div>
+              <div className="col-12">
+                <div className="input-group textarea mb-30">
+                  <span className="icon"><i className="far fa-pen" /></span>
+                  <textarea placeholder="Enter messages" name="message" value={formData.message} onChange={handleChange} required />
+                </div>
+              </div>
+              <div className="col-12 text-center">
+                <ReCAPTCHA sitekey="6LdxUhMaAAAAAIrQt-_6Gz7F_58S4FlPWaxOh5ib" size="invisible" />
+                <button type="submit" className="main-btn btn-filled" disabled={status.loading}>
+                  {status.loading ? "Sending..." : "Get Free Quote"}
+                </button>
+                {status.success && (
+                  <Alert variant="danger" className="mt-3">
+                    Oops! Something went wrong. Try again later.
+                  </Alert>
+                )}
+                {status.error && (
+                  <Alert variant="success" className="mt-3">
+                    Success! Your message has been sent.
+                  </Alert>
+                )}
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
-      <ToastContainer /> {/* Agregamos el contenedor de notificaciones */}
-    </div>
+    </section>
   );
 };
 
-export default AuthModal;
+export default ContactForm;
