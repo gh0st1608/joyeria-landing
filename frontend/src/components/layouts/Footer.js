@@ -9,13 +9,9 @@ const Footer = () => {
       
       <div className="footer-container">
         <div className="footer-section">
-          
           <h4>Contáctanos</h4>
-          {/* <hr className="" /> */}
-          <div className="footer-contact-info">
-            <p><FaPhone className="contact-icon" /> +987 876 765 76 577</p>
-            <p><FaEnvelope className="contact-icon" /> info@webmail.com</p>
-          </div>
+          <p> <FaPhone /> +51 983 217 772</p>
+          <p> <FaEnvelope /> peru.joyas@hotmail.com</p>
         </div>
 
         <div className="footer-section">

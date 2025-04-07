@@ -21,7 +21,7 @@ const Header = () => {
       <div className="top-cab">
         <div className="container">
           <div className="top-info">
-            <FaPhoneAlt className="icon" /> <span>914 027 437</span>
+            <FaPhoneAlt className="icon" /> <span>983 217 772</span>
             <FaMapMarkerAlt className="icon" /> <span>Ver tiendas físicas</span>
             <FaCalendarAlt className="icon" /> <span>Solicitar cita virtual</span>
           </div>
