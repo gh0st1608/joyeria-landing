@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-/* import PropTypes from 'prop-types'; */
 import { getCategoryProducts } from "../../servicios/shop/categoryService";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 // Eliminamos la dependencia del contexto no definido
 // y añadimos valores por defecto seguros
-
-const DEFAULT_CATEGORY = {
-  title: 'Categoría sin nombre',
-  numberofproduct: 0,
-  _id: Math.random().toString(36).substr(2, 9)
-};
 
 class Category extends Component {
   _isMounted = false; // Para controlar montaje

@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom"; // Usa useHistory
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const history = useHistory(); // Usa useHistory
+  /* const history = useHistory(); */ // Usa useHistory
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
