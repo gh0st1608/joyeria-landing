@@ -1,17 +1,12 @@
-import { postRequest, putRequest } from "./api";
-import { ENDPOINTS } from "../endpoints";
+import { postRequest, putRequest, getRequest, deleteRequest } from "./api";
+import { ENDPOINTS, BASE_URL } from "../endpoints";
 
 // ✅ Iniciar Sesión
 export const loginUser = async (credentials) => {
   try {
-    console.log(" Enviando solicitud de inicio de sesión...", credentials);
-    
-
     const response = await postRequest(ENDPOINTS.auth.login, credentials);
-    console.log('Respuesta', response);
 
     if (response?.accessToken) {
-      console.log("✅ Inicio de sesión exitoso:", response);
 
       // Guardamos tokens y usuario en localStorage
       localStorage.setItem("accessToken", response.accessToken);
@@ -41,12 +36,9 @@ export const loginUser = async (credentials) => {
 // ✅ Registrar Usuario
 export const registerUser = async (userData) => {
   try {
-    console.log("📡 Enviando solicitud de registro...", userData);
-
     const response = await postRequest(ENDPOINTS.auth.register, userData);
 
     if (response?.accessToken) {
-      console.log("✅ Registro exitoso:", response);
 
       // Guardamos tokens y usuario en localStorage
       localStorage.setItem("accessToken", response.accessToken);
@@ -75,7 +67,6 @@ export const registerUser = async (userData) => {
 
 // ✅ Cerrar Sesión
 export const logoutUser = () => {
-  console.log("🔐 Cerrando sesión...");
   localStorage.removeItem("accessToken");
   localStorage.removeItem("refreshToken");
   localStorage.removeItem("user");
@@ -85,12 +76,9 @@ export const logoutUser = () => {
 // ✅ Actualizar Configuración del Usuario
 export const updateUserSettings = async (settings) => {
   try {
-    console.log("📡 Enviando configuración del usuario:", settings);
-
     const response = await putRequest(ENDPOINTS.auth.updateSettings, settings);
 
     if (response?.user) {
-      console.log("✅ Configuración actualizada:", response);
       localStorage.setItem("user", JSON.stringify(response.user));
       alert("✅ Configuración actualizada correctamente.");
       return response.user;
@@ -103,4 +91,25 @@ export const updateUserSettings = async (settings) => {
     alert("❌ Error al actualizar la configuración.");
     return null;
   }
+};
+
+export const getUsers = async () => {
+  console.log('getusers',`${BASE_URL.auth}${ENDPOINTS.dashboard.user}`)
+  return await getRequest(`${BASE_URL.auth}${ENDPOINTS.dashboard.user}`);
+};
+
+// Crear usuario
+export const createUser = async (userData) => {
+  return await postRequest(`${BASE_URL.auth}${ENDPOINTS.dashboard.createUser}`, userData);
+};
+
+// Actualizar usuario
+export const updateUser = async (id, userData) => {
+  return await putRequest(`${BASE_URL.auth}${ENDPOINTS.dashboard.updateUser(id)}`, userData);
+};
+
+// Eliminar usuario
+export const deleteUser = async (id) => {
+  return await deleteRequest(`${BASE_URL.auth}${ENDPOINTS.dashboard.deleteUser(id)}`);
+
 };

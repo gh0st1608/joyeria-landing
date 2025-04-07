@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Dashboard from "../pages/Dashboard";
-import { getUsers, deleteUser, createUser, updateUser } from "../servicios/dashboard/userService";
+import { getUsers, deleteUser, createUser, updateUser } from "../servicios/auth/authService";
 import ClientTable from "../sections/dashboard/ClientTable";
 import "../../assets/css/dashboard.css";
 import Swal from 'sweetalert2';

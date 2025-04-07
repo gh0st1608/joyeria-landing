@@ -18,8 +18,6 @@ const CartContent = () => {
 
   useEffect(() => {
     //if (!orderId) return;
-  
-    console.log("✅ Suscribiéndose al canal:", `payment-status-${orderId}`);
     console.log("🌐 Conectando a WebSocket en:", 'http://localhost:4002/order');
   
     const socket = io(BASE_URL.wsPayment, { transports: ["websocket"] });
@@ -50,7 +48,6 @@ const CartContent = () => {
 
   const handlePayment = async () => {
     try {
-      console.log("💳 Iniciando pago...");
       const paymentData = {
         items: cart,
         totalAmount: cart.reduce((acc, item) => acc + item.price * item.quantity, 0),
@@ -62,7 +59,6 @@ const CartContent = () => {
         setTimeout(() => {
           window.open(paymentCreated.links[1].href, "_blank");
         }, 500); // Un pequeño retraso para que el estado se propague correctamente
-        console.log('🆗 Pago iniciado con orderId:', paymentCreated.id);
       } else {
         alert("❌ Hubo un problema con el pago. Intenta nuevamente.");
       }

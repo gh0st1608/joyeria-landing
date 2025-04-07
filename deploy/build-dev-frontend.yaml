@@ -41,7 +41,7 @@ jobs:
       # Paso 6: Sincronizar los archivos del build con S3
       - name: Deploy to S3
         run: |
-          aws s3 sync ../frontend/build/ s3://molly-dear-bear.ngrok-free.app/ --delete --acl public-read
+          aws s3 sync ../frontend/build/ s3://molly-dear-bear.ngrok-free.app/ --delete
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
