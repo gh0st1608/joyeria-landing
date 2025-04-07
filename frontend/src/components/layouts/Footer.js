@@ -9,9 +9,9 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-section">
-          <h4>Contactanos</h4>
-          <p> <FaPhone /> +987 876 765 76 577</p>
-          <p> <FaEnvelope /> info@webmail.com</p>
+          <h4>Contáctanos</h4>
+          <p> <FaPhone /> +51 983 217 772</p>
+          <p> <FaEnvelope /> peru.joyas@hotmail.com</p>
         </div>
 
         <div className="footer-section">

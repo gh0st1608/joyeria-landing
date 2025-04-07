@@ -77,8 +77,8 @@ const ContactForm = () => {
               <div className="icon"><i className="fa-solid fa-location-dot"></i></div>
               <br />
               <div className="desc">
-                <h4>Office Address</h4>
-                <p>Avenida los pinos Mz L</p>
+                <h4>Direccion Oficina</h4>
+                <p>Mz K7 Lt 11 esmeralda de los andes</p>
               </div>
             </div>
           </div>
@@ -87,8 +87,8 @@ const ContactForm = () => {
               <div className="icon"><i className="fa-solid fa-phone"></i></div>
               <br />
               <div className="desc">
-                <h4>Phone Number</h4>
-                <p>+ 97656 8675 7864 7</p>
+                <h4>Celular</h4>
+                <p>+51 983 217 772</p>
               </div>
             </div>
           </div>
@@ -97,8 +97,8 @@ const ContactForm = () => {
               <div className="icon"><i className="fa-solid fa-envelope"></i></div>
               <br />
               <div className="desc">
-                <h4>Email Address</h4>
-                <p>info@webmail.com</p>
+                <h4>Correo Electrónico</h4>
+                <p>peru.joyas@hotmail.com</p>
               </div>
             </div>
           </div>

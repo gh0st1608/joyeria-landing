@@ -30,16 +30,14 @@ export class PaymentController {
     if (!tokenPayment) {
       throw new Error('Token de pago no proporcionado');
     }
-    return this.executePaymentUseCase.execute(tokenPayment);
+    await this.executePaymentUseCase.execute(tokenPayment);
+    return { status: 'success', message: 'Pago en proceso' }
   }
 
   @Post('/webhook-get-status')
   async handleWebhook(@Body() body: any) {
       if (body.event_type === "PAYMENT.CAPTURE.COMPLETED") {
         const orderId = body.resource.supplementary_data.related_ids.order_id;
-        console.log(`✅ Pago completado - Payment ID: ${body.resource.id}`);
-        // Aquí actualizas tu base de datos
-        console.log('cuerpo del pago',body.resource)
         await this.getStatusPaymentUseCase.sendStatus(orderId, "COMPLETED");
     }
       return { message: "Webhook recibido correctamente" };
