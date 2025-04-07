@@ -19,7 +19,7 @@ const AuthModal = ({ onClose }) => {
     
     try {
       if (isLogin) {
-        // ✅ Login
+        // ✅ Logi
         const response = await loginUser({ email: formData.email, password: formData.password });
         if (response) {
           localStorage.setItem("accessToken", response.accessToken);
