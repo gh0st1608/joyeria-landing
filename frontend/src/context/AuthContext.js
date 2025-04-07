@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
-import { useHistory } from "react-router-dom"; // Usa useHistory
+/* import { useHistory } from "react-router-dom"; */ // Usa useHistory
 
 export const AuthContext = createContext();
 
