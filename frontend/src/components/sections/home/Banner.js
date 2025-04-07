@@ -17,14 +17,14 @@ const HeroBanner = () => {
           </h1>
 
           <div className="buttons">
-            <Link to="/shop-left" className="btn outline">Buy Now</Link>
+            <Link to="/shop-left" className="btn outline">Compra ahora</Link>
             <Link to="/about" className="btn outline">Sobre Nosotros</Link>
           </div>
 
           <div className="social-links">
-            <a href="#"><FaFacebookF /></a>
-            <a href="#"><FaInstagram /></a>
-            <a href="#"><FaTwitter /></a>
+            <a href="https://www.facebook.com/profile.php?id=100063131836042"><FaFacebookF /></a>
+            <a href="https://www.facebook.com/profile.php?id=100063131836042"><FaInstagram /></a>
+            <a href="https://www.facebook.com/profile.php?id=100063131836042"><FaTwitter /></a>
           </div>
         </div>
         <br />
@@ -35,7 +35,7 @@ const HeroBanner = () => {
         {/* Imagen a la derecha */}
         <div className="hero-image">
           <img src={imgHero} alt="Jewelry Model" />
-          <span className="phone-number">Call us on: +123 456 789</span>
+          <span className="phone-number">Contáctanos: +51 983 217 772</span>
         </div>
         
       </div>

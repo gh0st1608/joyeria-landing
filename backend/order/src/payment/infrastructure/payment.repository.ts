@@ -52,7 +52,7 @@ export class PaymentInfrastructureRepository implements IPaymentRepository {
     const paymentDomain = new Payment(payment.properties());
     const paymentMongoose = new this.paymentModel(paymentDomain); // Ahora puedes usar el objeto de dominio para crear el pago en Mongoose
     const savedPayment = await paymentMongoose.save();
-    console.log('savedPayment',savedPayment)
+    console.log('savedPayment ok')
     return new Payment(savedPayment.toObject());
   }
 
@@ -81,7 +81,6 @@ export class PaymentInfrastructureRepository implements IPaymentRepository {
       }
     );
     const paymentData = response.data;
-    console.log('paymentData',paymentData)
     const payment = new Payment({
       orderId: paymentData.id,
       payerId: paymentData.payer.payer_id,
@@ -96,7 +95,6 @@ export class PaymentInfrastructureRepository implements IPaymentRepository {
     })
     
     await this.createPay(payment);
- 
 
     const responseOrder = await axios.post(`${process.env.PAYPAL_API_BASE_URL}/v2/checkout/orders/${tokenPayment}/capture`,{},{
       headers: {
