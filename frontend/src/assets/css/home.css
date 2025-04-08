@@ -1442,3 +1442,32 @@ header {
     margin-bottom: 30px;
   }
 }
+.social-icons a {
+  background-color: #D5BA8C;
+  color: #1D252C;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  text-decoration: none;
+}
+
+.social-icons a i,
+.social-icons a svg {
+  font-size: 18px;
+  color: inherit;
+  transition: transform 0.3s ease;
+}
+
+.social-icons a:hover {
+  background-color: white;
+  color: #1D252C;
+}
+
+.social-icons a:hover i,
+.social-icons a:hover svg {
+  transform: scale(1.1);
+}
