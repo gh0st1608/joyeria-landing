@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { loginUser, registerUser } from "../../servicios/auth/authService";
 
 const AuthModal = ({ onClose }) => {
+  const history = useHistory();
 
-  const [isLogin, setIsLogin] = useState(true); // ✅ Alternar entre Login y Registro
+  const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({ email: "", password: "", name: "" });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -16,32 +18,29 @@ const AuthModal = ({ onClose }) => {
     e.preventDefault();
     setLoading(true);
     setError("");
-    
+
     try {
       if (isLogin) {
-        // ✅ Logi
         const response = await loginUser({ email: formData.email, password: formData.password });
-        if (response) {
+        if (response?.accessToken) {
           localStorage.setItem("accessToken", response.accessToken);
-          /* alert("✅ Login successful! Redirecting..."); */
-          onClose();
+          onClose(); // Cierra el modal si estás usándolo como overlay
+          history.push("/dashboard"); // ✅ Redirige al dashboard
         } else {
-          setError("❌ Invalid credentials. Please try again.");
+          setError("❌ Credenciales inválidas. Intenta nuevamente.");
         }
       } else {
-        // ✅ Registro
         const response = await registerUser(formData);
         if (response?.accessToken && response?.refreshToken) {
           localStorage.setItem("accessToken", response.accessToken);
           localStorage.setItem("refreshToken", response.refreshToken);
-          /* alert("✅ Registration successful! You can now log in."); */
-          setIsLogin(true); // ✅ Cambiar a Login después del registro
+          setIsLogin(true); // cambia a login
         } else {
-          setError("❌ Registration failed. Try again.");
+          setError("❌ No se pudo completar el registro.");
         }
       }
     } catch (err) {
-      setError("❌ Error processing request.");
+      setError("❌ Error al procesar la solicitud.");
     } finally {
       setLoading(false);
     }
@@ -51,7 +50,7 @@ const AuthModal = ({ onClose }) => {
     <div className="modal-backdrop">
       <div className="modal-container">
         <div className="modal-header">
-          <h2>{isLogin ? "Login" : "Register"}</h2>
+          <h2>{isLogin ? "Iniciar Sesión" : "Registrarse"}</h2>
           <button className="close-btn" onClick={onClose}>✖</button>
         </div>
 
@@ -60,45 +59,45 @@ const AuthModal = ({ onClose }) => {
         <form onSubmit={handleSubmit} className="modal-form">
           {!isLogin && (
             <div className="form-group">
-              <input 
-                type="text" 
-                name="name" 
-                placeholder="Full Name" 
-                value={formData.name} 
-                onChange={handleChange} 
+              <input
+                type="text"
+                name="name"
+                placeholder="Nombre completo"
+                value={formData.name}
+                onChange={handleChange}
                 required
               />
             </div>
           )}
           <div className="form-group">
-            <input 
-              type="email" 
-              name="email" 
-              placeholder="Email Address" 
-              value={formData.email} 
-              onChange={handleChange} 
+            <input
+              type="email"
+              name="email"
+              placeholder="Correo electrónico"
+              value={formData.email}
+              onChange={handleChange}
               required
             />
           </div>
           <div className="form-group">
-            <input 
-              type="password" 
-              name="password" 
-              placeholder="Password" 
-              value={formData.password} 
-              onChange={handleChange} 
+            <input
+              type="password"
+              name="password"
+              placeholder="Contraseña"
+              value={formData.password}
+              onChange={handleChange}
               required
             />
           </div>
           <button type="submit" className="btn btn-primary btn-full" disabled={loading}>
-            {loading ? "Processing..." : isLogin ? "Login" : "Registrarse"}
+            {loading ? "Procesando..." : isLogin ? "Iniciar Sesión" : "Registrarse"}
           </button>
         </form>
 
         <p className="toggle-auth">
-          {isLogin ? "Si aun no eta reistrado? " : "Already have an account?"}
+          {isLogin ? "¿Aún no tienes cuenta? " : "¿Ya tienes una cuenta? "}
           <button onClick={() => setIsLogin(!isLogin)}>
-            {isLogin ? "Registrarse" : "Login"}
+            {isLogin ? "Regístrate" : "Inicia Sesión"}
           </button>
         </p>
       </div>
