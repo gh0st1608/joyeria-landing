@@ -1,53 +1,53 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import ReactWOW from 'react-wow';
-import $ from 'jquery';
-import 'magnific-popup';
+import React, { useState } from 'react';
+// import './VideoSection.css';
+import videoimg from '../../../assets/img/JoyeriaPeru/01.png';
 
-import videoimg from '../../../assets/img/text-block/03.jpg';
+const Video = () => {
+    const [isOpen, setIsOpen] = useState(false);
 
-class Video extends Component {
-    componentDidMount(){
-        function popup(){
-            $('.popup-video').magnificPopup({
-                type: 'iframe',
-            });
-        }
-        popup();
-    }
-    render() {
-        return (
-            <section className="text-block  with-pattern pt-115 pb-115">
+    const openModal = () => setIsOpen(true);
+    const closeModal = () => setIsOpen(false);
+
+    return (
+        <>
+            <section className="text-block with-pattern">
                 <div className="container">
-                    <div className="row align-items-center justify-content-center">
-                        <div className="col-lg-6 col-md-10 order-2 order-lg-1">
-                            <div className="block-text">
-                                <div className="section-title mb-20">
-                                    <span className="title-tag">design video</span>
-                                    <h2>Make Your Day Brighter .</h2>
-                                </div>
-                                <p className="pr-50">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat you have to understand
-                                    this.
-          </p>
-                                <Link to="/contact" className="main-btn btn-filled mt-40">See More</Link>
-                            </div>
+                    <div className="block-text">
+                        <div className="section-title">
+                            <span className="title-tag">DISEÑO DE JOYAS CON AMOR</span>
+                            <h2>Gama alta<br />Artículos de joyería</h2>
                         </div>
-                        <ReactWOW animation="fadeInRight" data-wow-delay=".3s">
-                            <div className="col-lg-6 col-md-10 order-1 order-lg-2">
-                                <div className="video-wrap video-wrap-two mb-small" style={{ backgroundImage: "url(" + videoimg + ")" }}>
-                                    <Link to="http://www.youtube.com/embed/watch?v=EEJFMdfraVY" className="popup-video"><i className="fas fa-play" /></Link>
-                                </div>
-                            </div>
-                        </ReactWOW>
+                        <a onClick={openModal} className="main-btn">Ver video</a>
+                    </div>
+
+                    <div
+                        className="video-trigger-wrap"
+                        style={{ backgroundImage: `url(${videoimg})` }}
+                        onClick={openModal}
+                    >
+                        <i className="fas fa-play popup-video"></i>
                     </div>
                 </div>
-                <div className="pattern-wrap">
-                    <div className="pattern" />
-                </div>
             </section>
-        );
-    }
-}
+
+            {isOpen && (
+                <div className="modal-overlay" onClick={closeModal}>
+                    <div className="modal-content" onClick={e => e.stopPropagation()}>
+                        <button className="modal-close" onClick={closeModal}>×</button>
+                        <div className="video-responsive">
+                            <iframe
+                                src="https://www.youtube.com/embed/EEJFMdfraVY"
+                                frameBorder="0"
+                                allow="autoplay; encrypted-media"
+                                allowFullScreen
+                                title="Video"
+                            ></iframe>
+                        </div>
+                    </div>
+                </div>
+            )}
+        </>
+    );
+};
 
 export default Video;
