@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import './VideoSection.css';
+import '../../../assets/css/video.css';
 import videoimg from '../../../assets/img/JoyeriaPeru/01.png';
 
 const Video = () => {
@@ -34,14 +34,15 @@ const Video = () => {
                 <div className="modal-overlay" onClick={closeModal}>
                     <div className="modal-content" onClick={e => e.stopPropagation()}>
                         <button className="modal-close" onClick={closeModal}>×</button>
-                        <div className="video-responsive">
+                        <div className="video-container">
                             <iframe
                                 src="https://www.youtube.com/embed/EEJFMdfraVY"
                                 frameBorder="0"
-                                allow="autoplay; encrypted-media"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowFullScreen
                                 title="Video"
-                            ></iframe>
+                                className="fullscreen-video"
+                            />
                         </div>
                     </div>
                 </div>
