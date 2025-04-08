@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import Banner from './Banner';
 import Category from './Category';
-/* import Video from './Video'; */
+import Video from './Video'; 
 import Habout from '../../layouts/Habout';
 
 
@@ -12,6 +12,7 @@ class Content extends Component {
                 <Banner/>
                 <Category/>
                 <Habout/>
+                <Video/>
             </Fragment>
         );
     }

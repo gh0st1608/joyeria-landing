@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import ReactWOW from 'react-wow';
 
 // Importar imágenes
-import aboutimg1 from '../../assets/img/feature/04.jpg';
-import aboutimg2 from '../../assets/img/feature/05.jpg';
+import aboutimg1 from '../../assets/img/JoyeriaPeru/02.jpg';
+import aboutimg2 from '../../assets/img/JoyeriaPeru/ch.jpg';
 import aboutbottomimg from '../../assets/img/bg/03.jpg';
 // import './Habout.css';
 
