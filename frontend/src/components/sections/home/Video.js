@@ -17,7 +17,7 @@ const Video = () => {
                             <span className="title-tag">DISEÑO DE JOYAS CON AMOR</span>
                             <h2>Gama alta<br />Artículos de joyería</h2>
                         </div>
-                        <a onClick={openModal} className="main-btn">Ver video</a>
+                        <button onClick={openModal} className="main-btn">Ver video</button>
                     </div>
 
                     <div
