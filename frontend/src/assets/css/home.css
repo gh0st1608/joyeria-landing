@@ -1321,77 +1321,74 @@ header {
 }
 
 /* Foooooooooooooooooooooooter */
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;600&family=Vollkorn:wght@600&display=swap');
 
-/* Footer Principal */
+/* Contenedor principal del footer */
 .footer {
   background-color: #1D252C;
-  color: white;
-  padding: 50px 0;
+  color: #f1f1f1;
+  padding: 50px 20px 30px;
   font-family: 'Libre Franklin', sans-serif;
 }
 
-/* Contenedor de Secciones */
+/* Contenedor interno */
 .footer-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
   max-width: 1200px;
-  margin: auto;
+  margin: 0 auto;
+  display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
   gap: 30px;
-  padding: 0 20px;
 }
 
-/* Sección individual */
+/* Secciones */
 .footer-section {
   flex: 1;
   min-width: 250px;
-  text-align: left;
 }
 
 .footer-section h4 {
   font-size: 20px;
-  font-family: 'Vollkorn', serif;
+  margin-bottom: 15px;
   color: #D5BA8C;
-  margin-bottom: 20px;
+  font-family: 'Vollkorn', serif;
 }
 
 .footer-section p {
-  font-size: 16px;
-  margin: 8px 0;
   display: flex;
   align-items: center;
-  gap: 8px;
-  color: #f1f1f1;
+  gap: 10px;
+  font-size: 15px;
+  margin: 8px 0;
+  color: #ccc;
 }
 
 /* Redes Sociales */
 .social-icons {
   display: flex;
+  align-items: center;
   gap: 15px;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .social-icons a {
+  width: 42px;
+  height: 42px;
   background-color: #D5BA8C;
   color: #1D252C;
-  width: 40px;
-  height: 40px;
   display: flex;
-  align-items: center;
   justify-content: center;
-  border-radius: 50%;
+  align-items: center;
   font-size: 18px;
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-}
-
-.social-icons a i {
-  pointer-events: none;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.3s;
 }
 
 .social-icons a:hover {
   background-color: white;
   color: #1D252C;
+  transform: scale(1.1);
 }
 
 /* Legal */
@@ -1406,11 +1403,11 @@ header {
 .footer-legal-links a {
   color: #D5BA8C;
   text-decoration: none;
-  font-size: 15px;
+  font-size: 14px;
   display: flex;
   align-items: center;
   gap: 5px;
-  transition: color 0.3s ease-in-out;
+  transition: color 0.3s ease;
 }
 
 .footer-legal-links a:hover {
@@ -1421,11 +1418,133 @@ header {
   color: #aaa;
 }
 
-/* Footer inferior */
+/* Parte inferior */
+.footer-bottom {
+  text-align: center;
+  font-size: 13px;
+  color: #ccc;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #D5BA8C;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-section,
+  .social-icons {
+    margin-bottom: 20px;
+  }
+}
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;600&family=Vollkorn:wght@600&display=swap');
+
+/* Footer Principal */
+.footer {
+  background-color: #1D252C;
+  color: #f1f1f1;
+  font-family: 'Libre Franklin', sans-serif;
+  padding: 50px 20px 30px;
+}
+
+/* Contenedor interno */
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+/* Sección individual */
+.footer-section {
+  flex: 1 1 300px;
+  min-width: 250px;
+  text-align: left; /* Asegura la alineación a la izquierda */
+}
+
+
+.footer-section h4 {
+  font-size: 20px;
+  font-family: 'Vollkorn', serif;
+  color: #D5BA8C;
+  margin-bottom: 15px;
+}
+
+.footer-section p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  margin: 8px 0;
+  color: #ccc;
+}
+
+/* Redes Sociales */
+.social-icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.social-icons a {
+  background-color: #D5BA8C;
+  color: #1D252C;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.social-icons a i {
+  font-size: 18px;
+  color: #1D252C;
+}
+
+.social-icons a:hover {
+  background-color: white;
+  transform: scale(1.1);
+}
+
+/* Legal */
+.footer-legal-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.footer-legal-links a {
+  color: #D5BA8C;
+  text-decoration: none;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.3s;
+}
+
+.footer-legal-links a:hover {
+  color: white;
+}
+
+.divider {
+  color: #aaa;
+}
+
+/* Línea inferior */
 .footer-bottom {
   margin-top: 30px;
   text-align: center;
-  font-size: 14px;
+  font-size: 13px;
   border-top: 1px solid #D5BA8C;
   padding-top: 20px;
   color: #ccc;
@@ -1439,35 +1558,17 @@ header {
   }
 
   .footer-section {
-    margin-bottom: 30px;
+    width: 100%;
+    margin-bottom: 25px;
   }
-}
-.social-icons a {
-  background-color: #D5BA8C;
-  color: #1D252C;
-  width: 42px;
-  height: 42px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-  text-decoration: none;
-}
 
-.social-icons a i,
-.social-icons a svg {
-  font-size: 18px;
-  color: inherit;
-  transition: transform 0.3s ease;
-}
+  .social-icons {
+    margin-bottom: 15px;
+  }
 
-.social-icons a:hover {
-  background-color: white;
-  color: #1D252C;
-}
-
-.social-icons a:hover i,
-.social-icons a:hover svg {
-  transform: scale(1.1);
+  .footer-legal-links {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
 }
