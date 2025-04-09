@@ -1,10 +1,8 @@
 import React, { createContext, useState, useEffect } from "react";
-/* import { useHistory } from "react-router-dom"; */ // Usa useHistory
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  /* const history = useHistory(); */ // Usa useHistory
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -14,10 +12,11 @@ export const AuthProvider = ({ children }) => {
 
     if (token && storedUser) {
       try {
-        setUser(JSON.parse(storedUser));
+        const parsedUser = JSON.parse(storedUser);
+        setUser(parsedUser);
       } catch (error) {
-        console.error("❌ Error al parsear `user` desde localStorage:", error);
-        localStorage.removeItem("user"); // Eliminar datos corruptos
+        console.error("❌ Error al parsear el usuario desde localStorage:", error);
+        localStorage.removeItem("user");
         setUser(null);
       }
     } else {
@@ -28,27 +27,15 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = (userData, token) => {
-    if (!userData || !token) {
-      console.error("❌ Error: Datos de usuario o token inválidos.");
-      return;
-    }
-
     localStorage.setItem("accessToken", token);
     localStorage.setItem("user", JSON.stringify(userData));
     setUser(userData);
-    /* if (history.location.pathname !== "/dashboard") { 
-      history.push("/dashboard"); // Usa history.push
-    }  */
   };
   
   const logout = () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("user");
     setUser(null);
-    /* history.push("/shop-left"); */
-/*     if (history.location.pathname !== "/login") {
-      history.push("/login"); // Usa history.push
-    } */
   };
 
   return (
