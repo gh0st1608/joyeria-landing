@@ -31,7 +31,7 @@ export class PaymentController {
       throw new Error('Token de pago no proporcionado');
     }
     await this.executePaymentUseCase.execute(tokenPayment);
-    return { status: 'success', message: 'Pago en proceso' }
+    return { status: 'success', message: 'Pago verificado' }
   }
 
   @Post('/webhook-get-status')
