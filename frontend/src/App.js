@@ -10,14 +10,13 @@ import Account from './components/pages/Account';
 import Cart from './components/pages/Cart';
 import Checkout from './components/pages/Checkout';
 import Contact from './components/pages/Contact';
-import Register from './components/pages/Register';
 import Shopdetail from './components/pages/Shopdetail';
 import Shopleft from './components/pages/Shopleft';
 
-// Página de login con modal
+// Página de autenticación
 import AuthModal from "./components/sections/auth/AuthModal";
 
-// Dashboard
+// Dashboard (rutas protegidas)
 import Dashboard from './components/pages/Dashboard';
 import Settings from './components/pages/Settings';
 import Products from './components/pages/Products';
@@ -30,7 +29,7 @@ import Payments from "./components/pages/Payments";
 import Footer from "./components/layouts/Footer";
 import { getProducts } from "./components/servicios/shop/productService";
 
-// Ruta protegida
+// Ruta protegida personalizada
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const { user } = useContext(AuthContext);
   return (
@@ -47,16 +46,16 @@ function App() {
   useEffect(() => {
     let isMounted = true;
 
-    async function fetchProducts() {
+    const fetchProducts = async () => {
       try {
         await getProducts();
         if (isMounted) {
-          // datos cargados
+          // Productos cargados (opcional lógica extra)
         }
       } catch (error) {
         console.error("❌ Error cargando productos:", error);
       }
-    }
+    };
 
     fetchProducts();
 
@@ -69,21 +68,19 @@ function App() {
     <CartProvider>
       <Router>
         <Switch>
-          {/* Públicas */}
+
+          {/* 🔓 Rutas públicas */}
           <Route exact path="/" component={Home} />
           <Route exact path="/about" component={Aboutv2} />
           <Route exact path="/account" component={Account} />
           <Route exact path="/cart" component={Cart} />
           <Route exact path="/checkout" component={Checkout} />
           <Route exact path="/contact" component={Contact} />
-          <Route exact path="/register" component={Register} />
           <Route exact path="/shop-left" component={Shopleft} />
           <Route exact path="/shop-detail/:_id" component={Shopdetail} />
-
-          {/* <Route exact path="/login" component={AuthPage} /> */}
           <Route exact path="/login" component={AuthModal} />
 
-          {/* Protegidas */}
+          {/* 🔒 Rutas privadas */}
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
           <PrivateRoute exact path="/dashboard/products" component={Products} />
           <PrivateRoute exact path="/dashboard/users" component={Users} />
@@ -93,7 +90,7 @@ function App() {
           <PrivateRoute exact path="/dashboard/profile" component={Profile} />
 
           {/* Redirección por defecto */}
-          <Redirect to="/login" />
+          <Redirect to="/" />
         </Switch>
         <Footer />
       </Router>

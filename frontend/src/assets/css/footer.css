@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin&family=Vollkorn:wght@600&display=swap');
+
+/* === Footer Principal === */
+.footer {
+  background-color: #1D252C;
+  color: white;
+  font-family: 'Libre Franklin', sans-serif;
+  padding: 60px 20px 20px;
+  width: 100%;
+}
+
+/* Contenedor General */
+.footer-container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  text-align: center;
+  gap: 40px;
+}
+
+/* Sección individual */
+.footer-section {
+  flex: 1;
+  min-width: 250px;
+}
+
+.footer-section h4 {
+  font-size: 20px;
+  font-family: 'Vollkorn', serif;
+  color: #D5BA8C;
+  margin-bottom: 20px;
+}
+
+.footer-section p {
+  font-size: 16px;
+  margin: 8px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  color: #f1f1f1;
+}
+
+/* Íconos sociales */
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.social-icons a {
+  background-color: #312c22;
+  /* color: #222629; */
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 18px;
+  transition: all 0.3s ease-in-out;
+}
+
+.social-icons a:hover {
+  background-color: white;
+  color: #1D252C;
+}
+
+/* Enlaces legales */
+.footer-legal-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.footer-legal-links a {
+  color: #D5BA8C;
+  text-decoration: none;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.3s ease-in-out;
+}
+
+.footer-legal-links a:hover {
+  color: white;
+}
+
+.divider {
+  color: #aaa;
+}
+
+/* Línea inferior */
+.footer-bottom {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 14px;
+  border-top: 1px solid #D5BA8C;
+  padding-top: 20px;
+  color: #ccc;
+}
+
+/* === Responsive Celular === */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-section {
+    margin-bottom: 30px;
+  }
+
+  .footer-legal-links {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .footer-legal-links .divider {
+    display: none;
+  }
+}
