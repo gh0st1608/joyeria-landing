@@ -26,7 +26,8 @@ export class PaymentInfrastructureRepository implements IPaymentRepository {
     try {
     const accessToken = await this.payPalAuthService.getAuthToken();
 
-    const responseOrder = await axios.post(`${process.env.PAYPAL_API_BASE_URL}/v2/checkout/orders`, order, {
+    const responseOrder = await axios.post(
+      `${process.env.PAYPAL_API_BASE_URL}/v2/checkout/orders`, order, {
       headers: {
         'Content-Type': 'application/json',
         //'PayPal-Request-Id': 'f98d6c31-f5ec-4233-92ff-c2d0c04b4886',
@@ -37,6 +38,43 @@ export class PaymentInfrastructureRepository implements IPaymentRepository {
   }catch(error){
     console.log(JSON.stringify(error))
   }
+
+  }
+
+  async execute(tokenPayment : string) {
+    const accessToken = await this.payPalAuthService.getAuthToken();
+     const response = await axios.get(
+      `${process.env.PAYPAL_API_BASE_URL}/v2/checkout/orders/${tokenPayment}`,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+    const paymentData = response.data;
+    const payment = new Payment({
+      orderId: paymentData.id,
+      payerId: paymentData.payer.payer_id,
+      status: paymentData.status,
+      amount: parseFloat(paymentData.purchase_units[0].amount.value),
+      currency: paymentData.purchase_units[0].amount.currency_code,
+      createTime: new Date(paymentData.create_time), // Convertir a Date
+      id: paymentData.id,  // Si es necesario
+      bank: 'PayPal', // Si la plataforma de pago es PayPal
+      methodPayment: 'Online', // Definir método de pago
+      userId: paymentData.payer.email_address, // O algún identificador del usuario
+    })
+    
+    await this.createPay(payment);
+
+    await axios.post(`${process.env.PAYPAL_API_BASE_URL}/v2/checkout/orders/${tokenPayment}/capture`,{},{
+      headers: {
+        'Content-Type': 'application/json',
+        //'PayPal-Request-Id': '7b92603e-77ed-4896-8e78-5dea2050476a',
+        'Authorization': `Bearer ${accessToken}`
+      }
+    })
+
 
   }
 
@@ -67,45 +105,6 @@ export class PaymentInfrastructureRepository implements IPaymentRepository {
   async find(where: { [s: string]: string | number }) : Promise<Payment>{
     const payment = await this.paymentModel.findOne(where).lean().exec();
     return payment ? new Payment(payment) : null;
-  }
-
-
-  async execute(tokenPayment : string): Promise <any> {
-    const accessToken = await this.payPalAuthService.getAuthToken();
-     const response = await axios.get(
-      `${process.env.PAYPAL_API_BASE_URL}/v2/checkout/orders/${tokenPayment}`,
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
-    const paymentData = response.data;
-    const payment = new Payment({
-      orderId: paymentData.id,
-      payerId: paymentData.payer.payer_id,
-      status: paymentData.status,
-      amount: parseFloat(paymentData.purchase_units[0].amount.value),
-      currency: paymentData.purchase_units[0].amount.currency_code,
-      createTime: new Date(paymentData.create_time), // Convertir a Date
-      id: paymentData.id,  // Si es necesario
-      bank: 'PayPal', // Si la plataforma de pago es PayPal
-      methodPayment: 'Online', // Definir método de pago
-      userId: paymentData.payer.email_address, // O algún identificador del usuario
-    })
-    
-    await this.createPay(payment);
-
-    const responseOrder = await axios.post(`${process.env.PAYPAL_API_BASE_URL}/v2/checkout/orders/${tokenPayment}/capture`,{},{
-      headers: {
-        'Content-Type': 'application/json',
-        //'PayPal-Request-Id': '7b92603e-77ed-4896-8e78-5dea2050476a',
-        'Authorization': `Bearer ${accessToken}`
-      }
-    })
-
-    return responseOrder.data
-
   }
 
   async notificationStatus(orderId: string): Promise<void> {
