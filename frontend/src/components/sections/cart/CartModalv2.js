@@ -1,50 +1,97 @@
 import React, { useContext, useEffect, useState } from "react";
 import { CartContext } from "../../../context/CartContext";
-import { createCart, createPayment } from "../../servicios/payment/paymentService";
-import { useHistory } from "react-router-dom";
+import { createCart, createPayment, verifyPayment } from "../../servicios/payment/paymentService"; 
+import { useHistory, useLocation } from "react-router-dom";
+import { FaTrash, FaCreditCard, FaCheckCircle } from "react-icons/fa";
+import PaymentSuccessModal from "./PaymentSuccessModal";
 import { io } from "socket.io-client";
 import { BASE_URL } from "../../servicios/endpoints";
-import { FaTrash, FaCreditCard, FaCheckCircle } from "react-icons/fa";
-import PaymentSuccessModal from "./PaymentSuccessModal"; 
-
-
 
 const CartContent = () => {
   const { cart, removeFromCart, clearCart, updateQuantity } = useContext(CartContext);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const history = useHistory();
+  const location = useLocation();
   const [orderId, setOrderId] = useState(null);
   const [paymentCompleted, setPaymentCompleted] = useState(false);
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [paymentStatus, setPaymentStatus] = useState(null);
+  
+  // Estado para controlar si ya se ha redirigido
+  const [redirected, setRedirected] = useState(false);
 
+  // Conectar al WebSocket solo si el orderId está disponible
   useEffect(() => {
-    /* if (!orderId) return; */
+    if (!orderId) return;
+
     console.log("🌐 Conectando a WebSocket en: ", BASE_URL.wsPayment);
-  
+
     const socket = io(BASE_URL.wsPayment, { transports: ["websocket"] });
-  
+
     socket.on("connect", () => {
       console.log("🟢 Conectado al WebSocket con ID:", socket.id);
     });
-  
+
     socket.on(`payment-status-${orderId}`, (data) => {
-      console.log('🟢 WebSocket:', `payment-status-${orderId}`, data);
-      if (data.status === "COMPLETED") {
+      console.log("🟢 WebSocket:", `payment-status-${orderId}`, data);
+      if (data.status === "COMPLETED" && !redirected) {
         setPaymentCompleted(true);
         setShowSuccessModal(true);
         clearCart();
+        setRedirected(true);  // Aseguramos que solo se redirige una vez
         setTimeout(() => {
-          setShowSuccessModal(false);
-          history.push("/shop-left");
-        }, 5000); // Cierra el modal automáticamente en 3s
+          setShowSuccessModal(false);  // Cierra el modal después de 5 segundos
+          history.replace("/cart");   // Esto reemplaza la URL sin recargar la página ni cambiarla
+        }, 5000); // Espera 5 segundos antes de redirigir
       }
     });
-  
+
     return () => {
       console.log("❌ Desconectando socket...");
       socket.disconnect();
     };
-  }, [orderId, clearCart, history]);
-  
+  }, [orderId, clearCart, history, redirected]); // Dependemos de `redirected`
+
+  // Captura los parámetros de la URL para verificar el pago
+  useEffect(() => {
+    // Eliminar parámetros si están presentes en la URL después de la recarga
+    const queryParams = new URLSearchParams(location.search);
+    const payerId = queryParams.get("PayerID");
+    const token = queryParams.get("token");
+
+    if (payerId && token) {
+      // Llamada a la función que verifica el pago con los parámetros
+      const verifyPaymentStatus = async () => {
+        try {
+          const response = await verifyPayment(payerId, token);
+          if (response.success) {
+            setPaymentStatus("success");
+            setPaymentCompleted(true);
+            setShowSuccessModal(true);
+            clearCart(); // Limpiar el carrito si el pago es exitoso
+            setRedirected(true); // Aseguramos que solo se redirige una vez
+            setTimeout(() => {
+              setShowSuccessModal(false); // Cerrar el modal después de 5 segundos
+              history.replace("/cart");   // Reemplazamos la URL para eliminar los parámetros de la URL
+            }, 5000); // Espera 5 segundos antes de redirigir
+          } else {
+            setPaymentStatus("failure");
+            setShowSuccessModal(true);
+          }
+        } catch (error) {
+          console.error("Error al verificar el pago:", error);
+          setPaymentStatus("failure");
+          setShowSuccessModal(true);
+        }
+      };
+
+      verifyPaymentStatus();
+    }
+
+    // Al recargar la página, eliminar los parámetros PayerID y token de la URL
+    if (payerId || token) {
+      history.replace("/cart");  // Esto reemplaza la URL sin los parámetros
+    }
+  }, [location, clearCart, history, redirected]); // Dependemos de `redirected`
 
   const handlePayment = async () => {
     try {
@@ -57,10 +104,8 @@ const CartContent = () => {
       if (paymentCreated?.status === "CREATED") {
         setOrderId(paymentCreated.id);
         setTimeout(() => {
-          console.log('paymentCreated.links[1].href',paymentCreated.links[1].href)
-          //window.location.href = paymentCreated.links[1].href; 
-          window.open(paymentCreated.links[1].href, "_blank");
-        }, 500); // Un pequeño retraso para que el estado se propague correctamente
+          window.location.href = paymentCreated.links[1].href; // Redirigir al usuario a la página de pago
+        }, 500);
       } else {
         alert("❌ Hubo un problema con el pago. Intenta nuevamente.");
       }
@@ -75,7 +120,7 @@ const CartContent = () => {
       <div className="cart-container">
         <h2>Carrito de Compras</h2>
         <p>Tu carrito está vacío.</p>
-        <PaymentSuccessModal isOpen={showSuccessModal} onClose={() => setShowSuccessModal(false)} />
+        <PaymentSuccessModal isOpen={showSuccessModal} onClose={() => setShowSuccessModal(false)} clearCart={clearCart} />
       </div>
     );
   }
@@ -105,27 +150,24 @@ const CartContent = () => {
                 />
                 <span>{item.title}</span>
               </td>
-              <td>S/ {Number(item.price || 0).toFixed(2)}</td>
+              <td>$ {Number(item.price || 0).toFixed(2)}</td>
               <td>
                 <button className="btn-quantity" onClick={() => updateQuantity(item._id, item.quantity - 1)}>-</button>
                 <span className="quantity-value">{item.quantity}</span>
                 <button className="btn-quantity" onClick={() => updateQuantity(item._id, item.quantity + 1)}>+</button>
               </td>
-              <td>S/ {(item.price * item.quantity).toFixed(2)}</td>
+              <td>$ {(item.price * item.quantity).toFixed(2)}</td>
               <td>
-
                 <button className="btn btn-danger btn-sm" onClick={() => removeFromCart(item._id)}>
                   <FaTrash style={{ marginRight: "5px" }} /> Eliminar
                 </button>
-
-
               </td>
             </tr>
           ))}
         </tbody>
       </table>
       <h3 className="cart-total">
-        🏷 Total: S/ {cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)}
+        🏷 Total: $ {cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)}
       </h3>
       <div className="cart-actions">
         <button className="btn btn-secondary" onClick={clearCart}>
@@ -143,8 +185,13 @@ const CartContent = () => {
             </>
           )}
         </button>
-
       </div>
+      <PaymentSuccessModal
+        isOpen={showSuccessModal}
+        status={paymentStatus}  // Mostrar el estado del pago
+        onClose={() => setShowSuccessModal(false)}
+        clearCart={clearCart}
+      />
     </div>
   );
 };
