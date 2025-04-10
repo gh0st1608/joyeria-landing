@@ -27,7 +27,7 @@ export const postRequest = async (endpoint, data) => {
 
 export const getRequest = async (endpoint) => {
   try {
-    const response = await api.get(endpoint);
+    const response = await api.get(`${BASE_URL.payment}${endpoint}`);
     return response.data;
   } catch (error) {
     return handleApiError(error, `Error fetching ${endpoint}`);
