@@ -36,3 +36,18 @@ export const createCart = async (cartData) => {
 export const logoutUser = () => {
   localStorage.removeItem("token");
 };
+
+export const verifyPayment = async (payerId, token) => {
+  try {
+    const response = await fetch(`http://localhost:4002/order/payment?token=${token}&PayerID=${payerId}`);
+    const data = await response.json();
+    if (data.success) {
+      return { success: true };
+    } else {
+      return { success: false };
+    }
+  } catch (error) {
+    console.error("Error al verificar el pago", error);
+    return { success: false };
+  }
+};

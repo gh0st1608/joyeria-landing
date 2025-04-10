@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 // import './HeroBanner.css';
 import imgHero from '../../../assets/img/banner/02.jpg';
-import { FaFacebookF, FaInstagram, FaTwitter } from 'react-icons/fa';
+import { FaFacebookF, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 
 const HeroBanner = () => {
   return (
@@ -24,7 +24,7 @@ const HeroBanner = () => {
           <div className="social-links">
             <a href="https://www.facebook.com/profile.php?id=100063131836042"><FaFacebookF /></a>
             <a href="https://www.facebook.com/profile.php?id=100063131836042"><FaInstagram /></a>
-            <a href="https://www.facebook.com/profile.php?id=100063131836042"><FaTwitter /></a>
+            <a href="https://www.facebook.com/profile.php?id=100063131836042"><FaWhatsapp /></a>
           </div>
         </div>
         <br />

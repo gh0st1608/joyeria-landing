@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin&family=Vollkorn:wght@600&display=swap');
+
+.video-section {
+  display: flex;
+  justify-content: center;  /* Centramos horizontalmente */
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 40px;
+  background-color: #1D252C;
+  padding: 100px 20px;
+  color: #fff;
+  font-family: 'Libre Franklin', sans-serif;
+  text-align: center;       /* Centra el texto */
+}
+
+/* Bloque de contenido (texto) */
+.video-content {
+  max-width: 600px;
+  flex: 1;
+  margin: 0 auto;
+}
+
+/* Etiqueta de título pequeña */
+.title-tag {
+  color: #D5BA8C;
+  font-size: 14px;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  display: inline-block;
+  font-family: 'Libre Franklin', sans-serif;
+}
+
+/* Título principal */
+.video-title {
+  font-size: 48px;
+  margin-bottom: 20px;
+  font-family: 'Vollkorn', serif;
+  color: #D5BA8C;
+}
+
+/* Acento en el título, color diferente */
+.video-title span {
+  color: #fff;
+}
+
+/* Descripción del video */
+.video-description {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  color: #f0f0f0;
+}
+
+/* Botón para ver el video */
+.video-btn {
+  background-color: #D5BA8C;
+  color: #1D252C;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 5px;
+  font-family: 'Libre Franklin', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 0 auto; /* Centrar botón */
+}
+
+.video-btn:hover {
+  background-color: #f0d59d;
+}
+
+/* Miniatura del video */
+.video-thumbnail {
+  flex: 1;
+  min-height: 300px;
+  max-width: 500px;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  border-radius: 12px;
+  cursor: pointer;
+  margin: 0 auto;
+}
+
+/* Botón de reproducción sobre la miniatura */
+.video-play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  background-color: #D5BA8C;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #1D252C;
+  font-size: 24px;
+  transition: all 0.3s ease-in-out;
+}
+
+.video-play-btn:hover {
+  background-color: #fff;
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Modal de video */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.modal-content {
+  position: relative;
+  width: 90vw;
+  max-width: 1280px;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #D5BA8C;
+  border: none;
+  font-size: 24px;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 50%;
+  color: #1D252C;
+  z-index: 10;
+}
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* Relación 16:9 */
+  height: 0;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .video-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .video-thumbnail {
+    margin-top: 30px;
+    max-width: 100%;
+  }
+}

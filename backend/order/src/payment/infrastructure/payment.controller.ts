@@ -27,6 +27,7 @@ export class PaymentController {
 
   @Get()
   async execute(@Query('token') tokenPayment: string) {
+    console.log('entro al execute')
     if (!tokenPayment) {
       throw new Error('Token de pago no proporcionado');
     }

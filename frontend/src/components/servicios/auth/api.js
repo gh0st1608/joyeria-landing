@@ -25,14 +25,11 @@ export const getRequest = async (endpoint) => {
 };
 
 // ✅ Función para hacer peticiones POST
-export const postRequest = async (endpoint, data) => {
-  try {
-    const response = await api.post(endpoint, data);
-    return response.data;
-  } catch (error) {
-    return handleApiError(error, `Error posting to ${endpoint}`);
-  }
+export const postRequest = async (url, data) => {
+  const response = await axios.post(url, data);
+  return response.data;
 };
+
 
 // ✅ Función para hacer peticiones PUT (Actualizar)
 export const putRequest = async (endpoint, data) => {

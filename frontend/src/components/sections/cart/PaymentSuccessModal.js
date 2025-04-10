@@ -1,16 +1,12 @@
 import React, { useEffect, useCallback } from "react";
-import { useHistory } from "react-router-dom";
 import { FaCheckCircle } from "react-icons/fa";
 
 const PaymentSuccessModal = ({ isOpen, onClose, clearCart }) => {
-  const history = useHistory();
-
   // Memoizamos handleClose para que no cambie en cada render
   const handleClose = useCallback(() => {
     clearCart();
     onClose();
-    history.push("/shop-left"); // Redirige al catálogo
-  }, [clearCart, onClose, history]);
+  }, [clearCart, onClose]);
 
   useEffect(() => {
     if (isOpen) {

@@ -65,8 +65,8 @@ export class PaymentInfrastructureRepository implements IPaymentRepository {
       userId: paymentData.payer.email_address, // O algún identificador del usuario
     })
     
-    await this.createPay(payment);
-
+    const payInserted = await this.createPay(payment);
+    console.log('payInserted',payInserted)
     await axios.post(`${process.env.PAYPAL_API_BASE_URL}/v2/checkout/orders/${tokenPayment}/capture`,{},{
       headers: {
         'Content-Type': 'application/json',
