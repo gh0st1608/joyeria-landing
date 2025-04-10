@@ -26,7 +26,7 @@ const AuthModal = () => {
         : await registerUser(formData);
 
       if (response?.accessToken) {
-        login(response.user, response.accessToken); // actualiza el contexto global
+        login(response.accessToken); // actualiza el contexto global
         history.push("/dashboard"); // redirige
       } else {
         setError("❌ Credenciales inválidas o registro fallido.");

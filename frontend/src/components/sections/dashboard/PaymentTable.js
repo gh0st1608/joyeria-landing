@@ -47,7 +47,7 @@ const PaymentTable = ({ payments = [], onEdit, onDelete }) => {
                 <td>{startIndex + index + 1}</td>
                 <td>{p.payerId || "N/A"}</td>
                 <td>{new Date(p.createTime).toLocaleString()}</td>
-                <td>S/ {Number(p.amount || 0).toFixed(2)}</td>
+                <td>$ {Number(p.amount || 0).toFixed(2)}</td>
                 <td>
                   <span className={`status-badge status-${p.status?.toLowerCase()}`}>
                     {p.status || "Desconocido"}
