@@ -27,7 +27,7 @@ export class CreatePaymentUseCase {
       purchase_units: [purchase_unit],
       application_context: {
         return_url : `${process.env.HOST_FRONT}/cart`,
-        cancel_url : `${process.env.HOST}/order/cancel_url`
+        cancel_url : `${process.env.HOST_FRONT}/shop-left`
       }
     };
 
