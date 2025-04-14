@@ -28,6 +28,7 @@
     border-radius: 8px;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
 }
 
@@ -43,7 +44,7 @@
     background: #D5BA8C;
     color: white;
     border: none;
-    padding: 10px 12px;
+    /* padding: 10px 12px; */
     border-radius: 5px;
     cursor: pointer;
 }
@@ -193,6 +194,9 @@
     .btn {
         width: 100%;
     }
+    .shop-sidebar {
+      margin: 0 10% !important;
+    }
 }
 
 
@@ -269,7 +273,7 @@
 /* Estilos generales para la barra lateral */
 .shop-sidebar {
     margin: 10%;
-    width: 250px;
+    /* width: 250px; */
     padding: 20px;
     background: #FFFFFF;
     border-radius: 10px;
@@ -571,6 +575,10 @@
     .main-content {
       margin-left: 200px;
       width: calc(100% - 200px);
+    }
+
+    .search-box {
+      padding: 0;
     }
   }
   
