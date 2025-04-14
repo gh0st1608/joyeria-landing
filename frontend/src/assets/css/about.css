@@ -93,4 +93,7 @@
         flex-direction: column;
         gap: 20px;
     }
+    .about-section {
+        padding: 50px 0;
+    }
 }
