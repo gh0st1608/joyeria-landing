@@ -272,7 +272,7 @@ body {
         margin-bottom: 1rem;
         border: 1px solid var(--border);
         border-radius: 0.5rem;
-        padding: 0.5rem;
+        padding: 20px;
     }
     .cart-table tr {
         display: grid;
@@ -285,6 +285,10 @@ body {
         grid-column-start: 1;
         grid-row-end: 10;
         width: 50%;
+        align-items: flex-start;
+        justify-content: flex-start;
+        margin: 0;
+        padding: 0;
     }
 
     .cart-table td {
@@ -362,6 +366,11 @@ body {
 
     .modal-icon {
         font-size: 2.5rem;
+    }
+
+    .cart-table tr td.cart-item {
+
+        width: auto;
     }
 }
 
