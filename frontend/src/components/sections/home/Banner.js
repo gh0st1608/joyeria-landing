@@ -11,9 +11,9 @@ const HeroBanner = () => {
         
         {/* Texto a la izquierda */}
         <div className="hero-text">
-          <p className="subtitle">Diseño de joyas con amor</p>
+          <p className="subtitle">Detalles que hacen la diferencia</p>
           <h1 className="title">
-          Gama alta <br /> Artículos de joyería
+          <br/> Joyería con amor
           </h1>
 
           <div className="buttons">

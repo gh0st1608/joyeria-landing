@@ -11,7 +11,7 @@ const Video = () => {
     <>
       <section className="video-section">
         <div className="video-content">
-          <span className="title-tag">Video de diseño</span>
+          {/* <span className="title-tag">Video de diseño</span> */}
           <h2 className="video-title">Gama alta<br />Articulos de Joyería.</h2>
           <p className="video-description">
           Descubre piezas únicas que combinan elegancia, distinción y artesanía en cada detalle.

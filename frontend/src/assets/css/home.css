@@ -414,16 +414,17 @@ header {
 .subtitle {
   color: #D5BA8C;
   letter-spacing: 2px;
-  font-size: 14px;
+  font-size: 20px;
   text-transform: uppercase;
   margin-bottom: 20px;
+  font-family: 'Playfair Display', serif;
 }
 
 .title {
   font-size: 60px;
-  font-family: 'Vollkorn', serif;
-  font-weight: 600;
-  line-height: 1.2;
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  line-height: 0.5;
   margin-bottom: 30px;
   color: #D5BA8C;
 }
@@ -458,6 +459,7 @@ header {
   background: transparent;
   border: 1px solid #777;
   color: white;
+  font-family: 'Libre Franklin', sans-serif;
 }
 
 .btn.outline:hover {
