@@ -525,6 +525,22 @@
   .profile-dropdown li:hover {
     background: #f2f2f2;
   }
+
+  .mi-toast-personalizado {
+    background-color: #fff4e6;  /* fondo claro estilo joyería */
+    border-left: 5px solid #d49c3d;  /* dorado suave */
+    color: #442a19;  /* marrón oscuro elegante */
+    font-family: 'Libre Franklin', sans-serif;
+  }
+  
+  .mi-toast-body {
+    font-size: 1rem;
+  }
+  
+  .mi-toast-progress {
+    background: #d49c3d;  /* mismo dorado del borde */
+  }
+  
   
   /* ============================= */
   /* 🔹 CONTENEDOR PRINCIPAL */

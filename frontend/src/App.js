@@ -12,6 +12,8 @@ import Checkout from './components/pages/Checkout';
 import Contact from './components/pages/Contact';
 import Shopdetail from './components/pages/Shopdetail';
 import Shopleft from './components/pages/Shopleft';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Página de autenticación
 import AuthModal from "./components/sections/auth/AuthModal";
@@ -67,6 +69,7 @@ function App() {
   return (
     <CartProvider>
       <Router>
+      <ToastContainer />
         <Switch>
 
           {/* 🔓 Rutas públicas */}

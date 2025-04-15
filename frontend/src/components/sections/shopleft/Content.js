@@ -6,6 +6,7 @@ import { getProductsByParams, getProducts } from "../../servicios/shop/productSe
 import { CartContext } from "../../../context/CartContext";
 import { FaEye } from "react-icons/fa";
 import "@fortawesome/fontawesome-free/css/all.min.css"; // ✅ Importamos FontAwesome
+import { toast } from 'react-toastify';
 
 class Content extends Component {
   static contextType = CartContext;
@@ -128,9 +129,18 @@ class Content extends Component {
                             <FaEye style={{ marginRight: "5px" }} /> Ver Opciones
                           </Link>
                           <button
-                            className="btn btn-cart"
-                            onClick={() => addToCart({ ...item, quantity: 1 })}
-                          >
+                              className="btn btn-cart"
+                              onClick={() => {
+                                addToCart({ ...item, quantity: 1 });
+
+                                // ✅ Notificación con toast
+                                toast.success("Producto agregado al carrito", {
+                                  className: "mi-toast-personalizado",
+                                  bodyClassName: "mi-toast-body",
+                                  progressClassName: "mi-toast-progress",
+                                });
+                              }}
+                            >
                             <i className="fa-solid fa-cart-plus"></i> Agregar al carrito
                           </button>
                         </div>
