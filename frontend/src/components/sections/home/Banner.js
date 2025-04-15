@@ -27,10 +27,7 @@ const HeroBanner = () => {
             <a href="https://www.facebook.com/profile.php?id=100063131836042"><FaWhatsapp /></a>
           </div>
         </div>
-        <br />
-        <br />  
-        <br />
-        <br />
+
 
         {/* Imagen a la derecha */}
         <div className="hero-image">
