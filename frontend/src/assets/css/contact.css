@@ -187,7 +187,8 @@ body {
 
     .contact-form {
         padding: 30px;
-        max-width: 90%;
+        /* max-width: 90%; */
+        width: 100%;
     }
 
     .contact-container {
@@ -198,7 +199,7 @@ body {
 
 @media (max-width: 768px) {
     .contact-part {
-        padding: 80px 20px;
+        padding: 80px 10px;
     }
 
     .contact-form .row {
@@ -207,6 +208,7 @@ body {
 
     .contact-form .row .col-12 {
         grid-column: span 1;
+        margin: auto;
     }
 
     .main-btn {

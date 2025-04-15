@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { CartContext } from "../../context/CartContext";
 import { Link } from "react-router-dom";
-import { FaPhoneAlt, FaMapMarkerAlt, FaCalendarAlt, FaHeart, FaUser, FaShoppingBag } from "react-icons/fa";
+import { FaPhoneAlt, FaMapMarkerAlt, FaCalendarAlt, FaHeart, FaUser, FaShoppingBag, FaBars, FaTimes } from "react-icons/fa";
 import AuthModal from "../sections/auth/AuthModal";
 import marca from "../../assets/img/peruJoyas/Logotipo horizontal en formato PNG - A color para fondo claro.png"; 
 
@@ -47,6 +47,7 @@ const Header = () => {
           {/* Menú de Navegación */}
           <nav className={menuOpen ? "nav-menu open" : "nav-menu"}>
             <ul>
+
               <li><Link to="/" onClick={toggleMenu}>Home</Link></li>
               <li><Link to="/about" onClick={toggleMenu}>Nosotros</Link></li>
               <li><Link to="/shop-left" onClick={toggleMenu}>Catálogo</Link></li>
@@ -58,14 +59,34 @@ const Header = () => {
                 <FaUser className="icon" onClick={() => setShowAuthModal(true)} />
                 <span>Iniciar Sesión</span>
               </li>
-
-              <li>
-                <Link to="/cart" onClick={toggleMenu}>
+              <li >
+              <Link to="/cart" onClick={toggleMenu}>
                   <div className="cart-icon">
                     <FaShoppingBag className="icon" />
                     <span className="cart-badge">{cart.reduce((total, item) => total + item.quantity, 0)}</span>
                   </div>
                 </Link>
+              </li>
+
+              <li className="menu-toggle">
+                <div>
+                <Link to="#" onClick={toggleMenu}>
+                  <div className="toggle-icon">
+                    {/* <FaShoppingBag className="icon" /> */}
+                    {
+                      menuOpen ? <FaTimes className="icon"/> : <FaBars className="icon"/>
+                    }
+
+                  </div>
+                </Link>
+                </div>
+                <div>
+
+                <Link to="/">
+              <img src={marca} alt="Perú Joyas" />
+            </Link>
+                </div>
+
               </li>
             </ul>
           </nav>
